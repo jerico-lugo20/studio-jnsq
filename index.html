@@ -6688,11 +6688,11 @@ function renderInvestment(el) {
     h += '<div class="approval-flow" style="margin-top:10px;padding:12px 14px;background:rgba(231,76,60,0.04);border:1px solid rgba(231,76,60,0.15);border-radius:8px">';
     h += '<div style="font-size:10px;color:#e74c3c;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Approval Required</div>';
     h += '<input type="text" id="discApprovalReason" placeholder="Reason for override (required)" style="width:100%;padding:8px 12px;border:1px solid rgba(57,69,80,0.12);border-radius:6px;font-size:12px;color:var(--dark);outline:none;margin-bottom:8px">';
-    h += '<button onclick="requestApproval('discount')" style="padding:8px 16px;background:#e74c3c;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:0.5px;margin-right:8px">Request Approval</button>';
+    h += '<button onclick="requestApproval(\\x27discount\\x27)" style="padding:8px 16px;background:#e74c3c;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:0.5px;margin-right:8px">Request Approval</button>';
     if (_approvalCodes.discount) {
       h += '<div style="margin-top:8px;display:flex;gap:8px;align-items:center">';
       h += '<input type="text" id="discApprovalCode" placeholder="Enter approval code" style="flex:1;padding:8px 12px;border:1px solid rgba(57,69,80,0.12);border-radius:6px;font-size:12px;font-family:monospace;color:var(--dark);outline:none;letter-spacing:1px">';
-      h += '<button onclick="verifyApproval('discount')" style="padding:8px 14px;background:var(--green);color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">Verify</button>';
+      h += '<button onclick="verifyApproval(\\x27discount\\x27)" style="padding:8px 14px;background:var(--green);color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">Verify</button>';
       h += '</div>';
     }
     h += '</div>';
@@ -6719,11 +6719,11 @@ function renderInvestment(el) {
     h += '<div class="approval-flow" style="margin-top:10px;padding:12px 14px;background:rgba(231,76,60,0.04);border:1px solid rgba(231,76,60,0.15);border-radius:8px">';
     h += '<div style="font-size:10px;color:#e74c3c;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Approval Required</div>';
     h += '<input type="text" id="durApprovalReason" placeholder="Reason for override (required)" style="width:100%;padding:8px 12px;border:1px solid rgba(57,69,80,0.12);border-radius:6px;font-size:12px;color:var(--dark);outline:none;margin-bottom:8px">';
-    h += '<button onclick="requestApproval('duration')" style="padding:8px 16px;background:#e74c3c;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:0.5px;margin-right:8px">Request Approval</button>';
+    h += '<button onclick="requestApproval(\\x27duration\\x27)" style="padding:8px 16px;background:#e74c3c;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:0.5px;margin-right:8px">Request Approval</button>';
     if (_approvalCodes.duration) {
       h += '<div style="margin-top:8px;display:flex;gap:8px;align-items:center">';
       h += '<input type="text" id="durApprovalCode" placeholder="Enter approval code" style="flex:1;padding:8px 12px;border:1px solid rgba(57,69,80,0.12);border-radius:6px;font-size:12px;font-family:monospace;color:var(--dark);outline:none;letter-spacing:1px">';
-      h += '<button onclick="verifyApproval('duration')" style="padding:8px 14px;background:var(--green);color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">Verify</button>';
+      h += '<button onclick="verifyApproval(\\x27duration\\x27)" style="padding:8px 14px;background:var(--green);color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">Verify</button>';
       h += '</div>';
     }
     h += '</div>';
