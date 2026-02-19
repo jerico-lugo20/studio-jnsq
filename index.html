@@ -1189,12 +1189,13 @@ footer p { color: var(--mid); font-size: 13px; }
 .prem-full-report h4 { font-size:20px; font-weight:700; color:var(--dark); text-align:center; margin-bottom:8px; letter-spacing:-0.3px; }
 .prem-full-report > p { text-align:center; font-size:14px; color:var(--steel); margin-bottom:32px; }
 
-.facet-report { background:var(--light); border-radius:16px; padding:32px; margin-bottom:20px; border-left:4px solid var(--mid); }
-.facet-report.fr-early { border-left-color:#e74c3c; }
-.facet-report.fr-developing { border-left-color:#e67e22; }
-.facet-report.fr-emerging { border-left-color:#f1c40f; }
-.facet-report.fr-strong { border-left-color:#27ae60; }
-.facet-report.fr-elite { border-left-color:var(--yellow); }
+.facet-report { background:var(--light); border-radius:16px; padding:32px; margin-bottom:20px; border-left:none; position:relative; overflow:hidden; }
+.facet-report::before { content:''; position:absolute; top:0; left:0; width:100%; height:4px; background:var(--mid); }
+.facet-report.fr-early::before { background:#e74c3c; }
+.facet-report.fr-developing::before { background:#e67e22; }
+.facet-report.fr-emerging::before { background:#f1c40f; }
+.facet-report.fr-strong::before { background:#27ae60; }
+.facet-report.fr-elite::before { background:var(--yellow); }
 
 .fr-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; cursor:pointer; }
 .fr-head h5 { font-size:18px; font-weight:700; color:var(--dark); }
@@ -1205,18 +1206,29 @@ footer p { color: var(--mid); font-size: 13px; }
 .fr-body { display:none; }
 .facet-report.expanded .fr-body { display:block; }
 
-.fr-stage-label { font-size:12px; font-weight:700; letter-spacing:1px; margin-bottom:16px; text-transform:uppercase; }
-.fr-bar { height:8px; background:var(--white); border-radius:4px; margin-bottom:20px; overflow:hidden; }
+.fr-stage-row { display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+.fr-stage-label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; white-space:nowrap; }
+.fr-bar { flex:1; height:8px; background:var(--white); border-radius:4px; overflow:hidden; }
 .fr-bar-fill { height:100%; border-radius:4px; transition:width 1s cubic-bezier(0.4,0,0.2,1); }
+.fr-pct-label { font-size:13px; font-weight:800; white-space:nowrap; }
 
 .fr-section { margin-bottom:20px; }
-.fr-section h6 { font-size:13px; font-weight:700; color:var(--dark); letter-spacing:0.5px; margin-bottom:10px; text-transform:uppercase; }
-.fr-section ul { list-style:none; padding:0; margin:0; }
-.fr-section li { font-size:14px; color:var(--steel); line-height:1.6; padding:6px 0 6px 20px; position:relative; }
-.fr-section li::before { content:'→'; position:absolute; left:0; color:var(--yellow); font-weight:700; }
+.fr-section h6 { font-size:11px; font-weight:700; color:var(--steel); letter-spacing:1.5px; margin-bottom:12px; text-transform:uppercase; }
+.fr-actions-grid { display:grid; grid-template-columns:1fr; gap:8px; }
+.fr-action-card { padding:14px 18px; background:var(--white); border-radius:10px; border:1px solid rgba(57,69,80,0.06); font-size:13px; color:var(--dark); line-height:1.7; position:relative; padding-left:32px; }
+.fr-action-card::before { content:''; position:absolute; left:14px; top:20px; width:6px; height:6px; border-radius:50%; }
+.fr-early .fr-action-card::before { background:#e74c3c; }
+.fr-developing .fr-action-card::before { background:#e67e22; }
+.fr-emerging .fr-action-card::before { background:#f1c40f; }
+.fr-strong .fr-action-card::before { background:#27ae60; }
+.fr-elite .fr-action-card::before { background:var(--yellow); }
 
 .fr-platforms { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
-.fr-platforms span { font-size:12px; padding:5px 12px; background:var(--white); border-radius:6px; color:var(--dark); font-weight:500; border:1px solid rgba(0,0,0,0.06); }
+.fr-platforms span { font-size:12px; padding:6px 14px; background:var(--white); border-radius:8px; color:var(--dark); font-weight:600; border:1px solid rgba(57,69,80,0.08); }
+
+.fr-gated-teaser { display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:start; background:rgba(57,69,80,0.04); border-radius:10px; padding:16px 20px; margin-top:14px; border-left:3px solid var(--yellow); }
+.fr-gated-icon { width:28px; height:28px; background:rgba(253,213,0,0.12); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.fr-gated-icon svg { width:14px; height:14px; stroke:var(--yellow); fill:none; stroke-width:2; }
 
 /* Prioritized Action Plan */
 .prem-action-plan { background:var(--dark); border-radius:20px; padding:48px 40px; margin-bottom:48px; }
@@ -3655,11 +3667,12 @@ window.premShowResults = function(){
     const max = c.count * 5;
     const data = interventions[c.key][stageKey];
 
-    // Client-facing: show ALL pain points (actions) but gate the strategy (platforms, cadence, activations)
-    let actionsHTML = '';
+    // Client-facing: show ALL pain points (actions) as cards, gate strategy (platforms, cadence, activations)
+    let actionsHTML = '<div class="fr-actions-grid">';
     data.actions.forEach(function(a) {
-      actionsHTML += '<li>'+a+'</li>';
+      actionsHTML += '<div class="fr-action-card">'+a+'</div>';
     });
+    actionsHTML += '</div>';
     const platformCount = data.platforms.length;
     const cadenceCount = data.cadence ? data.cadence.length : 0;
     const activationCount = data.activations.length;
@@ -3667,14 +3680,18 @@ window.premShowResults = function(){
     reportEl.innerHTML += '<div class="facet-report fr-'+stage.cls+(idx===0?' expanded':'')+'" data-facet="'+c.key+'">' +
       '<div class="fr-head" onclick="this.parentElement.classList.toggle(\'expanded\')">' +
         '<h5>'+c.label+'</h5>' +
-        '<div><span class="fr-score-badge">'+catScores[c.key]+' / '+max+' \u2014 '+Math.round(pct)+'%</span> <span class="fr-toggle">\u25BC</span></div>' +
+        '<div><span class="fr-score-badge">'+catScores[c.key]+' / '+max+' &mdash; '+Math.round(pct)+'%</span> <span class="fr-toggle">&darr;</span></div>' +
       '</div>' +
       '<div class="fr-body">' +
-        '<div class="fr-stage-label" style="color:'+stage.color+'">'+stage.name.toUpperCase()+'</div>' +
-        '<div class="fr-bar"><div class="fr-bar-fill" style="width:0%;background:'+stage.color+'" data-pwidth="'+pct+'%"></div></div>' +
-        '<div class="fr-section"><h6>What Needs to Happen</h6><ul>'+actionsHTML+'</ul></div>' +
-        '<div class="fr-gated-teaser" style="background:rgba(57,69,80,0.04);border-radius:8px;padding:14px 18px;margin-top:12px;border-left:3px solid var(--yellow)">' +
-          '<p style="margin:0;font-size:12px;color:var(--steel);line-height:1.6">\uD83D\uDD12 <strong>'+platformCount+' recommended platforms</strong>, <strong>'+cadenceCount+' cadence schedules</strong>, and <strong>'+activationCount+' activation sequences</strong> — the strategy for <em>how</em> to deploy these actions — are included in your full diagnostic report.</p>' +
+        '<div class="fr-stage-row">' +
+          '<div class="fr-stage-label" style="color:'+stage.color+'">'+stage.name.toUpperCase()+'</div>' +
+          '<div class="fr-bar"><div class="fr-bar-fill" style="width:0%;background:'+stage.color+'" data-pwidth="'+pct+'%"></div></div>' +
+          '<div class="fr-pct-label" style="color:'+stage.color+'">'+Math.round(pct)+'%</div>' +
+        '</div>' +
+        '<div class="fr-section"><h6>What Needs to Happen</h6>'+actionsHTML+'</div>' +
+        '<div class="fr-gated-teaser">' +
+          '<div class="fr-gated-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>' +
+          '<p style="margin:0;font-size:12px;color:var(--steel);line-height:1.6"><strong>'+platformCount+' recommended platforms</strong>, <strong>'+cadenceCount+' cadence schedules</strong>, and <strong>'+activationCount+' activation sequences</strong> &mdash; the strategy for <em>how</em> to deploy these actions &mdash; are included in your full diagnostic report.</p>' +
         '</div>' +
       '</div>' +
     '</div>';
@@ -3950,19 +3967,35 @@ function applyPromoCode() {
   var code = (input.value || '').trim().toUpperCase();
   if (!code) { showPromoMsg('Enter a promo code.', '#e74c3c'); return; }
 
-  // Load promo codes from localStorage (managed by strategist portal)
+  // Load promo codes from localStorage first
   var codes = [];
   try { codes = JSON.parse(localStorage.getItem('jnsq_promo_codes') || '[]'); } catch(e) {}
 
   var promo = codes.find(function(c) { return c.code === code; });
-  if (!promo) { showPromoMsg('Invalid promo code.', '#e74c3c'); _activePromo = null; updateTierPrices(); return; }
+  if (promo) {
+    _validateAndApplyPromo(promo);
+  } else {
+    // Not found locally — try cloud
+    showPromoMsg('Checking...', '#aaa');
+    fetch('/.netlify/functions/promo-codes')
+      .then(function(res) { if (res.ok) return res.json(); throw new Error('Cloud fetch failed'); })
+      .then(function(data) {
+        var cloudCodes = data.codes || [];
+        // Cache cloud codes locally
+        if (cloudCodes.length > 0) localStorage.setItem('jnsq_promo_codes', JSON.stringify(cloudCodes));
+        var cloudPromo = cloudCodes.find(function(c) { return c.code === code; });
+        if (cloudPromo) { _validateAndApplyPromo(cloudPromo); }
+        else { showPromoMsg('Invalid promo code.', '#e74c3c'); _activePromo = null; updateTierPrices(); }
+      })
+      .catch(function() { showPromoMsg('Invalid promo code.', '#e74c3c'); _activePromo = null; updateTierPrices(); });
+  }
+}
 
+function _validateAndApplyPromo(promo) {
   // Check expiry
   if (promo.expiry && new Date(promo.expiry) < new Date()) { showPromoMsg('This code has expired.', '#e74c3c'); _activePromo = null; updateTierPrices(); return; }
-
   // Check max uses
   if (promo.maxUses > 0 && promo.usedCount >= promo.maxUses) { showPromoMsg('This code has reached its usage limit.', '#e74c3c'); _activePromo = null; updateTierPrices(); return; }
-
   _activePromo = promo;
   showPromoMsg(promo.discountPct + '% discount applied!', '#27ae60');
   updateTierPrices();
@@ -4051,7 +4084,16 @@ function markPromoUsed() {
   try {
     var codes = JSON.parse(localStorage.getItem('jnsq_promo_codes') || '[]');
     var idx = codes.findIndex(function(c) { return c.code === _activePromo.code; });
-    if (idx >= 0) { codes[idx].usedCount = (codes[idx].usedCount || 0) + 1; localStorage.setItem('jnsq_promo_codes', JSON.stringify(codes)); }
+    if (idx >= 0) {
+      codes[idx].usedCount = (codes[idx].usedCount || 0) + 1;
+      localStorage.setItem('jnsq_promo_codes', JSON.stringify(codes));
+      // Sync updated usage to cloud
+      fetch('/.netlify/functions/promo-codes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ codes: codes })
+      }).catch(function() {});
+    }
   } catch(e) {}
 }
 
@@ -4343,8 +4385,9 @@ function submitCorrections() {
     var stageKey = window._getStageKey(pct);
     var max = c.count * 5;
     var data = interventions[c.key][stageKey];
-    var actionsHTML = '';
-    data.actions.forEach(function(a) { actionsHTML += '<li>' + a + '</li>'; });
+    var actionsHTML = '<div class="fr-actions-grid">';
+    data.actions.forEach(function(a) { actionsHTML += '<div class="fr-action-card">' + a + '</div>'; });
+    actionsHTML += '</div>';
     var platformCount = data.platforms.length;
     var cadenceCount = data.cadence ? data.cadence.length : 0;
     var activationCount = data.activations.length;
@@ -4352,14 +4395,18 @@ function submitCorrections() {
     reportEl.innerHTML += '<div class="facet-report fr-' + stage.cls + (idx === 0 ? ' expanded' : '') + '" data-facet="' + c.key + '">' +
       '<div class="fr-head" onclick="this.parentElement.classList.toggle(\'expanded\')">' +
         '<h5>' + c.label + '</h5>' +
-        '<div><span class="fr-score-badge">' + catScores[c.key] + ' / ' + max + ' \u2014 ' + Math.round(pct) + '%</span> <span class="fr-toggle">\u25BC</span></div>' +
+        '<div><span class="fr-score-badge">' + catScores[c.key] + ' / ' + max + ' &mdash; ' + Math.round(pct) + '%</span> <span class="fr-toggle">&darr;</span></div>' +
       '</div>' +
       '<div class="fr-body">' +
-        '<div class="fr-stage-label" style="color:' + stage.color + '">' + stage.name.toUpperCase() + '</div>' +
-        '<div class="fr-section"><h6>Priority Actions</h6><ul>' + actionsHTML + '</ul></div>' +
+        '<div class="fr-stage-row">' +
+          '<div class="fr-stage-label" style="color:' + stage.color + '">' + stage.name.toUpperCase() + '</div>' +
+          '<div class="fr-bar"><div class="fr-bar-fill" style="width:0%;background:' + stage.color + '" data-pwidth="' + pct + '%"></div></div>' +
+          '<div class="fr-pct-label" style="color:' + stage.color + '">' + Math.round(pct) + '%</div>' +
+        '</div>' +
+        '<div class="fr-section"><h6>Priority Actions</h6>' + actionsHTML + '</div>' +
         '<div class="fr-gated-teaser">' +
-          '<div class="fr-gated-badge">' + platformCount + ' platform recommendations + ' + cadenceCount + ' cadence items + ' + activationCount + ' activation plays</div>' +
-          '<div class="fr-gated-hint">Unlock with Full Report or Full Diagnostic below</div>' +
+          '<div class="fr-gated-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>' +
+          '<p style="margin:0;font-size:12px;color:var(--steel);line-height:1.6"><strong>' + platformCount + ' platform recommendations</strong>, <strong>' + cadenceCount + ' cadence schedules</strong>, and <strong>' + activationCount + ' activation sequences</strong> &mdash; unlock with Full Report or Full Diagnostic below.</p>' +
         '</div>' +
       '</div>' +
     '</div>';
@@ -4559,8 +4606,9 @@ function _processRetrievedDiagnosis(record, code, successEl, errorEl) {
       var stageKey = window._getStageKey(pct);
       var max = c.count * 5;
       var data = interventions[c.key][stageKey];
-      var actionsHTML = '';
-      data.actions.forEach(function(a) { actionsHTML += '<li>' + a + '</li>'; });
+      var actionsHTML = '<div class="fr-actions-grid">';
+      data.actions.forEach(function(a) { actionsHTML += '<div class="fr-action-card">' + a + '</div>'; });
+      actionsHTML += '</div>';
       var platformCount = data.platforms.length;
       var cadenceCount = data.cadence ? data.cadence.length : 0;
       var activationCount = data.activations.length;
@@ -4568,14 +4616,18 @@ function _processRetrievedDiagnosis(record, code, successEl, errorEl) {
       reportEl.innerHTML += '<div class="facet-report fr-' + stage.cls + (idx === 0 ? ' expanded' : '') + '" data-facet="' + c.key + '">' +
         '<div class="fr-head" onclick="this.parentElement.classList.toggle(\'expanded\')">' +
           '<h5>' + c.label + '</h5>' +
-          '<div><span class="fr-score-badge">' + catScores[c.key] + ' / ' + max + ' \u2014 ' + Math.round(pct) + '%</span> <span class="fr-toggle">\u25BC</span></div>' +
+          '<div><span class="fr-score-badge">' + catScores[c.key] + ' / ' + max + ' &mdash; ' + Math.round(pct) + '%</span> <span class="fr-toggle">&darr;</span></div>' +
         '</div>' +
         '<div class="fr-body">' +
-          '<div class="fr-stage-label" style="color:' + stage.color + '">' + stage.name.toUpperCase() + '</div>' +
-          '<div class="fr-section"><h6>Priority Actions</h6><ul>' + actionsHTML + '</ul></div>' +
+          '<div class="fr-stage-row">' +
+            '<div class="fr-stage-label" style="color:' + stage.color + '">' + stage.name.toUpperCase() + '</div>' +
+            '<div class="fr-bar"><div class="fr-bar-fill" style="width:0%;background:' + stage.color + '" data-pwidth="' + pct + '%"></div></div>' +
+            '<div class="fr-pct-label" style="color:' + stage.color + '">' + Math.round(pct) + '%</div>' +
+          '</div>' +
+          '<div class="fr-section"><h6>Priority Actions</h6>' + actionsHTML + '</div>' +
           '<div class="fr-gated-teaser">' +
-            '<div class="fr-gated-badge">' + platformCount + ' platform recommendations + ' + cadenceCount + ' cadence items + ' + activationCount + ' activation plays</div>' +
-            '<div class="fr-gated-hint">Unlock with Full Report or Full Diagnostic below</div>' +
+            '<div class="fr-gated-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>' +
+            '<p style="margin:0;font-size:12px;color:var(--steel);line-height:1.6"><strong>' + platformCount + ' platform recommendations</strong>, <strong>' + cadenceCount + ' cadence schedules</strong>, and <strong>' + activationCount + ' activation sequences</strong> &mdash; unlock with Full Report or Full Diagnostic below.</p>' +
           '</div>' +
         '</div>' +
       '</div>';
@@ -5790,6 +5842,9 @@ function loadRecords() {
   const list = document.getElementById('recordsList');
   list.innerHTML = '<div style="text-align:center;padding:16px;color:var(--steel);font-size:12px">Loading diagnoses...</div>';
 
+  // Sync promo codes from cloud on portal load
+  syncPromoCodesFromCloud().catch(function() {});
+
   // Try cloud first, then fall back to local
   syncCloudRecords().then(db => {
     renderRecordsList(db, list);
@@ -5869,8 +5924,8 @@ const servicePricing = [
   {id:'social_media',name:'Social Media Mgmt',desc:'Content, scheduling & community',price:4000,freq:'monthly',tag:'REACH',icon:'📱',facets:['visibility'],primaryFacet:'visibility'},
   {id:'media_relations',name:'Media Relations',desc:'Outreach & journalist relationships',price:5000,freq:'monthly',tag:'MEDIA',icon:'🗞️',facets:['visibility','demand'],primaryFacet:'visibility'},
   {id:'thought_leadership',name:'Thought Leadership',desc:'Publishing & strategic positioning',price:6000,freq:'monthly',tag:'AUTHORITY',icon:'📝',facets:['credibility','visibility'],primaryFacet:'visibility'},
-  {id:'credibility_bundle',name:'Credibility Architecture',desc:'Brand + Media & PR + Awards + Training',price:10000,freq:'one-time',tag:'ARCHITECTURE',icon:'🛡️',facets:['credibility'],primaryFacet:'suite',includes:['brand_foundations','media_pr','award_submissions','media_training']},
-  {id:'visibility_bundle',name:'Visibility Engineering',desc:'LinkedIn + Social + Thought Leadership + Media',price:10000,freq:'monthly',tag:'ENGINEERING',icon:'🚀',facets:['visibility'],primaryFacet:'suite',includes:['linkedin_authority','social_media','thought_leadership','media_relations']},
+  {id:'credibility_bundle',name:'Credibility Architecture',desc:'Brand + Media & PR + Awards + Training',price:9000,freq:'one-time',tag:'ARCHITECTURE',icon:'🛡️',facets:['credibility'],primaryFacet:'suite',includes:['brand_foundations','media_pr','award_submissions','media_training']},
+  {id:'visibility_bundle',name:'Visibility Engineering',desc:'LinkedIn + Social + Thought Leadership + Media',price:9000,freq:'monthly',tag:'ENGINEERING',icon:'🚀',facets:['visibility'],primaryFacet:'suite',includes:['linkedin_authority','social_media','thought_leadership','media_relations']},
   {id:'flagship',name:'The JNSQ Suite',desc:'Full-service across all 5 facets',priceMonthly:15000,priceOneTime:10000,freq:'monthly+onetime',tag:'FULL SERVICE',icon:'⭐',facets:['branding','credibility','visibility','trust','demand'],primaryFacet:'suite',includes:['linkedin_authority','social_media','thought_leadership','media_relations','brand_foundations','media_pr','award_submissions','media_training']}
 ];
 
@@ -7276,15 +7331,64 @@ function renderSidebar() {
 }
 
 
-// ===== PROMO CODE MANAGEMENT (Feature 4 — Portal side) =====
+// ===== PROMO CODE MANAGEMENT (Feature 4 — Portal side, cloud-first) =====
+let _promoCacheLoaded = false;
 function getPromoCodes() {
+  // Return from localStorage cache (sync) — cloud sync happens on load
   try { return JSON.parse(localStorage.getItem('jnsq_promo_codes') || '[]'); } catch(e) { return []; }
 }
 function savePromoCodes(codes) {
+  // Save to localStorage immediately for instant UI
   localStorage.setItem('jnsq_promo_codes', JSON.stringify(codes));
+  // Sync to cloud so promo codes work on any device
+  fetch('/.netlify/functions/promo-codes', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ codes: codes })
+  }).then(function(res) {
+    if (res.ok) console.log('Promo codes synced to cloud');
+    else console.warn('Promo cloud sync failed: ' + res.status);
+  }).catch(function(err) { console.warn('Promo cloud sync error: ' + err.message); });
+}
+function syncPromoCodesFromCloud() {
+  return fetch('/.netlify/functions/promo-codes')
+    .then(function(res) { if (res.ok) return res.json(); throw new Error('Failed'); })
+    .then(function(data) {
+      var cloudCodes = data.codes || [];
+      if (cloudCodes.length > 0) {
+        // Merge: cloud is source of truth, but preserve local-only codes
+        var localCodes = getPromoCodes();
+        var merged = cloudCodes.slice();
+        localCodes.forEach(function(lc) {
+          if (!merged.find(function(cc) { return cc.code === lc.code; })) {
+            merged.push(lc);
+          }
+        });
+        localStorage.setItem('jnsq_promo_codes', JSON.stringify(merged));
+        // Push merged set back to cloud
+        if (merged.length !== cloudCodes.length) {
+          fetch('/.netlify/functions/promo-codes', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ codes: merged })
+          }).catch(function() {});
+        }
+        _promoCacheLoaded = true;
+        return merged;
+      }
+      _promoCacheLoaded = true;
+      return localCodes || [];
+    })
+    .catch(function() { _promoCacheLoaded = true; return getPromoCodes(); });
 }
 
 function showPromoManager() {
+  const main = document.getElementById('dashMain');
+  if (!main) return;
+  // Sync from cloud first, then render
+  syncPromoCodesFromCloud().catch(function() {}).then(function() { _renderPromoManager(); });
+}
+function _renderPromoManager() {
   const main = document.getElementById('dashMain');
   if (!main) return;
   const codes = getPromoCodes();
