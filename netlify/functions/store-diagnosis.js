@@ -1,7 +1,7 @@
 // Store a diagnosis record (centralized storage)
 // Uses Netlify Blobs for persistent key-value storage
 
-const { getStore } = require("@netlify/blobs");
+const { getStore, connectLambda } = require("@netlify/blobs");
 
 exports.handler = async (event, context) => {
   // Handle CORS preflight
@@ -14,6 +14,9 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    // Connect Lambda environment for Netlify Blobs
+    connectLambda(event);
+
     const data = JSON.parse(event.body);
     const { code, percentages, scores, contact, tier, questionAnswers, interventionData, intake, fileData, timestamp } = data;
 

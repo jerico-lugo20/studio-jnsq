@@ -1,6 +1,6 @@
 // List all diagnosis records (for strategist portal)
 
-const { getStore } = require("@netlify/blobs");
+const { getStore, connectLambda } = require("@netlify/blobs");
 
 exports.handler = async (event, context) => {
   if (event.httpMethod === "OPTIONS") {
@@ -12,6 +12,9 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    // Connect Lambda environment for Netlify Blobs
+    connectLambda(event);
+
     const store = getStore("diagnoses");
 
     // Get the index
