@@ -7281,7 +7281,7 @@ function showAddPromoForm() {
   h += '</div></div>';
   h += '<div style="display:flex;gap:8px;margin-top:12px">';
   h += '<button onclick="saveNewPromoCode()" style="padding:8px 18px;background:var(--green);color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">Save Code</button>';
-  h += '<button onclick="document.getElementById('promoForm').style.display='none'" style="padding:8px 18px;background:transparent;border:1px solid rgba(57,69,80,0.15);color:var(--steel);border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">Cancel</button>';
+  h += '<button onclick="document.getElementById(\\x27promoForm\\x27).style.display=\\x27none\\x27" style="padding:8px 18px;background:transparent;border:1px solid rgba(57,69,80,0.15);color:var(--steel);border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">Cancel</button>';
   h += '</div></div>';
   form.innerHTML = h;
   form.style.display = 'block';
