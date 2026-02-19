@@ -4432,10 +4432,39 @@ function retrieveDiagnosis() {
 
   if (!code) { errorEl.textContent = 'Please enter a diagnosis code.'; errorEl.style.display = 'block'; return; }
 
-  var db = {};
-  try { db = JSON.parse(localStorage.getItem('jnsq_diagnosis_db') || '{}'); } catch(e) {}
-  var record = db[code];
-  if (!record) { errorEl.textContent = 'No diagnosis found with that code. Please check and try again.'; errorEl.style.display = 'block'; return; }
+  // Always check cloud FIRST — this is the source of truth accessible from any device
+  var loadingMsg = document.createElement('div');
+  loadingMsg.style.cssText = 'text-align:center;padding:12px;color:var(--mid);font-size:12px';
+  loadingMsg.textContent = 'Retrieving diagnosis...';
+  errorEl.parentNode.insertBefore(loadingMsg, errorEl.nextSibling);
+
+  fetch('/.netlify/functions/get-diagnosis?code=' + encodeURIComponent(code))
+    .then(function(res) { if (res.ok) return res.json(); throw new Error('Not found in cloud'); })
+    .then(function(cloudRecord) {
+      loadingMsg.remove();
+      // Cache locally for speed on next access
+      var localDB = {};
+      try { localDB = JSON.parse(localStorage.getItem('jnsq_diagnosis_db') || '{}'); } catch(e) {}
+      localDB[code] = cloudRecord;
+      try { localStorage.setItem('jnsq_diagnosis_db', JSON.stringify(localDB)); } catch(e) {}
+      _processRetrievedDiagnosis(cloudRecord, code, successEl, errorEl);
+    })
+    .catch(function() {
+      // Cloud failed — fall back to localStorage (offline support)
+      var db = {};
+      try { db = JSON.parse(localStorage.getItem('jnsq_diagnosis_db') || '{}'); } catch(e) {}
+      var record = db[code];
+      loadingMsg.remove();
+      if (record) {
+        _processRetrievedDiagnosis(record, code, successEl, errorEl);
+      } else {
+        errorEl.textContent = 'No diagnosis found with that code. Please check and try again.';
+        errorEl.style.display = 'block';
+      }
+    });
+}
+
+function _processRetrievedDiagnosis(record, code, successEl, errorEl) {
 
   // Found — show success
   successEl.style.display = 'block';
@@ -4645,7 +4674,10 @@ function onPaymentSuccess() {
   // Store diagnosis data first
   if (window._diagCode && window._catPcts) {
     storeDiagnosisData(window._diagCode, window._catPcts, window._catScores);
-    sendDiagnosisEmail(window._diagCode, window._catPcts, window._catScores);
+    // Only send email for the $100 full diagnostic tier — $70 report is download-only
+    if (selectedTierValue === 'full') {
+      sendDiagnosisEmail(window._diagCode, window._catPcts, window._catScores);
+    }
   }
 
   var diagCodeStr = window._diagCode || '';
@@ -5654,17 +5686,27 @@ function storeDiagnosisData(code, catPcts, catScores) {
       try { localStorage.setItem('jnsq_diagnosis_db', JSON.stringify(db2)); } catch(e2) {}
     }
 
-    // Feature 5: Also store centrally via Netlify Function (async, non-blocking)
+    // Cloud-first storage via Netlify Function — this is the primary store
+    // so diagnoses are accessible from any device/browser
     try {
-      // Don't send base64 file data to the cloud — too large
       var cloudRecord = JSON.parse(JSON.stringify(record));
-      delete cloudRecord.fileData;
+      delete cloudRecord.fileData; // Don't send base64 file data — too large
       fetch('/.netlify/functions/store-diagnosis', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(cloudRecord)
-      }).catch(function(err) { console.log('Cloud storage fallback: ' + err.message); });
-    } catch(e3) { /* silently fail — localStorage is the primary store */ }
+      }).then(function(res) {
+        if (res.ok) {
+          console.log('Diagnosis ' + code + ' stored to cloud successfully');
+        } else {
+          console.warn('Cloud storage returned ' + res.status + ' for ' + code);
+        }
+      }).catch(function(err) {
+        console.warn('Cloud storage failed for ' + code + ': ' + err.message);
+      });
+    } catch(e3) {
+      console.warn('Cloud storage error: ' + e3.message);
+    }
   });
   return record;
 }
@@ -5774,13 +5816,9 @@ function renderRecordsList(db, list) {
 
 function searchDiagnosis() {
   const code = document.getElementById('searchCode').value.trim().toUpperCase();
-
-  // Check local first
-  const localDB = getDB();
-  if (localDB[code]) { viewReport(code); document.getElementById('searchError').style.display='none'; return; }
-
-  // Try cloud
   document.getElementById('searchError').style.display='none';
+
+  // Always check cloud first — source of truth
   fetch('/.netlify/functions/get-diagnosis?code=' + encodeURIComponent(code))
     .then(res => { if (res.ok) return res.json(); throw new Error('Not found'); })
     .then(record => {
@@ -5791,6 +5829,9 @@ function searchDiagnosis() {
       viewReport(code);
     })
     .catch(() => {
+      // Cloud failed — fall back to local
+      const localDB = getDB();
+      if (localDB[code]) { viewReport(code); return; }
       const e = document.getElementById('searchError');
       e.style.display='block';
       setTimeout(()=>e.style.display='none',3000);
@@ -5855,8 +5896,15 @@ function getPriceMultiplier(intake) {
 function getAdjustedPrice(basePrice, intake) {
   const mult = getPriceMultiplier(intake);
   if (mult === null) return null;
+  if (!basePrice && basePrice !== 0) return null;
   // Round to nearest 100
   return Math.round((basePrice * mult) / 100) * 100;
+}
+// Safe version that never returns null/NaN — always returns a displayable number
+function getSafePrice(basePrice, intake, fallback) {
+  const adj = getAdjustedPrice(basePrice, intake);
+  if (adj !== null && !isNaN(adj)) return adj;
+  return fallback || basePrice || 0;
 }
 
 function formatRegionLabel(region) {
@@ -5949,6 +5997,12 @@ function computeRecommendations(pcts, intake) {
     }
   });
 
+  // If The JNSQ Suite (flagship) is recommended, it covers everything — remove all other services and suites
+  if (recIds.has('flagship')) {
+    recIds.clear();
+    recIds.add('flagship');
+  }
+
   return recIds;
 }
 
@@ -5995,7 +6049,13 @@ function viewReport(code) {
   const pcts = currentReport.percentages || {};
   const intake = currentReport.intake || {};
   const recommended = computeRecommendations(pcts, intake);
-  recommended.forEach(id => selectedServices.add(id));
+  // If flagship is recommended, only preselect flagship — no a la carte or other suites
+  if (recommended.has('flagship')) {
+    selectedServices.clear();
+    selectedServices.add('flagship');
+  } else {
+    recommended.forEach(id => selectedServices.add(id));
+  }
 
   // Show dashboard
   document.getElementById('portalBody').style.display = 'none';
@@ -6191,7 +6251,7 @@ function renderClientIntel(el) {
   // Total estimated
   if (multiplier !== null) {
     let totalEst = 0;
-    recServices.forEach(svc => { totalEst += getAdjustedPrice(svc.price, intake); });
+    recServices.forEach(svc => { totalEst += getSafePrice(svc.price, intake, svc.price); });
     h += '<div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;margin-top:12px;background:var(--dark);border-radius:10px;color:#fff">';
     h += '<span style="font-size:12px;font-weight:600;letter-spacing:0.5px">Estimated Total</span><span style="font-size:18px;font-weight:900;letter-spacing:-1px">$'+totalEst.toLocaleString()+'</span></div>';
   }
@@ -6651,13 +6711,13 @@ function renderInvestment(el) {
         h += '<div class="svc-price-tag" style="color:#e74c3c">Custom</div>';
         h += '<div class="svc-freq-tag">Discuss with strategist</div>';
       } else if (svc.priceMonthly && svc.priceOneTime) {
-        const adjM = getAdjustedPrice(svc.priceMonthly, intake);
-        const adjO = getAdjustedPrice(svc.priceOneTime, intake);
-        h += '<div class="svc-price-tag">$'+(adjM||svc.priceMonthly).toLocaleString()+'/mo</div>';
-        h += '<div class="svc-freq-tag">+ $'+(adjO||svc.priceOneTime).toLocaleString()+' one-time setup</div>';
+        const adjM = getSafePrice(svc.priceMonthly, intake, svc.priceMonthly);
+        const adjO = getSafePrice(svc.priceOneTime, intake, svc.priceOneTime);
+        h += '<div class="svc-price-tag">$'+adjM.toLocaleString()+'/mo</div>';
+        h += '<div class="svc-freq-tag">+ $'+adjO.toLocaleString()+' one-time setup</div>';
       } else {
-        const adjP = getAdjustedPrice(svc.price||0, intake);
-        h += '<div class="svc-price-tag">$'+(adjP||svc.price||0).toLocaleString()+'</div>';
+        const adjP = getSafePrice(svc.price||0, intake, svc.price||0);
+        h += '<div class="svc-price-tag">$'+adjP.toLocaleString()+'</div>';
         h += '<div class="svc-freq-tag">'+svc.freq+'</div>';
       }
       h += '</div>';
@@ -6986,13 +7046,13 @@ function getEffectivePrice(svc, intake, discMult) {
   // Normal pricing
   const isEnt = intake.bizSize === 'enterprise';
   if (svc.priceMonthly && svc.priceOneTime) {
-    const adjM = isEnt ? svc.priceMonthly : (getAdjustedPrice(svc.priceMonthly, intake) || svc.priceMonthly);
+    const adjM = isEnt ? svc.priceMonthly : getSafePrice(svc.priceMonthly, intake, svc.priceMonthly);
     return { price: Math.round(adjM * discMult), overridden: false };
   } else if (svc.freq === 'monthly') {
-    const adjP = isEnt ? svc.price : (getAdjustedPrice(svc.price, intake) || svc.price);
+    const adjP = isEnt ? svc.price : getSafePrice(svc.price, intake, svc.price);
     return { price: Math.round(adjP * discMult), overridden: false };
   } else {
-    const adjP = isEnt ? (svc.price||0) : (getAdjustedPrice(svc.price||0, intake) || svc.price || 0);
+    const adjP = isEnt ? (svc.price||0) : getSafePrice(svc.price||0, intake, svc.price||0);
     return { price: Math.round(adjP * discMult), overridden: false };
   }
 }
@@ -7021,18 +7081,18 @@ function renderCostBreakdown() {
     if (!selectedServices.has(svc.id)) return;
     const hasOverride = overrideActive && overridePrices[svc.id] !== undefined;
     if (svc.priceMonthly && svc.priceOneTime) {
-      const adjM = getAdjustedPrice(svc.priceMonthly, intake) || svc.priceMonthly;
-      const adjO = getAdjustedPrice(svc.priceOneTime, intake) || svc.priceOneTime;
+      const adjM = getSafePrice(svc.priceMonthly, intake, svc.priceMonthly);
+      const adjO = getSafePrice(svc.priceOneTime, intake, svc.priceOneTime);
       const priceM = hasOverride ? overridePrices[svc.id] : Math.round(adjM * discMult);
       const priceO = hasOverride ? 0 : Math.round(adjO * discMult); // override covers full service
       recurringItems.push({name:svc.name, price:priceM, orig:adjM, ovr:hasOverride});
       if (priceO > 0) oneTimeItems.push({name:svc.name + ' (Setup)', price:priceO, orig:adjO, ovr:false});
     } else if (svc.freq === 'monthly') {
-      const adjP = getAdjustedPrice(svc.price, intake) || svc.price;
+      const adjP = getSafePrice(svc.price, intake, svc.price);
       const price = hasOverride ? overridePrices[svc.id] : Math.round(adjP * discMult);
       recurringItems.push({name:svc.name, price:price, orig:adjP, ovr:hasOverride});
     } else {
-      const adjP = getAdjustedPrice(svc.price||0, intake) || svc.price || 0;
+      const adjP = getSafePrice(svc.price||0, intake, svc.price||0);
       const price = hasOverride ? overridePrices[svc.id] : Math.round(adjP * discMult);
       oneTimeItems.push({name:svc.name, price:price, orig:adjP, ovr:hasOverride, freq:svc.freq});
     }
@@ -7098,18 +7158,18 @@ function renderSidebar() {
     if (!selectedServices.has(svc.id)) return;
     const hasOvr = overrideActive && overridePrices[svc.id] !== undefined;
     if (svc.priceMonthly && svc.priceOneTime) {
-      const adjM = isEnt ? svc.priceMonthly : (getAdjustedPrice(svc.priceMonthly, intake) || svc.priceMonthly);
-      const adjO = isEnt ? svc.priceOneTime : (getAdjustedPrice(svc.priceOneTime, intake) || svc.priceOneTime);
+      const adjM = isEnt ? svc.priceMonthly : getSafePrice(svc.priceMonthly, intake, svc.priceMonthly);
+      const adjO = isEnt ? svc.priceOneTime : getSafePrice(svc.priceOneTime, intake, svc.priceOneTime);
       const priceM = hasOvr ? overridePrices[svc.id] : Math.round(adjM*mult);
       const priceO = hasOvr ? 0 : Math.round(adjO*mult);
       recurringItems.push({name:svc.name,price:priceM,orig:adjM,ovr:hasOvr});
       if (priceO > 0) oneTimeItems.push({name:svc.name+' (Setup)',price:priceO,orig:adjO,ovr:false});
     } else if (svc.freq === 'monthly') {
-      const adjP = isEnt ? svc.price : (getAdjustedPrice(svc.price, intake) || svc.price);
+      const adjP = isEnt ? svc.price : getSafePrice(svc.price, intake, svc.price);
       const price = hasOvr ? overridePrices[svc.id] : Math.round(adjP*mult);
       recurringItems.push({name:svc.name,price:price,orig:adjP,ovr:hasOvr});
     } else {
-      const adjP = isEnt ? (svc.price||0) : (getAdjustedPrice(svc.price||0, intake) || svc.price || 0);
+      const adjP = isEnt ? (svc.price||0) : getSafePrice(svc.price||0, intake, svc.price||0);
       const price = hasOvr ? overridePrices[svc.id] : Math.round(adjP*mult);
       oneTimeItems.push({name:svc.name,price:price,orig:adjP,ovr:hasOvr});
     }
