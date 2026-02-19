@@ -2993,11 +2993,15 @@ function closeStrategistPortal() {
   window.scrollTo(0, 0);
 }
 
-// Also support #/strategist hash for direct URL access
+// Also support #/strategist and #/diagnostic hash for direct URL access
 (function() {
   function checkHash() {
     if (window.location.hash === '#/strategist' || window.location.hash.startsWith('#/strategist')) {
       openStrategistPortal();
+    }
+    if (window.location.hash === '#/diagnostic' || window.location.hash.startsWith('#/diagnostic')) {
+      // Small delay to ensure DOM is ready, then launch diagnostic
+      setTimeout(function() { startDiagnostic(); }, 300);
     }
   }
   window.addEventListener('hashchange', checkHash);
@@ -5927,7 +5931,7 @@ const servicePricing = [
   {id:'brand_equity',name:'Brand Equity Advisory',desc:'Strategic brand valuation & equity growth advisory',price:1000,freq:'monthly',tag:'ADVISORY',icon:'📊',facets:['branding','credibility','trust','demand'],primaryFacet:'branding',commitment:6,alwaysRecommended:true,pricingOverride:function(intake){var base=1000;if(intake&&intake.country==='Philippines'&&intake.bizSize==='startup')base=800;var mult=getPriceMultiplier(intake);if(mult===null)return null;var p=Math.round((base*mult)/100)*100;if(p<base)p=base;if(intake&&(intake.bizSize==='mlb'||intake.bizSize==='enterprise')&&p>1500)p=1500;return p;}},
   {id:'credibility_bundle',name:'Credibility Architecture',desc:'Brand + Media & PR + Awards + Training',price:5400,freq:'one-time',tag:'ARCHITECTURE',icon:'🛡️',facets:['credibility'],primaryFacet:'suite',includes:['brand_foundations','media_pr','award_submissions','media_training']},
   {id:'visibility_bundle',name:'Visibility Engineering',desc:'LinkedIn + Social + Thought Leadership + Media',price:5400,freq:'monthly',tag:'ENGINEERING',icon:'🚀',facets:['visibility'],primaryFacet:'suite',includes:['linkedin_authority','social_media','thought_leadership','media_relations']},
-  {id:'flagship',name:'The JNSQ Suite',desc:'Full-service across all 5 facets',priceMonthly:15000,priceOneTime:10000,freq:'monthly+onetime',tag:'FULL SERVICE',icon:'⭐',facets:['branding','credibility','visibility','trust','demand'],primaryFacet:'suite',includes:['linkedin_authority','social_media','thought_leadership','media_relations','brand_foundations','media_pr','award_submissions','media_training']}
+  {id:'flagship',name:'The JNSQ Suite',desc:'Full-service across all 5 facets',priceMonthly:9000,priceOneTime:10000,freq:'monthly+onetime',tag:'FULL SERVICE',icon:'⭐',facets:['branding','credibility','visibility','trust','demand'],primaryFacet:'suite',includes:['linkedin_authority','social_media','thought_leadership','media_relations','brand_foundations','media_pr','award_submissions','media_training']}
 ];
 
 // ===== PRICING MULTIPLIERS (region × business size) =====
