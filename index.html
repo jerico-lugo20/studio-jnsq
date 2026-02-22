@@ -2578,7 +2578,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 
       <!-- Tier 1: Report Only -->
       <div id="tierReport" class="gate-tier" onclick="selectTier('report')" style="flex:1;min-width:180px;background:rgba(255,255,255,0.06);border:2px solid rgba(255,255,255,0.12);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.3s;position:relative">
-        <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:4px">£55</div>
+        <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:4px">£70</div>
         <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:10px">Full Diamond Report</div>
         <ul style="list-style:none;padding:0;margin:0;font-size:11px;color:rgba(255,255,255,0.7);line-height:2">
           <li>&check; Complete facet breakdown &amp; scores</li>
@@ -2596,7 +2596,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <!-- Tier 2: Full Diagnostic + Reading -->
       <div id="tierFull" class="gate-tier" onclick="selectTier('full')" style="flex:1;min-width:220px;background:rgba(253,213,0,0.08);border:2px solid rgba(253,213,0,0.3);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.3s;position:relative">
         <div style="position:absolute;top:-10px;right:16px;background:var(--yellow);color:var(--dark);padding:3px 10px;border-radius:4px;font-size:9px;font-weight:800;letter-spacing:1px">RECOMMENDED</div>
-        <div style="font-size:22px;font-weight:800;color:#FDD500;margin-bottom:4px">£80</div>
+        <div style="font-size:22px;font-weight:800;color:#FDD500;margin-bottom:4px">£100</div>
         <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:10px">Full Diagnostic + Reading</div>
         <ul style="list-style:none;padding:0;margin:0;font-size:11px;color:rgba(255,255,255,0.7);line-height:2">
           <li>&check; Everything in the Full Report</li>
@@ -2639,7 +2639,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
         <input type="tel" id="gatePhone" placeholder="+1 (555) 123-4567">
         <div class="gate-error" id="gatePhoneError">Please enter your phone number</div>
       </div>
-      <button class="gate-btn" id="gateSubmitBtn" onclick="submitContactGate()">Get My Full Report &mdash; £55 &rarr;</button>
+      <button class="gate-btn" id="gateSubmitBtn" onclick="submitContactGate()">Get My Full Report &mdash; £70 &rarr;</button>
     </div>
 
     <p class="gate-privacy">Your information is private. Payment details will be collected securely after submission.</p>
@@ -2735,7 +2735,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     <div id="paymentFormView">
       <h3>Complete Your Purchase</h3>
       <p class="pm-tier" id="pmTierLabel">Full Diamond Report</p>
-      <div class="pm-amount" id="pmAmount">£55 <span>GBP</span></div>
+      <div class="pm-amount" id="pmAmount">£70 <span>GBP</span></div>
       <div class="pm-field">
         <label>Cardholder Name</label>
         <input type="text" id="pmCardName" placeholder="Name on card">
@@ -3827,7 +3827,7 @@ window.premReset = function(){
   if (tierFree) { tierFree.style.borderColor = 'rgba(255,255,255,0.08)'; tierFree.style.background = 'rgba(255,255,255,0.03)'; tierFree.querySelector('.tier-check').style.display = 'none'; }
   if (tierReport) { tierReport.style.borderColor = 'rgba(255,255,255,0.12)'; tierReport.style.background = 'rgba(255,255,255,0.06)'; tierReport.querySelector('.tier-check').style.display = 'none'; }
   if (tierFull) { tierFull.style.borderColor = 'rgba(253,213,0,0.3)'; tierFull.style.background = 'rgba(253,213,0,0.08)'; tierFull.querySelector('.tier-check').style.display = 'none'; }
-  document.getElementById('gateSubmitBtn').innerHTML = 'Get My Full Report &mdash; £55 &rarr;';
+  document.getElementById('gateSubmitBtn').innerHTML = 'Get My Full Report &mdash; £70 &rarr;';
   // Remove dynamic CTA block
   var ctaBlock = document.getElementById('tierCTABlock');
   if (ctaBlock) ctaBlock.remove();
@@ -3963,7 +3963,7 @@ function renderPostReport(catPcts) {
 
 // ===== PROMO CODE SYSTEM (Feature 4) =====
 var _activePromo = null; // { code, discountPct, tiers }
-var _originalPrices = { report: 55, full: 80 };
+var _originalPrices = { report: 70, full: 100 };
 
 function applyPromoCode() {
   var input = document.getElementById('promoCodeInput');
@@ -4029,8 +4029,8 @@ function updateTierPrices() {
       if (el70) {
         var priceDiv = el70.querySelector('div[style*="font-size:22px"]');
         if (priceDiv) {
-          if (newReport === 0) priceDiv.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">£55</span> FREE';
-          else priceDiv.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">£55</span> $' + newReport;
+          if (newReport === 0) priceDiv.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">£70</span> FREE';
+          else priceDiv.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">£70</span> £' + newReport;
         }
       }
     }
@@ -4043,10 +4043,10 @@ function updateTierPrices() {
         if (priceDiv100) {
           if (disc === 100) {
             // Full discount on $100 only covers the $70 report portion; $30 consultation still applies
-            priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">£80</span> £25';
+            priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">£100</span> £30';
           } else {
             var newFull = Math.round(_originalPrices.full * (1 - disc/100));
-            priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">£80</span> £' + newFull;
+            priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">£100</span> £' + newFull;
           }
         }
       }
@@ -4057,7 +4057,7 @@ function updateTierPrices() {
           var noteDiv = document.createElement('div');
           noteDiv.id = 'promoConsultNote';
           noteDiv.style.cssText = 'font-size:10px;color:#FDD500;margin-top:6px;font-weight:600;text-align:center';
-          noteDiv.textContent = 'Full discount covers the report only. £25 consultation fee still applies.';
+          noteDiv.textContent = 'Full discount covers the report only. £30 consultation fee still applies.';
           el100.appendChild(noteDiv);
         }
       } else if (noteEl) { noteEl.remove(); }
@@ -4065,9 +4065,9 @@ function updateTierPrices() {
   } else {
     // Reset prices to original
     var el70r = document.getElementById('tierReport');
-    if (el70r) { var pd = el70r.querySelector('div[style*="font-size:22px"]'); if (pd) pd.textContent = '£55'; }
+    if (el70r) { var pd = el70r.querySelector('div[style*="font-size:22px"]'); if (pd) pd.textContent = '£70'; }
     var el100r = document.getElementById('tierFull');
-    if (el100r) { var pd2 = el100r.querySelector('div[style*="font-size:22px"]'); if (pd2) pd2.textContent = '£80'; }
+    if (el100r) { var pd2 = el100r.querySelector('div[style*="font-size:22px"]'); if (pd2) pd2.textContent = '£100'; }
     var noteEl2 = document.getElementById('promoConsultNote');
     if (noteEl2) noteEl2.remove();
   }
@@ -4144,11 +4144,11 @@ function selectTier(tier) {
     document.getElementById('gateContactFields').style.display = 'block';
     document.getElementById('gateContactFields').scrollIntoView({behavior:'smooth', block:'nearest'});
   } else if (tier === 'report') {
-    submitBtn.innerHTML = adjReport === 0 ? 'Get My Full Report &mdash; FREE &rarr;' : 'Get My Full Report &mdash; $' + adjReport + ' &rarr;';
+    submitBtn.innerHTML = adjReport === 0 ? 'Get My Full Report &mdash; FREE &rarr;' : 'Get My Full Report &mdash; £' + adjReport + ' &rarr;';
     document.getElementById('gateContactFields').style.display = 'block';
     document.getElementById('gateContactFields').scrollIntoView({behavior:'smooth', block:'nearest'});
   } else {
-    submitBtn.innerHTML = 'Get Full Diagnostic + Reading &mdash; $' + adjFull + ' &rarr;';
+    submitBtn.innerHTML = 'Get Full Diagnostic + Reading &mdash; £' + adjFull + ' &rarr;';
     document.getElementById('gateContactFields').style.display = 'block';
     document.getElementById('gateContactFields').scrollIntoView({behavior:'smooth', block:'nearest'});
   }
@@ -4222,7 +4222,7 @@ function submitContactGate() {
             '<button onclick="upgradeFromFree(\'report\')" style="background:var(--yellow);color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:none;cursor:pointer;letter-spacing:0.3px">Full Report \u2014 £55</button>' +
             '<button onclick="upgradeFromFree(\'full\')" style="background:#fff;color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:2px solid var(--yellow);cursor:pointer;letter-spacing:0.3px">Full Diagnostic \u2014 £80</button>' +
           '</div>' +
-          '<p style="color:var(--mid);font-size:10px;margin:12px 0 0;line-height:1.5;text-align:center"><strong style="color:var(--yellow)">£55</strong> \u2014 Detailed actions + platform strategies for all 5 facets<br><strong style="color:var(--yellow)">£80</strong> \u2014 Everything above + cadence, sequencing &amp; 1-on-1 strategist reading</p>' +
+          '<p style="color:var(--mid);font-size:10px;margin:12px 0 0;line-height:1.5;text-align:center"><strong style="color:var(--yellow)">£70</strong> \u2014 Detailed actions + platform strategies for all 5 facets<br><strong style="color:var(--yellow)">£100</strong> \u2014 Everything above + cadence, sequencing &amp; 1-on-1 strategist reading</p>' +
         '</div>' +
       '</div>';
     return;
@@ -4786,7 +4786,7 @@ function onPaymentSuccess() {
     h += '<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:18px 20px">';
     h += '<p style="color:var(--yellow);font-weight:700;font-size:12px;margin:0 0 6px">Want the complete experience?</p>';
     h += '<p style="color:var(--mid);font-size:11px;margin:0 0 12px;line-height:1.5">Upgrade to the Full Diagnostic for cadence schedules, activation playbooks, strategy connectedness mapping, and a 1-hour strategist session.</p>';
-    h += '<button onclick="upgradeFromPaid()" style="padding:10px 22px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:0.5px">Upgrade to Full Diagnostic — £25 more &rarr;</button>';
+    h += '<button onclick="upgradeFromPaid()" style="padding:10px 22px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:0.5px">Upgrade to Full Diagnostic — £30 more &rarr;</button>';
     h += '</div>';
   }
 
@@ -4805,9 +4805,9 @@ function upgradeFromPaid() {
   showPaymentModal('full');
   // Override the amount display to show the $30 difference
   var amountEl = document.getElementById('pmAmount');
-  if (amountEl) amountEl.innerHTML = '£25 <span>GBP</span>';
+  if (amountEl) amountEl.innerHTML = '£30 <span>GBP</span>';
   var payBtn = document.getElementById('pmPayBtn');
-  if (payBtn) payBtn.textContent = 'Pay £25 Upgrade Now';
+  if (payBtn) payBtn.textContent = 'Pay £30 Upgrade Now';
   var tierEl = document.getElementById('pmTierLabel');
   if (tierEl) tierEl.textContent = 'Upgrade to Full Diagnostic + Reading';
 }
@@ -4892,7 +4892,7 @@ function revealPlatformsOnly() {
       platformHTML += '</ul></div>';
       platformHTML += '<div class="fr-gated-teaser" style="background:rgba(57,69,80,0.04);border-radius:8px;padding:14px 18px;margin-top:12px;border-left:3px solid var(--yellow)">' +
         '<p style="margin:0;font-size:12px;color:var(--steel);line-height:1.6">' +
-        '🔒 <strong>Cadence schedules, activation sequences, and strategy connectedness</strong> are included in the Full Diagnostic + Reading (£80) — which also includes a 1-hour strategist session.</p></div>';
+        '🔒 <strong>Cadence schedules, activation sequences, and strategy connectedness</strong> are included in the Full Diagnostic + Reading (£100) — which also includes a 1-hour strategist session.</p></div>';
       teaser.outerHTML = platformHTML;
     }
   });
@@ -4914,8 +4914,8 @@ function injectTierCTA(tier) {
     ctaDiv.innerHTML =
       '<div style="font-size:10px;letter-spacing:2px;color:var(--yellow);font-weight:700;margin-bottom:8px">UNLOCK THE FULL STRATEGY</div>' +
       '<h4 style="font-size:20px;color:var(--dark);font-weight:800;margin:0 0 12px">Ready to see the deployment plan?</h4>' +
-      '<p style="font-size:13px;color:var(--steel);line-height:1.7;margin:0 0 20px">Upgrade to the Full Diagnostic + Reading for £80 and get cadence schedules, activation sequences, strategy connectedness, <strong>plus a 1-hour strategist session</strong> (30-min reading + 30-min FREE consultation).</p>' +
-      '<a href="javascript:void(0)" onclick="document.getElementById(\'premiumDiagnostic\').scrollIntoView({behavior:\'smooth\'})" style="display:inline-block;background:var(--yellow);color:var(--dark);padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:0.5px">Upgrade to Full Diagnostic &mdash; £80</a>' +
+      '<p style="font-size:13px;color:var(--steel);line-height:1.7;margin:0 0 20px">Upgrade to the Full Diagnostic + Reading for £100 and get cadence schedules, activation sequences, strategy connectedness, <strong>plus a 1-hour strategist session</strong> (30-min reading + 30-min FREE consultation).</p>' +
+      '<a href="javascript:void(0)" onclick="document.getElementById(\'premiumDiagnostic\').scrollIntoView({behavior:\'smooth\'})" style="display:inline-block;background:var(--yellow);color:var(--dark);padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:0.5px">Upgrade to Full Diagnostic &mdash; £100</a>' +
       '<p style="font-size:11px;color:var(--steel);margin-top:16px">Upgrade to the Full Diagnostic to unlock your strategist session.</p>';
   } else {
     // Tier 2 CTA: Book consultation session
@@ -5152,9 +5152,9 @@ function generateDiagnosticPDF(tier) {
   function setD(rgb) { doc.setDrawColor(rgb[0],rgb[1],rgb[2]); }
 
   // ── Tier labels ──
-  var tierLabels = {free:'FREE SNAPSHOT', report:'£55 REPORT', full:'£80 FULL DIAGNOSTIC'};
+  var tierLabels = {free:'FREE SNAPSHOT', report:'£70 REPORT', full:'£100 FULL DIAGNOSTIC'};
   var tierNames = {free:'Diamond Snapshot', report:'Full Diamond Report', full:'Full Diagnostic + Reading'};
-  var tierPrices = {free:'FREE', report:'£55', full:'£80'};
+  var tierPrices = {free:'FREE', report:'£70', full:'£100'};
   var TIER = tierLabels[tier] || 'REPORT';
 
   // ── HEADER / FOOTER ──
@@ -6220,7 +6220,7 @@ function renderClientIntel(el) {
   h += '<div class="info-chip"><label>Diagnosed</label><span>'+date+'</span></div>';
   // Tier purchased
   if (c.tier) {
-    const tierLabel = c.tier === 'full' ? 'Full Diagnostic + Reading (£80)' : 'Full Report Only (£55)';
+    const tierLabel = c.tier === 'full' ? 'Full Diagnostic + Reading (£100)' : 'Full Report Only (£70)';
     h += '<div class="info-chip" style="border-left:3px solid '+(c.tier==='full'?'var(--yellow)':'var(--mid)')+'"><label>Plan Purchased</label><span style="font-weight:700">'+tierLabel+'</span></div>';
   }
   h += '</div></div>';
@@ -6342,7 +6342,7 @@ function renderClientIntel(el) {
     let totalEst = 0;
     recServices.forEach(svc => { totalEst += getSafePrice(svc.price, intake, svc.price); });
     h += '<div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;margin-top:12px;background:var(--dark);border-radius:10px;color:#fff">';
-    h += '<span style="font-size:12px;font-weight:600;letter-spacing:0.5px">Estimated Total</span><span style="font-size:18px;font-weight:900;letter-spacing:-1px">$'+totalEst.toLocaleString()+'</span></div>';
+    h += '<span style="font-size:12px;font-weight:600;letter-spacing:0.5px">Estimated Total</span><span style="font-size:18px;font-weight:900;letter-spacing:-1px">£'+totalEst.toLocaleString()+'</span></div>';
   }
   h += '</div>';
 
@@ -6750,7 +6750,7 @@ function renderInvestment(el) {
   h += '<div class="card" style="background:linear-gradient(135deg,rgba(253,213,0,0.08) 0%,rgba(57,69,80,0.02) 100%);border:1px solid rgba(253,213,0,0.2)">';
   h += '<div style="display:flex;align-items:center;gap:12px">';
   h += '<span style="font-size:28px">🔬</span>';
-  h += '<div><h3 style="margin-bottom:2px">MAD Diagnostic Reading — £80</h3>';
+  h += '<div><h3 style="margin-bottom:2px">MAD Diagnostic Reading — £100</h3>';
   h += '<p class="card-sub" style="margin:0">Pre-paid before consultation. Client must complete payment before scheduling their strategist session.</p>';
   h += '</div></div></div>';
 
@@ -6802,11 +6802,11 @@ function renderInvestment(el) {
       } else if (svc.priceMonthly && svc.priceOneTime) {
         const adjM = getSafePrice(svc.priceMonthly, intake, svc.priceMonthly);
         const adjO = getSafePrice(svc.priceOneTime, intake, svc.priceOneTime);
-        h += '<div class="svc-price-tag">$'+adjM.toLocaleString()+'/mo</div>';
-        h += '<div class="svc-freq-tag">+ $'+adjO.toLocaleString()+' one-time setup</div>';
+        h += '<div class="svc-price-tag">£'+adjM.toLocaleString()+'/mo</div>';
+        h += '<div class="svc-freq-tag">+ £'+adjO.toLocaleString()+' one-time setup</div>';
       } else {
         const adjP = getSafePrice(svc.price||0, intake, svc.price||0);
-        h += '<div class="svc-price-tag">$'+adjP.toLocaleString()+'</div>';
+        h += '<div class="svc-price-tag">£'+adjP.toLocaleString()+'</div>';
         h += '<div class="svc-freq-tag">'+svc.freq+'</div>';
       }
       h += '</div>';
@@ -6926,7 +6926,7 @@ function renderInvestment(el) {
         const isRecurring = svc.freq === 'monthly' || svc.priceMonthly;
         h += '<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(57,69,80,0.06)">';
         h += '<span style="font-size:12px;color:var(--dark)">'+svc.icon+' '+svc.name+' <span style="font-size:9px;color:var(--steel)">'+(isRecurring?'monthly':'one-time')+'</span></span>';
-        h += '<span style="font-size:13px;font-weight:700;color:var(--dark);font-family:\'Courier New\',monospace">$'+overridePrices[svcId].toLocaleString()+'</span>';
+        h += '<span style="font-size:13px;font-weight:700;color:var(--dark);font-family:\'Courier New\',monospace">£'+overridePrices[svcId].toLocaleString()+'</span>';
         h += '</div>';
       });
       h += '</div>';
@@ -7194,10 +7194,10 @@ function renderCostBreakdown() {
   if (oneTimeItems.length) {
     oneTimeItems.forEach(i => {
       const ovrTag = i.ovr ? ' <span style="font-size:8px;background:#e74c3c;color:#fff;padding:1px 5px;border-radius:3px;font-weight:700;vertical-align:middle">OVR</span>' : '';
-      h += '<div class="cost-line"><span class="cl-name">'+i.name+ovrTag+'</span><span class="cl-price">$'+i.price.toLocaleString()+'</span></div>';
+      h += '<div class="cost-line"><span class="cl-name">'+i.name+ovrTag+'</span><span class="cl-price">£'+i.price.toLocaleString()+'</span></div>';
     });
     const otTotal = oneTimeItems.reduce((s,i) => s+i.price, 0);
-    h += '<div class="cost-subtotal"><span>Subtotal</span><span>$'+otTotal.toLocaleString()+'</span></div>';
+    h += '<div class="cost-subtotal"><span>Subtotal</span><span>£'+otTotal.toLocaleString()+'</span></div>';
   } else {
     h += '<div style="font-size:12px;color:var(--steel);padding:12px 0">No one-time services selected</div>';
   }
@@ -7208,15 +7208,15 @@ function renderCostBreakdown() {
   if (recurringItems.length) {
     recurringItems.forEach(i => {
       const ovrTag = i.ovr ? ' <span style="font-size:8px;background:#e74c3c;color:#fff;padding:1px 5px;border-radius:3px;font-weight:700;vertical-align:middle">OVR</span>' : '';
-      h += '<div class="cost-line"><span class="cl-name">'+i.name+ovrTag+'</span><span class="cl-price">$'+i.price.toLocaleString()+'</span></div>';
+      h += '<div class="cost-line"><span class="cl-name">'+i.name+ovrTag+'</span><span class="cl-price">£'+i.price.toLocaleString()+'</span></div>';
     });
     const rTotal = recurringItems.reduce((s,i) => s+i.price, 0);
-    h += '<div class="cost-subtotal"><span>Subtotal (per month)</span><span>$'+rTotal.toLocaleString()+'</span></div>';
+    h += '<div class="cost-subtotal"><span>Subtotal (per month)</span><span>£'+rTotal.toLocaleString()+'</span></div>';
     // Duration & contract total
     h += '<div style="margin-top:8px;padding:10px 12px;background:rgba(253,213,0,0.06);border-radius:8px;border:1px solid rgba(253,213,0,0.15)">';
     h += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px"><span style="font-size:11px;color:var(--steel);font-weight:600">Duration</span><span style="font-size:13px;color:var(--dark);font-weight:700">'+currentDuration+' months</span></div>';
     const contractR = rTotal * currentDuration;
-    h += '<div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:var(--steel);font-weight:600">Contract Total (recurring)</span><span style="font-size:15px;color:var(--dark);font-weight:800">$'+contractR.toLocaleString()+'</span></div>';
+    h += '<div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:var(--steel);font-weight:600">Contract Total (recurring)</span><span style="font-size:15px;color:var(--dark);font-weight:800">£'+contractR.toLocaleString()+'</span></div>';
     h += '</div>';
   } else {
     h += '<div style="font-size:12px;color:var(--steel);padding:12px 0">No recurring services selected</div>';
@@ -7268,20 +7268,20 @@ function renderSidebar() {
     h += '<div class="sidebar-section"><h4>One-Time</h4>';
     oneTimeItems.forEach(i => {
       const oTag = i.ovr ? ' <span style="font-size:7px;background:#e74c3c;color:#fff;padding:1px 4px;border-radius:2px;font-weight:700;vertical-align:middle">OVR</span>' : '';
-      h += '<div class="sb-line"><span class="sbl-name">'+i.name+oTag+'</span><span class="sbl-price">$'+i.price.toLocaleString()+'</span></div>';
+      h += '<div class="sb-line"><span class="sbl-name">'+i.name+oTag+'</span><span class="sbl-price">£'+i.price.toLocaleString()+'</span></div>';
     });
     const otSub = oneTimeItems.reduce((s,i)=>s+i.price,0);
-    h += '<div class="sb-subtotal"><span>Subtotal</span><span>$'+otSub.toLocaleString()+'</span></div></div>';
+    h += '<div class="sb-subtotal"><span>Subtotal</span><span>£'+otSub.toLocaleString()+'</span></div></div>';
   }
 
   if (recurringItems.length) {
     h += '<div class="sidebar-section"><h4>Monthly Recurring <span style="font-size:11px;color:var(--yellow);font-weight:600;margin-left:6px">· '+currentDuration+' mo</span></h4>';
     recurringItems.forEach(i => {
       const oTag = i.ovr ? ' <span style="font-size:7px;background:#e74c3c;color:#fff;padding:1px 4px;border-radius:2px;font-weight:700;vertical-align:middle">OVR</span>' : '';
-      h += '<div class="sb-line"><span class="sbl-name">'+i.name+oTag+'</span><span class="sbl-price">$'+i.price.toLocaleString()+'</span></div>';
+      h += '<div class="sb-line"><span class="sbl-name">'+i.name+oTag+'</span><span class="sbl-price">£'+i.price.toLocaleString()+'</span></div>';
     });
     const rSub = recurringItems.reduce((s,i)=>s+i.price,0);
-    h += '<div class="sb-subtotal"><span>Subtotal</span><span>$'+rSub.toLocaleString()+'</span></div></div>';
+    h += '<div class="sb-subtotal"><span>Subtotal</span><span>£'+rSub.toLocaleString()+'</span></div></div>';
   }
 
   if (!oneTimeItems.length && !recurringItems.length) {
@@ -7305,7 +7305,7 @@ function renderSidebar() {
     const totalSavings = savingsOT + savingsRTotal;
     if (totalSavings > 0) {
       let label = overrideActive ? 'Override pricing' : currentDiscount+'% discount';
-      let savingsText = label + ' — saves $'+totalSavings.toLocaleString();
+      let savingsText = label + ' — saves £'+totalSavings.toLocaleString();
       let breakdown = [];
       if (savingsOT > 0) breakdown.push('£'+savingsOT.toLocaleString()+' one-time');
       if (savingsRTotal > 0) breakdown.push('£'+savingsRTotal.toLocaleString()+' over '+currentDuration+' mo');
@@ -7314,7 +7314,7 @@ function renderSidebar() {
     } else if (totalSavings < 0) {
       // Override is actually above original — show as premium
       const premium = Math.abs(totalSavings);
-      h += '<div class="sb-discount" style="background:rgba(253,213,0,0.08);border-color:rgba(253,213,0,0.2);color:var(--dark)">Override pricing — $'+premium.toLocaleString()+' above standard rates</div>';
+      h += '<div class="sb-discount" style="background:rgba(253,213,0,0.08);border-color:rgba(253,213,0,0.2);color:var(--dark)">Override pricing — £'+premium.toLocaleString()+' above standard rates</div>';
     }
   }
 
@@ -7326,12 +7326,12 @@ function renderSidebar() {
   if (otTotal > 0) {
     h += '<div style="display:flex;justify-content:space-between;align-items:baseline;padding:4px 0">';
     h += '<span style="font-size:10px;color:var(--mid);font-weight:600;letter-spacing:1px;text-transform:uppercase">One-Time</span>';
-    h += '<span class="total-onetime" style="font-size:22px">$'+otTotal.toLocaleString()+'</span></div>';
+    h += '<span class="total-onetime" style="font-size:22px">£'+otTotal.toLocaleString()+'</span></div>';
   }
   if (rTotal > 0) {
     h += '<div style="display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;'+(otTotal>0?'border-top:1px solid rgba(255,255,255,0.1);margin-top:4px;padding-top:8px':'')+'">';
     h += '<span style="font-size:10px;color:var(--mid);font-weight:600;letter-spacing:1px;text-transform:uppercase">Monthly</span>';
-    h += '<span class="total-monthly" style="font-size:22px;color:#fff;font-weight:900">$'+rTotal.toLocaleString()+'</span></div>';
+    h += '<span class="total-monthly" style="font-size:22px;color:#fff;font-weight:900">£'+rTotal.toLocaleString()+'</span></div>';
     // Duration & contract value
     h += '<div style="border-top:1px solid rgba(255,255,255,0.1);margin-top:6px;padding-top:8px">';
     h += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">';
@@ -7340,7 +7340,7 @@ function renderSidebar() {
     const contractTotal = rTotal * currentDuration;
     h += '<div style="display:flex;justify-content:space-between;align-items:baseline">';
     h += '<span style="font-size:10px;color:var(--mid);font-weight:600;letter-spacing:1px;text-transform:uppercase">Contract Total</span>';
-    h += '<span style="font-size:16px;color:var(--yellow);font-weight:800">$'+contractTotal.toLocaleString()+'</span></div>';
+    h += '<span style="font-size:16px;color:var(--yellow);font-weight:800">£'+contractTotal.toLocaleString()+'</span></div>';
     h += '</div>';
   }
   if (!otTotal && !rTotal) h += '<div class="total-onetime" style="font-size:14px;color:var(--mid)">—</div>';
@@ -7474,8 +7474,8 @@ function showAddPromoForm() {
   h += '</div>';
   h += '<div style="margin-top:10px"><label style="font-size:10px;color:var(--steel);font-weight:700;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:4px">Applicable Tiers</label>';
   h += '<div style="display:flex;gap:12px">';
-  h += '<label style="font-size:12px;color:var(--dark);display:flex;align-items:center;gap:4px"><input type="checkbox" id="promoTierReport" checked> £55 Report</label>';
-  h += '<label style="font-size:12px;color:var(--dark);display:flex;align-items:center;gap:4px"><input type="checkbox" id="promoTierFull" checked> £80 Full Diagnostic</label>';
+  h += '<label style="font-size:12px;color:var(--dark);display:flex;align-items:center;gap:4px"><input type="checkbox" id="promoTierReport" checked> £70 Report</label>';
+  h += '<label style="font-size:12px;color:var(--dark);display:flex;align-items:center;gap:4px"><input type="checkbox" id="promoTierFull" checked> £100 Full Diagnostic</label>';
   h += '</div></div>';
   h += '<div style="display:flex;gap:8px;margin-top:12px">';
   h += '<button onclick="saveNewPromoCode()" style="padding:8px 18px;background:var(--green);color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">Save Code</button>';
@@ -7763,14 +7763,14 @@ function finalizeDeal() {
 
   body += '\nINVESTMENT SUMMARY\n';
   body += '------------------\n';
-  if (oneTimeTotal > 0) body += '  One-Time Services: $' + oneTimeTotal.toLocaleString() + '\n';
+  if (oneTimeTotal > 0) body += '  One-Time Services: £' + oneTimeTotal.toLocaleString() + '\n';
   if (recurringTotal > 0) {
-    body += '  Monthly Retainer: $' + recurringTotal.toLocaleString() + '/month\n';
+    body += '  Monthly Retainer: £' + recurringTotal.toLocaleString() + '/month\n';
     body += '  Duration: ' + currentDuration + ' months\n';
-    body += '  Contract Total: $' + contractTotal.toLocaleString() + '\n';
+    body += '  Contract Total: £' + contractTotal.toLocaleString() + '\n';
   }
   if (!isEnterprise) {
-    body += '  Grand Total: $' + grandTotal.toLocaleString() + '\n';
+    body += '  Grand Total: £' + grandTotal.toLocaleString() + '\n';
   } else {
     body += '  Grand Total: Custom — to be determined\n';
   }
