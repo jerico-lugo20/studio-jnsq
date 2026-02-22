@@ -2562,7 +2562,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <!-- Tier 0: FREE Snapshot -->
       <div id="tierFree" class="gate-tier" onclick="selectTier('free')" style="flex:1;min-width:180px;background:rgba(255,255,255,0.03);border:2px solid rgba(255,255,255,0.08);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.3s;position:relative">
         <div style="font-size:10px;letter-spacing:1.5px;color:rgba(255,255,255,0.5);font-weight:700;text-transform:uppercase;margin-bottom:8px">Free</div>
-        <div style="font-size:22px;font-weight:800;color:rgba(255,255,255,0.6);margin-bottom:4px">$0</div>
+        <div style="font-size:22px;font-weight:800;color:rgba(255,255,255,0.6);margin-bottom:4px">£0</div>
         <div style="font-size:14px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:10px">Diamond Snapshot</div>
         <ul style="list-style:none;padding:0;margin:0;font-size:11px;color:rgba(255,255,255,0.5);line-height:2">
           <li>&check; Overall score &amp; stage</li>
@@ -2578,7 +2578,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 
       <!-- Tier 1: Report Only -->
       <div id="tierReport" class="gate-tier" onclick="selectTier('report')" style="flex:1;min-width:180px;background:rgba(255,255,255,0.06);border:2px solid rgba(255,255,255,0.12);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.3s;position:relative">
-        <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:4px">$70</div>
+        <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:4px">£55</div>
         <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:10px">Full Diamond Report</div>
         <ul style="list-style:none;padding:0;margin:0;font-size:11px;color:rgba(255,255,255,0.7);line-height:2">
           <li>&check; Complete facet breakdown &amp; scores</li>
@@ -2596,7 +2596,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <!-- Tier 2: Full Diagnostic + Reading -->
       <div id="tierFull" class="gate-tier" onclick="selectTier('full')" style="flex:1;min-width:220px;background:rgba(253,213,0,0.08);border:2px solid rgba(253,213,0,0.3);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.3s;position:relative">
         <div style="position:absolute;top:-10px;right:16px;background:var(--yellow);color:var(--dark);padding:3px 10px;border-radius:4px;font-size:9px;font-weight:800;letter-spacing:1px">RECOMMENDED</div>
-        <div style="font-size:22px;font-weight:800;color:#FDD500;margin-bottom:4px">$100</div>
+        <div style="font-size:22px;font-weight:800;color:#FDD500;margin-bottom:4px">£80</div>
         <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:10px">Full Diagnostic + Reading</div>
         <ul style="list-style:none;padding:0;margin:0;font-size:11px;color:rgba(255,255,255,0.7);line-height:2">
           <li>&check; Everything in the Full Report</li>
@@ -2639,7 +2639,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
         <input type="tel" id="gatePhone" placeholder="+1 (555) 123-4567">
         <div class="gate-error" id="gatePhoneError">Please enter your phone number</div>
       </div>
-      <button class="gate-btn" id="gateSubmitBtn" onclick="submitContactGate()">Get My Full Report &mdash; $70 &rarr;</button>
+      <button class="gate-btn" id="gateSubmitBtn" onclick="submitContactGate()">Get My Full Report &mdash; £55 &rarr;</button>
     </div>
 
     <p class="gate-privacy">Your information is private. Payment details will be collected securely after submission.</p>
@@ -2735,7 +2735,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     <div id="paymentFormView">
       <h3>Complete Your Purchase</h3>
       <p class="pm-tier" id="pmTierLabel">Full Diamond Report</p>
-      <div class="pm-amount" id="pmAmount">$70 <span>USD</span></div>
+      <div class="pm-amount" id="pmAmount">£55 <span>GBP</span></div>
       <div class="pm-field">
         <label>Cardholder Name</label>
         <input type="text" id="pmCardName" placeholder="Name on card">
@@ -3827,7 +3827,7 @@ window.premReset = function(){
   if (tierFree) { tierFree.style.borderColor = 'rgba(255,255,255,0.08)'; tierFree.style.background = 'rgba(255,255,255,0.03)'; tierFree.querySelector('.tier-check').style.display = 'none'; }
   if (tierReport) { tierReport.style.borderColor = 'rgba(255,255,255,0.12)'; tierReport.style.background = 'rgba(255,255,255,0.06)'; tierReport.querySelector('.tier-check').style.display = 'none'; }
   if (tierFull) { tierFull.style.borderColor = 'rgba(253,213,0,0.3)'; tierFull.style.background = 'rgba(253,213,0,0.08)'; tierFull.querySelector('.tier-check').style.display = 'none'; }
-  document.getElementById('gateSubmitBtn').innerHTML = 'Get My Full Report &mdash; $70 &rarr;';
+  document.getElementById('gateSubmitBtn').innerHTML = 'Get My Full Report &mdash; £55 &rarr;';
   // Remove dynamic CTA block
   var ctaBlock = document.getElementById('tierCTABlock');
   if (ctaBlock) ctaBlock.remove();
@@ -3963,7 +3963,7 @@ function renderPostReport(catPcts) {
 
 // ===== PROMO CODE SYSTEM (Feature 4) =====
 var _activePromo = null; // { code, discountPct, tiers }
-var _originalPrices = { report: 70, full: 100 };
+var _originalPrices = { report: 55, full: 80 };
 
 function applyPromoCode() {
   var input = document.getElementById('promoCodeInput');
@@ -4029,8 +4029,8 @@ function updateTierPrices() {
       if (el70) {
         var priceDiv = el70.querySelector('div[style*="font-size:22px"]');
         if (priceDiv) {
-          if (newReport === 0) priceDiv.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">$70</span> FREE';
-          else priceDiv.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">$70</span> $' + newReport;
+          if (newReport === 0) priceDiv.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">£55</span> FREE';
+          else priceDiv.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">£55</span> $' + newReport;
         }
       }
     }
@@ -4043,10 +4043,10 @@ function updateTierPrices() {
         if (priceDiv100) {
           if (disc === 100) {
             // Full discount on $100 only covers the $70 report portion; $30 consultation still applies
-            priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">$100</span> $30';
+            priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">£80</span> £25';
           } else {
             var newFull = Math.round(_originalPrices.full * (1 - disc/100));
-            priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">$100</span> $' + newFull;
+            priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">£80</span> £' + newFull;
           }
         }
       }
@@ -4057,7 +4057,7 @@ function updateTierPrices() {
           var noteDiv = document.createElement('div');
           noteDiv.id = 'promoConsultNote';
           noteDiv.style.cssText = 'font-size:10px;color:#FDD500;margin-top:6px;font-weight:600;text-align:center';
-          noteDiv.textContent = 'Full discount covers the report only. $30 consultation fee still applies.';
+          noteDiv.textContent = 'Full discount covers the report only. £25 consultation fee still applies.';
           el100.appendChild(noteDiv);
         }
       } else if (noteEl) { noteEl.remove(); }
@@ -4065,9 +4065,9 @@ function updateTierPrices() {
   } else {
     // Reset prices to original
     var el70r = document.getElementById('tierReport');
-    if (el70r) { var pd = el70r.querySelector('div[style*="font-size:22px"]'); if (pd) pd.textContent = '$70'; }
+    if (el70r) { var pd = el70r.querySelector('div[style*="font-size:22px"]'); if (pd) pd.textContent = '£55'; }
     var el100r = document.getElementById('tierFull');
-    if (el100r) { var pd2 = el100r.querySelector('div[style*="font-size:22px"]'); if (pd2) pd2.textContent = '$100'; }
+    if (el100r) { var pd2 = el100r.querySelector('div[style*="font-size:22px"]'); if (pd2) pd2.textContent = '£80'; }
     var noteEl2 = document.getElementById('promoConsultNote');
     if (noteEl2) noteEl2.remove();
   }
@@ -4219,10 +4219,10 @@ function submitContactGate() {
           '<p style="color:var(--yellow);font-weight:700;font-size:13px;margin:0 0 8px">Want the full picture?</p>' +
           '<p style="color:var(--mid);font-size:11px;margin:0 0 16px">Your diagnosis is already done — upgrade now to instantly unlock the full report with no retake needed.</p>' +
           '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">' +
-            '<button onclick="upgradeFromFree(\'report\')" style="background:var(--yellow);color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:none;cursor:pointer;letter-spacing:0.3px">Full Report \u2014 $70</button>' +
-            '<button onclick="upgradeFromFree(\'full\')" style="background:#fff;color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:2px solid var(--yellow);cursor:pointer;letter-spacing:0.3px">Full Diagnostic \u2014 $100</button>' +
+            '<button onclick="upgradeFromFree(\'report\')" style="background:var(--yellow);color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:none;cursor:pointer;letter-spacing:0.3px">Full Report \u2014 £55</button>' +
+            '<button onclick="upgradeFromFree(\'full\')" style="background:#fff;color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:2px solid var(--yellow);cursor:pointer;letter-spacing:0.3px">Full Diagnostic \u2014 £80</button>' +
           '</div>' +
-          '<p style="color:var(--mid);font-size:10px;margin:12px 0 0;line-height:1.5;text-align:center"><strong style="color:var(--yellow)">$70</strong> \u2014 Detailed actions + platform strategies for all 5 facets<br><strong style="color:var(--yellow)">$100</strong> \u2014 Everything above + cadence, sequencing &amp; 1-on-1 strategist reading</p>' +
+          '<p style="color:var(--mid);font-size:10px;margin:12px 0 0;line-height:1.5;text-align:center"><strong style="color:var(--yellow)">£55</strong> \u2014 Detailed actions + platform strategies for all 5 facets<br><strong style="color:var(--yellow)">£80</strong> \u2014 Everything above + cadence, sequencing &amp; 1-on-1 strategist reading</p>' +
         '</div>' +
       '</div>';
     return;
@@ -4454,9 +4454,9 @@ function submitCorrections() {
 function showPaymentModal(tier) {
   var tierLabel = tier === 'full' ? 'Full Diagnostic + Reading' : 'Full Diamond Report';
   var adjPrice = getPromoAdjustedPrice(tier);
-  var amount = '$' + adjPrice;
+  var amount = '£' + adjPrice;
   document.getElementById('pmTierLabel').textContent = tierLabel + (_activePromo ? ' (Promo: ' + _activePromo.code + ')' : '');
-  document.getElementById('pmAmount').innerHTML = amount + ' <span>USD</span>';
+  document.getElementById('pmAmount').innerHTML = amount + ' <span>GBP</span>';
   document.getElementById('pmPayBtn').textContent = 'Pay ' + amount + ' Now';
   document.getElementById('paymentFormView').style.display = 'block';
   document.getElementById('paymentProcessing').style.display = 'none';
@@ -4730,7 +4730,7 @@ function onPaymentSuccess() {
   // Store diagnosis data first
   if (window._diagCode && window._catPcts) {
     storeDiagnosisData(window._diagCode, window._catPcts, window._catScores);
-    // Only send email for the $100 full diagnostic tier — $70 report is download-only
+    // Only send email for the $100 full diagnostic tier — £55 report is download-only
     if (selectedTierValue === 'full') {
       sendDiagnosisEmail(window._diagCode, window._catPcts, window._catScores);
     }
@@ -4781,12 +4781,12 @@ function onPaymentSuccess() {
   h += '<div style="font-size:10px;color:var(--mid);line-height:1.5"><strong style="color:var(--yellow)">Keep this code.</strong> Use it anytime to retrieve your diagnosis or share it with your strategist.</div>';
   h += '</div>';
 
-  // Upgrade CTA for $70 tier
+  // Upgrade CTA for £55 tier
   if (tier === 'report') {
     h += '<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:18px 20px">';
     h += '<p style="color:var(--yellow);font-weight:700;font-size:12px;margin:0 0 6px">Want the complete experience?</p>';
     h += '<p style="color:var(--mid);font-size:11px;margin:0 0 12px;line-height:1.5">Upgrade to the Full Diagnostic for cadence schedules, activation playbooks, strategy connectedness mapping, and a 1-hour strategist session.</p>';
-    h += '<button onclick="upgradeFromPaid()" style="padding:10px 22px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:0.5px">Upgrade to Full Diagnostic — $30 more &rarr;</button>';
+    h += '<button onclick="upgradeFromPaid()" style="padding:10px 22px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:0.5px">Upgrade to Full Diagnostic — £25 more &rarr;</button>';
     h += '</div>';
   }
 
@@ -4805,9 +4805,9 @@ function upgradeFromPaid() {
   showPaymentModal('full');
   // Override the amount display to show the $30 difference
   var amountEl = document.getElementById('pmAmount');
-  if (amountEl) amountEl.innerHTML = '$30 <span>USD</span>';
+  if (amountEl) amountEl.innerHTML = '£25 <span>GBP</span>';
   var payBtn = document.getElementById('pmPayBtn');
-  if (payBtn) payBtn.textContent = 'Pay $30 Upgrade Now';
+  if (payBtn) payBtn.textContent = 'Pay £25 Upgrade Now';
   var tierEl = document.getElementById('pmTierLabel');
   if (tierEl) tierEl.textContent = 'Upgrade to Full Diagnostic + Reading';
 }
@@ -4892,7 +4892,7 @@ function revealPlatformsOnly() {
       platformHTML += '</ul></div>';
       platformHTML += '<div class="fr-gated-teaser" style="background:rgba(57,69,80,0.04);border-radius:8px;padding:14px 18px;margin-top:12px;border-left:3px solid var(--yellow)">' +
         '<p style="margin:0;font-size:12px;color:var(--steel);line-height:1.6">' +
-        '🔒 <strong>Cadence schedules, activation sequences, and strategy connectedness</strong> are included in the Full Diagnostic + Reading ($100) — which also includes a 1-hour strategist session.</p></div>';
+        '🔒 <strong>Cadence schedules, activation sequences, and strategy connectedness</strong> are included in the Full Diagnostic + Reading (£80) — which also includes a 1-hour strategist session.</p></div>';
       teaser.outerHTML = platformHTML;
     }
   });
@@ -4914,8 +4914,8 @@ function injectTierCTA(tier) {
     ctaDiv.innerHTML =
       '<div style="font-size:10px;letter-spacing:2px;color:var(--yellow);font-weight:700;margin-bottom:8px">UNLOCK THE FULL STRATEGY</div>' +
       '<h4 style="font-size:20px;color:var(--dark);font-weight:800;margin:0 0 12px">Ready to see the deployment plan?</h4>' +
-      '<p style="font-size:13px;color:var(--steel);line-height:1.7;margin:0 0 20px">Upgrade to the Full Diagnostic + Reading for $100 and get cadence schedules, activation sequences, strategy connectedness, <strong>plus a 1-hour strategist session</strong> (30-min reading + 30-min FREE consultation).</p>' +
-      '<a href="javascript:void(0)" onclick="document.getElementById(\'premiumDiagnostic\').scrollIntoView({behavior:\'smooth\'})" style="display:inline-block;background:var(--yellow);color:var(--dark);padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:0.5px">Upgrade to Full Diagnostic &mdash; $100</a>' +
+      '<p style="font-size:13px;color:var(--steel);line-height:1.7;margin:0 0 20px">Upgrade to the Full Diagnostic + Reading for £80 and get cadence schedules, activation sequences, strategy connectedness, <strong>plus a 1-hour strategist session</strong> (30-min reading + 30-min FREE consultation).</p>' +
+      '<a href="javascript:void(0)" onclick="document.getElementById(\'premiumDiagnostic\').scrollIntoView({behavior:\'smooth\'})" style="display:inline-block;background:var(--yellow);color:var(--dark);padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:0.5px">Upgrade to Full Diagnostic &mdash; £80</a>' +
       '<p style="font-size:11px;color:var(--steel);margin-top:16px">Upgrade to the Full Diagnostic to unlock your strategist session.</p>';
   } else {
     // Tier 2 CTA: Book consultation session
@@ -5152,9 +5152,9 @@ function generateDiagnosticPDF(tier) {
   function setD(rgb) { doc.setDrawColor(rgb[0],rgb[1],rgb[2]); }
 
   // ── Tier labels ──
-  var tierLabels = {free:'FREE SNAPSHOT', report:'$70 REPORT', full:'$100 FULL DIAGNOSTIC'};
+  var tierLabels = {free:'FREE SNAPSHOT', report:'£55 REPORT', full:'£80 FULL DIAGNOSTIC'};
   var tierNames = {free:'Diamond Snapshot', report:'Full Diamond Report', full:'Full Diagnostic + Reading'};
-  var tierPrices = {free:'FREE', report:'$70', full:'$100'};
+  var tierPrices = {free:'FREE', report:'£55', full:'£80'};
   var TIER = tierLabels[tier] || 'REPORT';
 
   // ── HEADER / FOOTER ──
@@ -5591,8 +5591,8 @@ function generateDiagnosticPDF(tier) {
     var upsellItems = tier === 'free' ? [
       '\u2022  Full action plan for all 5 facets (not just top 3)',
       '\u2022  Complete KPI & success metrics suite per facet',
-      '\u2022  Activation sequencing with week-by-week timeline ($100)',
-      '\u2022  1hr strategist reading + consultation session ($100)'
+      '\u2022  Activation sequencing with week-by-week timeline (£80)',
+      '\u2022  1hr strategist reading + consultation session (£80)'
     ] : [
       '\u2022  Cadence schedules and publishing rhythms',
       '\u2022  Activation sequencing with week-by-week timeline',
@@ -5617,7 +5617,7 @@ function generateDiagnosticPDF(tier) {
   ] : (tier === 'report') ? [
     ['1', 'Review this report', 'Read each facet\'s analysis and the per-facet action plans.'],
     ['2', 'Prioritize 30-day actions', 'Start with Quick Wins to build immediate momentum.'],
-    ['3', 'Upgrade for the full picture', 'Full Diagnostic ($100) adds cadence, sequencing, and a 1hr strategist session.']
+    ['3', 'Upgrade for the full picture', 'Full Diagnostic (£80) adds cadence, sequencing, and a 1hr strategist session.']
   ] : [
     ['1', 'Review this snapshot', 'Understand your facet scores, gaps, and the actions that matter most.'],
     ['2', 'Start your 30-day wins', 'Pick 1\u20132 quick wins from the action plan and begin building momentum.'],
@@ -5938,27 +5938,26 @@ const naServiceMap = {
 };
 
 const servicePricing = [
-  {id:'brand_foundations',name:'Brand Foundations',desc:'Positioning, identity, architecture',price:4800,freq:'one-time',tag:'FOUNDATION',icon:'💎',facets:['branding','trust'],primaryFacet:'branding'},
-  {id:'linkedin_strategy',name:'LinkedIn Strategy',desc:'Content pillars & audience targeting',price:1500,freq:'one-time',tag:'STRATEGY',icon:'🔗',facets:['branding','demand'],primaryFacet:'branding'},
-  {id:'media_pr',name:'Media & PR Foundations',desc:'Press materials & narrative frameworks',price:3000,freq:'one-time',tag:'FOUNDATION',icon:'📰',facets:['credibility','trust'],primaryFacet:'credibility'},
-  {id:'media_training',name:'Media Training',desc:'Interview prep & press training',price:2100,freq:'one-time',tag:'AUTHORITY',icon:'🎤',facets:['credibility'],primaryFacet:'credibility'},
-  {id:'award_submissions',name:'Award Submissions',desc:'Industry award identification & prep',price:1200,freq:'per submission',tag:'RECOGNITION',icon:'🏆',facets:['credibility','trust'],primaryFacet:'credibility'},
-  {id:'linkedin_authority',name:'LinkedIn Authority',desc:'Ongoing presence & thought leadership',price:1800,freq:'monthly',tag:'PRESENCE',icon:'📣',facets:['visibility','demand'],primaryFacet:'visibility'},
-  {id:'social_media',name:'Social Media Mgmt',desc:'Content, scheduling & community',price:2400,freq:'monthly',tag:'REACH',icon:'📱',facets:['visibility'],primaryFacet:'visibility'},
-  {id:'media_relations',name:'Media Relations',desc:'Outreach & journalist relationships',price:3000,freq:'monthly',tag:'MEDIA',icon:'🗞️',facets:['visibility','demand'],primaryFacet:'visibility'},
-  {id:'thought_leadership',name:'Thought Leadership',desc:'Publishing & strategic positioning',price:3600,freq:'monthly',tag:'AUTHORITY',icon:'📝',facets:['credibility','visibility'],primaryFacet:'visibility'},
-  {id:'brand_equity',name:'Brand Equity Advisory',desc:'Strategic brand valuation & equity growth advisory',price:1150,freq:'monthly',tag:'ADVISORY',icon:'📊',facets:['branding','credibility','trust','demand'],primaryFacet:'branding',commitment:6,alwaysRecommended:true,pricingOverride:function(intake){var base=1150;var mult=getPriceMultiplier(intake);if(mult===null)return null;var p=Math.round((base*mult)/100)*100;if(p<1000)p=1000;if(intake&&(intake.bizSize==='mlb'||intake.bizSize==='enterprise')&&p>2000)p=2000;return p;}},
-  {id:'diamond_audit',name:'Diamond Audit',desc:'Comprehensive brand diamond reassessment & progress evaluation',price:2000,freq:'one-time',tag:'AUDIT',icon:'🔍',facets:['branding','credibility','visibility','trust','demand'],primaryFacet:'branding',pricingOverride:function(intake){var base=2000;if(intake&&intake.region==='sea'&&intake.country!=='Singapore'&&(intake.bizSize==='startup'||intake.bizSize==='smb'))base=1500;var mult=getPriceMultiplier(intake);if(mult===null)return null;var p=Math.round((base*mult)/100)*100;if(p<base)p=base;return p;}},
-  {id:'credibility_bundle',name:'Credibility Architecture',desc:'Brand + Media & PR + Awards + Training',price:5400,freq:'one-time',tag:'ARCHITECTURE',icon:'🛡️',facets:['credibility'],primaryFacet:'suite',includes:['brand_foundations','media_pr','award_submissions','media_training']},
-  {id:'visibility_bundle',name:'Visibility Engineering',desc:'LinkedIn + Social + Thought Leadership + Media',price:5400,freq:'monthly',tag:'ENGINEERING',icon:'🚀',facets:['visibility'],primaryFacet:'suite',includes:['linkedin_authority','social_media','thought_leadership','media_relations']},
-  {id:'flagship',name:'The JNSQ Suite',desc:'Full-service across all 5 facets',priceMonthly:9000,priceOneTime:5000,freq:'monthly+onetime',tag:'FULL SERVICE',icon:'⭐',facets:['branding','credibility','visibility','trust','demand'],primaryFacet:'suite',includes:['linkedin_authority','social_media','thought_leadership','media_relations','brand_foundations','media_pr','award_submissions','media_training']}
+  {id:'brand_foundations',name:'Brand Foundations',desc:'Brand audit, positioning framework & messaging guidelines',price:4000,freq:'one-time',tag:'FOUNDATION',icon:'💎',facets:['branding','trust'],primaryFacet:'branding'},
+  {id:'linkedin_strategy',name:'LinkedIn Strategy',desc:'Profile overhaul, content pillars & 90-day roadmap',price:1500,freq:'one-time',tag:'STRATEGY',icon:'🔗',facets:['branding','demand'],primaryFacet:'branding'},
+  {id:'media_pr',name:'Media & PR Foundations',desc:'Press kit, narrative framework & media list curation',price:2500,freq:'one-time',tag:'FOUNDATION',icon:'📰',facets:['credibility','trust'],primaryFacet:'credibility'},
+  {id:'media_training',name:'Media Training',desc:'Coaching sessions, interview simulation & message discipline',price:2000,freq:'one-time',tag:'AUTHORITY',icon:'🎤',facets:['credibility'],primaryFacet:'credibility'},
+  {id:'award_submissions',name:'Award Submissions',desc:'Award mapping, submission drafting & evidence assembly',price:1200,freq:'per submission',tag:'RECOGNITION',icon:'🏆',facets:['credibility','trust'],primaryFacet:'credibility'},
+  {id:'linkedin_authority',name:'LinkedIn Authority Building',desc:'4x weekly ghostwritten posts, engagement & growth strategy',price:2000,freq:'monthly',tag:'PRESENCE',icon:'📣',facets:['visibility','demand'],primaryFacet:'visibility'},
+  {id:'media_relations',name:'Media Relations',desc:'Journalist outreach, story pitching & coverage reporting',price:2500,freq:'monthly',tag:'MEDIA',icon:'🗞️',facets:['visibility','demand'],primaryFacet:'visibility'},
+  {id:'thought_leadership',name:'Thought Leadership Building',desc:'Byline articles, speaking opportunities & IP development',price:3000,freq:'monthly',tag:'AUTHORITY',icon:'📝',facets:['credibility','visibility'],primaryFacet:'visibility'},
+  {id:'brand_equity',name:'Brand Equity Advisory',desc:'Monthly strategic review, brand health tracking & advisory',price:1200,freq:'monthly',tag:'ADVISORY',icon:'📊',facets:['branding','credibility','trust','demand'],primaryFacet:'branding',commitment:6,alwaysRecommended:true,pricingOverride:function(intake){var base=1200;var mult=getPriceMultiplier(intake);if(mult===null)return null;var p=Math.round((base*mult)/100)*100;if(p<800)p=800;if(intake&&(intake.bizSize==='mlb'||intake.bizSize==='enterprise')&&p>1500)p=1500;return p;}},
+  {id:'diamond_audit',name:'Diamond Audit',desc:'Full MAD reassessment, sector benchmarking & pivot plan',price:2000,freq:'one-time',tag:'AUDIT',icon:'🔍',facets:['branding','credibility','visibility','trust','demand'],primaryFacet:'branding',pricingOverride:function(intake){var base=2000;if(intake&&intake.region==='sea'&&intake.country!=='Singapore'&&(intake.bizSize==='startup'||intake.bizSize==='smb'))base=1500;var mult=getPriceMultiplier(intake);if(mult===null)return null;var p=Math.round((base*mult)/100)*100;if(p<base)p=base;return p;}},
+  {id:'credibility_bundle',name:'Credibility Architecture',desc:'Brand Foundations + Media & PR + Awards + Media Training',price:6000,freq:'one-time',tag:'ARCHITECTURE',icon:'🛡️',facets:['credibility'],primaryFacet:'suite',includes:['brand_foundations','media_pr','award_submissions','media_training']},
+  {id:'visibility_bundle',name:'Visibility Engineering',desc:'LinkedIn Authority + Thought Leadership + Media Relations',price:6000,freq:'monthly',tag:'ENGINEERING',icon:'🚀',facets:['visibility'],primaryFacet:'suite',includes:['linkedin_authority','thought_leadership','media_relations']},
+  {id:'flagship',name:'The JNSQ Suite',desc:'Full-service across all 5 facets',priceMonthly:9500,priceOneTime:4000,freq:'monthly+onetime',tag:'FULL SERVICE',icon:'⭐',facets:['branding','credibility','visibility','trust','demand'],primaryFacet:'suite',includes:['linkedin_authority','thought_leadership','media_relations','brand_foundations','media_pr','award_submissions','media_training']}
 ];
 
 // ===== PRICING MULTIPLIERS (region × business size) =====
 // Base prices in servicePricing are US/international standard (other × mle)
 const pricingMultipliers = {
   // region multipliers — still premium, but localized
-  region: { emea: 0.90, apac: 0.80, sea: 0.65, americas: 1.0, other: 0.85 },
+  region: { emea: 1.0, apac: 0.85, sea: 0.70, americas: 1.15, other: 0.90 },
   // business size multipliers — startups get a break, not a steal
   bizSize: { startup: 0.65, smb: 0.85, mlb: 1.0, enterprise: null }
   // enterprise = null means "discuss with strategist"
@@ -6221,7 +6220,7 @@ function renderClientIntel(el) {
   h += '<div class="info-chip"><label>Diagnosed</label><span>'+date+'</span></div>';
   // Tier purchased
   if (c.tier) {
-    const tierLabel = c.tier === 'full' ? 'Full Diagnostic + Reading ($100)' : 'Full Report Only ($70)';
+    const tierLabel = c.tier === 'full' ? 'Full Diagnostic + Reading (£80)' : 'Full Report Only (£55)';
     h += '<div class="info-chip" style="border-left:3px solid '+(c.tier==='full'?'var(--yellow)':'var(--mid)')+'"><label>Plan Purchased</label><span style="font-weight:700">'+tierLabel+'</span></div>';
   }
   h += '</div></div>';
@@ -6313,7 +6312,7 @@ function renderClientIntel(el) {
 
   recBundles.forEach(svc => {
     const price = multiplier !== null ? getAdjustedPrice(svc.price, intake) : null;
-    const priceStr = price !== null ? '$'+price.toLocaleString() : 'Custom';
+    const priceStr = price !== null ? '£'+price.toLocaleString() : 'Custom';
     h += '<div style="background:#fff;border-radius:12px;padding:16px;border:1px solid rgba(253,213,0,0.3);border-left:4px solid var(--yellow)">';
     h += '<div style="font-size:22px;margin-bottom:6px">'+svc.icon+'</div>';
     h += '<div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:4px">'+svc.name+'</div>';
@@ -6327,7 +6326,7 @@ function renderClientIntel(el) {
 
   recIndividual.forEach(svc => {
     const price = multiplier !== null ? getAdjustedPrice(svc.price, intake) : null;
-    const priceStr = price !== null ? '$'+price.toLocaleString() : 'Custom';
+    const priceStr = price !== null ? '£'+price.toLocaleString() : 'Custom';
     h += '<div style="background:#fff;border-radius:12px;padding:16px;border:1px solid rgba(57,69,80,0.08)">';
     h += '<div style="font-size:22px;margin-bottom:6px">'+svc.icon+'</div>';
     h += '<div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:4px">'+svc.name+'</div>';
@@ -6751,7 +6750,7 @@ function renderInvestment(el) {
   h += '<div class="card" style="background:linear-gradient(135deg,rgba(253,213,0,0.08) 0%,rgba(57,69,80,0.02) 100%);border:1px solid rgba(253,213,0,0.2)">';
   h += '<div style="display:flex;align-items:center;gap:12px">';
   h += '<span style="font-size:28px">🔬</span>';
-  h += '<div><h3 style="margin-bottom:2px">MAD Diagnostic Reading — $100</h3>';
+  h += '<div><h3 style="margin-bottom:2px">MAD Diagnostic Reading — £80</h3>';
   h += '<p class="card-sub" style="margin:0">Pre-paid before consultation. Client must complete payment before scheduling their strategist session.</p>';
   h += '</div></div></div>';
 
@@ -7308,8 +7307,8 @@ function renderSidebar() {
       let label = overrideActive ? 'Override pricing' : currentDiscount+'% discount';
       let savingsText = label + ' — saves $'+totalSavings.toLocaleString();
       let breakdown = [];
-      if (savingsOT > 0) breakdown.push('$'+savingsOT.toLocaleString()+' one-time');
-      if (savingsRTotal > 0) breakdown.push('$'+savingsRTotal.toLocaleString()+' over '+currentDuration+' mo');
+      if (savingsOT > 0) breakdown.push('£'+savingsOT.toLocaleString()+' one-time');
+      if (savingsRTotal > 0) breakdown.push('£'+savingsRTotal.toLocaleString()+' over '+currentDuration+' mo');
       if (breakdown.length > 0) savingsText += ' ('+breakdown.join(' + ')+')';
       h += '<div class="sb-discount" style="'+(overrideActive?'background:rgba(231,76,60,0.08);border-color:rgba(231,76,60,0.2);color:#e74c3c':'')+'">'+savingsText+'</div>';
     } else if (totalSavings < 0) {
@@ -7475,8 +7474,8 @@ function showAddPromoForm() {
   h += '</div>';
   h += '<div style="margin-top:10px"><label style="font-size:10px;color:var(--steel);font-weight:700;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:4px">Applicable Tiers</label>';
   h += '<div style="display:flex;gap:12px">';
-  h += '<label style="font-size:12px;color:var(--dark);display:flex;align-items:center;gap:4px"><input type="checkbox" id="promoTierReport" checked> $70 Report</label>';
-  h += '<label style="font-size:12px;color:var(--dark);display:flex;align-items:center;gap:4px"><input type="checkbox" id="promoTierFull" checked> $100 Full Diagnostic</label>';
+  h += '<label style="font-size:12px;color:var(--dark);display:flex;align-items:center;gap:4px"><input type="checkbox" id="promoTierReport" checked> £55 Report</label>';
+  h += '<label style="font-size:12px;color:var(--dark);display:flex;align-items:center;gap:4px"><input type="checkbox" id="promoTierFull" checked> £80 Full Diagnostic</label>';
   h += '</div></div>';
   h += '<div style="display:flex;gap:8px;margin-top:12px">';
   h += '<button onclick="saveNewPromoCode()" style="padding:8px 18px;background:var(--green);color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">Save Code</button>';
@@ -7721,7 +7720,7 @@ function finalizeDeal() {
     const isRecurring = svc.recurring;
     const line = {
       name: svc.name,
-      price: isEnterprise ? 'Custom' : '$' + price.toLocaleString(),
+      price: isEnterprise ? 'Custom' : '£' + price.toLocaleString(),
       type: isRecurring ? 'Monthly Retainer' : 'One-Time',
       rawPrice: price
     };
