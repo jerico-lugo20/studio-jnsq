@@ -71,6 +71,7 @@ exports.handler = async (event, context) => {
       promoCodes.push({
         code: access_code,
         discountPct: 100,
+        fullFree: true,
         label: "Diagnostic Gate - " + (full_name || email),
         expiry: "",
         maxUses: 1,

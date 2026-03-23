@@ -4311,8 +4311,11 @@ function updateTierPrices() {
       if (el100) {
         var priceDiv100 = el100.querySelector('div[style*="font-size:22px"]');
         if (priceDiv100) {
-          if (disc === 100) {
-            // Full discount on $100 only covers the $70 report portion; $30 consultation still applies
+          if (disc === 100 && _activePromo.fullFree) {
+            // Gate codes: fully free including reading
+            priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">£100</span> FREE';
+          } else if (disc === 100) {
+            // Strategist codes: report free, consultation fee still applies
             priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">£100</span> £30';
           } else {
             var newFull = Math.round(_originalPrices.full * (1 - disc/100));
@@ -4320,9 +4323,9 @@ function updateTierPrices() {
           }
         }
       }
-      // Show $30 consultation note for 100% discount
+      // Show $30 consultation note for 100% discount (only if not fullFree)
       var noteEl = document.getElementById('promoConsultNote');
-      if (disc === 100) {
+      if (disc === 100 && !_activePromo.fullFree) {
         if (!noteEl) {
           var noteDiv = document.createElement('div');
           noteDiv.id = 'promoConsultNote';
@@ -4349,7 +4352,7 @@ function getPromoAdjustedPrice(tier) {
   var tiers = _activePromo.tiers || ['report', 'full'];
   if (tiers.indexOf(tier) < 0) return _originalPrices[tier] || 0;
   var disc = _activePromo.discountPct;
-  if (tier === 'full' && disc === 100) return 30; // consultation fee
+  if (tier === 'full' && disc === 100 && !_activePromo.fullFree) return 30; // consultation fee (strategist codes only)
   return Math.round((_originalPrices[tier] || 0) * (1 - disc/100));
 }
 
