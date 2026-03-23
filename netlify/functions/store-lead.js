@@ -56,6 +56,31 @@ exports.handler = async (event, context) => {
     });
     await store.setJSON("_index", index);
 
+    // Also add the access code to the promo codes list (in diagnoses store)
+    // so it validates as a 100% discount code in the diagnostic payment flow
+    const diagStore = getStore("diagnoses");
+    const PROMO_KEY = "_promo_codes";
+    let promoCodes = [];
+    try {
+      const existing = await diagStore.get(PROMO_KEY, { type: "json" });
+      if (existing) promoCodes = existing;
+    } catch (e) { /* doesn't exist yet */ }
+
+    // Only add if not already present
+    if (!promoCodes.find(c => c.code === access_code)) {
+      promoCodes.push({
+        code: access_code,
+        discountPct: 100,
+        label: "Diagnostic Gate - " + (full_name || email),
+        expiry: "",
+        maxUses: 1,
+        usedCount: 0,
+        createdAt: new Date().toISOString(),
+        source: "diagnostic-gate"
+      });
+      await diagStore.setJSON(PROMO_KEY, promoCodes);
+    }
+
     return {
       statusCode: 200,
       headers: corsHeaders(),

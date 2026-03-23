@@ -3593,6 +3593,17 @@ function proceedToDiagnostic() {
   window._diagnosticGateCleared = true;
   closeDiagnosticGate();
   launchDiagnosticDirect();
+  // Auto-fill and apply the promo code
+  setTimeout(function() {
+    var promoInput = document.getElementById('promoCodeInput');
+    if (promoInput && window._diagnosticAccessCode) {
+      promoInput.value = window._diagnosticAccessCode;
+      // Trigger the apply
+      if (typeof applyPromoCode === 'function') {
+        applyPromoCode();
+      }
+    }
+  }, 500);
 }
 function closeDiagnostic() {
   const prem = document.getElementById('premiumDiagnostic');
