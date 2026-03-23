@@ -4488,14 +4488,19 @@ function submitContactGate() {
           '<div style="font-size:20px;font-weight:800;color:#fff;letter-spacing:3px;font-family:monospace;margin-bottom:6px">' + diagCodeStr + '</div>' +
           '<div style="font-size:10px;color:var(--mid);line-height:1.5"><strong style="color:var(--yellow)">Keep this code.</strong> You can use it anytime to retrieve your diagnosis from the diagnostic page.</div>' +
         '</div>' +
+        '<div style="background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:10px;padding:20px;max-width:440px;margin:0 auto 16px">' +
+          '<p style="color:#fff;font-weight:700;font-size:13px;margin:0 0 6px">Talk to a strategist</p>' +
+          '<p style="color:var(--mid);font-size:11px;margin:0 0 14px;line-height:1.5">A 30-minute conversation about your Diamond shape, where your brand equity stands, and what to do next.</p>' +
+          '<a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" style="display:inline-block;padding:11px 28px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:12px;font-weight:700;letter-spacing:0.5px;text-decoration:none;cursor:pointer">Book a Consultation &rarr;</a>' +
+        '</div>' +
         '<div style="background:rgba(253,213,0,0.08);border:1px solid rgba(253,213,0,0.2);border-radius:10px;padding:20px;max-width:440px;margin:0 auto">' +
           '<p style="color:var(--yellow);font-weight:700;font-size:13px;margin:0 0 8px">Want the full picture?</p>' +
-          '<p style="color:var(--mid);font-size:11px;margin:0 0 16px">Your diagnosis is already done — upgrade now to instantly unlock the full report with no retake needed.</p>' +
+          '<p style="color:var(--mid);font-size:11px;margin:0 0 16px">Your diagnosis is already done. Upgrade now to instantly unlock the full report with no retake needed.</p>' +
           '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">' +
-            '<button onclick="upgradeFromFree(\'report\')" style="background:var(--yellow);color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:none;cursor:pointer;letter-spacing:0.3px">Full Report \u2014 £55</button>' +
-            '<button onclick="upgradeFromFree(\'full\')" style="background:#fff;color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:2px solid var(--yellow);cursor:pointer;letter-spacing:0.3px">Full Diagnostic \u2014 £80</button>' +
+            '<button onclick="upgradeFromFree(\'report\')" style="background:var(--yellow);color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:none;cursor:pointer;letter-spacing:0.3px">Full Report - £55</button>' +
+            '<button onclick="upgradeFromFree(\'full\')" style="background:#fff;color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:2px solid var(--yellow);cursor:pointer;letter-spacing:0.3px">Full Diagnostic - £80</button>' +
           '</div>' +
-          '<p style="color:var(--mid);font-size:10px;margin:12px 0 0;line-height:1.5;text-align:center"><strong style="color:var(--yellow)">£70</strong> \u2014 Detailed actions + platform strategies for all 5 facets<br><strong style="color:var(--yellow)">£100</strong> \u2014 Everything above + cadence, sequencing &amp; 1-on-1 strategist reading</p>' +
+          '<p style="color:var(--mid);font-size:10px;margin:12px 0 0;line-height:1.5;text-align:center"><strong style="color:var(--yellow)">£70</strong> - Detailed actions + platform strategies for all 5 facets<br><strong style="color:var(--yellow)">£100</strong> - Everything above + cadence, sequencing &amp; 1-on-1 strategist reading</p>' +
         '</div>' +
       '</div>';
     return;
@@ -5003,10 +5008,7 @@ function onPaymentSuccess() {
   // Store diagnosis data first
   if (window._diagCode && window._catPcts) {
     storeDiagnosisData(window._diagCode, window._catPcts, window._catScores);
-    // Only send email for the $100 full diagnostic tier — £55 report is download-only
-    if (selectedTierValue === 'full') {
-      sendDiagnosisEmail(window._diagCode, window._catPcts, window._catScores);
-    }
+    // Email removed — download-only flow for all tiers
   }
 
   var diagCodeStr = window._diagCode || '';
@@ -5026,7 +5028,8 @@ function onPaymentSuccess() {
   h += '<svg width="28" height="28" fill="none" stroke="#27ae60" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 14 11 21 24 7"/></svg>';
   h += '</div>';
 
-  h += '<h4 style="color:#fff;margin-bottom:6px;font-size:20px">Payment Successful</h4>';
+  var successTitle = (_activePromo && _activePromo.discountPct === 100) ? 'Your Diagnostic Is Ready' : 'Payment Successful';
+  h += '<h4 style="color:#fff;margin-bottom:6px;font-size:20px">' + successTitle + '</h4>';
   h += '<p style="color:var(--mid);font-size:13px;margin-bottom:28px">Your <strong style="color:#fff">' + tierLabel + '</strong> is ready.</p>';
 
   // Download card
@@ -5054,12 +5057,17 @@ function onPaymentSuccess() {
   h += '<div style="font-size:10px;color:var(--mid);line-height:1.5"><strong style="color:var(--yellow)">Keep this code.</strong> Use it anytime to retrieve your diagnosis or share it with your strategist.</div>';
   h += '</div>';
 
-  // Upgrade CTA for £55 tier
+  // Consultation + Upgrade CTA for £70 report tier
   if (tier === 'report') {
+    h += '<div style="background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:12px;padding:20px;margin-bottom:16px">';
+    h += '<p style="color:#fff;font-weight:700;font-size:13px;margin:0 0 6px">Talk to a strategist</p>';
+    h += '<p style="color:var(--mid);font-size:11px;margin:0 0 14px;line-height:1.5">A 30-minute conversation about your Diamond shape, where your brand equity stands, and what to prioritise next.</p>';
+    h += '<a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" style="display:inline-block;padding:11px 28px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:12px;font-weight:700;letter-spacing:0.5px;text-decoration:none;cursor:pointer">Book a Consultation &rarr;</a>';
+    h += '</div>';
     h += '<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:18px 20px">';
     h += '<p style="color:var(--yellow);font-weight:700;font-size:12px;margin:0 0 6px">Want the complete experience?</p>';
-    h += '<p style="color:var(--mid);font-size:11px;margin:0 0 12px;line-height:1.5">Upgrade to the Full Diagnostic for cadence schedules, activation playbooks, strategy connectedness mapping, and a 1-hour strategist session.</p>';
-    h += '<button onclick="upgradeFromPaid()" style="padding:10px 22px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:0.5px">Upgrade to Full Diagnostic — £30 more &rarr;</button>';
+    h += '<p style="color:var(--mid);font-size:11px;margin:0 0 12px;line-height:1.5">Upgrade to the Full Diagnostic for cadence schedules, activation playbooks, strategy connectedness mapping, and a 1-hour strategist reading.</p>';
+    h += '<button onclick="upgradeFromPaid()" style="padding:10px 22px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:0.5px">Upgrade to Full Diagnostic - £30 more &rarr;</button>';
     h += '</div>';
   }
 
