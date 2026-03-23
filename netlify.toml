@@ -11,3 +11,18 @@
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Headers = "Content-Type"
     Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+
+[[redirects]]
+  from = "/diagnostic"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/diagnostic/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/strategist"
+  to = "/index.html"
+  status = 200
