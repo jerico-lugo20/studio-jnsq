@@ -3593,15 +3593,25 @@ function proceedToDiagnostic() {
   window._diagnosticGateCleared = true;
   closeDiagnosticGate();
   launchDiagnosticDirect();
-  // Auto-fill and apply the promo code
+  // Auto-fill the promo code and apply it directly (no cloud lookup needed
+  // since we just generated the code ourselves)
   setTimeout(function() {
     var promoInput = document.getElementById('promoCodeInput');
     if (promoInput && window._diagnosticAccessCode) {
       promoInput.value = window._diagnosticAccessCode;
-      // Trigger the apply
-      if (typeof applyPromoCode === 'function') {
-        applyPromoCode();
-      }
+      // Apply directly without cloud lookup to avoid race condition
+      _activePromo = {
+        code: window._diagnosticAccessCode,
+        discountPct: 100,
+        fullFree: true,
+        label: 'Diagnostic Gate Code',
+        expiry: '',
+        maxUses: 1,
+        usedCount: 0,
+        source: 'diagnostic-gate'
+      };
+      showPromoMsg('100% discount applied!', '#27ae60');
+      updateTierPrices();
     }
   }, 500);
 }
@@ -4061,6 +4071,11 @@ window.premShowResults = function(){
       var score = premScores[key] || 0;
       window._questionAnswers[key] = { question: text, score: score };
     });
+
+    // Store diagnosis to cloud immediately on completion (for record-keeping)
+    if (typeof storeDiagnosisData === 'function') {
+      storeDiagnosisData(window._diagCode, window._catPcts, window._catScores);
+    }
 
   // Highlight weakest on diamond
   const labelMap = {demand:'plabelDemand',credibility:'plabelCred',visibility:'plabelVis',trust:'plabelTrust',branding:'plabelBrand'};
