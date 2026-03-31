@@ -6193,8 +6193,8 @@ function generateDiagnosticPDF(tier) {
   // ════════════════════════════════════════
   if (tier === 'full') {
     // Strategist session banner
-    if (y + 120 > H - 50) y = newPage();
-    setF(YELLOW); doc.rect(M, y, CW, 100, 'F');
+    if (y + 150 > H - 50) y = newPage();
+    setF(YELLOW); doc.rect(M, y, CW, 130, 'F');
     doc.setFont('helvetica','bold'); doc.setFontSize(14); setC(DARK);
     doc.text('Your Strategist Reading Is Included', W/2, y+20, {align:'center'});
     doc.setFont('helvetica','normal'); doc.setFontSize(9);
@@ -6212,7 +6212,7 @@ function generateDiagnosticPDF(tier) {
     sessionItems.forEach(function(item, i) {
       doc.text('\u2022  ' + item, M+24, y+64+i*12);
     });
-    y += 112;
+    y += 140;
   }
 
   // Upgrade/upsell box
@@ -8921,8 +8921,8 @@ function rvfDownloadPDF(tier) {
   // TIER-SPECIFIC CLOSING
   // ════════════════════════════════════════
   if (tier === 'full') {
-    if (y + 130 > H - 50) y = newPage();
-    setF(YELLOW); doc.rect(M, y, CW, 110, 'F');
+    if (y + 150 > H - 50) y = newPage();
+    setF(YELLOW); doc.rect(M, y, CW, 130, 'F');
     doc.setFont('helvetica','bold'); doc.setFontSize(14); setC(DARK);
     doc.text('Your Strategist Reading Is Included', W/2, y+20, {align:'center'});
     doc.setFont('helvetica','normal'); doc.setFontSize(9);
@@ -8940,7 +8940,7 @@ function rvfDownloadPDF(tier) {
     sessionItems.forEach(function(item, i) {
       doc.text('\u2022  ' + item, M+24, y+66+i*12);
     });
-    y += 122;
+    y += 140;
   }
 
   // Upsell (free + report)
