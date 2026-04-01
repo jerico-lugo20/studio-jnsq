@@ -2217,6 +2217,48 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     </div>
   </div>
 
+<!-- UNIFIED RETRIEVAL PAGE -->
+<section class="unified-retrieval" id="retrievalPage" style="display:none;background:var(--dark);min-height:100vh;padding:60px 20px;position:relative">
+  <div style="max-width:500px;margin:0 auto;">
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:60px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:3px;color:var(--yellow);text-transform:uppercase;margin-bottom:16px;">Retrieve Your Diagnosis</div>
+      <h1 style="color:white;font-size:32px;font-weight:700;margin-bottom:12px;line-height:1.3;">Bring Back Your Results</h1>
+      <p style="color:rgba(255,255,255,0.6);font-size:15px;line-height:1.7;">Enter your diagnosis code to access your MAD® or RVF™ results anytime.</p>
+    </div>
+
+    <!-- Input Section -->
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:40px 32px;margin-bottom:32px;backdrop-filter:blur(10px)">
+      <div style="margin-bottom:20px;">
+        <label style="display:block;font-size:12px;font-weight:600;color:var(--yellow);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Diagnosis Code</label>
+        <input type="text" id="unifiedRetrieveCode" placeholder="JNSQ-XXXXXX" style="width:100%;padding:14px 16px;border:1px solid rgba(255,255,255,0.15);border-radius:8px;font-size:16px;font-family:monospace;letter-spacing:1px;text-transform:uppercase;background:rgba(255,255,255,0.05);color:white;transition:all 0.3s ease" onfocus="this.style.borderColor='var(--yellow)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+      </div>
+      <button onclick="unifiedRetrieveDiagnosis()" style="width:100%;padding:14px 20px;background:var(--yellow);color:var(--dark);border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;transition:all 0.3s ease;text-transform:uppercase">Retrieve Diagnosis</button>
+    </div>
+
+    <!-- Error Message -->
+    <div id="unifiedRetrieveError" style="display:none;background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.3);border-radius:8px;padding:16px;color:#ff6b6b;font-size:14px;line-height:1.6;text-align:center;margin-bottom:24px;"></div>
+
+    <!-- Loading Message -->
+    <div id="unifiedRetrieveLoading" style="display:none;text-align:center;color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:24px;"></div>
+
+    <!-- Status Message -->
+    <div id="unifiedRetrieveStatus" style="display:none;background:rgba(100,200,100,0.1);border:1px solid rgba(100,200,100,0.3);border-radius:8px;padding:16px;color:#6fdc6f;font-size:14px;line-height:1.6;text-align:center;"></div>
+
+    <!-- Footer -->
+    <div style="text-align:center;margin-top:48px;">
+      <p style="color:rgba(255,255,255,0.5);font-size:13px;line-height:1.7;margin-bottom:24px;">Don't have a code yet? Start a new diagnosis:</p>
+      <div style="display:flex;gap:12px;flex-direction:column">
+        <button onclick="goToMADDiagnostic()" style="padding:12px 24px;background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.2);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:0.5px;transition:all 0.3s ease;text-transform:uppercase">MAD® Diagnostic</button>
+        <button onclick="goToRVFDiagnostic()" style="padding:12px 24px;background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.2);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:0.5px;transition:all 0.3s ease;text-transform:uppercase">RVF™ Diagnostic</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Close Button (if in modal context) -->
+  <button onclick="closeRetrieval()" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600;letter-spacing:0.5px">Close</button>
+</section>
+
 <section class="premium-diagnostic" id="premiumDiagnostic" style="display:none;">
 
 <!-- Close button for focused mode -->
@@ -2238,12 +2280,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
   <div class="retrieve-box">
     <div class="rb-label">Have a previous diagnosis?</div>
     <div class="rb-row">
-      <input type="text" id="retrieveCode" placeholder="Enter your diagnosis code (e.g. JNSQ-284719)" maxlength="20">
-      <button onclick="retrieveDiagnosis()">Retrieve</button>
+      <button onclick="goToUnifiedRetrieval()" style="width:100%;padding:10px 20px;background:var(--dark);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">Retrieve Your Diagnosis</button>
     </div>
-    <div class="rb-hint">Enter the code from your previous diagnostic to retrieve your results. Keep this code safe — you can use it anytime to access your Diamond analysis.</div>
-    <div class="rb-error" id="retrieveError">No diagnosis found with that code. Please check and try again.</div>
-    <div class="rb-success" id="retrieveSuccess">Diagnosis found! Loading your results...</div>
+    <div class="rb-hint">Click to retrieve your MAD® or RVF™ diagnosis. Keep your diagnosis code safe — you can use it anytime to access your results.</div>
   </div>
 
   <h3>Before we diagnose — let us see the full picture.</h3>
@@ -2277,7 +2316,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <select id="intakeBizSize" style="width:100%;padding:10px 12px;border:1px solid rgba(57,69,80,0.12);border-radius:8px;font-size:14px;background:#fff;color:var(--dark)">
         <option value="">Select business size</option>
         <option value="startup">Startup / Solo Founder</option>
-        <option value="smb">Small Business (2–50 employees)</option>
+        <option value="small">Small (2–50 employees)</option>
         <option value="mlb">Medium-to-Large Business (51–500)</option>
         <option value="enterprise">Enterprise (500+)</option>
       </select>
@@ -2900,12 +2939,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
         <div style="font-size:11px;color:var(--steel)">Enter your diagnosis code to pick up where you left off.</div>
       </div>
     </div>
-    <div style="display:flex;gap:8px;">
-      <input type="text" id="rvfRetrieveCode" placeholder="JNSQ-XXXXXX" style="flex:1;padding:10px 14px;border:1px solid rgba(57,69,80,0.12);border-radius:8px;font-size:14px;font-family:monospace;letter-spacing:1px;text-transform:uppercase;">
-      <button onclick="retrieveRVFDiagnosis()" style="padding:10px 20px;background:var(--dark);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">Retrieve</button>
-    </div>
-    <div id="rvfRetrieveError" style="display:none;color:#e74c3c;font-size:12px;margin-top:8px;"></div>
-    <div id="rvfRetrieveSuccess" style="display:none;color:#27ae60;font-size:12px;margin-top:8px;">Diagnosis found! Loading your results...</div>
+    <button onclick="goToUnifiedRetrieval()" style="width:100%;padding:10px 14px;background:var(--dark);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">Retrieve Your Diagnosis</button>
   </div>
 
   <!-- Intake fields -->
@@ -3022,6 +3056,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 
     <!-- Aspect breakdown (facet reports) -->
     <div id="rvfAspectBreakdown" style="margin-bottom:32px;"></div>
+
+    <!-- Recommended Services -->
+    <div id="rvfRecommendedServices" style="margin-bottom:32px;"></div>
   </div>
 
   <!-- RVF Contact Gate (tier selection + contact) -->
@@ -3205,7 +3242,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <div style="font-size:48px; margin-bottom:16px;">&#9670;</div>
       <h3 style="color:var(--dark); font-size:22px; margin-bottom:12px;">Your promo code</h3>
       <div id="dgCodeDisplay" style="font-size:32px; font-weight:700; letter-spacing:4px; color:var(--dark); background:var(--light); padding:20px 32px; border-radius:8px; display:inline-block; margin-bottom:16px; font-family:monospace;"></div>
-      <p style="color:var(--steel); font-size:14px; margin-bottom:24px;">This code has been sent to your email. You can proceed to the diagnostic now.</p>
+      <p style="color:var(--steel); font-size:14px; margin-bottom:24px;">Save this code. You can use it anytime to retrieve your diagnosis.</p>
       <button type="button" onclick="proceedToDiagnostic();" style="display:inline-block; padding:16px 48px; background:var(--yellow); color:var(--dark); font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; border:none; border-radius:6px; cursor:pointer;">START DIAGNOSTIC</button>
     </div>
     <div style="text-align:center; margin-top:32px; display:flex; flex-direction:column; gap:12px; align-items:center;">
@@ -5103,6 +5140,233 @@ function closePaymentModal() {
   document.getElementById('paymentOverlay').classList.remove('active');
 }
 
+// ===== UNIFIED RETRIEVAL PAGE =====
+function goToUnifiedRetrieval() {
+  // Hide all diagnostic sections
+  document.getElementById('diagnostic').style.display = 'none';
+  document.getElementById('premiumDiagnostic').style.display = 'none';
+  document.getElementById('rvfDiagnostic').style.display = 'none';
+  // Show retrieval page
+  document.getElementById('retrievalPage').style.display = 'block';
+  // Clear any previous input
+  document.getElementById('unifiedRetrieveCode').value = '';
+  document.getElementById('unifiedRetrieveError').style.display = 'none';
+  document.getElementById('unifiedRetrieveLoading').style.display = 'none';
+  document.getElementById('unifiedRetrieveStatus').style.display = 'none';
+  // Scroll to top
+  window.scrollTo(0, 0);
+}
+
+function closeRetrieval() {
+  document.getElementById('retrievalPage').style.display = 'none';
+  document.getElementById('diagnostic').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function goToMADDiagnostic() {
+  document.getElementById('retrievalPage').style.display = 'none';
+  document.getElementById('diagnostic').style.display = 'block';
+  document.getElementById('premiumDiagnostic').style.display = 'none';
+  window.scrollTo(0, 0);
+}
+
+function goToRVFDiagnostic() {
+  document.getElementById('retrievalPage').style.display = 'none';
+  document.getElementById('diagnostic').style.display = 'none';
+  document.getElementById('premiumDiagnostic').style.display = 'none';
+  document.getElementById('rvfDiagnostic').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function unifiedRetrieveDiagnosis() {
+  var codeInput = document.getElementById('unifiedRetrieveCode');
+  var code = codeInput.value.trim().toUpperCase();
+  var errorEl = document.getElementById('unifiedRetrieveError');
+  var loadingEl = document.getElementById('unifiedRetrieveLoading');
+  var statusEl = document.getElementById('unifiedRetrieveStatus');
+
+  errorEl.style.display = 'none';
+  loadingEl.style.display = 'none';
+  statusEl.style.display = 'none';
+
+  if (!code) {
+    errorEl.textContent = 'Please enter a diagnosis code.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  loadingEl.textContent = 'Retrieving your diagnosis...';
+  loadingEl.style.display = 'block';
+
+  // Try cloud first
+  fetch('/.netlify/functions/get-diagnosis?code=' + encodeURIComponent(code))
+    .then(function(res) {
+      if (res.ok) return res.json();
+      throw new Error('Not found in cloud');
+    })
+    .then(function(record) {
+      loadingEl.style.display = 'none';
+      _handleUnifiedRetrievalSuccess(record, code, errorEl, statusEl);
+    })
+    .catch(function() {
+      // Fall back to localStorage
+      var db = {};
+      try { db = JSON.parse(localStorage.getItem('jnsq_diagnosis_db') || '{}'); } catch(e) {}
+      var record = db[code];
+      loadingEl.style.display = 'none';
+
+      if (record) {
+        _handleUnifiedRetrievalSuccess(record, code, errorEl, statusEl);
+      } else {
+        errorEl.textContent = 'Invalid code. Please check and try again, or start a new diagnosis.';
+        errorEl.style.display = 'block';
+      }
+    });
+}
+
+function _handleUnifiedRetrievalSuccess(record, code, errorEl, statusEl) {
+  // Infer type if not explicitly set
+  var type = record.type;
+
+  if (!type) {
+    // Try to infer from data structure
+    if (record.percentages && record.percentages.branding) {
+      type = 'mad';
+    } else if (record.percentages && record.percentages.aspiration) {
+      type = 'rvf';
+    }
+  }
+
+  if (!type) {
+    errorEl.textContent = 'Cannot determine diagnosis type. Please contact support.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  if (type === 'mad') {
+    statusEl.textContent = 'This is a MAD® diagnosis. Loading your results...';
+    statusEl.style.display = 'block';
+    setTimeout(function() {
+      _loadMADRetrievedDiagnosis(record, code);
+    }, 800);
+  } else if (type === 'rvf') {
+    statusEl.textContent = 'This is an RVF™ diagnosis. Loading your results...';
+    statusEl.style.display = 'block';
+    setTimeout(function() {
+      _loadRVFRetrievedDiagnosis(record, code);
+    }, 800);
+  } else {
+    errorEl.textContent = 'Unknown diagnosis type. Please try again.';
+    errorEl.style.display = 'block';
+  }
+}
+
+function _loadMADRetrievedDiagnosis(record, code) {
+  // Cache locally
+  var localDB = {};
+  try { localDB = JSON.parse(localStorage.getItem('jnsq_diagnosis_db') || '{}'); } catch(e) {}
+  localDB[code] = record;
+  try { localStorage.setItem('jnsq_diagnosis_db', JSON.stringify(localDB)); } catch(e) {}
+
+  // Restore global state
+  window._diagCode = record.code;
+  window._catPcts = record.percentages;
+  window._catScores = record.scores;
+  window._questionAnswers = record.questionAnswers || {};
+  if (record.intake) clientIntakeData = record.intake;
+  if (record.contact) contactData = record.contact;
+  selectedTierValue = (record.contact && record.contact.tier) ? record.contact.tier : 'free';
+  if (document.getElementById('selectedTier')) document.getElementById('selectedTier').value = selectedTierValue;
+
+  // Show MAD diagnostic body
+  setTimeout(function() {
+    document.getElementById('retrievalPage').style.display = 'none';
+    document.getElementById('diagnostic').style.display = 'none';
+    document.getElementById('premiumDiagnostic').style.display = 'block';
+    document.getElementById('intakeForm').style.display = 'none';
+    document.getElementById('premDiagnosticBody').style.display = 'block';
+
+    var dcD2 = document.getElementById('diagCodeDisplay');
+    if (dcD2 && window._diagCode) {
+      dcD2.style.display = 'block';
+      document.getElementById('diagCodeValue').textContent = window._diagCode;
+    }
+
+    document.getElementById('premProgress').style.display = 'none';
+    document.querySelectorAll('.prem-category').forEach(function(el) { el.style.display = 'none'; });
+    var introNote = document.getElementById('premDiagnosticBody').querySelector('[style*="border-left:4px solid var(--yellow)"]');
+    if (introNote && introNote.textContent.indexOf('Answer where you are') !== -1) introNote.style.display = 'none';
+
+    // Re-render diamond
+    var catPcts = record.percentages;
+    var catScores = record.scores;
+    var premCatConfig = window._premCatConfig;
+    var maxR = 140, center = 200;
+    function sToR(key) { return (catPcts[key] / 100) * maxR; }
+    var dR = sToR('demand'), cR = sToR('credibility'), vR = sToR('visibility'), tR = sToR('trust');
+    var brR = sToR('branding');
+    var svg = document.getElementById('diamondSVG');
+    svg.innerHTML = '';
+
+    // Render facets (similar to original code)
+    var facets = [
+      {key:'demand',angle:0,label:'Demand'},
+      {key:'credibility',angle:72,label:'Credibility'},
+      {key:'visibility',angle:144,label:'Visibility'},
+      {key:'trust',angle:216,label:'Trust'},
+      {key:'branding',angle:288,label:'Branding'}
+    ];
+
+    facets.forEach(function(f) {
+      var rad = f.angle * Math.PI / 180;
+      var r = (f.key === 'branding' ? brR : (f.key === 'demand' ? dR : (f.key === 'credibility' ? cR : (f.key === 'visibility' ? vR : tR))));
+      var x = center + r * Math.cos(rad);
+      var y = center + r * Math.sin(rad);
+      svg.innerHTML += '<circle cx="' + x + '" cy="' + y + '" r="6" fill="var(--yellow)" opacity="0.8"/>';
+    });
+
+    window.scrollTo(0, 0);
+  }, 100);
+}
+
+function _loadRVFRetrievedDiagnosis(record, code) {
+  // Cache locally
+  var localDB = {};
+  try { localDB = JSON.parse(localStorage.getItem('jnsq_diagnosis_db') || '{}'); } catch(e) {}
+  localDB[code] = record;
+  try { localStorage.setItem('jnsq_diagnosis_db', JSON.stringify(localDB)); } catch(e) {}
+
+  // Restore RVF global state
+  window._rvfDiagCode = record.code;
+  window._rvfAspectPcts = record.percentages;
+  window._rvfAspectScores = record.scores;
+  window._rvfOverallScore = record.overallScore;
+  window._rvfTrade = record.trade;
+  if (record.intake) rvfIntakeData = record.intake;
+  if (record.contact) rvfContactData = record.contact;
+  rvfSelectedTierValue = (record.contact && record.contact.tier) ? record.contact.tier : 'free';
+
+  // Show RVF diagnostic body
+  setTimeout(function() {
+    document.getElementById('retrievalPage').style.display = 'none';
+    document.getElementById('diagnostic').style.display = 'none';
+    document.getElementById('premiumDiagnostic').style.display = 'none';
+    document.getElementById('rvfDiagnostic').style.display = 'block';
+    document.getElementById('rvfIntakeForm').style.display = 'none';
+    document.getElementById('rvfDiagnosticBody').style.display = 'block';
+    document.getElementById('rvfQuestionsContainer').style.display = 'none';
+    document.getElementById('rvfNavButtons').style.display = 'none';
+
+    var rvfDiagCodeDisplay = document.getElementById('rvfDiagCodeDisplay');
+    if (rvfDiagCodeDisplay && window._rvfDiagCode) {
+      rvfDiagCodeDisplay.style.display = 'block';
+      document.getElementById('rvfDiagCodeValue').textContent = window._rvfDiagCode;
+    }
+
+    window.scrollTo(0, 0);
+  }, 100);
+}
+
 function retrieveDiagnosis() {
   var codeInput = document.getElementById('retrieveCode');
   var code = codeInput.value.trim().toUpperCase();
@@ -5146,6 +5410,16 @@ function retrieveDiagnosis() {
 }
 
 function _processRetrievedDiagnosis(record, code, successEl, errorEl) {
+
+  // Check type: if this is RVF, show error and redirect
+  if (record.type && record.type !== 'mad') {
+    errorEl.textContent = 'This is an RVF diagnosis code. Redirecting to unified retrieval...';
+    errorEl.style.display = 'block';
+    setTimeout(function() {
+      goToUnifiedRetrieval();
+    }, 1500);
+    return;
+  }
 
   // Found — show success
   successEl.style.display = 'block';
@@ -5670,7 +5944,7 @@ function sendDiagnosisEmail(code, catPcts, catScores) {
   if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
       .then(function() {
-        showEmailToast('success', 'Your diagnostic results have been sent!', 'Check ' + contact.email + ' for your full report.');
+        console.log('Email sent successfully to ' + contact.email);
       })
       .catch(function(err) {
         console.warn('EmailJS failed, falling back to mailto:', err);
@@ -5709,7 +5983,7 @@ function sendMailtoFallback(code, params) {
     '?subject=' + encodeURIComponent(subject) +
     '&body=' + encodeURIComponent(body);
   window.open(mailto, '_self');
-  showEmailToast('success', 'Opening your email client...', 'Your diagnostic results are ready to send.');
+  console.log('Mailto link opened for diagnostic results');
 }
 
 // ===== DYNAMIC PDF GENERATOR (jsPDF — matches ReportLab design) =====
@@ -6310,6 +6584,7 @@ function generateDiagnosisCode() {
 function storeDiagnosisData(code, catPcts, catScores) {
   const record = {
     code: code,
+    type: 'mad',
     timestamp: new Date().toISOString(),
     intake: JSON.parse(JSON.stringify(clientIntakeData)),
     contact: contactData || {},
@@ -7173,6 +7448,78 @@ function rvfGetTradeColor(trade) {
   return '#27ae60';
 }
 
+function getRVFRecommendedServices(trade, aspectPcts) {
+  var aspectKeys = ['aspiration', 'reality', 'readiness', 'horizon'];
+  var sortedAspects = aspectKeys.map(function(key) {
+    return { key: key, pct: aspectPcts[key] };
+  }).sort(function(a, b) { return a.pct - b.pct; });
+  var weakestAspect = sortedAspects[0].key;
+  var weakestPct = sortedAspects[0].pct;
+
+  var serviceLibrary = {
+    'Brand Foundations': { name: 'Brand Foundations', tag: 'STRATEGY', desc: '' },
+    'Brand Strategy': { name: 'Brand Strategy', tag: 'STRATEGY', desc: '' },
+    'Content & Visibility Support': { name: 'Content & Visibility Support', tag: 'EXECUTION', desc: '' },
+    'Strategic Advisory': { name: 'Strategic Advisory', tag: 'ADVISORY', desc: '' },
+    'SOPs & Playbooks': { name: 'SOPs & Playbooks', tag: 'SYSTEMS', desc: '' }
+  };
+
+  var recommendations = [];
+
+  if (trade === 'Trade One') {
+    if (weakestAspect === 'readiness') {
+      recommendations = [
+        { name: 'SOPs & Playbooks', tag: 'SYSTEMS', desc: 'Your Readiness score tells us the infrastructure is not there yet. You know what needs to happen, but it lives in your head. We build the documented systems that let your business hold its shape without you in every decision.' },
+        { name: 'Content & Visibility Support', tag: 'EXECUTION', desc: 'Content and visibility work best when there is a system behind them. We help you create a repeatable rhythm so visibility compounds without becoming another burden.' }
+      ];
+    } else if (weakestAspect === 'aspiration') {
+      recommendations = [
+        { name: 'Strategic Advisory', tag: 'ADVISORY', desc: 'Your aspiration has not found its shape yet. That is not a problem. It is a starting point. We work with you directly to clarify the version of the future worth building toward, then align every decision around it.' },
+        { name: 'Brand Strategy', tag: 'STRATEGY', desc: 'Brand strategy crystallizes what you stand for and why it matters. That clarity becomes the North Star that guides everything from pricing to positioning to product.' }
+      ];
+    } else if (weakestAspect === 'reality') {
+      recommendations = [
+        { name: 'SOPs & Playbooks', tag: 'SYSTEMS', desc: 'The gap between your vision and your reality often lives in undocumented process. We help you map what is working and systematise it so reality can finally catch up to what you know is possible.' },
+        { name: 'Strategic Advisory', tag: 'ADVISORY', desc: 'Reality is often clearer when looked at from the outside. We help you see what is actually happening, separate signal from noise, and decide where to direct your effort.' }
+      ];
+    } else { // horizon
+      recommendations = [
+        { name: 'Strategic Advisory', tag: 'ADVISORY', desc: 'Your horizon is short, but that is not a limitation. It is an opportunity to get intentional about the long game. We help you think beyond the next quarter and build something that lasts.' },
+        { name: 'Brand Strategy', tag: 'STRATEGY', desc: 'A clear brand strategy extends your horizon by creating market position and brand equity that work for you even when you step back. That is how vision becomes legacy.' }
+      ];
+    }
+  } else if (trade === 'Trade Two') {
+    if (weakestAspect === 'readiness') {
+      recommendations = [
+        { name: 'SOPs & Playbooks', tag: 'SYSTEMS', desc: 'Readiness at this stage means scalable systems. You have proven the model. Now we help you document it so your team can execute without you.' },
+        { name: 'Brand Foundations', tag: 'STRATEGY', desc: 'As you scale, brand becomes your moat. We build the brand architecture and identity system that lets every team member represent you consistently.' }
+      ];
+    } else if (weakestAspect === 'aspiration') {
+      recommendations = [
+        { name: 'Brand Strategy', tag: 'STRATEGY', desc: 'Your aspiration is expanding, but it needs direction. Brand strategy gives it shape, ensuring that growth happens toward something, not just faster and bigger.' },
+        { name: 'Strategic Advisory', tag: 'ADVISORY', desc: 'At this stage, aspiration needs to move from personal vision to organisational reality. We help you translate that vision into priorities that your team can execute on.' }
+      ];
+    } else if (weakestAspect === 'horizon') {
+      recommendations = [
+        { name: 'Strategic Advisory', tag: 'ADVISORY', desc: 'Your horizon is your strategic compass. We help you build a long-term view that transforms how you make decisions and allocate resources today.' },
+        { name: 'Content & Visibility Support', tag: 'EXECUTION', desc: 'Horizon is about building brand equity and thought leadership. Consistent, strategic visibility work turns you into a category authority, not just another service provider.' }
+      ];
+    } else { // reality
+      recommendations = [
+        { name: 'Content & Visibility Support', tag: 'EXECUTION', desc: 'Market visibility is how reality shifts from internal effort to external momentum. We help you build a content rhythm that compounds and lets market forces work for you.' },
+        { name: 'SOPs & Playbooks', tag: 'SYSTEMS', desc: 'Reality at Trade Two is about scaling what works. We audit your current operations and systematise the parts that generate returns.' }
+      ];
+    }
+  } else { // Trade Three
+    recommendations = [
+      { name: 'Strategic Advisory', tag: 'ADVISORY', desc: 'At Trade Three, the question shifts from "how do I grow?" to "what is this for?" We help you stay sharp and ensure the business does not drift into complacency.' },
+      { name: 'Brand Strategy', tag: 'STRATEGY', desc: 'Trade Three is the stage where brand becomes your competitive advantage. We help you evolve your positioning and market stance as the business matures.' }
+    ];
+  }
+
+  return recommendations.slice(0, 2);
+}
+
 function rvfFinishDiagnostic() {
   // Check all questions answered
   var partQs = rvfQuestions.filter(function(q) { return q.part === rvfCurrentPart; });
@@ -7271,7 +7618,6 @@ function rvfDisplayResults(trade, overallScore, overallPct, aspectScores, aspect
     gridHTML += '<div style="text-align:center;padding:16px;background:var(--light);border-radius:10px;border-left:3px solid ' + col + ';">';
     gridHTML += '<div style="font-size:24px;font-weight:800;color:var(--dark);">' + pct + '%</div>';
     gridHTML += '<div style="font-size:11px;font-weight:700;color:var(--steel);text-transform:uppercase;letter-spacing:0.5px;margin-top:4px;">' + a.label + '</div>';
-    gridHTML += '<div style="font-size:10px;color:' + col + ';font-weight:600;margin-top:2px;">' + aspectTrade + '</div>';
     gridHTML += '</div>';
   });
   document.getElementById('rvfScoreGrid').innerHTML = gridHTML;
@@ -7294,7 +7640,7 @@ function rvfDisplayResults(trade, overallScore, overallPct, aspectScores, aspect
     breakdownHTML += '<div style="margin-bottom:16px;padding:20px;background:var(--light);border-radius:12px;border-left:4px solid ' + col + ';">';
     breakdownHTML += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">';
     breakdownHTML += '<h4 style="font-size:15px;font-weight:700;color:var(--dark);margin:0;">' + a.label + '</h4>';
-    breakdownHTML += '<span style="font-size:13px;font-weight:700;color:' + col + ';">' + pct + '% — ' + aspectTrade + '</span>';
+    breakdownHTML += '<span style="font-size:13px;font-weight:700;color:' + col + ';">' + pct + '%</span>';
     breakdownHTML += '</div>';
     breakdownHTML += '<p style="font-size:13px;color:var(--steel);margin:0;line-height:1.6;">' + a.description + '</p>';
     // Progress bar
@@ -7304,6 +7650,24 @@ function rvfDisplayResults(trade, overallScore, overallPct, aspectScores, aspect
     breakdownHTML += '</div>';
   });
   document.getElementById('rvfAspectBreakdown').innerHTML = breakdownHTML;
+
+  // Recommended Services
+  var svcEl = document.getElementById('rvfRecommendedServices');
+  if (svcEl) {
+    var svcs = getRVFRecommendedServices(trade, aspectPcts);
+    var svcHTML = '<h4 style="font-size:16px;font-weight:700;color:var(--dark);margin:0 0 16px 0;">Recommended Next Steps</h4>';
+    svcHTML += '<p style="font-size:13px;color:var(--steel);margin:0 0 20px 0;line-height:1.6;">Based on your Trade position and where the biggest gaps are, here is what would move the needle:</p>';
+    svcHTML += '<div style="display:flex;gap:16px;flex-direction:column;">';
+    svcs.forEach(function(svc) {
+      svcHTML += '<div style="padding:16px;background:var(--light);border-radius:10px;border-left:4px solid var(--yellow);">';
+      svcHTML += '<div style="font-size:10px;font-weight:700;letter-spacing:1px;color:var(--yellow);text-transform:uppercase;margin-bottom:6px;">' + svc.tag + '</div>';
+      svcHTML += '<h5 style="font-size:14px;font-weight:700;color:var(--dark);margin:0 0 8px 0;">' + svc.name + '</h5>';
+      svcHTML += '<p style="font-size:12px;color:var(--steel);line-height:1.6;margin:0;">' + svc.desc + '</p>';
+      svcHTML += '</div>';
+    });
+    svcHTML += '</div>';
+    svcEl.innerHTML = svcHTML;
+  }
 }
 
 // ===== RVF PROMO / TIER / CONTACT =====
@@ -8205,13 +8569,7 @@ function rvfDownloadPDF(tier) {
   y = drawSection(y, 'Understanding the Resource Value Formula\u2122',
     'Why knowing your Trade position changes everything.'); y += 6;
 
-  y = writePara(y, 'Every business operator makes a trade. Not a transaction. A structural trade. You give up some combination of your three core resources, Time, Effort, and Money, in exchange for the outcomes you need. Most operators have never named their trade. They feel it as stress, as plateaus, as the nagging sense that something is misaligned. The Resource Value Formula\u2122 makes that trade visible.', 10, DARK, CW, 14);
-  y += 10;
-
-  y = writePara(y, 'Time is finite. You cannot manufacture more of it. Effort is your energy, focus, and cognitive capacity. It regenerates, but it has limits. Money is your capital, the resource you can acquire but also lose. How you distribute these three resources, not how you think about them, but how you actually allocate them, reveals your operating model.', 10, DARK, CW, 14);
-  y += 10;
-
-  y = writePara(y, 'Your Trade position is not a personality type or a stage of maturity. It is a coordinate. It tells us exactly where you are standing in the relationship between these three resources. And once we know your coordinate, we can do something that generic advice never can: we can build the exact roadmap for your specific position. No two roadmaps are identical because no two coordinates are the same.', 10, DARK, CW, 14);
+  y = renderRichText('Every business operator makes a structural trade with their three core resources: Time, Effort, and Money. Most operators have never named their trade, but {{feel it as stress and plateaus.}} The Resource Value Formula\u2122 reveals your current position and builds the exact roadmap for your next one.', M, y, CW, {fontSize:10, lineHeight:14, color:DARK});
   y += 16;
 
   // The Four Aspects
@@ -8219,10 +8577,10 @@ function rvfDownloadPDF(tier) {
   y = writeHeading(y, 'The Four Aspects We Measure', 11); y += 4;
 
   var aspectDescs = [
-    {name:'Aspiration', desc:'Where you want to go. Not a wish list. Your actual appetite for change, the clarity of your vision, and how tightly your identity is tied to the current model.'},
-    {name:'Reality', desc:'Where you actually are. How your business functions today, who does what, where revenue comes from, and what happens when you are not there.'},
-    {name:'Readiness', desc:'What stands in the way. Your capacity for change: emotional, operational, financial. Whether the infrastructure for the next stage exists or still needs to be built.'},
-    {name:'Horizon', desc:'How far ahead you can see. Whether you are thinking in months or years. Whether exit, succession, or legacy is a real conversation or a theoretical one.'}
+    {name:'Aspiration', desc:'Where you want to go and whether you have genuinely imagined it.'},
+    {name:'Reality', desc:'How your business actually functions today, independent of your involvement.'},
+    {name:'Readiness', desc:'Your capacity for change and whether the infrastructure exists to support it.'},
+    {name:'Horizon', desc:'Whether you are thinking in months or years, and what comes after your involvement.'}
   ];
 
   aspectDescs.forEach(function(a) {
@@ -8240,11 +8598,11 @@ function rvfDownloadPDF(tier) {
 
   var tradeCards = [
     {name:'Trade One', eq:'Money = Effort + Time', color:RED, fg:WHITE,
-     desc:'You are the business. Revenue is directly tied to your personal output. If you stop working, the money stops. This is where most businesses start, and where many stay longer than they need to. It is not wrong. It is expensive.'},
+     desc:'You are the business. Revenue depends on your personal output. The infrastructure to run without you does not yet exist.'},
     {name:'Trade Two', eq:'Effort = Time + Money', color:AMBER, fg:DARK,
-     desc:'You are building leverage. The investment of effort goes into systems, people, and infrastructure that have not yet returned their value. This is the most uncomfortable trade because the cost is visible and the return is not. It requires patience and faith in the structure you are building.'},
+     desc:'You are building leverage. The cost is visible; the return is not yet. This is the most uncomfortable position and the most important one.'},
     {name:'Trade Three', eq:'Time = Effort + Money', color:GREEN, fg:WHITE,
-     desc:'The business runs. Your role has shifted from operator to steward. Revenue is generated by the systems and people you have built. Your primary resource is now time, and how you deploy it determines whether the business grows, stagnates, or innovates.'}
+     desc:'The business runs. Your role is steward, not operator. How you deploy your time determines whether it grows, sustains, or innovates.'}
   ];
 
   tradeCards.forEach(function(t) {
@@ -8264,16 +8622,7 @@ function rvfDownloadPDF(tier) {
     y += 82;
   });
 
-  y += 8;
-  // Closing note
-  if (y + 40 > H - 50) y = newPage();
-  setF([255,251,230]); doc.rect(M, y, CW, 40, 'F');
-  setD([253,213,0]); doc.setLineWidth(0.4); doc.rect(M, y, CW, 40, 'S');
-  doc.setFont('helvetica','bold'); doc.setFontSize(8.5); setC(DARK);
-  doc.text('The goal is not to rush to Trade Three.', M+12, y+14);
-  doc.setFont('helvetica','normal'); doc.setFontSize(8.5); setC(STEEL);
-  doc.text('The goal is to understand your current trade, recognise its traps, and make intentional moves toward the next.', M+12, y+28);
-  y += 52;
+  y += 16;
 
   // ════════════════════════════════════════
   // YOUR TRADE POSITION + OVERALL SCORE
@@ -8322,7 +8671,7 @@ function rvfDownloadPDF(tier) {
   setD(DARK); doc.setLineWidth(0.8); doc.line(M, y, W-M, y);
   y += 14;
   doc.setFont('helvetica','bold'); doc.setFontSize(8.5); setC(DARK);
-  doc.text('ASPECT', M+6, y); doc.text('SCORE', M+180, y); doc.text('TRADE', W-M-6, y, {align:'right'});
+  doc.text('ASPECT', M+6, y); doc.text('SCORE', M+180, y);
   y += 6; hline(M, y, CW); y += 10;
 
   sortedAspects.forEach(function(a, i) {
@@ -8337,7 +8686,6 @@ function rvfDownloadPDF(tier) {
     drawBar(M+240, y-4, 140, a.pct, ac, 7);
     doc.setFont('helvetica','bold'); doc.setFontSize(8.5); setC(DARK);
     doc.text(a.pct + '%', M+390, y+2);
-    drawPill(M+420, y+2, a.trade.toUpperCase(), ac, tradeFg(a.trade), 6.5);
     y += 24;
   });
 
@@ -8401,8 +8749,8 @@ function rvfDownloadPDF(tier) {
       setF([248,249,250]); doc.rect(M, y+4, CW, 32, 'F');
       doc.setFont('helvetica','bold'); doc.setFontSize(13); setC(DARK);
       doc.text(aData.label, M+12, y+22);
-      doc.setFont('helvetica','normal'); doc.setFontSize(9); setC(STEEL);
-      doc.text(aData.score.toFixed(1) + ' / 3.0    ' + aData.pct + '%    ' + aData.trade, M+160, y+22);
+      doc.setFont('helvetica','bold'); doc.setFontSize(11); setC(ac);
+      doc.text(aData.score.toFixed(1) + ' / 3.0    ' + aData.pct + '%', W-M-12, y+22, {align:'right'});
       drawBar(M+12, y+28, CW-24, aData.pct, ac, 5);
       y += 46;
 
@@ -8411,121 +8759,105 @@ function rvfDownloadPDF(tier) {
 
       if (aspectKey === 'aspiration') {
         if (profile.high >= profile.total * 0.6) {
-          reading.push('Your aspiration is **clear and well-formed.** Across your responses, you consistently described a future that does not depend on your daily presence. That level of clarity is rare. Most operators say they want freedom, but when pressed, their answers reveal they have not actually imagined what it looks like. {{You have.}}');
-          reading.push('The consistency in your answers suggests this is not wishful thinking. You are building toward something specific. The question is no longer whether you know where you want to go. It is **whether the structure of your business matches the ambition of your vision.**');
+          reading.push('Your aspiration is **clear and well-formed.** Across your responses, you consistently described a future that does not depend on your daily presence. {{That level of clarity is rare.}} Most operators say they want freedom, but their answers reveal they have not actually imagined what it looks like.');
+          reading.push('The consistency in your answers suggests this is not wishful thinking. You are building toward something specific. **The question is whether the structure of your business matches the ambition of your vision.** Every investment should be tested against this aspiration—if it does not move you toward your model, {{it is a distraction dressed as progress.}}');
           if (tier !== 'free') {
-            reading.push('What this tells us about your resource allocation: every investment you make should be tested against this aspiration. If a hire, a system, or a pricing change does not move you toward the model you described, {{it is a distraction dressed as progress.}} Your clarity gives you a filter most operators lack. The discipline is to actually use it when the pressure to react shows up.');
-            reading.push('There is a specific risk that comes with clear aspiration: **impatience.** You can see the destination, so the gap between where you are and where you want to be feels more frustrating than it does for someone who has not yet imagined it. That frustration can push you to skip structural steps. Watch for that. {{The operators who arrive at their vision intact are the ones who respected the sequence, not just the speed.}}');
+            reading.push('There is a specific risk that comes with clear aspiration: **impatience.** You can see the destination, so the gap feels more frustrating. That frustration can push you to skip structural steps. {{The operators who arrive at their vision intact are the ones who respected the sequence, not just the speed.}}');
           }
         } else if (profile.low >= profile.total * 0.6) {
-          reading.push('Your aspiration is **still forming.** That is not a weakness, but it is a constraint. Several of your responses suggest that your identity and your business are still deeply intertwined. You described a future that looks a lot like today, just with more revenue or less stress. {{That kind of aspiration keeps you working harder inside the same model rather than building a different one.}}');
-          reading.push('When asked about stepping away, your answers pointed to uncertainty or discomfort. This tells us that the vision for what comes next has not yet crystallised. Until it does, **every decision defaults to "more of the same."** That is the pattern worth noticing.');
+          reading.push('Your aspiration is **still forming.** That is not a weakness, but it is a constraint. {{Your identity and your business are still deeply intertwined.}} You described a future that looks a lot like today, just with more revenue or less stress—which keeps you working harder inside the same model rather than building a different one.');
+          reading.push('When asked about stepping away, your answers pointed to uncertainty or discomfort. **The vision for what comes next has not yet crystallised.** Until it does, every decision defaults to "more of the same."');
           if (tier !== 'free') {
-            reading.push('The inference here is about **timing.** Without a formed aspiration, you will consistently defer structural changes because there is nothing pulling you forward. You will optimise for comfort inside the current model rather than building toward a different one. This is not laziness. It is the rational behaviour of someone who has not yet decided what they are building toward. {{The first move is not to act. It is to decide.}}');
-            reading.push('Consider what your answers reveal about **identity.** When aspiration scores are low, it often means the operator cannot separate who they are from what the business does. That merger feels like commitment, but {{it functions as a ceiling.}} The business cannot outgrow the operator until the operator can imagine themselves outside of it. That imagination is not a luxury. It is the prerequisite for everything else.');
+            reading.push('The first move is not to act. {{The first move is to decide.}} Without a formed aspiration, you will defer structural changes because there is nothing pulling you forward. Consider what your answers reveal about identity: the operator cannot separate who they are from what the business does. That merger feels like commitment, but {{it functions as a ceiling.}}');
           }
         } else {
-          reading.push('Your aspiration sits in a **transitional space.** Some of your answers revealed genuine clarity about the future, a sense that you are building toward something beyond your personal involvement. But others showed attachment to the current model. You want both: the craft and the freedom. The hands-on work and the ability to step away.');
-          reading.push('This tension is common and it is honest. But it creates a **split in decision-making.** When your aspiration is divided, so is your strategy. The work here is not to choose one or the other. {{It is to get clear about which version of the future you are actually building toward, and align your actions around it.}}');
+          reading.push('Your aspiration sits in a **transitional space.** Some of your answers revealed genuine clarity about the future, a sense that you are building toward something beyond your personal involvement. But others showed attachment to the current model. {{You want both: the craft and the freedom.}}');
+          reading.push('This tension is common and it is honest. But it creates a **split in decision-making.** When your aspiration is divided, so is your strategy. The work is to get clear about which version of the future you are actually building toward.');
           if (tier !== 'free') {
-            reading.push('Where this split shows up operationally: you likely start initiatives that serve the long-term vision, then pull back when the short-term cost becomes uncomfortable. That **stop-start pattern is expensive.** Not because any single decision is wrong, but because {{the inconsistency prevents compounding.}} Each restart costs you the momentum from the last attempt.');
-            reading.push('The useful inference is that your aspiration does not need to be resolved all at once. **It needs to be resolved for the next decision.** Ask yourself, for the specific choice in front of you right now, which version of the future does this serve? Make that choice. Then ask again for the next one. {{Aspiration clarifies through action, not through thinking about action.}}');
+            reading.push('Where this split shows up operationally: you likely start initiatives that serve the long-term vision, then pull back when the short-term cost becomes uncomfortable. {{That stop-start pattern is expensive because the inconsistency prevents compounding.}} Aspiration clarifies through action, not through thinking about action.');
           }
         }
 
         if (tier === 'full') {
           if (profile.low > 0 && profile.high > 0) {
-            reading.push('One pattern worth noting: your answers were not uniform. You showed strong vision in some areas and uncertainty in others. This suggests **your aspiration is evolving.** You are in the process of letting go of one identity and stepping into another. {{That process is uncomfortable, and it is also exactly where growth happens.}}');
           }
         }
       }
 
       else if (aspectKey === 'reality') {
         if (profile.high >= profile.total * 0.5) {
-          reading.push('Your operational reality is **strong.** When asked about revenue dependency, decision-making, and pipeline, your answers consistently pointed to a business that functions with meaningful independence from you. The team handles delivery. Decisions happen at multiple levels. {{Clients come to you through systems, not just personal effort.}}');
-          reading.push('This does not mean everything is perfect. But it does mean **the infrastructure for your next stage already exists.** Your reality supports the kind of growth that compounds, where each investment in systems returns more than the effort it replaced.');
+          reading.push('Your operational reality is **strong.** {{Your business functions with meaningful independence from you.}} The team handles delivery. Decisions happen at multiple levels. Clients come to you through systems, not just personal effort.');
+          reading.push('**The infrastructure for your next stage already exists.** Your reality supports the kind of growth that compounds, where each investment in systems returns more than the effort it replaced.');
           if (tier !== 'free') {
-            reading.push('The strategic inference is that **your risk has shifted.** In earlier Trade positions, the risk is operational: can the business survive without you? Your answers suggest it can. Now the risk becomes strategic: is the business evolving, or just sustaining? {{Strong reality without strategic renewal leads to a well-oiled machine that slowly becomes irrelevant.}} Your next challenge is not building independence. It is directing it.');
-            reading.push('Your reality score also tells us something about **your pricing power.** A business with genuine operational independence can price on value rather than effort, because the delivery is not constrained by one person. If your pricing has not yet caught up with your operational maturity, {{that gap represents immediate margin sitting on the table.}} Most operators in your position are undercharging relative to what their infrastructure can deliver.');
+            reading.push('Your risk has shifted from operational to strategic: {{does the business evolve, or just sustain?}} Strong reality without strategic renewal leads to a well-oiled machine that slowly becomes irrelevant. Your next challenge is not building independence. It is directing it and pricing accordingly.');
           }
         } else if (profile.low >= profile.total * 0.5) {
-          reading.push('Your answers paint a clear picture: **the business runs through you.** Revenue stops when you stop. Decisions wait for your approval. Clients come from your personal network and effort. {{This is the defining reality of your current Trade position, and it is worth sitting with.}}');
-          reading.push('This is not a judgement. It is a description of how things are built right now. But every aspect of your diagnostic, your aspiration, your readiness, your horizon, is shaped by this reality. **You cannot plan for a future where the business runs without you if the present requires you for everything.** Acknowledging that gap is the starting point.');
+          reading.push('**The business runs through you.** {{Revenue stops when you stop.}} Decisions wait for your approval. Clients come from your personal network and effort. This is the defining reality of your current Trade position.');
+          reading.push('This is not a judgement. It is a description of how things are built right now. **You cannot plan for a future where the business runs without you if the present requires you for everything.** Acknowledging that gap is the starting point.');
           if (tier !== 'free') {
-            reading.push('Here is what your reality means for your **capacity ceiling:** every hour you spend on delivery is an hour unavailable for building. And building is the only activity that changes the structure. You are likely operating at or near maximum output, which means any new opportunity requires dropping an existing one. {{That is the defining constraint of your Trade position, and until it changes, growth is linear at best.}}');
-            reading.push('The compounding cost is subtle. Each month in this configuration, your business **accumulates more dependency on you, not less.** Client relationships deepen around your personal involvement. Processes calcify around your decision-making. {{The longer this pattern holds, the harder the eventual restructuring becomes.}} This is not meant to create urgency for its own sake. It is meant to make the cost of inaction visible.');
+            reading.push('Every hour you spend on delivery is an hour unavailable for building. {{Building is the only activity that changes the structure.}} You are likely operating at or near maximum output, which means any new opportunity requires dropping an existing one. Each month in this configuration, your business accumulates more dependency on you, not less.');
           }
         } else {
-          reading.push('Your reality is **in transition.** Some parts of the business have genuine independence from you: certain processes run, certain decisions happen without your input. But other areas are still tightly coupled to your personal effort. {{Your answers revealed this split clearly.}}');
-          reading.push('This is actually the most important place to be honest. The parts that work without you show what is possible. The parts that still depend on you show where the work is. **The temptation is to focus on the progress. The discipline is to focus on the gaps.**');
+          reading.push('Your reality is **in transition.** {{Some parts of the business have genuine independence from you.}} Certain processes run, certain decisions happen without your input. But other areas are still tightly coupled to your personal effort.');
+          reading.push('**The parts that work without you show what is possible.** The parts that still depend on you show where the work is. The temptation is to focus on the progress. The discipline is to focus on the gaps.');
           if (tier !== 'free') {
-            reading.push('The inference for sequencing: your independent systems **prove the model works.** That evidence is valuable because it removes the question of whether delegation can succeed. It already has, in specific areas. The next move is to study what made those areas work, specifically the conditions, the people, the clarity of the brief, and {{replicate those conditions in the areas that still depend on you.}}');
-            reading.push('Watch for a pattern common at this stage: the areas that still depend on you are likely the ones you enjoy most or feel most protective of. **That correlation is not accidental.** The last things to be delegated are usually the things tied to identity, not competence. {{Recognising that distinction changes the conversation from "can someone else do this?" to "am I willing to let them?"}}');
+            reading.push('Your independent systems prove the model works. That evidence is valuable because it removes the question of whether delegation can succeed. {{The next move is to study what made those areas work and replicate those conditions}} in the areas that still depend on you.');
           }
         }
 
         if (tier === 'full') {
-          reading.push('A strategist would look at your reality scores alongside your aspiration. **The gap between those two aspects is your actual distance to travel.** If your aspiration is Trade Three but your reality is Trade One, the roadmap is long and structural. If they are close, {{the moves are more about refinement than reinvention.}}');
         }
       }
 
       else if (aspectKey === 'readiness') {
         if (profile.high >= profile.total * 0.5) {
-          reading.push('Your readiness is **high.** Across your responses, you described comfort with delegation, willingness to invest, and an openness to letting others influence direction. These are the emotional and operational building blocks of transition. Many operators never get here because readiness is not just about what you can do. {{It is about what you are willing to let go of.}}');
-          reading.push('The patterns in your answers suggest you have already done much of the internal work. You are not clinging to control out of fear. You are making **conscious choices about where to hold and where to release.** That emotional maturity is a competitive advantage that does not show up on a balance sheet.');
+          reading.push('Your readiness is **high.** You described comfort with delegation, willingness to invest, and openness to letting others influence direction. {{These are the building blocks of transition.}} Many operators never get here because readiness is not just about what you can do—it is about what you are willing to let go of.');
+          reading.push('The patterns in your answers suggest you have already done much of the internal work. **You are making conscious choices about where to hold and where to release.** That emotional maturity is a competitive advantage that does not show up on a balance sheet.');
           if (tier !== 'free') {
-            reading.push('The strategic implication is that **your readiness is ahead of your reality.** That is a powerful position, but it comes with a specific risk: {{readiness without action decays.}} The willingness to delegate, invest, and release erodes if it is not exercised. You have a window where your internal capacity for change is high. The question is whether your external structures are being built fast enough to match it.');
-            reading.push('Consider where to deploy this readiness for **maximum leverage.** The highest-value application is usually the area where you have the most operational involvement and the least strategic necessity. That is the function where your presence adds comfort but not value. {{Releasing it first creates capacity and proves to yourself that the business holds.}} That proof becomes the foundation for every subsequent release.');
+            reading.push('{{Your readiness is ahead of your reality.}} That is a powerful position, but it comes with a specific risk: readiness without action decays. The willingness to delegate, invest, and release erodes if it is not exercised. You have a window where your internal capacity for change is high. Apply it to the area where you have the most operational involvement and the least strategic necessity.');
           }
         } else if (profile.low >= profile.total * 0.5) {
-          reading.push('Your readiness is **where the friction lives.** Your answers revealed significant barriers, some practical, some emotional. You described discomfort with handing off core work, uncertainty about where to invest, and difficulty letting go of direct control. {{These are not character flaws. They are signals that the infrastructure for change has not been built yet.}}');
-          reading.push('Readiness is not something you decide. **It is something you build.** The operator who says "I am not ready" is usually right, not because they lack courage, but because the business genuinely cannot support the change yet. The work is to build readiness structurally: one system, one hire, one delegation at a time.');
+          reading.push('Your readiness is **where the friction lives.** {{Your answers revealed significant barriers, some practical, some emotional.}} You described discomfort with handing off core work, uncertainty about where to invest, and difficulty letting go of direct control.');
+          reading.push('**Readiness is not something you decide—it is something you build.** The operator who says "I am not ready" is usually right, not because they lack courage, but because the business genuinely cannot support the change yet.');
           if (tier !== 'free') {
-            reading.push('What this means for your timeline: low readiness does not mean slow progress. It means the first investments need to be **in infrastructure, not ambition.** Before you can grow differently, the business needs to be able to hold what you hand off. That means documenting processes, hiring for ownership not tasks, and building financial visibility. {{These are not exciting moves, but they are the ones that make exciting moves possible later.}}');
-            reading.push('There is also a diagnostic inference worth naming. Low readiness often correlates with **high personal standards.** You hold onto things because you care deeply about the quality. That caring is an asset, but it is currently deployed as a bottleneck. The reframe is not to care less. {{It is to build systems that encode your standards so that quality does not depend on your presence.}} That is a harder problem, and a more valuable one.');
+            reading.push('Low readiness does not mean slow progress. {{It means the first investments need to be in infrastructure, not ambition.}} Documenting processes, hiring for ownership not tasks, and building financial visibility are not exciting moves, but they are the ones that make exciting moves possible later.');
           }
         } else {
-          reading.push('Your readiness is **uneven,** which is completely normal. Some of your answers showed genuine capacity for change: openness to new ideas, willingness to invest, comfort with not being needed. Others revealed specific friction points: {{areas where letting go still feels risky or where the infrastructure is not yet in place.}}');
-          reading.push('This unevenness tells us something important. **You are not blocked everywhere. You are blocked in specific places.** And specific blocks have specific solutions. The worst thing you could do is treat readiness as a single score. The best thing you can do is identify exactly which barriers are structural and which are emotional, then address them in sequence.');
+          reading.push('Your readiness is **uneven,** which is completely normal. {{Some of your answers showed genuine capacity for change.}} Others revealed specific friction points: areas where letting go still feels risky or where the infrastructure is not yet in place.');
+          reading.push('**You are not blocked everywhere. You are blocked in specific places.** And specific blocks have specific solutions. Identify exactly which barriers are structural and which are emotional, then address them in sequence.');
           if (tier !== 'free') {
-            reading.push('The inference about sequencing: **tackle the structural blocks first.** Emotional resistance often dissolves when the practical infrastructure is in place. The operator who is afraid to delegate usually becomes comfortable with it once they see the system working. {{Building the system first removes the need for a leap of faith. It replaces faith with evidence.}}');
-            reading.push('Your uneven readiness also reveals **where your business is most and least mature.** The areas where you are ready to let go are the areas that have been built well. The areas where you resist are the areas that still need architecture. {{That map is more useful than any to-do list because it tells you not just what to do, but what order to do it in.}} The readiness gaps are the priority sequence.');
+            reading.push('Tackle the structural blocks first. {{Emotional resistance often dissolves when the practical infrastructure is in place.}} Building the system first removes the need for a leap of faith. It replaces faith with evidence.');
           }
         }
 
         if (tier === 'full') {
           if (profile.low > 0) {
-            reading.push('Your lower-scoring answers in readiness deserve particular attention. They tend to cluster around specific themes: either financial caution, emotional attachment to the work, or uncertainty about market perception. **Identifying which theme dominates your resistance is the key to unlocking it.** {{A strategist session would focus here first.}}');
           }
         }
       }
 
       else if (aspectKey === 'horizon') {
         if (profile.high >= profile.total * 0.5) {
-          reading.push('You are **thinking long.** Your answers described a future that extends well beyond the next quarter or even the next year. You have considered what the business looks like without you. You have thought about equity versus income. {{You understand that the decisions you make today shape the value of something bigger than your monthly revenue.}}');
-          reading.push('This long-term orientation changes everything about how you should build. Every hire, every system, every pricing decision should be evaluated against its **contribution to enterprise value, not just cash flow.** Your horizon gives you permission to make moves that feel expensive now but compound over years.');
+          reading.push('You are **thinking long.** Your answers described a future that extends well beyond the next quarter or year. {{You understand that the decisions you make today shape the value of something bigger than your monthly revenue.}}');
+          reading.push('This long-term orientation changes everything about how you should build. **Every hire, every system, every pricing decision should be evaluated against its contribution to enterprise value, not just cash flow.** Your horizon gives you permission to make moves that feel expensive now but compound over years.');
           if (tier !== 'free') {
-            reading.push('The inference about alignment: check whether your daily operations reflect this long horizon or contradict it. Many operators **think long but act short.** They understand compounding intellectually but still price hourly, still fill their calendar with delivery, still make reactive hires. If your horizon is genuinely long, every short-term decision should be filtered through a simple question: {{does this build value that exists independently of me, or does it just generate income that depends on me?}}');
-            reading.push('A long horizon also changes **what you should measure.** Revenue becomes less important than equity indicators: recurring revenue percentage, client concentration risk, team decision-making capability, brand strength independent of your personal reputation. {{These are the metrics that determine whether your long-term thinking is translating into long-term value, or whether it is just ambition without architecture.}}');
+            reading.push('Check whether your daily operations reflect this long horizon or contradict it. {{Many operators think long but act short.}} Every short-term decision should be filtered through a simple question: does this build value that exists independently of me, or does it just generate income that depends on me?');
           }
         } else if (profile.low >= profile.total * 0.5) {
-          reading.push('Your horizon is **short.** That is not a criticism. It is a reflection of where your attention naturally sits. When asked about the long game, your answers pointed to the present: current revenue, current workload, current identity. {{The future feels either too distant or too uncertain to plan for concretely.}}');
-          reading.push('Short horizons are a feature of early-stage Trade positions. When survival is the priority, long-term thinking is a luxury. But there comes a point where **the lack of a long view becomes the constraint itself.** You cannot build enterprise value if you are only solving for next month. The question is not "when will I think long-term?" It is "what would I need to believe in order to start?"');
+          reading.push('Your horizon is **short.** {{That is not a criticism.}} When asked about the long game, your answers pointed to the present: current revenue, current workload, current identity. The future feels either too distant or too uncertain to plan for concretely.');
+          reading.push('**You cannot build enterprise value if you are only solving for next month.** The question is not "when will I think long-term?" It is "what would I need to believe in order to start?"');
           if (tier !== 'free') {
-            reading.push('The practical inference: a short horizon usually means **decisions are being made from a scarcity frame.** When you cannot see past the next few months, every investment feels risky, every hire feels premature, and every price increase feels dangerous. {{That frame is self-reinforcing. The short-term decisions it produces keep you in the short-term position.}} Breaking the loop requires one decision that prioritises future value over present comfort, even a small one.');
-            reading.push('What shifts when the horizon extends, even slightly: you start to see that some of your current clients, processes, and pricing models are **actually working against the business you want to build.** A short horizon hides that because everything feels necessary when survival is at stake. {{A slightly longer view reveals that some of what you are doing is not just unsustainable, it is actively preventing the transition.}} Identifying those elements is the first strategic move.');
+            reading.push('A short horizon usually means decisions are being made from a scarcity frame. {{When you cannot see past the next few months, every investment feels risky.}} Breaking the loop requires one decision that prioritises future value over present comfort, even a small one. A slightly longer view reveals that some of what you are doing is actively preventing the transition.');
           }
         } else {
-          reading.push('Your horizon is **expanding but not yet settled.** Some answers showed genuine long-term thinking: consideration of what the business is worth beyond you, interest in building something that outlasts your involvement. {{Others revealed that the pull of the present is still strong.}}');
-          reading.push('This is the aspect where **Trade position matters most.** If your reality is Trade One, a short horizon makes sense because you have not yet built the foundation for long-term thinking. If your reality is Trade Two, your horizon should be actively stretching. {{The alignment between your reality and your horizon tells us whether your time orientation matches your operational capacity.}}');
+          reading.push('Your horizon is **expanding but not yet settled.** {{Some answers showed genuine long-term thinking.}} Others revealed that the pull of the present is still strong.');
+          reading.push('**The alignment between your reality and your horizon tells us whether your time orientation matches your operational capacity.** If your reality is Trade One, a short horizon makes sense. If your reality is Trade Two, your horizon should be actively stretching.');
           if (tier !== 'free') {
-            reading.push('The pull of the present in your answers reveals something specific: the areas where you default to short-term thinking are likely the areas where you **feel least confident about the infrastructure.** That lack of confidence is not irrational. It is diagnostic. {{It points to exactly where the structural work needs to happen before the horizon can extend sustainably.}} Forcing a long view without building the foundation leads to anxiety, not strategy.');
-            reading.push('Use your expanding horizon as a testing ground. For each area of the business, ask: can I make a decision about this that serves a **12-month outcome instead of a 3-month one?** Where you can, do it. Where you cannot, you have found the structural gap. {{That simple test, applied across the business, produces a clearer roadmap than any framework because it is grounded in your specific constraints, not general advice.}}');
+            reading.push('The areas where you default to short-term thinking are likely the areas where you {{feel least confident about the infrastructure.}} That lack of confidence is diagnostic—it points to exactly where the structural work needs to happen before the horizon can extend sustainably.');
           }
         }
 
         if (tier === 'full') {
-          reading.push('**Horizon is the aspect most influenced by the other three.** When aspiration is clear, reality is strong, and readiness is high, the horizon naturally extends. When any of those are weak, the horizon contracts. Think of it as a downstream indicator. {{If you want to extend your horizon, the work usually happens in one of the other three aspects first.}}');
         }
       }
 
@@ -8766,9 +9098,8 @@ function rvfDownloadPDF(tier) {
 
       doc.setFont('helvetica','bold'); doc.setFontSize(13); setC(DARK);
       doc.text(a.label, M+16, y+22);
-      doc.setFont('helvetica','normal'); doc.setFontSize(10); setC(STEEL);
-      doc.text(a.score.toFixed(1) + ' / 3.0    ' + a.pct + '%', M+160, y+22);
-      drawPill(M+CW-100, y+22, a.trade.toUpperCase(), ac, tradeFg(a.trade), 7);
+      doc.setFont('helvetica','bold'); doc.setFontSize(11); setC(ac);
+      doc.text(a.score.toFixed(1) + ' / 3.0    ' + a.pct + '%', W-M-12, y+22, {align:'right'});
       drawBar(M+16, y+28, CW-120, a.pct, ac, 6);
       y += 46;
 
@@ -8913,6 +9244,30 @@ function rvfDownloadPDF(tier) {
       while (doc.getTextWidth(descTxt) > maxConnW && descTxt.length > 30) descTxt = descTxt.substring(0, descTxt.length-4) + '...';
       doc.text(descTxt, x1, y+16);
       y += 28;
+    });
+    y += 8;
+  }
+
+  // ════════════════════════════════════════
+  // RECOMMENDED SERVICES (report + full)
+  // ════════════════════════════════════════
+  if (tier !== 'free') {
+    if (y + 140 > H - 50) y = newPage();
+    y = drawSection(y, 'Recommended Services', 'Next steps tailored to your Trade position and greatest gaps.'); y += 4;
+
+    var svcs = getRVFRecommendedServices(trade, aspectPcts);
+    svcs.forEach(function(svc) {
+      if (y + 56 > H - 50) y = newPage();
+      setF([248,249,250]); doc.rect(M, y, CW, 52, 'F');
+      doc.setLineWidth(0.5); setD([253,213,0]); doc.rect(M, y, CW, 52, 'S');
+      doc.setFont('helvetica','bold'); doc.setFontSize(8); setC(YELLOW);
+      doc.text(svc.tag, M+8, y+10);
+      doc.setFont('helvetica','bold'); doc.setFontSize(11); setC(DARK);
+      doc.text(svc.name, M+8, y+22);
+      doc.setFont('helvetica','normal'); doc.setFontSize(8); setC(STEEL);
+      var descLines = doc.splitTextToSize(svc.desc, CW-16);
+      doc.text(descLines, M+8, y+34);
+      y += 56;
     });
     y += 8;
   }
@@ -9117,6 +9472,12 @@ function retrieveRVFDiagnosis() {
     .then(function(res){if(res.ok)return res.json();throw new Error('Not found');})
     .then(function(record){
       loadingMsg.remove();
+      // Validate type BEFORE caching
+      if (!record.type || record.type !== 'rvf') {
+        errorEl.textContent = record.type && record.type === 'mad' ? 'This is a MAD diagnosis code. Please use the MAD diagnostic to retrieve it.' : 'Invalid diagnosis code.';
+        errorEl.style.display = 'block';
+        return;
+      }
       var localDB={};try{localDB=JSON.parse(localStorage.getItem('jnsq_diagnosis_db')||'{}');}catch(e){}
       localDB[code]=record;try{localStorage.setItem('jnsq_diagnosis_db',JSON.stringify(localDB));}catch(e){}
       _processRVFRetrieved(record,code,successEl,errorEl);
@@ -9348,7 +9709,7 @@ const pricingMultipliers = {
   // region multipliers — still premium, but localized
   region: { emea: 1.0, apac: 0.85, sea: 0.70, americas: 1.15, other: 0.90 },
   // business size multipliers — startups get a break, not a steal
-  bizSize: { startup: 0.65, smb: 0.85, mlb: 1.0, enterprise: null }
+  bizSize: { startup: 0.65, small: 0.85, mlb: 1.0, enterprise: null }
   // enterprise = null means "discuss with strategist"
 };
 
@@ -9385,7 +9746,7 @@ function formatRegionLabel(region) {
   return map[region] || region;
 }
 function formatBizSizeLabel(biz) {
-  const map = {startup:'Startup',smb:'Small Business',mlb:'Medium-to-Large Business',enterprise:'Enterprise'};
+  const map = {startup:'Startup',small:'Small',mlb:'Medium-to-Large Business',enterprise:'Enterprise'};
   return map[biz] || biz;
 }
 
