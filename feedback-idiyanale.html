@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engagement Feedback | Studio JNSQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #3D5966;
+    --teal-light: #4A6670;
+    --gold: #FFCC66;
+    --jnsq-yellow: #FDD500;
+    --mint: #8DC7B4;
+    --dark: #1A2E35;
+    --mid: #4A6670;
+    --off-white: #F5F7F8;
+    --light-gray: #E8ECED;
+    --white: #FFFFFF;
+    --red-soft: #D4574E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lora', Georgia, serif;
+    background: var(--off-white);
+    color: var(--dark);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* === HEADER === */
+  .header {
+    background: var(--teal);
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--jnsq-yellow);
+  }
+  .header-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--jnsq-yellow);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .header h1 {
+    font-family: 'Lora', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+  .header p {
+    font-size: 0.95rem;
+    color: var(--mint);
+    font-style: italic;
+  }
+
+  /* === PROMO BANNER === */
+  .promo-banner {
+    background: linear-gradient(135deg, var(--dark) 0%, var(--teal) 100%);
+    margin: 2rem auto 0;
+    max-width: 740px;
+    padding: 1.4rem 2rem;
+    border-left: 4px solid var(--jnsq-yellow);
+    border-radius: 0 6px 6px 0;
+  }
+  .promo-banner p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    color: var(--white);
+    line-height: 1.6;
+  }
+  .promo-banner .code {
+    display: inline-block;
+    background: var(--jnsq-yellow);
+    color: var(--dark);
+    font-weight: 700;
+    padding: 0.15rem 0.6rem;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    margin: 0 0.15rem;
+  }
+  .promo-banner .rvf-label {
+    color: var(--jnsq-yellow);
+    font-weight: 600;
+  }
+
+  /* === FORM CONTAINER === */
+  .container {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 2rem 2rem 3rem;
+  }
+
+  /* === INTRO TEXT === */
+  .intro {
+    margin: 2rem 0 2.5rem;
+    padding: 0 0.5rem;
+  }
+  .intro p {
+    font-size: 0.95rem;
+    color: var(--mid);
+    margin-bottom: 0.8rem;
+  }
+
+  /* === SECTIONS === */
+  .section {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 2rem 2.2rem;
+    margin-bottom: 1.8rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    border: 1px solid var(--light-gray);
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--light-gray);
+  }
+  .section-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--white);
+    background: var(--teal);
+    padding: 0.3rem 0.65rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--teal);
+    letter-spacing: 0.5px;
+  }
+  .section-subtitle {
+    font-size: 0.85rem;
+    color: var(--mid);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  /* === FORM ELEMENTS === */
+  .field {
+    margin-bottom: 1.8rem;
+  }
+  .field:last-child {
+    margin-bottom: 0;
+  }
+  .field label {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+  .field .hint {
+    font-family: 'Lora', serif;
+    font-size: 0.8rem;
+    color: var(--mid);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* Rating Scale */
+  .rating-group {
+    display: flex;
+    gap: 0;
+    margin-top: 0.3rem;
+  }
+  .rating-group input[type="radio"] {
+    display: none;
+  }
+  .rating-group label.rating-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.55rem 1.1rem;
+    border: 1.5px solid var(--light-gray);
+    background: var(--white);
+    color: var(--mid);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    min-width: 48px;
+    margin: 0;
+  }
+  .rating-group label.rating-label:first-of-type {
+    border-radius: 5px 0 0 5px;
+  }
+  .rating-group label.rating-label:last-of-type {
+    border-radius: 0 5px 5px 0;
+  }
+  .rating-group label.rating-label:not(:last-of-type) {
+    border-right: none;
+  }
+  .rating-group input[type="radio"]:checked + label.rating-label {
+    background: var(--teal);
+    color: var(--white);
+    border-color: var(--teal);
+  }
+  .rating-group input[type="radio"]:checked + label.rating-label + input[type="radio"] + label.rating-label {
+    border-left-color: var(--teal);
+  }
+  .rating-scale-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.3rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    color: var(--mid);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* Textarea */
+  textarea {
+    width: 100%;
+    min-height: 140px;
+    padding: 1rem 1.1rem;
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--dark);
+    background: var(--off-white);
+    border: 1.5px solid var(--light-gray);
+    border-radius: 6px;
+    resize: vertical;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+  }
+  textarea:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(61,89,102,0.08);
+  }
+  textarea.short {
+    min-height: 100px;
+  }
+
+  .word-counter {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.35rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    color: var(--mid);
+    transition: color 0.2s;
+  }
+  .word-counter.met {
+    color: var(--teal);
+  }
+  .word-counter.unmet {
+    color: var(--red-soft);
+  }
+  .word-counter .check {
+    display: none;
+    font-size: 0.8rem;
+  }
+  .word-counter.met .check {
+    display: inline;
+  }
+
+  /* Text Input */
+  input[type="text"], input[type="email"], input[type="tel"] {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    color: var(--dark);
+    background: var(--off-white);
+    border: 1.5px solid var(--light-gray);
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(61,89,102,0.08);
+  }
+
+  /* Checkbox / Radio */
+  .choice-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.3rem;
+  }
+  .choice-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    cursor: pointer;
+  }
+  .choice-item input[type="checkbox"],
+  .choice-item input[type="radio"] {
+    margin-top: 0.25rem;
+    accent-color: var(--teal);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+  .choice-item span {
+    font-family: 'Lora', serif;
+    font-size: 0.88rem;
+    color: var(--dark);
+    line-height: 1.5;
+  }
+
+  /* === SUBMIT === */
+  .submit-section {
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  .submit-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--dark);
+    background: var(--jnsq-yellow);
+    border: none;
+    padding: 0.9rem 3rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+  }
+  .submit-btn:hover {
+    background: #E8C200;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(253,213,0,0.3);
+  }
+  .submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  .submit-note {
+    font-size: 0.78rem;
+    color: var(--mid);
+    margin-top: 0.8rem;
+    font-style: italic;
+  }
+
+  /* === FOOTER === */
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    color: var(--mid);
+    letter-spacing: 0.5px;
+  }
+  .footer .jnsq {
+    color: var(--teal);
+    font-weight: 600;
+  }
+
+  /* === VALIDATION === */
+  .field.invalid textarea,
+  .field.invalid input[type="text"],
+  .field.invalid input[type="email"] {
+    border-color: var(--red-soft);
+  }
+  .error-msg {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    color: var(--red-soft);
+    margin-top: 0.3rem;
+    display: none;
+  }
+  .field.invalid .error-msg {
+    display: block;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 600px) {
+    .container { padding: 1.2rem 1rem 2rem; }
+    .section { padding: 1.5rem 1.3rem; }
+    .header h1 { font-size: 1.4rem; }
+    .rating-group label.rating-label { padding: 0.45rem 0.7rem; font-size: 0.75rem; min-width: 40px; }
+    .promo-banner { margin: 1.5rem 1rem 0; padding: 1.2rem 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <a href="https://studiojnsq.com" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:1.5rem;">
+    <img src="/images/jnsq-logo-mark.png" alt="Studio JNSQ" style="height:32px;width:auto;opacity:0.95" onerror="this.style.display='none'">
+    <span style="font-family:'Montserrat',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:3px;color:#FDD500;text-transform:uppercase;">STUDIO JNSQ</span>
+  </a>
+  <h1>Engagement Feedback</h1>
+  <p>Idiyanale Business Consultancy &mdash; Foundational Media &amp; PR Strategy</p>
+</div>
+
+<!-- PROMO BANNER -->
+<div class="promo-banner">
+  <p>Thank you for taking the time to complete this. As a token of appreciation, upon submission you will receive complimentary access to the <span class="rvf-label">RVF&trade; Diagnostic</span>, a proprietary tool that maps where your business sits in its growth cycle and what trade you should be making next.</p>
+</div>
+
+<!-- FORM -->
+<div class="container">
+
+  <div class="intro">
+    <p>This form serves two purposes. First, it helps us understand how you experienced the engagement so we can continue refining how we work. Second, with your permission, select insights may inform a case study that highlights the kind of transformation work we do alongside our clients.</p>
+    <p>There are no right answers. Candor is more valuable than courtesy.</p>
+  </div>
+
+  <form id="feedbackForm" novalidate>
+
+    <!-- SECTION 1: ENGAGEMENT EVALUATION -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <span class="section-title">Engagement Evaluation</span>
+      </div>
+      <p class="section-subtitle">Quick ratings across the core dimensions of the engagement.</p>
+
+      <!-- Rating: Strategic Value -->
+      <div class="field">
+        <label>How would you rate the strategic value of the work delivered?</label>
+        <span class="hint">Did the strategy, positioning, and content architecture feel genuinely tailored to Idiyanale's situation?</span>
+        <div class="rating-group">
+          <input type="radio" name="r_strategic" id="rs1" value="1"><label class="rating-label" for="rs1">1</label>
+          <input type="radio" name="r_strategic" id="rs2" value="2"><label class="rating-label" for="rs2">2</label>
+          <input type="radio" name="r_strategic" id="rs3" value="3"><label class="rating-label" for="rs3">3</label>
+          <input type="radio" name="r_strategic" id="rs4" value="4"><label class="rating-label" for="rs4">4</label>
+          <input type="radio" name="r_strategic" id="rs5" value="5"><label class="rating-label" for="rs5">5</label>
+        </div>
+        <div class="rating-scale-labels"><span>Did not meet expectations</span><span>Exceeded expectations</span></div>
+      </div>
+
+      <!-- Rating: Content Quality -->
+      <div class="field">
+        <label>How would you rate the quality of content and deliverables?</label>
+        <span class="hint">Strategy deck, thought leadership articles, press release, content banking, media list, editorial planning, and media training.</span>
+        <div class="rating-group">
+          <input type="radio" name="r_content" id="rc1" value="1"><label class="rating-label" for="rc1">1</label>
+          <input type="radio" name="r_content" id="rc2" value="2"><label class="rating-label" for="rc2">2</label>
+          <input type="radio" name="r_content" id="rc3" value="3"><label class="rating-label" for="rc3">3</label>
+          <input type="radio" name="r_content" id="rc4" value="4"><label class="rating-label" for="rc4">4</label>
+          <input type="radio" name="r_content" id="rc5" value="5"><label class="rating-label" for="rc5">5</label>
+        </div>
+        <div class="rating-scale-labels"><span>Below standard</span><span>Exceptional</span></div>
+      </div>
+
+      <!-- Rating: Responsiveness -->
+      <div class="field">
+        <label>How would you rate the responsiveness and communication throughout?</label>
+        <span class="hint">Timeliness, clarity, availability, and how well you were kept in the loop.</span>
+        <div class="rating-group">
+          <input type="radio" name="r_responsive" id="rr1" value="1"><label class="rating-label" for="rr1">1</label>
+          <input type="radio" name="r_responsive" id="rr2" value="2"><label class="rating-label" for="rr2">2</label>
+          <input type="radio" name="r_responsive" id="rr3" value="3"><label class="rating-label" for="rr3">3</label>
+          <input type="radio" name="r_responsive" id="rr4" value="4"><label class="rating-label" for="rr4">4</label>
+          <input type="radio" name="r_responsive" id="rr5" value="5"><label class="rating-label" for="rr5">5</label>
+        </div>
+        <div class="rating-scale-labels"><span>Needs improvement</span><span>Outstanding</span></div>
+      </div>
+
+      <!-- Rating: Value for Investment -->
+      <div class="field">
+        <label>How would you rate the value for the investment?</label>
+        <span class="hint">Considering everything delivered relative to the engagement cost.</span>
+        <div class="rating-group">
+          <input type="radio" name="r_value" id="rv1" value="1"><label class="rating-label" for="rv1">1</label>
+          <input type="radio" name="r_value" id="rv2" value="2"><label class="rating-label" for="rv2">2</label>
+          <input type="radio" name="r_value" id="rv3" value="3"><label class="rating-label" for="rv3">3</label>
+          <input type="radio" name="r_value" id="rv4" value="4"><label class="rating-label" for="rv4">4</label>
+          <input type="radio" name="r_value" id="rv5" value="5"><label class="rating-label" for="rv5">5</label>
+        </div>
+        <div class="rating-scale-labels"><span>Overpriced</span><span>Significant value</span></div>
+      </div>
+
+      <!-- Rating: Overall -->
+      <div class="field">
+        <label>Overall, how would you rate the engagement?</label>
+        <div class="rating-group">
+          <input type="radio" name="r_overall" id="ro1" value="1"><label class="rating-label" for="ro1">1</label>
+          <input type="radio" name="r_overall" id="ro2" value="2"><label class="rating-label" for="ro2">2</label>
+          <input type="radio" name="r_overall" id="ro3" value="3"><label class="rating-label" for="ro3">3</label>
+          <input type="radio" name="r_overall" id="ro4" value="4"><label class="rating-label" for="ro4">4</label>
+          <input type="radio" name="r_overall" id="ro5" value="5"><label class="rating-label" for="ro5">5</label>
+        </div>
+        <div class="rating-scale-labels"><span>Would not recommend</span><span>Would strongly recommend</span></div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: THE EXPERIENCE -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <span class="section-title">The Experience</span>
+      </div>
+      <p class="section-subtitle">We would love to hear the story of this engagement in your own words.</p>
+
+      <div class="field">
+        <label>What was the situation before this engagement? What was Idiyanale facing, and what prompted you to seek external support for media and PR?</label>
+        <span class="hint">Think about where you were as a brand, the challenges, and what you were hoping to solve.</span>
+        <textarea name="q_before" data-min-words="50" placeholder="Share your perspective..."></textarea>
+        <div class="word-counter" data-for="q_before"><span class="check">&check;</span> <span class="count">0</span> / 50 words minimum</div>
+        <div class="error-msg">Please share at least 50 words so we can fully understand your experience.</div>
+      </div>
+
+      <div class="field">
+        <label>What stood out most about the work? Was there a specific deliverable, insight, or moment during the engagement that shifted how you think about Idiyanale's positioning or visibility?</label>
+        <span class="hint">It could be a strategy decision, a piece of content, the media training, or even a conversation.</span>
+        <textarea name="q_standout" data-min-words="50" placeholder="Tell us what resonated..."></textarea>
+        <div class="word-counter" data-for="q_standout"><span class="check">&check;</span> <span class="count">0</span> / 50 words minimum</div>
+        <div class="error-msg">Please share at least 50 words so we can fully understand your experience.</div>
+      </div>
+
+      <div class="field">
+        <label>How has this engagement changed the way Idiyanale approaches its market presence? What feels different now compared to before?</label>
+        <span class="hint">Consider how your team talks about the brand, how you think about content, visibility, or media readiness.</span>
+        <textarea name="q_impact" data-min-words="50" placeholder="Describe the shift..."></textarea>
+        <div class="word-counter" data-for="q_impact"><span class="check">&check;</span> <span class="count">0</span> / 50 words minimum</div>
+        <div class="error-msg">Please share at least 50 words so we can fully understand your experience.</div>
+      </div>
+
+      <div class="field">
+        <label>How would you describe the experience of working with Studio JNSQ to a peer? If a fellow founder or executive asked you what it was like, what would you tell them?</label>
+        <textarea name="q_describe" data-min-words="50" placeholder="In your own words..."></textarea>
+        <div class="word-counter" data-for="q_describe"><span class="check">&check;</span> <span class="count">0</span> / 50 words minimum</div>
+        <div class="error-msg">Please share at least 50 words so we can fully understand your experience.</div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: MAKING IT BETTER -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <span class="section-title">Making It Better</span>
+      </div>
+      <p class="section-subtitle">Honest feedback sharpens the work. This helps us serve the next client even better.</p>
+
+      <div class="field">
+        <label>If we were to do this engagement again from scratch, what would you want us to do differently? What would make the next version even stronger?</label>
+        <span class="hint">This could be about process, communication, deliverables, pacing, or anything else.</span>
+        <textarea name="q_improve" class="short" placeholder="Be candid..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Was there anything you expected to receive that was not included, or anything that felt incomplete?</label>
+        <textarea name="q_gaps" class="short" placeholder="Tell us what was missing, if anything..."></textarea>
+      </div>
+    </div>
+
+    <!-- SECTION 4: EXTENDING THE WORK -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <span class="section-title">Extending the Work</span>
+      </div>
+      <p class="section-subtitle">We are selective about who we work with. The best engagements start with a warm introduction from someone who has experienced the work firsthand.</p>
+
+      <div class="field">
+        <label>Is there a founder, executive, or business leader in your network who is navigating a pivotal growth moment right now?</label>
+        <span class="hint">We work best with leaders who are scaling, repositioning, or preparing their brand for a significant transition. If someone comes to mind, we would be happy to extend the same level of care and attention to them.</span>
+      </div>
+
+      <div class="field">
+        <label>Their full name</label>
+        <input type="text" name="ref_name" placeholder="Full name">
+      </div>
+
+      <div class="field">
+        <label>Phone number</label>
+        <input type="tel" name="ref_phone" placeholder="Phone number">
+      </div>
+
+      <div class="field">
+        <label>Email address</label>
+        <input type="email" name="ref_email" placeholder="Email address">
+      </div>
+
+      <div class="field">
+        <label>Company</label>
+        <input type="text" name="ref_company" placeholder="Company name">
+      </div>
+
+      <div class="field">
+        <label>Position / Role</label>
+        <input type="text" name="ref_position" placeholder="Their role or title">
+      </div>
+
+      <div class="field">
+        <label>Brief description of what they may need</label>
+        <textarea name="ref_description" class="short" placeholder="A short note on their situation or what kind of support they might benefit from."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Would you be open to a brief introduction if we reach out?</label>
+        <div class="choice-group">
+          <label class="choice-item"><input type="radio" name="referral_intro" value="yes"><span>Yes, I am happy to make an introduction</span></label>
+          <label class="choice-item"><input type="radio" name="referral_intro" value="share_details"><span>You may reach out to them directly and mention my name</span></label>
+          <label class="choice-item"><input type="radio" name="referral_intro" value="not_now"><span>No one comes to mind right now, but I will keep it in mind</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: CONSENT & CLOSING -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <span class="section-title">Permissions</span>
+      </div>
+
+      <div class="field">
+        <label>May we feature insights from your feedback in our portfolio or case studies? <span style="color:var(--red-soft)">*</span></label>
+        <div class="choice-group">
+          <label class="choice-item"><input type="radio" name="consent_use" value="named" required><span>Yes, you may quote me and identify Idiyanale by name</span></label>
+          <label class="choice-item"><input type="radio" name="consent_use" value="anonymous"><span>Yes, but please keep the company anonymous</span></label>
+          <label class="choice-item"><input type="radio" name="consent_use" value="no"><span>I prefer this feedback to remain private</span></label>
+        </div>
+        <div class="error-msg">Please select one option.</div>
+      </div>
+
+      <div class="field">
+        <label>Your name (for our records) <span style="color:var(--red-soft)">*</span></label>
+        <input type="text" name="respondent_name" placeholder="Full name" required>
+        <div class="error-msg">Please enter your name.</div>
+      </div>
+
+      <div class="field">
+        <label>Your email (in case we need to follow up on any responses) <span style="color:var(--red-soft)">*</span></label>
+        <input type="email" name="respondent_email" placeholder="Email address" required>
+        <div class="error-msg">Please enter a valid email address.</div>
+      </div>
+
+      <div class="field">
+        <label>Anything else you would like to add?</label>
+        <textarea name="q_final" class="short" placeholder="Optional. Completely open-ended."></textarea>
+      </div>
+
+      <div class="submit-section">
+        <button type="submit" class="submit-btn">Submit Feedback</button>
+        <p class="submit-note">Your responses will be sent directly to Jerico Lugo at Studio JNSQ.</p>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <a href="https://studiojnsq.com" target="_blank" rel="noopener" style="text-decoration:none;"><span class="jnsq">Studio JNSQ</span></a> &nbsp;|&nbsp; Brand Equity Architecture<br>
+  Others make you profitable. Brand equity makes you valuable.
+</div>
+
+<script>
+  // === WORD COUNTER ===
+  document.querySelectorAll('textarea[data-min-words]').forEach(ta => {
+    const minWords = parseInt(ta.dataset.minWords);
+    const counter = ta.closest('.field').querySelector('.word-counter');
+    const countSpan = counter.querySelector('.count');
+
+    ta.addEventListener('input', () => {
+      const words = ta.value.trim().split(/\s+/).filter(w => w.length > 0).length;
+      countSpan.textContent = words;
+
+      if (words >= minWords) {
+        counter.classList.add('met');
+        counter.classList.remove('unmet');
+        ta.closest('.field').classList.remove('invalid');
+      } else if (words > 0) {
+        counter.classList.remove('met');
+        counter.classList.add('unmet');
+      } else {
+        counter.classList.remove('met', 'unmet');
+      }
+    });
+  });
+
+  // === FORM VALIDATION ===
+  document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let valid = true;
+
+    // Check word minimums
+    this.querySelectorAll('textarea[data-min-words]').forEach(ta => {
+      const minWords = parseInt(ta.dataset.minWords);
+      const words = ta.value.trim().split(/\s+/).filter(w => w.length > 0).length;
+      const field = ta.closest('.field');
+
+      if (words < minWords) {
+        field.classList.add('invalid');
+        valid = false;
+      } else {
+        field.classList.remove('invalid');
+      }
+    });
+
+    // Check all rating groups have a selection
+    ['r_strategic', 'r_content', 'r_responsive', 'r_value', 'r_overall'].forEach(name => {
+      const checked = this.querySelector(`input[name="${name}"]:checked`);
+      if (!checked) {
+        valid = false;
+        const field = this.querySelector(`input[name="${name}"]`).closest('.field');
+        field.style.outline = '2px solid var(--red-soft)';
+        field.style.outlineOffset = '4px';
+        field.style.borderRadius = '6px';
+        setTimeout(() => { field.style.outline = 'none'; }, 3000);
+      }
+    });
+
+    // Check mandatory Section 5 fields
+    // Consent radio
+    if (!this.querySelector('input[name="consent_use"]:checked')) {
+      valid = false;
+      const consentField = this.querySelector('input[name="consent_use"]').closest('.field');
+      consentField.classList.add('invalid');
+      consentField.style.outline = '2px solid var(--red-soft)';
+      consentField.style.outlineOffset = '4px';
+      consentField.style.borderRadius = '6px';
+      setTimeout(() => { consentField.style.outline = 'none'; }, 3000);
+    }
+
+    // Name field
+    const nameInput = this.querySelector('input[name="respondent_name"]');
+    if (!nameInput.value.trim()) {
+      valid = false;
+      nameInput.closest('.field').classList.add('invalid');
+    } else {
+      nameInput.closest('.field').classList.remove('invalid');
+    }
+
+    // Email field
+    const emailInput = this.querySelector('input[name="respondent_email"]');
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailInput.value.trim() || !emailPattern.test(emailInput.value.trim())) {
+      valid = false;
+      emailInput.closest('.field').classList.add('invalid');
+    } else {
+      emailInput.closest('.field').classList.remove('invalid');
+    }
+
+    if (!valid) {
+      const firstInvalid = this.querySelector('.field.invalid, .field[style*="outline"]');
+      if (firstInvalid) {
+        firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return;
+    }
+
+    // Collect and structure data
+    const form = this;
+    const getRating = (name) => { const el = form.querySelector(`input[name="${name}"]:checked`); return el ? el.value : null; };
+    const getVal = (name) => { const el = form.querySelector(`[name="${name}"]`); return el ? el.value.trim() : ''; };
+
+    const payload = {
+      action: 'submit-response',
+      formId: 'idiyanale',
+      ratings: {
+        strategic: getRating('r_strategic'),
+        content: getRating('r_content'),
+        responsive: getRating('r_responsive'),
+        value: getRating('r_value'),
+        overall: getRating('r_overall')
+      },
+      answers: {
+        before: getVal('q_before'),
+        standout: getVal('q_standout'),
+        impact: getVal('q_impact'),
+        describe: getVal('q_describe'),
+        improve: getVal('q_improve'),
+        gaps: getVal('q_gaps'),
+        final: getVal('q_final')
+      },
+      referral: {
+        name: getVal('ref_name'),
+        phone: getVal('ref_phone'),
+        email: getVal('ref_email'),
+        company: getVal('ref_company'),
+        position: getVal('ref_position'),
+        description: getVal('ref_description'),
+        introPreference: getRating('referral_intro')
+      },
+      consent: { use: getRating('consent_use') },
+      respondent: { name: getVal('respondent_name'), email: getVal('respondent_email') }
+    };
+
+    const submitBtn = form.querySelector('.submit-btn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    fetch('/.netlify/functions/feedback-crud', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(r => r.json())
+    .then(result => {
+      if (result.success) {
+        const firstName = payload.respondent.name.split(' ')[0];
+        form.innerHTML = `
+          <div style="text-align:center; padding: 3rem 1rem;">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">&#10003;</div>
+            <h2 style="font-family: 'Lora', serif; color: var(--teal); margin-bottom: 1rem;">Thank you, ${firstName}.</h2>
+            <p style="font-family: 'Lora', serif; font-size: 0.95rem; color: var(--mid); max-width: 480px; margin: 0 auto 1.5rem; line-height: 1.7;">Your feedback has been received. It will shape how we continue to refine the work we do for founders like you.</p>
+            ${result.promoCode ? `<div style="background: var(--teal); color: var(--white); display: inline-block; padding: 1rem 2rem; border-radius: 6px; margin-top: 0.5rem;">
+              <p style="font-family: 'Montserrat', sans-serif; font-size: 0.8rem; margin-bottom: 0.3rem;">Your RVF&trade; Diagnostic code:</p>
+              <p style="font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--jnsq-yellow); letter-spacing: 2px;">${result.promoCode}</p>
+            </div>` : ''}
+          </div>
+        `;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Feedback';
+        alert('Error submitting feedback. Please try again.');
+      }
+    })
+    .catch(err => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Feedback';
+      alert('Error submitting feedback. Please try again.');
+    });
+  });
+</script>
+
+<script src="/js/jnsq-motion.js?v=1777519085" defer></script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+/* ============================================================
+   JNSQ Motion + Design System
+   YELLOW IS THE ONLY ACCENT. Every glow, every highlight, every ring is yellow.
+   No coral, no teal, no lavender. No multi-color gradients anywhere.
+   The job of this stylesheet is to add motion, glow, and breathing room.
+   ============================================================ */
+
+:root {
+  /* Single accent — JNSQ yellow */
+  --jnsq-yellow: #FDD500;
+  --jnsq-yellow-soft: rgba(253, 213, 0, 0.12);
+  --jnsq-yellow-glow: rgba(253, 213, 0, 0.40);
+  --jnsq-yellow-glow-strong: rgba(253, 213, 0, 0.60);
+
+  /* Surface palette — neutral, lets yellow do the work */
+  --jnsq-ink: #1A2632;
+  --jnsq-ink-soft: rgba(26, 38, 50, 0.92);
+
+  /* Animation curves */
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Spacing scale — used by motion utilities for consistent breathing room */
+  --space-tight: 16px;
+  --space-base: 24px;
+  --space-loose: 40px;
+  --space-airy: 64px;
+  --space-grand: 96px;
+}
+
+/* ============================================================
+   ANIMATED MESH HERO BACKGROUND (gold tones only)
+   ============================================================ */
+.mesh-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.mesh-hero::before,
+.mesh-hero::after {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+}
+.mesh-hero::before {
+  background:
+    radial-gradient(ellipse 60% 50% at 18% 20%, rgba(253, 213, 0, 0.22), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 82% 30%, rgba(253, 213, 0, 0.14), transparent 60%),
+    radial-gradient(ellipse 70% 60% at 50% 95%, rgba(253, 213, 0, 0.10), transparent 65%);
+  animation: meshDrift 26s var(--ease-in-out-soft) infinite alternate;
+}
+.mesh-hero::after {
+  background:
+    radial-gradient(ellipse 40% 30% at 70% 70%, rgba(253, 213, 0, 0.08), transparent 70%),
+    radial-gradient(ellipse 30% 25% at 25% 75%, rgba(253, 213, 0, 0.10), transparent 65%);
+  animation: meshDrift 34s var(--ease-in-out-soft) infinite alternate-reverse;
+  mix-blend-mode: screen;
+  opacity: 0.9;
+}
+@keyframes meshDrift {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(2%, -3%) scale(1.04); }
+  100% { transform: translate(-3%, 2%) scale(0.98); }
+}
+
+/* Subtle film grain on dark surfaces */
+.grain {
+  position: relative;
+}
+.grain::after {
+  content: '';
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
+}
+
+/* ============================================================
+   SCROLL-TRIGGERED REVEALS (paired with jnsq-motion.js)
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s var(--ease-out-soft), transform 0.9s var(--ease-out-soft);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 0.9s var(--ease-out-soft);
+}
+.reveal-fade.is-visible { opacity: 1; }
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.8s var(--ease-out-soft), transform 0.8s var(--ease-out-soft);
+}
+.reveal-scale.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger delays — apply .stagger to a parent and its children animate sequentially */
+.stagger > *:nth-child(1) { transition-delay: 0.05s; }
+.stagger > *:nth-child(2) { transition-delay: 0.18s; }
+.stagger > *:nth-child(3) { transition-delay: 0.30s; }
+.stagger > *:nth-child(4) { transition-delay: 0.42s; }
+.stagger > *:nth-child(5) { transition-delay: 0.54s; }
+.stagger > *:nth-child(6) { transition-delay: 0.66s; }
+
+/* ============================================================
+   GLOW UTILITIES — single yellow source of light
+   Matches the strategist-portal hover treatment everywhere
+   ============================================================ */
+
+/* Headline accent text — yellow with breathable glow */
+.gradient-text,
+.accent-word {
+  color: var(--jnsq-yellow) !important;
+  -webkit-text-fill-color: var(--jnsq-yellow) !important;
+  background: none !important;
+  text-shadow: 0 0 28px rgba(253, 213, 0, 0.40), 0 0 6px rgba(253, 213, 0, 0.20);
+  transition: text-shadow 0.6s var(--ease-out-soft);
+}
+.gradient-text:hover,
+.accent-word:hover {
+  text-shadow: 0 0 48px rgba(253, 213, 0, 0.65), 0 0 12px rgba(253, 213, 0, 0.35);
+}
+
+/* ============================================================
+   CARD LIFT WITH YELLOW GLOW
+   Single, consistent treatment across every card on the site
+   ============================================================ */
+.lift {
+  transition: transform 0.5s var(--ease-out-soft), box-shadow 0.5s var(--ease-out-soft), border-color 0.4s ease;
+}
+.lift:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 28px 60px rgba(26, 38, 50, 0.12),
+    0 0 0 1px rgba(253, 213, 0, 0.45),
+    0 0 36px rgba(253, 213, 0, 0.20);
+}
+
+/* ============================================================
+   PULSING CTA — calls attention without rainbow tricks
+   ============================================================ */
+@keyframes softPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(253, 213, 0, 0.35); }
+  50%      { box-shadow: 0 0 0 14px rgba(253, 213, 0, 0); }
+}
+.pulse-cta { animation: softPulse 2.8s var(--ease-in-out-soft) infinite; }
+
+/* ============================================================
+   COUNTER (works with jnsq-motion.js)
+   ============================================================ */
+.counter {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   BREATHING ROOM HELPERS
+   Apply when content feels tight
+   ============================================================ */
+.breathe { padding: var(--space-airy) !important; }
+.breathe-x { padding-left: var(--space-airy) !important; padding-right: var(--space-airy) !important; }
+.breathe-y { padding-top: var(--space-airy) !important; padding-bottom: var(--space-airy) !important; }
+.breathe-grand { padding: var(--space-grand) var(--space-loose) !important; }
+
+/* ============================================================
+   GLOBAL DESIGN-LANGUAGE OVERRIDES
+   Apply consistent breathing room and treatment across pages
+   that include this stylesheet.
+   ============================================================ */
+
+/* Hero buttons — consistent generous padding for "room to breathe" */
+.hero .hero-cta,
+.hero .btn-primary,
+.cta-section .cta-btn,
+.cta-section .cta-btn-large,
+.cta-section .btn,
+.btn-primary {
+  padding: 18px 44px !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  transition: transform 0.3s var(--ease-out-soft), box-shadow 0.4s var(--ease-out-soft) !important;
+}
+.hero .hero-cta:hover,
+.hero .btn-primary:hover,
+.cta-section .cta-btn:hover,
+.cta-section .cta-btn-large:hover,
+.cta-section .btn:hover,
+.btn-primary:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 14px 38px rgba(253, 213, 0, 0.45), 0 0 0 1px rgba(253, 213, 0, 0.30) !important;
+}
+
+/* CTA sections — more vertical breathing room */
+.cta-section,
+.cta-section.mesh-hero {
+  padding: 110px 40px !important;
+}
+.cta-section h2 { margin-bottom: 22px !important; }
+.cta-section p { margin-bottom: 40px !important; }
+
+/* Cards everywhere — consistent generous padding (excludes service-tier which is a row layout) */
+.framework-card,
+.diag-card,
+.facet-card,
+.aspect-card,
+.tier-card,
+.thinking-article,
+.fw-card,
+.case-study,
+.related-card {
+  padding: 44px 40px !important;
+  border-radius: 14px !important;
+  background: var(--white);
+  border: 1px solid #e5e9ed;
+  transition: transform 0.5s var(--ease-out-soft), box-shadow 0.5s var(--ease-out-soft), border-color 0.4s ease !important;
+}
+.framework-card:hover,
+.diag-card:hover,
+.facet-card:hover,
+.aspect-card:hover,
+.tier-card:hover,
+.thinking-article:hover,
+.fw-card:hover,
+.case-study:hover,
+.related-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow:
+    0 28px 60px rgba(26, 38, 50, 0.10),
+    0 0 0 1px rgba(253, 213, 0, 0.45),
+    0 0 36px rgba(253, 213, 0, 0.18) !important;
+  border-color: rgba(253, 213, 0, 0.45) !important;
+}
+
+/* Service-tier is a row layout, not a card. Just give it more breathing room. */
+.service-tier { padding: 64px 0 !important; }
+.service-tier:hover {
+  border-top-color: rgba(253,213,0,0.6) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Hero sections — more top/bottom breathing space */
+.hero,
+.post-hero {
+  padding-top: 180px !important;
+  padding-bottom: 96px !important;
+}
+
+/* Section vertical rhythm */
+.section,
+.facets,
+.aspects,
+.tiers,
+.faq,
+.intro,
+.selector,
+.unsure {
+  padding-top: 96px !important;
+  padding-bottom: 96px !important;
+}
+
+/* Mobile — tighten only when screen is small */
+@media (max-width: 760px) {
+  .cta-section,
+  .cta-section.mesh-hero { padding: 72px 24px !important; }
+  .hero,
+  .post-hero { padding-top: 140px !important; padding-bottom: 64px !important; }
+  .section,
+  .facets,
+  .aspects,
+  .tiers,
+  .faq,
+  .intro,
+  .selector,
+  .unsure { padding-top: 64px !important; padding-bottom: 64px !important; }
+  .framework-card,
+  .diag-card,
+  .facet-card,
+  .aspect-card,
+  .tier-card,
+  .thinking-article,
+  .fw-card,
+  .case-study,
+  .service-tier,
+  .related-card { padding: 28px 24px !important; }
+  .hero .hero-cta,
+  .hero .btn-primary,
+  .cta-section .cta-btn,
+  .cta-section .cta-btn-large,
+  .cta-section .btn,
+  .btn-primary {
+    padding: 16px 32px !important;
+  }
+}
+
+/* ============================================================
+   UNIFIED NAV TREATMENT
+   Applies a consistent nav style to any page that uses <nav> with .logo
+   ============================================================ */
+nav .logo {
+  display: inline-flex !important;
+  align-items: center !important;
+  letter-spacing: 2.5px !important;
+  font-weight: 800 !important;
+  font-size: 16px !important;
+  text-transform: uppercase !important;
+  transition: text-shadow 0.4s ease !important;
+}
+nav .logo span {
+  color: var(--jnsq-yellow) !important;
+  margin-left: 4px !important;
+  text-shadow: 0 0 14px rgba(253, 213, 0, 0.40);
+  transition: text-shadow 0.4s ease;
+}
+nav .logo:hover span {
+  text-shadow: 0 0 24px rgba(253, 213, 0, 0.65);
+}
+
+/* ============================================================
+   UNIFIED FOOTER TREATMENT
+   Every existing footer on the site (single-line credit) gets
+   a consistent generous look — dark background, gold dot, breathing room.
+   ============================================================ */
+footer {
+  padding: 56px 40px !important;
+  text-align: center !important;
+  background: var(--jnsq-ink) !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+  font-size: 13px !important;
+  letter-spacing: 0.5px !important;
+  border-top: 2px solid rgba(253, 213, 0, 0.30);
+  position: relative;
+}
+footer::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 50%;
+  width: 80px; height: 2px;
+  background: var(--jnsq-yellow);
+  transform: translateX(-50%);
+  box-shadow: 0 0 18px rgba(253, 213, 0, 0.55);
+}
+footer a {
+  color: rgba(255, 255, 255, 0.78) !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease, text-shadow 0.3s ease !important;
+}
+footer a:hover {
+  color: var(--jnsq-yellow) !important;
+  text-shadow: 0 0 12px rgba(253, 213, 0, 0.50);
+}
+@media (max-width: 760px) {
+  footer { padding: 40px 24px !important; }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .mesh-hero::before,
+  .mesh-hero::after,
+  .pulse-cta {
+    animation: none !important;
+  }
+  .reveal,
+  .reveal-fade,
+  .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

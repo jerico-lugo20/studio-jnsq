@@ -1,6 +1,6 @@
 // Retrieve a diagnosis record by code
 
-const { getStore, connectLambda } = require("@netlify/blobs");
+const { getStore } = require("@netlify/blobs");
 
 exports.handler = async (event, context) => {
   if (event.httpMethod === "OPTIONS") {
@@ -12,15 +12,12 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    // Connect Lambda environment for Netlify Blobs
-    connectLambda(event);
-
     const code = event.queryStringParameters && event.queryStringParameters.code;
     if (!code) {
       return { statusCode: 400, headers: corsHeaders(), body: JSON.stringify({ error: "Code parameter is required" }) };
     }
 
-    const store = getStore("diagnoses");
+    const store = getStore({ name: "diagnoses", siteID: process.env.SITE_ID, token: process.env.NETLIFY_BLOBS_TOKEN });
     const record = await store.get(code, { type: "json" });
 
     if (!record) {

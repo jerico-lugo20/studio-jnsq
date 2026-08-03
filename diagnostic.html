@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Equity Diagnostic | MAD™ + RVF™ | Studio JNSQ</title>
+<meta name="description" content="Brand equity diagnostics. MAD™ scores the authority your brand commands. RVF™ scores how a service business compounds resources. Free. 5 to 7 min.">
+<meta name="keywords" content="brand equity architecture diagnostic, MAD diagnostic, RVF diagnostic, market authority diamond, resource value formula, brand equity diagnostic, brand audit, service business diagnostic, founder leverage diagnostic">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Brand Equity Architecture Diagnostic | Studio JNSQ">
+<meta property="og:description" content="Two diagnostics. Two questions. One picks up where revenue reports stop telling you anything useful.">
+<meta property="og:url" content="https://studiojnsq.com/diagnostic">
+<meta property="og:site_name" content="Studio JNSQ">
+<meta property="og:image" content="https://studiojnsq.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Brand Equity Architecture Diagnostic | Studio JNSQ">
+<meta name="twitter:description" content="Score what your brand is actually worth in five to seven minutes.">
+<meta name="twitter:image" content="https://studiojnsq.com/og-image.jpg">
+<link rel="canonical" href="https://studiojnsq.com/diagnostic">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/jnsq-system.css?v=2">
+<style>
+  body { background: var(--jnsq-bg); color: var(--jnsq-body); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  .selector-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+  @media (max-width: 768px) {
+    .selector-grid { grid-template-columns: 1fr; }
+  }
+
+  .diag-card-large {
+    display: flex; flex-direction: column;
+    padding: var(--space-6) var(--space-5) var(--space-5);
+    min-height: 440px;
+  }
+  .diag-card-large .badge-row { margin-bottom: var(--space-4); }
+  .diag-card-large h3 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--jnsq-ink);
+    margin: 0 0 6px;
+  }
+  .diag-card-large .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--jnsq-mute);
+    margin-bottom: var(--space-3);
+  }
+  .diag-card-large .pitch {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--jnsq-body);
+    margin-bottom: var(--space-3);
+  }
+  .diag-card-large .for {
+    background: var(--jnsq-line-soft);
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: var(--space-4);
+  }
+  .diag-card-large .for strong {
+    display: block; margin-bottom: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--jnsq-ink);
+  }
+  .diag-card-large .for span {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--jnsq-body);
+    font-style: italic;
+  }
+  .diag-card-large .meta {
+    display: flex; gap: var(--space-3);
+    margin-bottom: var(--space-4);
+    font-size: 13px; color: var(--jnsq-mute);
+    font-family: 'Inter', sans-serif;
+  }
+  .diag-card-large .meta strong { color: var(--jnsq-ink); font-weight: 700; }
+  .diag-card-large .actions {
+    display: flex; gap: var(--space-2); margin-top: auto; flex-wrap: wrap;
+  }
+
+  .unsure-panel {
+    background: rgba(253, 213, 0, 0.06);
+    border: 1px solid rgba(253, 213, 0, 0.30);
+    border-radius: 4px;
+    padding: var(--space-5);
+    text-align: center;
+    margin: var(--space-7) auto 0;
+    max-width: 760px;
+  }
+  .unsure-panel h3 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--jnsq-ink);
+    margin-bottom: var(--space-2);
+  }
+  .unsure-panel p {
+    font-size: 1rem;
+    color: var(--jnsq-body);
+    line-height: 1.7;
+    max-width: 60ch;
+    margin: 0 auto;
+  }
+  .unsure-panel strong { color: var(--jnsq-ink); }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "The Brand Equity Architecture Diagnostic | Studio JNSQ",
+  "url": "https://studiojnsq.com/diagnostic",
+  "description": "Two diagnostics for two questions. MAD™ measures the authority your brand commands. RVF™ measures the resources your service business actually compounds.",
+  "isPartOf": { "@type": "WebSite", "name": "Studio JNSQ", "url": "https://studiojnsq.com" },
+  "about": [
+    {"@type": "Thing", "name": "Brand Equity Architecture"},
+    {"@type": "Thing", "name": "Market Authority Diamond"},
+    {"@type": "Thing", "name": "Resource Value Formula"}
+  ],
+  "mainEntity": [
+    {"@type": "Quiz", "name": "Market Authority Diamond Diagnostic", "description": "44 questions across 5 facets that score the authority your brand commands.", "url": "https://studiojnsq.com/diagnostic/MAD"},
+    {"@type": "Quiz", "name": "Resource Value Formula Diagnostic", "description": "20 questions across 4 aspects that measure how a service business trades time, money, and effort.", "url": "https://studiojnsq.com/diagnostic/RVF"}
+  ]
+}
+</script>
+</head>
+<body>
+
+<div class="jnsq-scroll-progress"></div>
+
+<nav class="jnsq-nav">
+  <div class="jnsq-nav-inner">
+    <a href="/" class="jnsq-nav-logo">STUDIO <span class="accent">JNSQ</span></a>
+    <div class="jnsq-nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/journal">Journal</a>
+      <a href="/case-studies">Portfolio</a>
+      <a href="/diagnostic">Diagnostic</a>
+    </div>
+    <a href="/" class="jnsq-nav-cta">Book a Call</a>
+  </div>
+</nav>
+
+<!-- HERO + SELECTOR (single-viewport: hero + cards above the fold) -->
+<header class="jnsq-hero" style="padding-top: calc(var(--space-7) + 70px); padding-bottom: var(--space-4);">
+  <div class="jnsq-container" style="text-align: center;">
+    <div class="jnsq-eyebrow jnsq-hero-eyebrow" data-reveal-fade>The Diagnostic Suite</div>
+    <h1 class="jnsq-hero-display" style="font-size: clamp(1.875rem, 4vw, 3.25rem); max-width: 26ch; margin-left: auto; margin-right: auto; margin-bottom: var(--space-3);" data-reveal-words>
+      Two diagnostics. <span class="jnsq-accent">Two questions your P&amp;L can&#8217;t answer.</span>
+    </h1>
+    <p class="jnsq-hero-lead" style="margin-left: auto; margin-right: auto; max-width: 56ch; margin-bottom: var(--space-2);" data-reveal>
+      Marketing measures attention. Sales measures conversion. Brand equity architecture measures what your brand is worth when you are not in the room.
+    </p>
+  </div>
+</header>
+
+<section class="jnsq-section" style="padding-top: var(--space-3); padding-bottom: var(--space-7);">
+  <div class="jnsq-container">
+
+    <div class="selector-grid" style="margin-top: 0;" data-stagger>
+
+      <article class="jnsq-card diag-card-large" data-reveal>
+        <div class="badge-row"><span class="jnsq-eyebrow">For brand authority</span></div>
+        <h3>MAD<sup style="color:var(--jnsq-yellow); font-size:0.5em;">™</sup></h3>
+        <div class="subtitle">Market Authority Diamond</div>
+        <p class="pitch">Score the gravity your brand commands across five facets: <strong>Demand, Credibility, Visibility, Branding,</strong> and <strong>Market Trust</strong>. The diamond shape shows where you lean and where you leak.</p>
+        <div class="for">
+          <strong>Use this if you ask</strong>
+          <span>&#8220;Why are we known but not chosen?&#8221; or &#8220;Why does our pipeline stall at consideration?&#8221;</span>
+        </div>
+        <div class="meta">
+          <span><strong>44</strong> questions</span>
+          <span><strong>5</strong> facets</span>
+          <span><strong>~7</strong> minutes</span>
+        </div>
+        <div class="actions">
+          <a href="/diagnostic/MAD" class="jnsq-btn jnsq-btn-dark jnsq-btn-arrow">Score Your Authority</a>
+          <a href="/?openDiagnostic=MAD" class="jnsq-btn jnsq-btn-ghost">Start now</a>
+        </div>
+      </article>
+
+      <article class="jnsq-card diag-card-large" data-reveal>
+        <div class="badge-row"><span class="jnsq-eyebrow">For service businesses</span></div>
+        <h3>RVF<sup style="color:var(--jnsq-yellow); font-size:0.5em;">™</sup></h3>
+        <div class="subtitle">Resource Value Formula</div>
+        <p class="pitch">Map how your service business trades <strong>Time, Money,</strong> and <strong>Effort</strong>. The formula reveals whether your model compounds value or just cycles it back into more billable hours.</p>
+        <div class="for">
+          <strong>Use this if you ask</strong>
+          <span>&#8220;Why am I always in every deal?&#8221; or &#8220;Why does growing the business feel like working more, not less?&#8221;</span>
+        </div>
+        <div class="meta">
+          <span><strong>20</strong> questions</span>
+          <span><strong>4</strong> aspects</span>
+          <span><strong>~5</strong> minutes</span>
+        </div>
+        <div class="actions">
+          <a href="/diagnostic/RVF" class="jnsq-btn jnsq-btn-dark jnsq-btn-arrow">Diagnose Your Resource Stack</a>
+          <a href="/?openDiagnostic=RVF" class="jnsq-btn jnsq-btn-ghost">Start now</a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="unsure-panel" data-reveal>
+      <h3>Not sure which one fits?</h3>
+      <p>If your business sells <strong>time and expertise</strong> (consulting, agency, professional services), start with <strong>RVF™</strong>. If you sell <strong>products, platforms, or programs</strong> and need to know how the market sees you, start with <strong>MAD™</strong>. You can take both. Most founders eventually do.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="jnsq-cta-section">
+  <div class="jnsq-container">
+    <div class="jnsq-eyebrow" data-reveal-fade>Diagnose first. Strategize second.</div>
+    <h2 class="jnsq-display-2" data-reveal>Every Studio JNSQ engagement starts with a <span class="jnsq-accent">diagnosis</span>, not a pitch.</h2>
+    <p class="jnsq-lead" data-reveal>The diagnostic is free. The clarity is the product. Five to seven minutes is the smallest investment you can make in knowing what your brand is actually worth.</p>
+    <div class="jnsq-hero-actions" style="justify-content: center; align-items: center; margin-top: var(--space-4);" data-reveal>
+      <a href="/diagnostic/MAD" class="jnsq-btn jnsq-btn-ghost" style="color:var(--jnsq-bg); border-color:rgba(255,255,255,0.25);">Start with MAD™</a>
+      <span style="font-family: 'Lora', Georgia, serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.55); padding: 0 4px;">or</span>
+      <a href="/diagnostic/RVF" class="jnsq-btn jnsq-btn-ghost" style="color:var(--jnsq-bg); border-color:rgba(255,255,255,0.25);">Start with RVF™</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="jnsq-footer">
+  <div class="jnsq-container">
+    <div class="jnsq-footer-grid">
+      <div style="text-align: center;">
+        <div class="jnsq-footer-brand">STUDIO <span class="accent">JNSQ</span></div>
+        <p class="jnsq-footer-tagline">Others make you profitable.<br>Brand equity makes you valuable.</p>
+      </div>
+      <div class="jnsq-footer-col">
+        <h4>Discipline</h4>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/diagnostic">Diagnostic</a></li>
+          <li><a href="/journal">Journal</a>
+      <a href="/case-studies">Portfolio</a></li>
+        </ul>
+      </div>
+      <div class="jnsq-footer-col">
+        <h4>Frameworks</h4>
+        <ul>
+          <li><a href="/diagnostic/MAD">MAD™</a></li>
+          <li><a href="/diagnostic/RVF">RVF™</a></li>
+          <li><a href="/journal/branding-vs-brand-equity-vs-brand-architecture">The doctrine</a></li>
+        </ul>
+      </div>
+      <div class="jnsq-footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" rel="noopener">Book a call</a></li>
+          <li><a href="/diagnostic">Start a diagnosis</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="jnsq-footer-bottom">
+      <div>&copy; 2026 Studio JNSQ. The brand equity architecture firm for valuable brands.</div>
+      <div class="legal"><a href="/">studiojnsq.com</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/jnsq-system.js?v=2" defer></script>
+</body>
+</html>

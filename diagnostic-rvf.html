@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RVF™ Diagnostic | Resource Value Formula | Studio JNSQ</title>
+<meta name="description" content="The RVF™ Diagnostic measures how your service business trades Money, Effort, and Time. Three trades, nine stall patterns, four operating aspects, one answer to whether your model compounds value or just cycles billable hours.">
+<meta name="keywords" content="RVF diagnostic, resource value formula, service business diagnostic, founder dependency, exit readiness, trade position, brand equity architecture, founder leverage, money effort time">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RVF™ Diagnostic | Resource Value Formula | Studio JNSQ">
+<meta property="og:description" content="If you stopped working tomorrow, what would your business be worth? Diagnose how your service business trades money, effort, and time.">
+<meta property="og:url" content="https://studiojnsq.com/diagnostic/RVF">
+<meta property="og:site_name" content="Studio JNSQ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RVF™ Diagnostic | Resource Value Formula">
+<meta name="twitter:description" content="Most service businesses don't compound. They cycle. RVF™ tells you which one yours is.">
+<link rel="canonical" href="https://studiojnsq.com/diagnostic/RVF">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/jnsq-system.css?v=2">
+<style>
+  body { background: var(--jnsq-bg); color: var(--jnsq-body); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  /* ============== THE THREE TRADES (sequence layout) ============== */
+  .trades-flow {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+    counter-reset: trade;
+  }
+  .trade-card {
+    background: var(--jnsq-paper);
+    border: 1px solid var(--jnsq-line);
+    border-left: 3px solid var(--jnsq-yellow);
+    border-radius: 4px;
+    padding: 40px 48px;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 48px;
+    align-items: start;
+    transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 480ms ease;
+    counter-increment: trade;
+  }
+  .trade-card:hover {
+    transform: translateX(8px);
+    box-shadow: 0 18px 44px rgba(26, 26, 26, 0.06);
+  }
+  .trade-card .trade-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--jnsq-yellow);
+    text-shadow: 0 0 14px rgba(253,213,0,0.30);
+    margin-bottom: 8px;
+  }
+  .trade-card h3 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.625rem, 2.4vw, 2rem);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--jnsq-ink);
+    margin-bottom: 12px;
+  }
+  .trade-card .equation {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 1.1875rem;
+    color: var(--jnsq-yellow);
+    margin-bottom: 8px;
+    text-shadow: 0 0 14px rgba(253,213,0,0.30);
+  }
+  .trade-card .stage-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--jnsq-mute);
+    font-style: italic;
+  }
+  .trade-card .body-col p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--jnsq-body);
+    margin-bottom: 14px;
+  }
+  .trade-card .indicators {
+    margin-top: 20px;
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .trade-card .indicators span {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    background: var(--jnsq-line-soft);
+    color: var(--jnsq-body);
+    border: 1px solid var(--jnsq-line);
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+  @media (max-width: 880px) {
+    .trade-card { grid-template-columns: 1fr; gap: 24px; padding: 32px 28px; }
+    .trade-card:hover { transform: translateY(-3px); }
+  }
+
+  /* ============== ASPECTS GRID ============== */
+  .aspects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-2);
+    margin-top: var(--space-5);
+  }
+  .aspect-card-min {
+    background: var(--jnsq-paper);
+    border: 1px solid var(--jnsq-line);
+    border-radius: 4px;
+    padding: var(--space-4);
+    transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1), border-color 480ms ease, box-shadow 480ms ease;
+    position: relative;
+  }
+  .aspect-card-min::before {
+    content: ''; position: absolute;
+    left: var(--space-4); top: 0;
+    width: 28px; height: 2px;
+    background: var(--jnsq-yellow);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .aspect-card-min:hover { transform: translateY(-4px); border-color: rgba(253, 213, 0, 0.30); }
+  .aspect-card-min:hover::before { transform: scaleX(1); }
+  .aspect-card-min .num {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--jnsq-mute); margin-bottom: 12px;
+  }
+  .aspect-card-min h3 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.375rem; font-weight: 500;
+    color: var(--jnsq-ink); margin-bottom: 10px;
+    letter-spacing: -0.005em;
+  }
+  .aspect-card-min p {
+    font-size: 14px; line-height: 1.65;
+    color: var(--jnsq-body); margin: 0;
+  }
+
+  /* ============== NINE STALL PATTERNS ============== */
+  .stalls-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+  @media (max-width: 900px) { .stalls-grid { grid-template-columns: 1fr; } }
+  .stall-trio {
+    display: grid;
+    grid-template-rows: auto repeat(3, 1fr);
+    gap: var(--space-2);
+  }
+  .stall-trio-header {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--jnsq-yellow);
+    text-shadow: 0 0 14px rgba(253,213,0,0.30);
+    margin-bottom: 4px;
+  }
+  .stall-card {
+    background: var(--jnsq-bg);
+    border: 1px solid var(--jnsq-line);
+    border-radius: 4px;
+    padding: 22px 24px;
+    min-height: 190px;
+    transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1), border-color 480ms ease, box-shadow 480ms ease;
+    position: relative;
+  }
+  .stall-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--jnsq-yellow);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .stall-card:hover { transform: translateY(-3px); border-color: rgba(253,213,0,0.30); }
+  .stall-card:hover::before { transform: scaleX(1); }
+  .stall-card h4 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.125rem; font-weight: 500;
+    color: var(--jnsq-ink); margin-bottom: 8px;
+    letter-spacing: -0.005em;
+  }
+  .stall-card p {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; line-height: 1.6;
+    color: var(--jnsq-body); margin: 0;
+  }
+
+  /* ============== RESULTS LAYER ============== */
+  .results-trio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+  @media (max-width: 900px) { .results-trio { grid-template-columns: 1fr; } }
+  .result-card {
+    background: var(--jnsq-paper);
+    border: 1px solid var(--jnsq-line);
+    border-radius: 4px;
+    padding: 36px 32px;
+    position: relative;
+    transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 480ms ease, border-color 480ms ease;
+  }
+  .result-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 2px; background: var(--jnsq-yellow);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .result-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(26,26,26,0.06); border-color: rgba(253,213,0,0.30); }
+  .result-card:hover::before { transform: scaleX(1); }
+  .result-card .tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--jnsq-yellow); margin-bottom: 16px;
+    text-shadow: 0 0 14px rgba(253,213,0,0.30);
+  }
+  .result-card h3 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.375rem; font-weight: 500;
+    color: var(--jnsq-ink); line-height: 1.25;
+    letter-spacing: -0.01em; margin-bottom: 12px;
+  }
+  .result-card p {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; line-height: 1.7;
+    color: var(--jnsq-body); margin: 0;
+  }
+
+  /* ============== TIERS ============== */
+  .tier-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+  @media (max-width: 900px) { .tier-grid { grid-template-columns: 1fr; } }
+  .tier-card-min {
+    background: var(--jnsq-bg);
+    border: 1px solid var(--jnsq-line);
+    border-radius: 4px;
+    padding: var(--space-6) var(--space-5);
+    transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1), border-color 480ms ease, box-shadow 480ms ease;
+  }
+  .tier-card-min:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(26,26,26,0.06); border-color: rgba(253,213,0,0.30); }
+  .tier-card-min.featured { border-color: var(--jnsq-yellow); box-shadow: 0 12px 32px rgba(253,213,0,0.12); }
+  .tier-card-min .tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--jnsq-yellow); margin-bottom: 14px;
+    text-shadow: 0 0 14px rgba(253,213,0,0.30);
+  }
+  .tier-card-min .price {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 2.25rem; font-weight: 500;
+    color: var(--jnsq-ink); margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+  .tier-card-min .price .currency { font-size: 1rem; color: var(--jnsq-mute); margin-right: 2px; vertical-align: top; line-height: 2; }
+  .tier-card-min .what { font-size: 13px; color: var(--jnsq-mute); margin-bottom: var(--space-3); font-family: 'Inter', sans-serif; }
+  .tier-card-min ul { list-style: none; padding: 0; margin: 0; }
+  .tier-card-min li {
+    font-size: 14px; color: var(--jnsq-body);
+    padding: 6px 0 6px 22px; position: relative; line-height: 1.6;
+  }
+  .tier-card-min li::before {
+    content: "✓"; color: var(--jnsq-yellow); font-weight: 800;
+    position: absolute; left: 0; top: 6px;
+    text-shadow: 0 0 10px rgba(253,213,0,0.35);
+  }
+
+  /* ============== FAQ ============== */
+  .faq-list { max-width: 760px; margin: var(--space-5) auto 0; }
+  .faq-list details {
+    border-bottom: 1px solid var(--jnsq-line);
+    padding: var(--space-3) 0;
+  }
+  .faq-list summary {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    color: var(--jnsq-ink); cursor: pointer;
+    list-style: none;
+    display: flex; justify-content: space-between; align-items: center;
+    padding-right: 20px;
+  }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after {
+    content: "+"; color: var(--jnsq-yellow); font-weight: 400;
+    font-size: 22px; text-shadow: 0 0 10px rgba(253,213,0,0.35);
+    transition: transform 480ms ease;
+  }
+  .faq-list details[open] summary::after { content: "−"; transform: rotate(180deg); }
+  .faq-list details p {
+    font-size: 15px; line-height: 1.75;
+    color: var(--jnsq-body); margin-top: 14px;
+    max-width: 60ch;
+  }
+
+  .quote-block {
+    border-left: 3px solid var(--jnsq-yellow);
+    padding: 20px 28px;
+    margin: var(--space-5) 0;
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1.1875rem, 1.8vw, 1.5rem);
+    line-height: 1.5;
+    color: var(--jnsq-ink);
+    background: rgba(253, 213, 0, 0.04);
+  }
+
+  .pull-quote {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+    line-height: 1.55;
+    color: var(--jnsq-ink);
+    max-width: 60ch;
+    margin: var(--space-5) auto 0;
+    text-align: center;
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "RVF™ Diagnostic | Resource Value Formula | Studio JNSQ",
+  "url": "https://studiojnsq.com/diagnostic/RVF",
+  "description": "The RVF™ Diagnostic measures how your service business trades Money, Effort, and Time across three trade positions and nine stall patterns.",
+  "isPartOf": { "@type": "WebSite", "name": "Studio JNSQ", "url": "https://studiojnsq.com" },
+  "about": [
+    {"@type":"Thing","name":"Brand Equity Architecture"},
+    {"@type":"Thing","name":"Resource Value Formula"},
+    {"@type":"Thing","name":"Service Business Strategy"},
+    {"@type":"Thing","name":"Founder Leverage"},
+    {"@type":"Thing","name":"Exit Readiness"},
+    {"@type":"Thing","name":"Founder Dependency"}
+  ],
+  "mainEntity": {
+    "@type": "Quiz", "name": "Resource Value Formula Diagnostic",
+    "description": "20 questions across the three trade positions, nine stall patterns, and four operating aspects of how a service business trades money, effort, and time.",
+    "numberOfQuestions": 20,
+    "url": "https://studiojnsq.com/diagnostic/RVF",
+    "provider": { "@type": "Organization", "name": "Studio JNSQ", "url": "https://studiojnsq.com" }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What does the RVF™ Diagnostic actually measure?","acceptedAnswer":{"@type":"Answer","text":"How your service business trades the three irreducible resources: Money, Effort, and Time. The diagnostic places you in one of three trade positions (Trade One, Two, or Three), surfaces the active stall patterns holding you there, and shows whether your business is structured for transferable value or founder dependence."}},
+    {"@type":"Question","name":"What are the three trades?","acceptedAnswer":{"@type":"Answer","text":"Trade One: Money equals Effort plus Time (founder-led, early stage). Trade Two: Effort equals Time plus Money (team-led, scaling stage). Trade Three: Time equals Effort plus Money (systems-led, mature stage). Knowing which trade you are actually in is half the answer."}},
+    {"@type":"Question","name":"What is founder dependency, and why is it on the RVF™ page?","acceptedAnswer":{"@type":"Answer","text":"Founder dependency is the share of business value that collapses when the founder steps out. It is the single largest valuation discount on a service-business sale. RVF™ measures it directly so you can compress it before exit."}},
+    {"@type":"Question","name":"Is the RVF™ Diagnostic free?","acceptedAnswer":{"@type":"Answer","text":"The free snapshot is free. The $70 report adds full per-aspect analysis, named stall patterns, and a 90-day intervention roadmap. The $100 full diagnostic adds the gap map, exit readiness assessment, and strategist review."}},
+    {"@type":"Question","name":"What is the difference between the diagnostic and a commissioned audit?","acceptedAnswer":{"@type":"Answer","text":"The diagnostic is a self-assessment you complete yourself. It scores your responses across the three trades and surfaces the stall patterns holding you in place. A commissioned audit is conducted by a strategist who examines your business externally: how your resource stack actually operates, where the founder dependency lives, and what the market sees versus what you report. The diagnostic is where you start. The commissioned audit is where you go when you want someone else to look under the hood."}},
+    {"@type":"Question","name":"Should I take MAD™ or RVF™ first?","acceptedAnswer":{"@type":"Answer","text":"If you sell time and expertise (consulting, agency, professional services), start with RVF™. If you sell products, platforms, or programs and want to know how the market sees you, start with MAD™. Most founders eventually take both."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<div class="jnsq-scroll-progress"></div>
+
+<nav class="jnsq-nav">
+  <div class="jnsq-nav-inner">
+    <a href="/" class="jnsq-nav-logo">STUDIO <span class="accent">JNSQ</span></a>
+    <div class="jnsq-nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/journal">Journal</a>
+      <a href="/case-studies">Portfolio</a>
+      <a href="/diagnostic">Diagnostic</a>
+    </div>
+    <a href="/?openDiagnostic=RVF" class="jnsq-nav-cta">Start RVF&#8482;</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="jnsq-hero">
+  <div class="jnsq-container">
+    <div class="jnsq-eyebrow jnsq-hero-eyebrow" data-reveal-fade>RVF&#8482; Diagnostic &middot; Resource Value Formula</div>
+    <h1 class="jnsq-hero-display" data-reveal-words>
+      If you stopped working tomorrow, <span class="jnsq-accent">what would your business be worth?</span>
+    </h1>
+    <p class="jnsq-hero-lead" data-reveal>
+      Every service business runs on three irreducible resources: Money, Effort, and Time. The RVF&#8482; Diagnostic shows you which trade you are actually making, which stall patterns are holding you there, and what the business is worth when you are not in the room.
+    </p>
+    <div class="jnsq-hero-actions" data-reveal>
+      <a href="/?openDiagnostic=RVF" class="jnsq-btn jnsq-btn-primary jnsq-btn-arrow">Start the RVF&#8482; Diagnostic</a>
+      <a href="#trades" class="jnsq-btn jnsq-btn-ghost">See the three trades</a>
+    </div>
+    <div class="jnsq-small" style="margin-top: var(--space-3); color: var(--jnsq-mute);">Free snapshot. ~5 minutes. No credit card.</div>
+  </div>
+</header>
+
+<!-- THESIS -->
+<section class="jnsq-section">
+  <div class="jnsq-container jnsq-container-default">
+    <div class="jnsq-section-header">
+      <div class="jnsq-eyebrow" data-reveal-fade>The thesis</div>
+      <h2 class="jnsq-display-2" data-reveal>Most service businesses don&#8217;t compound. <span class="jnsq-accent">They cycle.</span></h2>
+    </div>
+    <div class="jnsq-prose" data-reveal>
+      <p>Every month the meter resets. New pitches. New billable hours. New version of you in every deal. The business is profitable and the founder is exhausted, and growth feels like the punishment for last quarter&#8217;s success. That is the cycling pattern. The RVF&#8482; Diagnostic shows you whether you are in it.</p>
+      <p>Three resources keep your business alive: <strong>Money, Effort,</strong> and <strong>Time</strong>. Most founders trade the wrong one for the stage they are in. They protect cash, optimize hours, and burn effort like a renewable resource. The formula exposes the trade you are actually making and what it is costing you in equity that should be compounding.</p>
+      <div class="quote-block">Half the answer is knowing which equation you&#8217;re in. The other half is execution. The equals sign is a mirror: look at it and you know exactly where you are.</div>
+    </div>
+  </div>
+</section>
+
+<!-- THE THREE TRADES -->
+<section class="jnsq-section" id="trades" style="background: var(--jnsq-paper);">
+  <div class="jnsq-container">
+    <div class="jnsq-section-header center">
+      <div class="jnsq-eyebrow" data-reveal-fade>The three trades</div>
+      <h2 class="jnsq-display-2" data-reveal>Three equations. <span class="jnsq-accent">One you are actually in.</span></h2>
+      <p class="jnsq-lead" data-reveal>The left side of the equation is what you crave; the resource you are starving for at this stage. The right side is what you must exchange to get it. The diagnostic places you in the trade you are operating in, not the one you think you are in.</p>
+    </div>
+
+    <div class="trades-flow" data-stagger>
+      <article class="trade-card" data-reveal>
+        <div class="head-col">
+          <div class="trade-num">Trade One</div>
+          <h3>You crave money.</h3>
+          <div class="equation">Money = Effort + Time</div>
+          <div class="stage-label">Early Stage &middot; Founder-led</div>
+        </div>
+        <div class="body-col">
+          <p>You don&#8217;t have much money, so you trade the only resources you have: your own effort and your own time. You grind. You wear every hat. You work the hours no one else will. Growth is linear. The ceiling is your personal capacity.</p>
+          <p>Staying in Trade One when the company needs Trade Two is how you build a job, not a company.</p>
+          <div class="indicators">
+            <span>Revenue stops without you</span>
+            <span>You are in every deal</span>
+            <span>Calendar is 80%+ execution</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="trade-card" data-reveal>
+        <div class="head-col">
+          <div class="trade-num">Trade Two</div>
+          <h3>You crave effort.</h3>
+          <div class="equation">Effort = Time + Money</div>
+          <div class="stage-label">Scaling Stage &middot; Team-led</div>
+        </div>
+        <div class="body-col">
+          <p>Growth created a new problem: you hit the ceiling of what one person can do. Now you need other people&#8217;s effort to multiply your value. To get it, you invest time (downloading vision, training, building culture) and money (salaries, systems, infrastructure).</p>
+          <p>This is the hardest transition. You are spending before you see the return.</p>
+          <div class="indicators">
+            <span>Hired but still reviewing all work</span>
+            <span>Margins compress</span>
+            <span>Trust has not transferred</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="trade-card" data-reveal>
+        <div class="head-col">
+          <div class="trade-num">Trade Three</div>
+          <h3>You crave time.</h3>
+          <div class="equation">Time = Effort + Money</div>
+          <div class="stage-label">Mature Stage &middot; Systems-led</div>
+        </div>
+        <div class="body-col">
+          <p>When everything is built, you crave time. Not to abandon the business, but to reclaim focus. To shape culture and vision instead of managing operations. You buy back your time by investing money so others&#8217; effort fully replaces yours.</p>
+          <p>Your time returns to what actually moves the business: strategy, relationships, expansion, vision.</p>
+          <div class="indicators">
+            <span>Operates without you for weeks</span>
+            <span>Brand drives reputation</span>
+            <span>Calendar is 70%+ strategy</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- THE NINE STALL PATTERNS -->
+<section class="jnsq-section">
+  <div class="jnsq-container">
+    <div class="jnsq-section-header center">
+      <div class="jnsq-eyebrow" data-reveal-fade>The nine stall patterns</div>
+      <h2 class="jnsq-display-2" data-reveal>Each trade has its own way of <span class="jnsq-accent">holding you in place</span>.</h2>
+      <p class="jnsq-lead" data-reveal>These are not personality flaws. They are structural patterns that repeat across industries and founder profiles. Naming them is half the work. The diagnostic surfaces the ones running you right now.</p>
+    </div>
+
+    <div class="stalls-grid" data-stagger>
+      <div class="stall-trio" data-reveal>
+        <div class="stall-trio-header">Trade One Stalls</div>
+        <div class="stall-card">
+          <h4>The Identity Trap</h4>
+          <p>Your identity is fused with the work. Letting go of execution feels like losing who you are. The competence that built the company becomes the ceiling.</p>
+        </div>
+        <div class="stall-card">
+          <h4>The Quality Myth</h4>
+          <p>&#8220;Nobody can do it as well as I can.&#8221; True in the short term. Almost never true in the long term. The myth is thinking nobody ever will.</p>
+        </div>
+        <div class="stall-card">
+          <h4>Revenue Fear</h4>
+          <p>Moving to Trade Two means spending before the return is visible. The fear is not just &#8220;can I afford this?&#8221; It is &#8220;am I qualified to make business-level decisions?&#8221;</p>
+        </div>
+      </div>
+
+      <div class="stall-trio" data-reveal>
+        <div class="stall-trio-header">Trade Two Stalls</div>
+        <div class="stall-card">
+          <h4>The Delegation Illusion</h4>
+          <p>You delegate tasks but not authority. The team has responsibilities but no decision-making power. It looks like delegation. It functions like Trade One with extra steps.</p>
+        </div>
+        <div class="stall-card">
+          <h4>Premature Optimisation</h4>
+          <p>Building perfect systems before the team has learned to operate imperfect ones. Judgment comes first. Systems scale judgment, they do not replace it.</p>
+        </div>
+        <div class="stall-card">
+          <h4>The Trust Deficit</h4>
+          <p>You hired well but did not invest the time to transfer vision. The team executes competently in the wrong direction. Destination is what fails to transfer.</p>
+        </div>
+      </div>
+
+      <div class="stall-trio" data-reveal>
+        <div class="stall-trio-header">Trade Three Stalls</div>
+        <div class="stall-card">
+          <h4>Relevance Anxiety</h4>
+          <p>You built a machine that runs without you and now feel purposeless. You regress: micromanaging, inserting yourself into decisions, creating complexity to feel needed.</p>
+        </div>
+        <div class="stall-card">
+          <h4>The Vision Vacuum</h4>
+          <p>You stepped back from execution but did not replace it with strategic direction. The team runs operationally and drifts strategically. Growth plateaus.</p>
+        </div>
+        <div class="stall-card">
+          <h4>The Complacency Plateau</h4>
+          <p>Everything works. Stability gets mistaken for success. Without active strategic investment, Trade Three decays back into Trade Two while nobody notices.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE RESULTS LAYER -->
+<section class="jnsq-section" style="background: var(--jnsq-paper);">
+  <div class="jnsq-container">
+    <div class="jnsq-section-header center">
+      <div class="jnsq-eyebrow" data-reveal-fade>The results layer</div>
+      <h2 class="jnsq-display-2" data-reveal>RVF&#8482; reveals the three numbers <span class="jnsq-accent">an acquirer cares about</span>.</h2>
+      <p class="jnsq-lead" data-reveal>Profitability is what you earned last quarter. RVF&#8482; surfaces what your business is structured to be worth without you in it. These are the three financial outcomes the diagnostic is built to expose.</p>
+    </div>
+    <div class="results-trio" data-stagger>
+      <div class="result-card" data-reveal>
+        <div class="tag">Founder Dependency &middot; Valuation drag</div>
+        <h3>Acquirers do not pay for revenue that walks out the door with you.</h3>
+        <p>Founder dependency is the single largest discount applied to a service-business sale. RVF&#8482; measures how much revenue, decisions, and delivery quality survive your absence. Strong scores compress the discount. Weak ones price the business for parts.</p>
+      </div>
+      <div class="result-card" data-reveal>
+        <div class="tag">Margin Resilience &middot; Trade-cost coverage</div>
+        <h3>Most founders compress margin in the move from Trade One to Trade Two and never recover it.</h3>
+        <p>The shift to a team costs salaries, systems, and trust before the return shows up. RVF&#8482; surfaces whether your trade is structured to rebuild margin on the other side, or whether you have funded a more expensive version of the same job.</p>
+      </div>
+      <div class="result-card" data-reveal>
+        <div class="tag">Exit Multiple &middot; Transferable value</div>
+        <h3>A business worth running is not always a business worth selling.</h3>
+        <p>Exit value lives in the gap between what the business pays you and what it is worth without you. RVF&#8482; exposes whether your structure is compounding equity that transfers, or income that ends the day you step out of the room.</p>
+      </div>
+    </div>
+    <p class="pull-quote" data-reveal>Profit pays you today. Structure pays you when you leave. RVF&#8482; measures whether you are building both, or only the first.</p>
+  </div>
+</section>
+
+<!-- ARC: profitable → valuable (cross-link to MAD) -->
+<section class="jnsq-section" style="background: var(--jnsq-paper);">
+  <div class="jnsq-container">
+    <div class="jnsq-section-header center">
+      <div class="jnsq-eyebrow" data-reveal-fade>The arc</div>
+      <h2 class="jnsq-display-2" data-reveal>Profitable today. <span class="jnsq-accent">Valuable forever.</span></h2>
+      <p class="jnsq-lead" data-reveal>Brand equity has two layers. MAD&#8482; reads the surface. RVF&#8482; reads the structure beneath. Most engagements need both.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:var(--space-4);align-items:stretch;margin-top:var(--space-5);max-width:1080px;margin-left:auto;margin-right:auto;" data-stagger>
+
+      <!-- MAD: profitability layer -->
+      <div class="jnsq-card" style="padding:var(--space-5);border-left:3px solid var(--jnsq-line);" data-reveal>
+        <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--jnsq-mute);margin-bottom:var(--space-2);">The surface</div>
+        <h3 style="font-family:'Lora',Georgia,serif;font-size:1.5rem;font-weight:500;color:var(--jnsq-ink);margin-bottom:var(--space-2);letter-spacing:-0.005em;">MAD&#8482;: the profitability layer</h3>
+        <p style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.65;color:var(--jnsq-body);margin:0 0 var(--space-3) 0;">Demand, credibility, visibility, market trust, branding. The five facets that decide whether the market recognizes you today. Strong MAD&#8482; lowers CAC, lifts MRR, multiplies LTV. It is what makes you profitable.</p>
+        <a href="/diagnostic/MAD" class="jnsq-link" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--jnsq-ink);text-decoration:none;border-bottom:2px solid var(--jnsq-yellow);padding-bottom:2px;">Score with MAD&#8482; &rarr;</a>
+      </div>
+
+      <!-- Connector -->
+      <div style="display:flex;align-items:center;justify-content:center;" data-reveal>
+        <div style="font-family:'Lora',Georgia,serif;font-style:italic;font-size:1.25rem;color:var(--jnsq-mute);">then</div>
+      </div>
+
+      <!-- RVF: valuability layer -->
+      <div class="jnsq-card" style="padding:var(--space-5);border-left:3px solid var(--jnsq-yellow);background:#fff;" data-reveal>
+        <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--jnsq-yellow);margin-bottom:var(--space-2);">You are here</div>
+        <h3 style="font-family:'Lora',Georgia,serif;font-size:1.5rem;font-weight:500;color:var(--jnsq-ink);margin-bottom:var(--space-2);letter-spacing:-0.005em;">RVF&#8482;: the valuability layer</h3>
+        <p style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.65;color:var(--jnsq-body);margin:0 0 var(--space-3) 0;">Time, money, effort. The three trades that decide whether profit compounds without your daily presence. Strong RVF&#8482; means the business holds its value when you step out, the founder dependency drops, and the multiple at exit holds.</p>
+        <div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--jnsq-mute);font-style:italic;">Reads: whether what you built keeps being worth it.</div>
+      </div>
+
+    </div>
+
+    <p class="jnsq-lead" style="text-align:center;margin-top:var(--space-5);font-family:'Lora',Georgia,serif;font-style:italic;color:var(--jnsq-ink);max-width:720px;margin-left:auto;margin-right:auto;" data-reveal>Profitability is the floor. Valuability is the ceiling. The goal is the latter.</p>
+  </div>
+</section>
+
+<!-- TIERS -->
+<section class="jnsq-section">
+  <div class="jnsq-container jnsq-container-grand">
+    <div class="jnsq-section-header center">
+      <div class="jnsq-eyebrow" data-reveal-fade>What you get</div>
+      <h2 class="jnsq-display-2" data-reveal>Start free. <span class="jnsq-accent">Upgrade only if you want the prescription.</span></h2>
+    </div>
+    <div class="tier-grid" data-stagger>
+      <div class="tier-card-min" data-reveal>
+        <div class="tag">Free Snapshot</div>
+        <div class="price">Free</div>
+        <div class="what">Trade Position + active traps named</div>
+        <ul>
+          <li>Your trade position</li>
+          <li>Active stall patterns named</li>
+          <li>Aspiration vs reality gap</li>
+          <li>One headline insight</li>
+        </ul>
+      </div>
+      <div class="tier-card-min featured" data-reveal>
+        <div class="tag">Diagnostic Report</div>
+        <div class="price"><span class="currency">$</span>70</div>
+        <div class="what">Full report with deep trap analysis</div>
+        <ul>
+          <li>Everything in the free snapshot</li>
+          <li>Full per-aspect analysis</li>
+          <li>Deep stall-pattern interpretation</li>
+          <li>Exit readiness assessment</li>
+          <li>Gap Map visual</li>
+          <li>Branded PDF report</li>
+        </ul>
+      </div>
+      <div class="tier-card-min" data-reveal>
+        <div class="tag">Full Diagnostic</div>
+        <div class="price"><span class="currency">$</span>100</div>
+        <div class="what">Complete analysis with strategist review</div>
+        <ul>
+          <li>Everything in the report</li>
+          <li>Full gap map visual</li>
+          <li>Exit readiness assessment</li>
+          <li>Strategist review session</li>
+          <li>Branded PDF diagnostic</li>
+        </ul>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:var(--space-4); font-family:'Inter',sans-serif; font-size:13px; color:var(--jnsq-mute);">
+      Want more than a self-assessment? <a href="https://calendly.com/jerico-studio-jnsq/30min" class="jnsq-link">Ask about a commissioned audit</a> with a strategist.
+    </p>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="jnsq-section">
+  <div class="jnsq-container jnsq-container-default">
+    <div class="jnsq-section-header center">
+      <div class="jnsq-eyebrow" data-reveal-fade>Common questions</div>
+      <h2 class="jnsq-display-2" data-reveal>What founders ask before they start.</h2>
+    </div>
+    <div class="faq-list" data-reveal>
+      <details>
+        <summary>What does the RVF&#8482; Diagnostic actually measure?</summary>
+        <p>How your service business trades the three irreducible resources: Money, Effort, and Time. The diagnostic places you in one of three trade positions, surfaces the active stall patterns holding you there, and shows whether your business is structured for transferable value or founder dependence.</p>
+      </details>
+      <details>
+        <summary>What are the three trades?</summary>
+        <p>Trade One: Money equals Effort plus Time (founder-led, early stage). Trade Two: Effort equals Time plus Money (team-led, scaling stage). Trade Three: Time equals Effort plus Money (systems-led, mature stage). Knowing which trade you are actually in is half the answer.</p>
+      </details>
+      <details>
+        <summary>What is founder dependency, and why is it on the RVF&#8482; page?</summary>
+        <p>Founder dependency is the share of business value that collapses when the founder steps out. It is the single largest valuation discount on a service-business sale. RVF&#8482; measures it directly so you can compress it before exit, not after.</p>
+      </details>
+      <details>
+        <summary>How does RVF&#8482; connect to the MAD&#8482; Diagnostic?</summary>
+        <p>RVF&#8482; measures the internal engine: how the business allocates Money, Effort, and Time. MAD&#8482; measures the external position: what the market believes about the brand. A business can have efficient resource allocation (high RVF&#8482;) but weak market authority (low MAD&#8482;) so the engine runs but the market does not recognise the value. The reverse is more common. Alignment is the goal. <a href="/diagnostic/MAD" class="jnsq-link">Take the MAD&#8482; Diagnostic</a> for the complete picture.</p>
+      </details>
+      <details>
+        <summary>How is the diagnostic different from a commissioned audit?</summary>
+        <p>The diagnostic is a self-assessment. You answer the questions, and the framework scores your responses. It is fast, free to start, and gives you a clear read on where you stand. A commissioned audit is conducted by a strategist who examines your business externally: how your resource stack actually operates, how the market perceives your brand, and where the gaps are between what you report and what is actually happening. The diagnostic tells you where you think you are. The commissioned audit tells you where you actually are.</p>
+      </details>
+      <details>
+        <summary>Is the RVF&#8482; Diagnostic free?</summary>
+        <p>The free snapshot is free. The $70 report adds full per-aspect analysis, named stall patterns, exit readiness, and a 90-day intervention roadmap. The $100 full diagnostic adds the gap map, exit readiness assessment, and a strategist review session. The commissioned audit is conducted by a strategist who examines your brand and resource stack externally, producing a deeper analysis than the self-assessment can offer.</p>
+      </details>
+      <details>
+        <summary>What is the difference between the diagnostic and a commissioned audit?</summary>
+        <p>The diagnostic is a self-assessment you complete yourself. It scores your responses across the three trades and surfaces the stall patterns holding you in place. A commissioned audit is conducted by a strategist who examines your business externally: how your resource stack actually operates, where the founder dependency lives, and what the market sees versus what you report. The diagnostic is where you start. The commissioned audit is where you go when you want someone else to look under the hood.</p>
+      </details>
+      <details>
+        <summary>Should I take MAD&#8482; or RVF&#8482; first?</summary>
+        <p>If you sell time and expertise (consulting, agency, professional services) and scaling feels like punishment, start with RVF&#8482;. If you sell products, platforms, or programs and want to know how the market sees you, start with <a href="/diagnostic/MAD" class="jnsq-link">MAD&#8482;</a>. Most founders eventually take both.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="jnsq-cta-section">
+  <div class="jnsq-container">
+    <div class="jnsq-eyebrow" data-reveal-fade>Compounding is a structural choice</div>
+    <h2 class="jnsq-display-2" data-reveal>Five minutes tells you which side <span class="jnsq-accent">your business is on</span>.</h2>
+    <p class="jnsq-lead" data-reveal>The Resource Value Formula&#8482; was built for founders who already work hard enough. The diagnostic shows you what to stop trading.</p>
+    <div class="jnsq-hero-actions" style="justify-content: center; align-items: center; margin-top: var(--space-4);" data-reveal>
+      <a href="/?openDiagnostic=RVF" class="jnsq-btn jnsq-btn-primary jnsq-btn-arrow">Start the RVF&#8482; Diagnostic</a>
+      <span style="font-family: 'Lora', Georgia, serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.55); padding: 0 4px;">or</span>
+      <a href="/diagnostic/MAD" class="jnsq-btn jnsq-btn-ghost" style="color:var(--jnsq-bg); border-color:rgba(255,255,255,0.25);">Score with MAD&#8482;</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="jnsq-footer">
+  <div class="jnsq-container">
+    <div class="jnsq-footer-grid">
+      <div style="text-align: center;">
+        <div class="jnsq-footer-brand">STUDIO <span class="accent">JNSQ</span></div>
+        <p class="jnsq-footer-tagline">Others make you profitable.<br>Brand equity makes you valuable.</p>
+      </div>
+      <div class="jnsq-footer-col">
+        <h4>Discipline</h4>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/diagnostic">Diagnostic</a></li>
+          <li><a href="/journal">Journal</a>
+      <a href="/case-studies">Portfolio</a></li>
+        </ul>
+      </div>
+      <div class="jnsq-footer-col">
+        <h4>Frameworks</h4>
+        <ul>
+          <li><a href="/diagnostic/MAD">MAD&#8482;</a></li>
+          <li><a href="/diagnostic/RVF">RVF&#8482;</a></li>
+          <li><a href="/journal/branding-vs-brand-equity-vs-brand-architecture">The doctrine</a></li>
+        </ul>
+      </div>
+      <div class="jnsq-footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" rel="noopener">Book a call</a></li>
+          <li><a href="/diagnostic">Start a diagnosis</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="jnsq-footer-bottom">
+      <div>&copy; 2026 Studio JNSQ. The brand equity architecture firm for valuable brands.</div>
+      <div class="legal"><a href="/">studiojnsq.com</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/jnsq-system.js?v=2" defer></script>
+</body>
+</html>

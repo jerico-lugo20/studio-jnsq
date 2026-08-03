@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preview · Admin Feedback Builder | Studio JNSQ</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #394550;
+    --yellow: #FDD500;
+    --steel: #6B7B8D;
+    --mid: #8E9EAE;
+    --light: #F5F6F8;
+    --border: #E1E6EC;
+    --bg: #F9FAFB;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--dark); line-height: 1.6; padding: 2rem; }
+  .preview-ribbon { position: fixed; top: 12px; right: 12px; background: #B8524D; color: #fff; padding: 6px 14px; border-radius: 3px; font-family: Inter, sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; z-index: 9999; box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
+  .preview-container { max-width: 1120px; margin: 0 auto; }
+  h1 { font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: 1.75rem; color: #1a1a2e; margin-bottom: 0.35rem; }
+  .subtle { color: var(--steel); font-size: 0.9rem; margin-bottom: 2rem; }
+  .toast { position: fixed; bottom: 24px; right: 24px; background: #1a1a2e; color: #fff; padding: 10px 18px; border-radius: 4px; font-size: 0.8rem; opacity: 0; transition: opacity 0.25s; z-index: 9999; }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="preview-ribbon">PREVIEW · ADMIN BUILDER</div>
+
+<div class="preview-container">
+  <h1>Feedback Forms</h1>
+  <p class="subtle">Preview of the redesigned builder panel + Type column. Toggle between Engagement and Advisory to see the field swap.</p>
+
+  <div style="margin-bottom:1.5rem;">
+    <button onclick="APP.toggleFeedbackCreateForm()" style="padding:8px 20px;background:var(--yellow);color:var(--dark);border:none;border-radius:6px;font-weight:600;font-size:0.85rem;cursor:pointer;letter-spacing:0.5px;">+ Create Feedback Form</button>
+  </div>
+
+  <!-- === CREATE PANEL === -->
+  <div id="feedbackCreatePanel" style="display:block;background:#fff;border:1px solid var(--border);border-radius:8px;padding:1.75rem;margin-bottom:1.5rem;">
+    <h3 id="feedbackCreateTitle" style="margin-bottom:0.25rem;font-size:1.05rem;color:var(--dark);font-weight:600;">New Feedback Form</h3>
+    <p style="margin-bottom:1.5rem;font-size:0.8rem;color:var(--steel);">Pick a form type and fill in the essentials. All fields adapt to your choice.</p>
+
+    <!-- FORM TYPE -->
+    <div style="margin-bottom:1.5rem;padding:1rem 1.15rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;">
+      <label style="display:block;font-size:0.65rem;font-weight:700;color:var(--steel);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;">Form Type</label>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;" id="fbFormTypeToggle">
+        <button type="button" data-val="engagement" onclick="APP.setFeedbackFormType('engagement')" style="padding:12px 14px;border:1.5px solid var(--dark);border-radius:6px;background:var(--dark);color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.15s;text-align:left;">
+          <div style="font-weight:700;margin-bottom:2px;">Engagement</div>
+          <div style="font-size:0.7rem;opacity:0.75;font-weight:400;">Paid client feedback (5 steps + ratings)</div>
+        </button>
+        <button type="button" data-val="advisory" onclick="APP.setFeedbackFormType('advisory')" style="padding:12px 14px;border:1.5px solid var(--border);border-radius:6px;background:#fff;color:var(--dark);font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.15s;text-align:left;">
+          <div style="font-weight:700;margin-bottom:2px;">Advisory / Consultation</div>
+          <div style="font-size:0.7rem;opacity:0.75;font-weight:400;">Informal audits, reviews, mentorship (4 steps)</div>
+        </button>
+      </div>
+      <input type="hidden" id="fbFormType" value="engagement">
+    </div>
+
+    <!-- CLIENT DETAILS -->
+    <div style="margin-bottom:1.5rem;">
+      <div style="font-size:0.65rem;font-weight:700;color:var(--steel);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);">Client Details</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div>
+          <label style="display:block;font-size:0.8rem;font-weight:600;color:var(--steel);margin-bottom:4px;"><span id="fbClientNameLabel">Client Name *</span></label>
+          <input type="text" placeholder="e.g. Frennie Diaz" style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:0.85rem;">
+        </div>
+        <div>
+          <label style="display:block;font-size:0.8rem;font-weight:600;color:var(--steel);margin-bottom:4px;"><span id="fbCompanyLabel">Company *</span></label>
+          <input type="text" placeholder="e.g. Idiyanale Business Consultancy" style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:0.85rem;">
+        </div>
+        <div>
+          <label style="display:block;font-size:0.8rem;font-weight:600;color:var(--steel);margin-bottom:4px;">Client industry / type</label>
+          <input type="text" placeholder="e.g. International bank, Luxury watch brand, Law firm" style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:0.85rem;">
+          <p style="margin:0.3rem 0 0;font-size:0.7rem;color:var(--steel);">Survives anonymization &mdash; case studies preserve this context even when the company name is hidden.</p>
+        </div>
+        <div data-form-type-only="advisory" style="display:none;">
+          <label style="display:block;font-size:0.8rem;font-weight:600;color:var(--steel);margin-bottom:4px;">Relationship</label>
+          <select style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:0.85rem;background:#fff;">
+            <option>Not specified</option>
+            <option>Personal friend</option>
+            <option>Industry peer / fellow founder</option>
+            <option>Mentor / mentee</option>
+            <option>Former colleague / collaborator</option>
+            <option>Through a mutual contact</option>
+            <option>Other</option>
+          </select>
+          <p style="margin:0.3rem 0 0;font-size:0.7rem;color:var(--steel);">Pre-fills their reflection form.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM SETTINGS -->
+    <div style="margin-bottom:1.5rem;">
+      <div style="font-size:0.65rem;font-weight:700;color:var(--steel);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);">Form Settings</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div data-form-type-only="engagement">
+          <label style="display:block;font-size:0.8rem;font-weight:600;color:var(--steel);margin-bottom:4px;">Service Availed *</label>
+          <input type="text" placeholder="e.g. Foundational Media & PR Strategy" style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:0.85rem;">
+        </div>
+        <div data-form-type-only="advisory" style="display:none;">
+          <label style="display:block;font-size:0.8rem;font-weight:600;color:var(--steel);margin-bottom:4px;">Engagement Type *</label>
+          <select style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:0.85rem;background:#fff;">
+            <option>Select engagement type...</option>
+            <option>Informal MAD&trade; audit</option>
+            <option>Informal RVF&trade; audit</option>
+            <option>Brand review or critique</option>
+            <option>Positioning consultation</option>
+            <option>Strategic advice / sounding board</option>
+            <option>Founder coaching / mentorship</option>
+            <option>Workshop or teaching session</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div data-form-type-only="engagement">
+          <label style="display:block;font-size:0.8rem;font-weight:600;color:var(--steel);margin-bottom:4px;">Client type</label>
+          <select style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:0.85rem;background:#fff;">
+            <option>New client (first engagement)</option>
+            <option>Recurring client</option>
+          </select>
+          <p style="margin:0.3rem 0 0;font-size:0.7rem;color:var(--steel);">Tailors the intro copy on the form.</p>
+        </div>
+        <div data-form-type-only="advisory" style="display:none;">
+          <label style="display:block;font-size:0.8rem;font-weight:600;color:var(--steel);margin-bottom:4px;">Engagement Context</label>
+          <input type="text" placeholder="e.g. Coffee chat about pricing, Nov 2026" style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:0.85rem;">
+          <p style="margin:0.3rem 0 0;font-size:0.7rem;color:var(--steel);">Optional. Shows in the form header.</p>
+        </div>
+        <div style="grid-column:1/-1;">
+          <label style="display:block;font-size:0.8rem;font-weight:600;color:var(--steel);margin-bottom:4px;">Custom URL slug (optional)</label>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span style="font-size:0.75rem;color:var(--mid);font-family:monospace;">/feedback?slug=</span>
+            <input type="text" placeholder="e.g. acme" style="flex:1;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:0.85rem;font-family:monospace;">
+          </div>
+          <p style="margin:0.3rem 0 0;font-size:0.7rem;color:var(--steel);">If set, the share link uses the slug instead of the form ID.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BRANDING -->
+    <div style="margin-bottom:1.5rem;">
+      <div style="font-size:0.65rem;font-weight:700;color:var(--steel);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);">Branding</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div style="grid-column:1/-1;">
+          <label style="display:block;font-size:0.8rem;font-weight:600;color:var(--steel);margin-bottom:4px;">Client Logo (optional)</label>
+          <div style="border:2px dashed var(--border);border-radius:8px;padding:1.2rem;text-align:center;cursor:pointer;background:var(--bg);">
+            <div style="font-size:1.2rem;color:var(--steel);margin-bottom:4px;">Drop logo here</div>
+            <div style="font-size:0.75rem;color:var(--mid);">or click to browse (PNG, JPG, SVG, max 2MB)</div>
+          </div>
+        </div>
+        <div>
+          <label style="display:block;font-size:0.8rem;font-weight:600;color:var(--steel);margin-bottom:4px;">Primary Color</label>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <input type="color" value="#1A2632" style="width:40px;height:32px;border:1px solid var(--border);border-radius:4px;cursor:pointer;">
+            <input type="text" value="#1A2632" style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:0.85rem;font-family:monospace;">
+          </div>
+        </div>
+        <div>
+          <label style="display:block;font-size:0.8rem;font-weight:600;color:var(--steel);margin-bottom:4px;">Accent Color</label>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <input type="color" value="#FDD500" style="width:40px;height:32px;border:1px solid var(--border);border-radius:4px;cursor:pointer;">
+            <input type="text" value="#FDD500" style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:0.85rem;font-family:monospace;">
+          </div>
+        </div>
+        <div style="grid-column:1/-1;">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:0.85rem;color:var(--dark);">
+            <input type="checkbox" style="width:18px;height:18px;accent-color:var(--yellow);">
+            No logo yet, use Studio JNSQ branding
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- INCENTIVE (engagement only) -->
+    <div style="margin-bottom:0.5rem;" data-form-type-only="engagement">
+      <div style="font-size:0.65rem;font-weight:700;color:var(--steel);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);">Incentive</div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:0.85rem 1rem;">
+        <label style="display:block;font-size:0.8rem;font-weight:600;color:var(--steel);margin-bottom:8px;">Thank-you promo code?</label>
+        <div style="display:flex;gap:0.5rem;margin-bottom:0.6rem;">
+          <button type="button" style="flex:1;padding:8px 14px;border:1px solid var(--border);border-radius:6px;background:var(--dark);color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;">No</button>
+          <button type="button" style="flex:1;padding:8px 14px;border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--dark);font-size:0.85rem;font-weight:600;cursor:pointer;">Yes</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border);display:flex;gap:0.8rem;align-items:center;flex-wrap:wrap;">
+      <button style="padding:10px 26px;background:var(--dark);color:#fff;border:none;border-radius:6px;font-weight:600;font-size:0.85rem;cursor:pointer;letter-spacing:0.3px;">Create Form</button>
+      <button onclick="APP.previewFeedbackForm()" title="Open the client-facing form in a new tab with your current values, without saving" style="padding:10px 22px;background:transparent;border:1px solid var(--yellow);border-radius:6px;font-weight:600;font-size:0.85rem;cursor:pointer;color:var(--dark);letter-spacing:0.3px;display:inline-flex;align-items:center;gap:6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview form
+      </button>
+      <button onclick="document.getElementById('feedbackCreatePanel').style.display='none'" style="padding:10px 22px;background:transparent;border:1px solid var(--border);border-radius:6px;font-size:0.85rem;cursor:pointer;color:var(--steel);">Cancel</button>
+      <span style="font-size:0.7rem;color:var(--steel);font-style:italic;margin-left:auto;">Preview opens the form as your client will see it &mdash; no save required.</span>
+    </div>
+  </div>
+
+  <!-- === FORMS LIST (mocked) === -->
+  <h3 style="font-family:'Lora',serif;font-weight:500;color:#1a1a2e;margin-bottom:0.75rem;font-size:1.15rem;">Recent forms</h3>
+  <p style="color:var(--steel);font-size:0.8rem;margin-bottom:0.75rem;">Click <strong style="color:var(--dark);">Responses</strong> on any row to see the mock response viewer for that form type.</p>
+  <div style="background:#fff;border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+    <table style="width:100%;border-collapse:collapse;">
+      <thead>
+        <tr style="background:var(--bg);">
+          <th style="padding:10px 14px;text-align:left;font-size:0.75rem;font-weight:600;color:var(--steel);text-transform:uppercase;letter-spacing:1px;">Type</th>
+          <th style="padding:10px 14px;text-align:left;font-size:0.75rem;font-weight:600;color:var(--steel);text-transform:uppercase;letter-spacing:1px;">Client</th>
+          <th style="padding:10px 14px;text-align:left;font-size:0.75rem;font-weight:600;color:var(--steel);text-transform:uppercase;letter-spacing:1px;">Company</th>
+          <th style="padding:10px 14px;text-align:left;font-size:0.75rem;font-weight:600;color:var(--steel);text-transform:uppercase;letter-spacing:1px;">Service / Engagement</th>
+          <th style="padding:10px 14px;text-align:center;font-size:0.75rem;font-weight:600;color:var(--steel);text-transform:uppercase;letter-spacing:1px;">Responses</th>
+          <th style="padding:10px 14px;text-align:left;font-size:0.75rem;font-weight:600;color:var(--steel);text-transform:uppercase;letter-spacing:1px;">Created</th>
+          <th style="padding:10px 14px;text-align:center;font-size:0.75rem;font-weight:600;color:var(--steel);text-transform:uppercase;letter-spacing:1px;">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="mockFormsBody"></tbody>
+    </table>
+  </div>
+
+  <!-- === MOCK RESPONSE VIEWER === -->
+  <div id="mockResponsePanel" style="display:none;margin-top:2rem;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+      <h3 id="mockResponseTitle" style="font-family:'Lora',serif;font-weight:500;color:#1a1a2e;font-size:1.25rem;">Responses</h3>
+      <button onclick="document.getElementById('mockResponsePanel').style.display='none'" style="padding:6px 16px;background:transparent;border:1px solid var(--border);border-radius:6px;font-size:0.8rem;cursor:pointer;color:var(--steel);">Close</button>
+    </div>
+    <div id="mockRatingsSummary" style="margin-bottom:1.5rem;"></div>
+    <div id="mockResponsesList"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  var APP = {
+    toggleFeedbackCreateForm: function() {
+      var panel = document.getElementById('feedbackCreatePanel');
+      panel.style.display = (panel.style.display === 'none') ? 'block' : 'none';
+    },
+
+    previewFeedbackForm: function() {
+      var formType = document.getElementById('fbFormType').value === 'advisory' ? 'advisory' : 'engagement';
+      var params = new URLSearchParams();
+      params.set('preview', formType);
+      // In the standalone preview page the fields aren't wired to specific IDs, so we just
+      // pass through the form type. The real admin panel wires all builder inputs.
+      var url = '/feedback.html?' + params.toString();
+      window.open(url, '_blank', 'noopener');
+      var t = document.getElementById('toast');
+      t.textContent = 'Preview opened in a new tab. Nothing saved.';
+      t.classList.add('show');
+      setTimeout(function() { t.classList.remove('show'); }, 1800);
+    },
+
+    setFeedbackFormType: function(type) {
+      if (type !== 'engagement' && type !== 'advisory') type = 'engagement';
+      document.getElementById('fbFormType').value = type;
+      var btns = document.querySelectorAll('#fbFormTypeToggle button');
+      btns.forEach(function(b) {
+        var active = b.getAttribute('data-val') === type;
+        b.style.background = active ? 'var(--dark)' : '#fff';
+        b.style.color = active ? '#fff' : 'var(--dark)';
+        b.style.borderColor = active ? 'var(--dark)' : 'var(--border)';
+      });
+      document.querySelectorAll('[data-form-type-only]').forEach(function(el) {
+        el.style.display = (el.getAttribute('data-form-type-only') === type) ? '' : 'none';
+      });
+      var clientLabel = document.getElementById('fbClientNameLabel');
+      var companyLabel = document.getElementById('fbCompanyLabel');
+      if (type === 'advisory') {
+        if (clientLabel) clientLabel.textContent = "Reference name (Jec’s note)";
+        if (companyLabel) companyLabel.textContent = 'Their organization (if any)';
+      } else {
+        if (clientLabel) clientLabel.textContent = 'Client Name *';
+        if (companyLabel) companyLabel.textContent = 'Company *';
+      }
+      var t = document.getElementById('toast');
+      t.textContent = 'Form type set to: ' + type;
+      t.classList.add('show');
+      setTimeout(function() { t.classList.remove('show'); }, 1500);
+    }
+  };
+
+  // Mock forms list with both types + backward-compat (missing formType) row
+  var mockForms = [
+    { id: 'form-eng-idi', formType: 'engagement', clientName: 'Frennie Diaz', company: 'Idiyanale Business Consultancy', serviceAvailed: 'Foundational Media & PR Strategy', responseCount: 3, createdAt: '2026-06-15T00:00:00Z', useJNSQBranding: true },
+    { id: 'form-adv-verde', formType: 'advisory', clientName: 'M. Reyes', company: 'Verde Studio', engagementType: 'positioning_consultation', responseCount: 1, createdAt: '2026-06-28T00:00:00Z' },
+    { id: 'form-adv-tan', formType: 'advisory', clientName: 'K. Tan', company: 'Solo founder', engagementType: 'informal_mad_audit', responseCount: 2, createdAt: '2026-07-01T00:00:00Z' },
+    { id: 'form-eng-bank', clientName: 'International bank', company: '(anonymized)', serviceAvailed: 'Content architecture teardown', responseCount: 5, createdAt: '2026-05-10T00:00:00Z' }
+  ];
+  var advisoryTypeLabels = {
+    informal_mad_audit: 'Informal MAD™ audit',
+    informal_rvf_audit: 'Informal RVF™ audit',
+    brand_review: 'Brand review',
+    positioning_consultation: 'Positioning consultation',
+    strategic_advice: 'Strategic advice',
+    founder_coaching: 'Founder coaching',
+    workshop_teach: 'Workshop / teaching',
+    other: 'Other'
+  };
+  var html = '';
+  mockForms.forEach(function(f) {
+    var created = new Date(f.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    var branding = f.useJNSQBranding ? ' <span style="background:#FDD500;color:#1A2632;padding:2px 6px;border-radius:3px;font-size:0.6rem;font-weight:700;letter-spacing:0.5px;">JNSQ</span>' : '';
+    var formType = (f.formType === 'advisory') ? 'advisory' : 'engagement';
+    var typeBadge = formType === 'advisory'
+      ? '<span style="background:#FDD500;color:#1A2632;padding:3px 8px;border-radius:3px;font-size:0.62rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Advisory</span>'
+      : '<span style="background:#1A2632;color:#fff;padding:3px 8px;border-radius:3px;font-size:0.62rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Engagement</span>';
+    var serviceText = formType === 'advisory' ? (advisoryTypeLabels[f.engagementType] || f.engagementType || '—') : (f.serviceAvailed || '—');
+    html += '<tr style="border-top:1px solid var(--border);">';
+    html += '<td style="padding:10px 14px;">' + typeBadge + '</td>';
+    html += '<td style="padding:10px 14px;font-size:0.85rem;font-weight:500;">' + f.clientName + branding + '</td>';
+    html += '<td style="padding:10px 14px;font-size:0.85rem;color:var(--steel);">' + f.company + '</td>';
+    html += '<td style="padding:10px 14px;font-size:0.85rem;color:var(--steel);">' + serviceText + '</td>';
+    html += '<td style="padding:10px 14px;text-align:center;font-size:0.85rem;font-weight:600;">' + f.responseCount + '</td>';
+    html += '<td style="padding:10px 14px;font-size:0.8rem;color:var(--steel);">' + created + '</td>';
+    html += '<td style="padding:10px 14px;text-align:center;">';
+    html += '<button onclick="APP.viewMockResponses(\'' + f.id + '\',\'' + f.clientName + '\',\'' + formType + '\')" style="padding:4px 10px;background:var(--dark);color:#fff;border:none;border-radius:4px;font-size:0.7rem;cursor:pointer;margin-right:4px;">Responses</button>';
+    html += '<button style="padding:4px 10px;background:transparent;border:1px solid var(--yellow);border-radius:4px;font-size:0.7rem;cursor:pointer;color:var(--dark);">Edit</button>';
+    html += '</td></tr>';
+  });
+  document.getElementById('mockFormsBody').innerHTML = html;
+
+  // ==============================================================
+  // Mock response payloads — mirror the real API shape
+  // ==============================================================
+  var MOCK_RESPONSES = {
+    'form-eng-idi': [
+      { id: 'r_eng_1', formType: 'engagement', submittedAt: '2026-07-02T14:20:00Z',
+        respondent: { name: 'Frennie Diaz', email: 'frennie@idiyanale.co' },
+        consent: { use: 'named' },
+        ratings: { strategic: 5, content: 5, responsive: 4, value: 5, overall: 5 },
+        answers: {
+          before: 'We had a strong point of view internally, but nothing that translated to the market. Every proposal read like every other consultancy. Our win rate was slipping and we were competing on price when we should have been competing on category. The team knew what we did, we just did not know how to say it.',
+          standout: 'The way Jec unbundled our positioning from our service list. He kept asking who this specific engagement was actually for, and every answer we gave forced a sharper cut. By the third session, we had a version of the pitch we had never quite reached on our own.',
+          impact: 'We now lead every conversation with the client\'s equity question rather than our capability list. Two of our last three engagements closed at premium rates without discount discussion. That was not accidental.',
+          describe: 'Different. Almost annoyingly so. Jec is not a consultant who gives you a deck — he is a strategist who edits your thinking in real time. If you want polish, look elsewhere. If you want to sharpen the thing that is actually blocking your growth, work with him.'
+        }
+      },
+      { id: 'r_eng_2', formType: 'engagement', submittedAt: '2026-07-01T09:15:00Z',
+        respondent: { name: 'A. Cruz', email: 'ac@idiyanale.co' },
+        consent: { use: 'anonymous' },
+        ratings: { strategic: 4, content: 5, responsive: 5, value: 4, overall: 4 },
+        answers: {
+          before: 'We were spending on marketing without a clear frame for what we were actually building.',
+          standout: 'The clarity around what NOT to say. Sometimes the sharpest move is subtraction.'
+        }
+      }
+    ],
+    'form-adv-verde': [
+      { id: 'r_adv_1', formType: 'advisory', submittedAt: '2026-07-03T10:30:00Z',
+        respondent: { name: 'M. Reyes', email: 'm@verdestudio.co', role: 'Founder', organization: 'Verde Studio', relationship: 'peer' },
+        engagement: { type: 'positioning_consultation', format: 'video_call', duration: '1h_3h', timing: 'Late June 2026', receivedDescription: 'A ninety-minute conversation that started with a simple question: "who is your client, actually?" and ended with a full rewrite of how I describe what we do. Jec walked through my current positioning, listed the three unspoken assumptions I was making, then reframed the whole category I was competing in.' },
+        impact: {
+          outcomes: ['clarity', 'positioning_shift', 'pricing_shift', 'personal_confidence'],
+          narrative: 'Before this conversation I was positioned as a "boutique interior designer" competing on aesthetic taste with every other studio on the market. Jec asked me one question that broke it open: who is your client actually paying for? The honest answer was not the room, it was the certainty that they would not regret the room. That reframe changed everything. I rewrote my landing page in a week. I raised my minimum by 60% and did not lose a single lead. Two months later I have my first waitlist. That single conversation was worth more than the last year of marketing spend.',
+          estimatedValue: '$40K in avoided rebrand costs + 60% pricing lift'
+        },
+        consent: { use: 'named' },
+        additionalComments: 'I keep telling other founders about this. It is the single most useful hour I have spent in a year.'
+      }
+    ],
+    'form-adv-tan': [
+      { id: 'r_adv_tan_1', formType: 'advisory', submittedAt: '2026-06-28T15:45:00Z',
+        respondent: { name: 'K. Tan', email: 'k@ktan.dev', role: 'Solo founder', organization: 'ktan.dev', relationship: 'friend' },
+        engagement: { type: 'informal_mad_audit', format: 'in_person', duration: '30m_1h', timing: 'June 2026' },
+        impact: {
+          outcomes: ['clarity', 'avoided_mistake', 'strategic_pivot'],
+          narrative: 'Was about to pour $15K into a rebrand to fix what I thought was a visibility problem. Jec ran an informal MAD audit over coffee and told me my visibility was fine — my demand was broken. Went home and rewrote my offer instead of my logo. Saved myself from a very expensive lateral move that would have solved nothing.',
+          estimatedValue: '$15K in avoided rebrand + refocused 3 months of work'
+        },
+        consent: { use: 'anonymous' },
+        additionalComments: ''
+      },
+      { id: 'r_adv_tan_2', formType: 'advisory', submittedAt: '2026-06-15T11:00:00Z',
+        respondent: { name: 'K. Tan', email: 'k@ktan.dev', role: 'Solo founder', organization: 'ktan.dev', relationship: 'friend' },
+        engagement: { type: 'strategic_advice', format: 'video_call', duration: 'under_30m', timing: 'May 2026' },
+        impact: {
+          outcomes: ['clarity', 'personal_confidence'],
+          narrative: 'Short call after I was second-guessing a pricing decision. Jec walked me through why I should hold the line and how to frame the objection if it came up. It came up. I held. Client signed.',
+          estimatedValue: ''
+        },
+        consent: { use: 'no' },
+        additionalComments: ''
+      }
+    ],
+    'form-eng-bank': [
+      { id: 'r_eng_bank_1', formType: 'engagement', submittedAt: '2026-06-05T09:00:00Z',
+        respondent: { name: 'Anonymous stakeholder', email: '' },
+        consent: { use: 'anonymous' },
+        ratings: { strategic: 5, content: 5, responsive: 4, value: 5, overall: 5 },
+        answers: {
+          before: 'Our content architecture had accreted over five years of well-intentioned decisions with no consolidated point of view. Every business unit had its own tone.',
+          standout: 'The teardown was ruthless but constructive. Every recommendation had a rationale tied back to how a client would actually navigate our site.'
+        }
+      }
+    ]
+  };
+
+  // ==============================================================
+  // Mock response viewer — mirrors Part 3E in real admin.html
+  // ==============================================================
+  var esc = function(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); };
+  var advisoryOutcomeLabels = {
+    clarity: 'Clarity on what to build/fix next', positioning_shift: 'Sharper positioning', pricing_shift: 'Pricing / packaging change',
+    strategic_pivot: 'Strategic pivot', team_alignment: 'Team / founder alignment', revenue_lift: 'Revenue / client acquisition lift',
+    brand_equity: 'Brand equity growth', market_authority: 'Market authority / trust', new_opportunities: 'New opportunities',
+    avoided_mistake: 'Avoided a costly mistake', personal_confidence: 'Founder confidence', other: 'Something else'
+  };
+  var advisoryEngagementTypeLabels = {
+    informal_mad_audit: 'Informal MAD™ audit', informal_rvf_audit: 'Informal RVF™ audit', brand_review: 'Brand review',
+    positioning_consultation: 'Positioning consultation', strategic_advice: 'Strategic advice', founder_coaching: 'Founder coaching',
+    workshop_teach: 'Workshop / teaching', other: 'Other'
+  };
+  var advisoryRelationshipLabels = { friend: 'Personal friend', peer: 'Industry peer', mentor_mentee: 'Mentor/mentee', colleague: 'Former colleague', referral: 'Mutual contact', other: 'Other' };
+  var advisoryFormatLabels = { in_person: 'In person', video_call: 'Video call', phone_call: 'Phone call', written_review: 'Written review', mixed: 'Mixed formats' };
+  var advisoryDurationLabels = { under_30m: 'Under 30 min', '30m_1h': '30 min–1 h', '1h_3h': '1–3 h', half_day: 'Half day+', ongoing: 'Ongoing' };
+  var ratingLabels = { strategic: 'Strategic Value', content: 'Content Quality', responsive: 'Responsiveness', value: 'Value for Investment', overall: 'Overall Experience' };
+  var answerLabels = { before: 'Before the engagement', standout: 'What stood out', impact: 'Impact on the business', describe: 'Describing the experience', improve: 'What we could improve', gaps: 'Gaps in our approach', final: 'Final reflections' };
+  var consentMeta = {
+    named: { label: 'NAMED USE APPROVED', bg: 'rgba(34,197,94,0.10)', color: '#15803d', border: 'rgba(34,197,94,0.35)' },
+    anonymous: { label: 'ANONYMOUS USE OK', bg: 'rgba(59,130,246,0.10)', color: '#1e40af', border: 'rgba(59,130,246,0.35)' },
+    no: { label: 'PRIVATE, NO PUBLIC USE', bg: 'rgba(148,163,184,0.12)', color: '#475569', border: 'rgba(148,163,184,0.35)' }
+  };
+
+  APP.viewMockResponses = function(formId, clientName, expectedFormType) {
+    var responses = MOCK_RESPONSES[formId] || [];
+    document.getElementById('mockResponsePanel').style.display = 'block';
+    document.getElementById('mockResponseTitle').textContent = 'Responses, ' + clientName;
+    renderMockResponses(responses);
+    document.getElementById('mockResponsePanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  APP.toggleCard = function(id) {
+    var body = document.querySelector('[data-body="' + id + '"]');
+    var chev = document.querySelector('[data-chev="' + id + '"]');
+    if (!body) return;
+    var open = body.style.display !== 'none';
+    body.style.display = open ? 'none' : 'block';
+    if (chev) chev.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+  };
+
+  function renderMockResponses(responses) {
+    var engagementResponses = responses.filter(function(r) { return r.formType !== 'advisory'; });
+    var advisoryResponses = responses.filter(function(r) { return r.formType === 'advisory'; });
+    var summary = document.getElementById('mockRatingsSummary');
+
+    if (engagementResponses.length > 0) {
+      // Ratings summary
+      var summaryHtml = '<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0.8rem;">';
+      ['strategic', 'content', 'responsive', 'value', 'overall'].forEach(function(key) {
+        var vals = engagementResponses.map(function(r) { return r.ratings && r.ratings[key] ? parseFloat(r.ratings[key]) : null; }).filter(function(v) { return v !== null && !isNaN(v); });
+        var avgNum = vals.length ? (vals.reduce(function(a, b) { return a + b; }, 0) / vals.length) : null;
+        var avg = avgNum !== null ? avgNum.toFixed(1) : '—';
+        var pct = avgNum !== null ? Math.round((avgNum / 5) * 100) : 0;
+        var isOverall = key === 'overall';
+        var bg = isOverall ? 'linear-gradient(135deg,#1a1a2e 0%,#2d3748 100%)' : '#fff';
+        var color = isOverall ? '#fff' : 'var(--dark)';
+        var labelColor = isOverall ? 'rgba(255,255,255,0.7)' : 'var(--steel)';
+        var border = isOverall ? 'none' : '1px solid var(--border)';
+        summaryHtml += '<div style="background:' + bg + ';border:' + border + ';border-radius:10px;padding:1rem;text-align:center;">';
+        summaryHtml += '<div style="font-size:1.6rem;font-weight:700;color:' + color + ';line-height:1.1;">' + avg + '<span style="font-size:0.9rem;font-weight:400;opacity:0.55;"> /5</span></div>';
+        summaryHtml += '<div style="font-size:0.65rem;color:' + labelColor + ';text-transform:uppercase;letter-spacing:1px;margin-top:6px;font-weight:600;">' + ratingLabels[key] + '</div>';
+        summaryHtml += '<div style="margin-top:8px;height:3px;background:rgba(0,0,0,0.06);border-radius:2px;overflow:hidden;"><div style="width:' + pct + '%;height:100%;background:' + (isOverall ? '#FDD500' : 'var(--dark)') + ';"></div></div>';
+        summaryHtml += '<div style="font-size:0.6rem;color:' + labelColor + ';margin-top:4px;">' + vals.length + ' response' + (vals.length === 1 ? '' : 's') + '</div>';
+        summaryHtml += '</div>';
+      });
+      summaryHtml += '</div>';
+      summary.innerHTML = summaryHtml;
+      summary.style.display = 'block';
+    } else if (advisoryResponses.length > 0) {
+      // Outcomes strip
+      var outcomeTally = {};
+      advisoryResponses.forEach(function(r) {
+        ((r.impact && r.impact.outcomes) || []).forEach(function(o) { outcomeTally[o] = (outcomeTally[o] || 0) + 1; });
+      });
+      var totalR = advisoryResponses.length;
+      var totalValued = advisoryResponses.filter(function(r) { return r.impact && r.impact.estimatedValue; }).length;
+      var outcomeKeys = Object.keys(outcomeTally).sort(function(a, b) { return outcomeTally[b] - outcomeTally[a]; });
+      var outStrip = '<div style="background:linear-gradient(135deg,#1a1a2e 0%,#2d3748 100%);border-radius:10px;padding:1.25rem 1.5rem;color:#fff;">';
+      outStrip += '<div style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:0.85rem;">';
+      outStrip += '<div><div style="font-size:0.6rem;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,0.6);text-transform:uppercase;">Advisory Feed</div><div style="font-size:1.1rem;font-weight:600;margin-top:2px;">' + totalR + ' reflection' + (totalR === 1 ? '' : 's') + '</div></div>';
+      if (totalValued > 0) outStrip += '<div style="font-size:0.7rem;color:rgba(255,255,255,0.75);letter-spacing:0.3px;">' + totalValued + ' with estimated value</div>';
+      outStrip += '</div>';
+      if (outcomeKeys.length > 0) {
+        outStrip += '<div style="display:flex;flex-wrap:wrap;gap:0.4rem;">';
+        outcomeKeys.forEach(function(k) {
+          var label = advisoryOutcomeLabels[k] || k;
+          outStrip += '<span style="background:rgba(253,213,0,0.15);border:1px solid rgba(253,213,0,0.35);color:#FDD500;padding:4px 10px;border-radius:20px;font-size:0.68rem;font-weight:600;">' + esc(label) + ' <span style="opacity:0.75;font-weight:500;">×' + outcomeTally[k] + '</span></span>';
+        });
+        outStrip += '</div>';
+      }
+      outStrip += '</div>';
+      summary.innerHTML = outStrip;
+      summary.style.display = 'block';
+    } else {
+      summary.innerHTML = '';
+      summary.style.display = 'none';
+    }
+
+    // Per-response cards
+    var listHtml = '';
+    responses.forEach(function(r, idx) {
+      var isAdv = r.formType === 'advisory';
+      var date = new Date(r.submittedAt);
+      var dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      var name = (r.respondent && r.respondent.name) ? r.respondent.name : 'Anonymous';
+      var email = (r.respondent && r.respondent.email) ? r.respondent.email : '';
+      var consentKey = (r.consent && r.consent.use) ? r.consent.use : 'no';
+      var cMeta = consentMeta[consentKey] || consentMeta.no;
+      var rid = r.id || ('resp-' + idx);
+
+      listHtml += '<div style="background:#fff;border:1px solid var(--border);border-radius:10px;margin-bottom:0.85rem;overflow:hidden;">';
+      // Header
+      listHtml += '<div onclick="APP.toggleCard(\'' + rid + '\')" style="padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;cursor:pointer;background:#fafafa;border-bottom:1px solid var(--border);">';
+      listHtml += '<div style="flex:1;min-width:200px;">';
+      listHtml += '<div style="display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;">';
+      listHtml += isAdv
+        ? '<span style="font-size:0.55rem;font-weight:700;letter-spacing:1.5px;padding:2px 7px;border-radius:3px;background:#FDD500;color:#1A2632;text-transform:uppercase;">ADVISORY</span>'
+        : '<span style="font-size:0.55rem;font-weight:700;letter-spacing:1.5px;padding:2px 7px;border-radius:3px;background:#1A2632;color:#fff;text-transform:uppercase;">ENGAGEMENT</span>';
+      listHtml += '<span style="font-weight:600;color:var(--dark);font-size:0.95rem;">' + esc(name) + '</span>';
+      if (email) listHtml += '<span style="color:var(--steel);font-size:0.75rem;">' + esc(email) + '</span>';
+      listHtml += '</div>';
+      listHtml += '<div style="display:flex;align-items:center;gap:0.6rem;margin-top:4px;flex-wrap:wrap;">';
+      listHtml += '<span style="color:var(--steel);font-size:0.72rem;">' + dateStr + '</span>';
+      listHtml += '<span style="font-size:0.6rem;font-weight:700;letter-spacing:1px;padding:2px 8px;border-radius:4px;background:' + cMeta.bg + ';color:' + cMeta.color + ';border:1px solid ' + cMeta.border + ';">' + cMeta.label + '</span>';
+      listHtml += '</div></div>';
+
+      if (isAdv) {
+        var advOutcomeCount = ((r.impact && r.impact.outcomes) || []).length;
+        var advValue = (r.impact && r.impact.estimatedValue) ? r.impact.estimatedValue : '';
+        listHtml += '<div style="display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;justify-content:flex-end;">';
+        if (advValue) listHtml += '<div style="background:#FDD500;color:#1A2632;padding:6px 12px;border-radius:999px;font-size:0.7rem;font-weight:700;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">$ ' + esc(advValue) + '</div>';
+        listHtml += '<div style="background:#1a1a2e;color:#fff;padding:6px 14px;border-radius:999px;font-weight:700;font-size:0.75rem;">' + advOutcomeCount + ' outcome' + (advOutcomeCount === 1 ? '' : 's') + '</div>';
+        listHtml += '<span data-chev="' + rid + '" style="font-size:1.1rem;color:var(--steel);transition:transform 0.2s;display:inline-block;">▾</span>';
+        listHtml += '</div>';
+      } else {
+        var allNums = ['strategic', 'content', 'responsive', 'value', 'overall'].map(function(k) { return r.ratings && r.ratings[k] ? parseFloat(r.ratings[k]) : null; }).filter(function(v) { return v !== null && !isNaN(v); });
+        var avgNum = allNums.length ? (allNums.reduce(function(a, b) { return a + b; }, 0) / allNums.length) : null;
+        var overall = avgNum !== null ? avgNum.toFixed(1) : '—';
+        var scoreColor = avgNum !== null ? (avgNum >= 4.5 ? '#22c55e' : avgNum >= 3.5 ? '#FDD500' : avgNum >= 2.5 ? '#f97316' : '#ef4444') : '#94a3b8';
+        listHtml += '<div style="display:flex;align-items:center;gap:0.6rem;">';
+        listHtml += '<div style="background:' + scoreColor + ';color:' + (avgNum !== null && avgNum >= 3.5 ? '#1a1a2e' : '#fff') + ';padding:6px 14px;border-radius:999px;font-weight:700;font-size:0.85rem;display:flex;align-items:baseline;gap:4px;">';
+        listHtml += '<span style="font-size:0.6rem;letter-spacing:1px;opacity:0.75;text-transform:uppercase;">AVG</span>';
+        listHtml += '<span style="font-size:1rem;">' + overall + '</span><span style="opacity:0.7;font-size:0.7rem;">/5</span>';
+        listHtml += '</div>';
+        listHtml += '<span data-chev="' + rid + '" style="font-size:1.1rem;color:var(--steel);transition:transform 0.2s;display:inline-block;">▾</span>';
+        listHtml += '</div>';
+      }
+      listHtml += '</div>'; // end header
+
+      // Body — open by default so you can see it
+      listHtml += '<div data-body="' + rid + '" style="display:block;padding:1.25rem;">';
+
+      if (isAdv) {
+        // Metadata pills
+        var role = (r.respondent && r.respondent.role) || '';
+        var org = (r.respondent && r.respondent.organization) || '';
+        var relKey = (r.respondent && r.respondent.relationship) || '';
+        var relLabel = advisoryRelationshipLabels[relKey] || relKey;
+        var engType = advisoryEngagementTypeLabels[r.engagement && r.engagement.type] || (r.engagement && r.engagement.type) || '';
+        var engFmt = advisoryFormatLabels[r.engagement && r.engagement.format] || (r.engagement && r.engagement.format) || '';
+        var engDur = advisoryDurationLabels[r.engagement && r.engagement.duration] || (r.engagement && r.engagement.duration) || '';
+        var engTiming = (r.engagement && r.engagement.timing) || '';
+
+        function pill(label, val) {
+          if (!val) return '';
+          return '<div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:0.55rem 0.75rem;">'
+            + '<div style="font-size:0.6rem;color:var(--steel);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:2px;">' + esc(label) + '</div>'
+            + '<div style="font-size:0.82rem;color:var(--dark);font-weight:500;">' + esc(val) + '</div></div>';
+        }
+        listHtml += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.6rem;margin-bottom:1.2rem;">';
+        listHtml += pill('Relationship', relLabel);
+        listHtml += pill('Role', role);
+        listHtml += pill('Organization', org);
+        listHtml += pill('Engagement', engType);
+        listHtml += pill('Format', engFmt);
+        listHtml += pill('Duration', engDur);
+        listHtml += pill('When', engTiming);
+        listHtml += '</div>';
+
+        // Outcomes chips
+        var outs = (r.impact && r.impact.outcomes) || [];
+        if (outs.length) {
+          listHtml += '<div style="margin-bottom:1.2rem;">';
+          listHtml += '<div style="font-size:0.65rem;color:var(--steel);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:0.5rem;">Outcomes Flagged</div>';
+          listHtml += '<div style="display:flex;flex-wrap:wrap;gap:0.4rem;">';
+          outs.forEach(function(o) {
+            listHtml += '<span style="background:#1a1a2e;color:#FDD500;padding:5px 11px;border-radius:20px;font-size:0.7rem;font-weight:600;">' + esc(advisoryOutcomeLabels[o] || o) + '</span>';
+          });
+          listHtml += '</div></div>';
+        }
+
+        // Narrative callout
+        var narr = (r.impact && r.impact.narrative) ? r.impact.narrative.trim() : '';
+        if (narr) {
+          var narrWords = narr.split(/\s+/).length;
+          listHtml += '<div style="margin-bottom:1.2rem;border-left:3px solid #FDD500;background:#fffef5;padding:1rem 1.2rem;border-radius:0 6px 6px 0;">';
+          listHtml += '<div style="font-size:0.65rem;color:var(--steel);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:0.5rem;">Narrative <span style="color:var(--steel);font-weight:500;text-transform:none;letter-spacing:0;">· ' + narrWords + ' words</span></div>';
+          listHtml += '<p style="font-family:\'Lora\',Georgia,serif;font-size:1rem;line-height:1.75;color:var(--dark);margin:0;font-style:italic;">' + esc(narr) + '</p>';
+          listHtml += '</div>';
+        }
+
+        // What they received
+        var received = (r.engagement && r.engagement.receivedDescription) || '';
+        if (received) {
+          listHtml += '<div style="margin-bottom:0.6rem;border:1px solid var(--border);border-radius:6px;padding:0.75rem 1rem;background:#fafafa;">';
+          listHtml += '<div style="font-size:0.7rem;font-weight:700;color:var(--dark);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;">What they received</div>';
+          listHtml += '<p style="font-size:0.88rem;color:var(--dark);line-height:1.7;margin:0;">' + esc(received) + '</p>';
+          listHtml += '</div>';
+        }
+
+        // Additional comments
+        if (r.additionalComments && r.additionalComments.trim()) {
+          listHtml += '<div style="margin-bottom:0.6rem;border:1px solid var(--border);border-radius:6px;padding:0.75rem 1rem;background:#fafafa;">';
+          listHtml += '<div style="font-size:0.7rem;font-weight:700;color:var(--dark);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;">Additional comments</div>';
+          listHtml += '<p style="font-size:0.88rem;color:var(--dark);line-height:1.7;margin:0;">' + esc(r.additionalComments) + '</p>';
+          listHtml += '</div>';
+        }
+
+        // Estimated value ribbon
+        var valFull = (r.impact && r.impact.estimatedValue) || '';
+        if (valFull) {
+          listHtml += '<div style="margin-top:1rem;padding:0.85rem 1rem;background:linear-gradient(135deg,rgba(253,213,0,0.12) 0%,rgba(253,213,0,0.03) 100%);border:1px solid rgba(253,213,0,0.4);border-radius:6px;display:flex;align-items:center;gap:0.75rem;">';
+          listHtml += '<span style="font-size:0.6rem;font-weight:700;letter-spacing:1.5px;color:#9a7d00;text-transform:uppercase;">Estimated Value</span>';
+          listHtml += '<span style="font-size:0.9rem;color:var(--dark);font-weight:600;">' + esc(valFull) + '</span>';
+          listHtml += '</div>';
+        }
+      } else {
+        // Engagement: rating bars + Q&A
+        if (r.ratings) {
+          listHtml += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0.6rem;margin-bottom:1.2rem;">';
+          ['strategic', 'content', 'responsive', 'value', 'overall'].forEach(function(k) {
+            var v = r.ratings[k] ? parseFloat(r.ratings[k]) : null;
+            if (v === null) return;
+            var pct = Math.round((v / 5) * 100);
+            var barColor = v >= 4.5 ? '#22c55e' : v >= 3.5 ? '#FDD500' : v >= 2.5 ? '#f97316' : '#ef4444';
+            listHtml += '<div style="background:var(--bg);border-radius:6px;padding:0.6rem 0.75rem;">';
+            listHtml += '<div style="display:flex;justify-content:space-between;align-items:baseline;">';
+            listHtml += '<span style="font-size:0.65rem;color:var(--steel);font-weight:600;text-transform:uppercase;">' + (ratingLabels[k] || k) + '</span>';
+            listHtml += '<span style="font-size:0.85rem;font-weight:700;color:var(--dark);">' + Math.round(v) + '<span style="font-weight:400;font-size:0.7rem;opacity:0.6;"> /5</span></span>';
+            listHtml += '</div>';
+            listHtml += '<div style="margin-top:6px;height:4px;background:rgba(0,0,0,0.06);border-radius:2px;overflow:hidden;"><div style="width:' + pct + '%;height:100%;background:' + barColor + ';"></div></div>';
+            listHtml += '</div>';
+          });
+          listHtml += '</div>';
+        }
+        if (r.answers) {
+          Object.keys(answerLabels).forEach(function(key) {
+            var ans = r.answers[key];
+            if (!ans || !ans.trim()) return;
+            listHtml += '<div style="margin-bottom:0.6rem;border:1px solid var(--border);border-radius:6px;padding:0.75rem 1rem;background:#fafafa;">';
+            listHtml += '<div style="font-size:0.7rem;font-weight:700;color:var(--dark);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;">' + esc(answerLabels[key]) + '</div>';
+            listHtml += '<p style="font-size:0.88rem;color:var(--dark);line-height:1.7;margin:0;">' + esc(ans) + '</p>';
+            listHtml += '</div>';
+          });
+        }
+      }
+
+      listHtml += '</div></div>'; // end body, end card
+    });
+    document.getElementById('mockResponsesList').innerHTML = listHtml;
+  }
+</script>
+</body>
+</html>

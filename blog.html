@@ -1,0 +1,3101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The JNSQ Journal. Insights on brand equity architecture, market authority, and building valuable brands from Studio JNSQ.">
+    <link rel="canonical" href="https://studiojnsq.com/journal">
+    <meta property="og:site_name" content="Studio JNSQ">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="The JNSQ Journal - Brand Equity Insights">
+    <meta property="og:description" content="Insights on brand equity architecture, market authority, and building valuable brands from Studio JNSQ.">
+    <meta property="og:url" content="https://studiojnsq.com/journal">
+    <meta property="og:image" content="https://studiojnsq.com/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The JNSQ Journal - Brand Equity Insights">
+    <meta name="twitter:description" content="Insights on brand equity architecture, market authority, and building valuable brands from Studio JNSQ.">
+    <meta name="twitter:image" content="https://studiojnsq.com/og-image.jpg">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta property="article:published_time" content="">
+    <meta property="article:modified_time" content="">
+    <meta property="article:author" content="Jerico Lugo">
+    <meta property="article:section" content="Brand Equity Architecture">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "The JNSQ Journal",
+        "description": "Insights on brand equity architecture, market authority, and building valuable brands.",
+        "url": "https://studiojnsq.com/journal",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Studio JNSQ",
+            "url": "https://studiojnsq.com"
+        }
+    }
+    </script>
+    <title>Brand Equity Architecture Insights | JNSQ Journal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/jnsq-system.css?v=2">
+    <style>
+        :root {
+            --dark: #394550;
+            --yellow: #FDD500;
+            --steel: #6B7B8D;
+            --mid: #8E9EAE;
+            --light: #F5F6F8;
+            --white: #FFFFFF;
+        }
+        body { background: var(--jnsq-bg) !important; color: var(--jnsq-body) !important; font-family: 'Inter', sans-serif !important; }
+        /* Override the legacy header styles since we use .jnsq-nav now */
+        .legacy-header { display: none !important; }
+        /* Hide the listing-view's hero/searchbar since we use new ones */
+        .legacy-hero, .legacy-searchbar { display: none; }
+        /* Sticky search bar, system style */
+        .blog-search-bar {
+            position: sticky; top: 70px; z-index: 50;
+            background: rgba(250, 250, 246, 0.92);
+            backdrop-filter: blur(20px);
+            padding: var(--space-3) 0;
+            border-bottom: 1px solid var(--jnsq-line-soft);
+            margin-bottom: var(--space-5);
+        }
+        .blog-search {
+            max-width: 480px; margin: 0 auto;
+            display: flex; align-items: center; gap: 12px;
+            background: var(--jnsq-paper);
+            border: 1px solid var(--jnsq-line);
+            padding: 12px 18px;
+            border-radius: 999px;
+            transition: border-color var(--dur-quick) ease, box-shadow var(--dur-medium) ease;
+        }
+        .blog-search:focus-within {
+            border-color: var(--jnsq-yellow);
+            box-shadow: 0 0 0 4px rgba(253, 213, 0, 0.10);
+        }
+        .blog-search-icon { font-size: 14px; opacity: 0.6; }
+        .blog-search input {
+            flex: 1; border: none; outline: none; background: transparent;
+            font-family: 'Inter', sans-serif; font-size: 14px; color: var(--jnsq-ink);
+        }
+        .blog-search input::placeholder { color: var(--jnsq-mute); }
+        /* Blog grid, system card style */
+        .blog-container { max-width: var(--container-grand); margin: 0 auto; padding: 0 var(--space-5) var(--space-9); }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--space-3);
+            margin-bottom: var(--space-5);
+        }
+        .blog-card {
+            background: var(--jnsq-paper) !important;
+            border: 1px solid var(--jnsq-line) !important;
+            border-radius: 4px !important;
+            overflow: hidden !important;
+            text-decoration: none !important;
+            color: inherit !important;
+            display: flex !important; flex-direction: column !important;
+            position: relative !important;
+            transition: transform var(--dur-medium) var(--ease-out-soft), box-shadow var(--dur-medium) var(--ease-out-soft), border-color var(--dur-medium) ease !important;
+        }
+        .blog-card::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: var(--jnsq-yellow);
+            transform: scaleX(0); transform-origin: left;
+            transition: transform var(--dur-slow) var(--ease-out-soft);
+            z-index: 1;
+        }
+        .blog-card:hover {
+            transform: translateY(-6px) !important;
+            box-shadow: 0 24px 60px rgba(26, 26, 26, 0.06), 0 0 0 1px rgba(253, 213, 0, 0.25) !important;
+        }
+        .blog-card:hover::before { transform: scaleX(1); }
+        .blog-card-image { width: 100%; height: 220px; object-fit: cover; background: var(--jnsq-deep) !important; }
+        .blog-card-content { padding: var(--space-4) var(--space-3) var(--space-3); flex-grow: 1; display: flex; flex-direction: column; }
+        .blog-card-title {
+            font-family: 'Lora', Georgia, serif !important;
+            font-size: 1.3125rem !important;
+            font-weight: 500 !important;
+            line-height: 1.3 !important;
+            color: var(--jnsq-ink) !important;
+            margin-bottom: 12px !important;
+            letter-spacing: -0.005em !important;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .blog-card-excerpt {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 0.9375rem !important;
+            line-height: 1.6 !important;
+            color: var(--jnsq-body) !important;
+            margin-bottom: var(--space-3) !important;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .blog-card-meta {
+            display: flex; gap: 12px; align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--jnsq-mute) !important;
+            margin-bottom: 12px;
+        }
+        .blog-card-tags {
+            display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px;
+        }
+        .blog-card-tags .tag {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: var(--jnsq-line-soft);
+            color: var(--jnsq-body);
+            border: 1px solid var(--jnsq-line);
+        }
+        .show-more-btn {
+            display: block; margin: var(--space-4) auto 0;
+            background: var(--jnsq-paper) !important;
+            color: var(--jnsq-ink) !important;
+            border: 1.5px solid var(--jnsq-ink) !important;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 16px 32px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all var(--dur-medium) ease;
+        }
+        .show-more-btn:hover {
+            background: var(--jnsq-yellow) !important;
+            border-color: var(--jnsq-yellow) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(253, 213, 0, 0.45);
+        }
+        /* Newsletter inline form */
+        .newsletter-form {
+            display: flex; gap: 8px; max-width: 480px; margin-top: var(--space-4);
+        }
+        .newsletter-form-input { display: flex; gap: 0; width: 100%; }
+        .newsletter-form input[type="email"] {
+            flex: 1;
+            padding: 14px 18px;
+            border: 1px solid var(--jnsq-line);
+            border-radius: 999px 0 0 999px;
+            border-right: none;
+            background: var(--jnsq-paper);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: var(--jnsq-ink);
+            outline: none;
+        }
+        .newsletter-form input:focus { border-color: var(--jnsq-yellow); }
+        .newsletter-form-button {
+            padding: 14px 28px;
+            background: var(--jnsq-ink);
+            color: var(--jnsq-bg);
+            border: 1px solid var(--jnsq-ink);
+            border-radius: 0 999px 999px 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all var(--dur-medium) ease;
+            white-space: nowrap;
+        }
+        .newsletter-form-button:hover {
+            background: var(--jnsq-yellow);
+            border-color: var(--jnsq-yellow);
+            color: var(--jnsq-ink);
+        }
+        .newsletter-form-message { font-size: 13px; color: var(--jnsq-mute); margin-top: 10px; }
+        /* Hide unused legacy chrome */
+        .legacy-header, header { display: none !important; }
+        .empty-state { text-align: center; padding: var(--space-7) var(--space-3); color: var(--jnsq-mute); font-family: 'Lora', serif; font-style: italic; font-size: 1.125rem; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        .blog-container { background: var(--white); }
+        /* Card visual upgrade for sophistication */
+        .blog-card {
+            background: var(--white) !important;
+            border: 1px solid #e5e9ed !important;
+            border-radius: 14px !important;
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s !important;
+        }
+        .blog-card:hover {
+            transform: translateY(-6px) !important;
+            box-shadow: 0 22px 50px rgba(57, 69, 80, 0.10), 0 0 0 1px rgba(253, 213, 0, 0.30) !important;
+            border-color: var(--yellow) !important;
+        }
+        .blog-card-image { background-color: #2a3540 !important; border-bottom: 1px solid #e5e9ed; }
+        /* Tag pill polish */
+        .blog-card-tags .tag {
+            background: #fefbef;
+            color: var(--dark);
+            border: 1px solid rgba(253, 213, 0, 0.4);
+        }
+        /* Search bar elevation */
+        .blog-search { box-shadow: 0 4px 18px rgba(57, 69, 80, 0.06); border-radius: 999px; }
+        /* Show more button polish */
+        .show-more-btn {
+            background: var(--white) !important;
+            color: var(--dark) !important;
+            border: 1.5px solid var(--dark) !important;
+            transition: all 0.3s !important;
+        }
+        .show-more-btn:hover {
+            background: var(--yellow) !important;
+            border-color: var(--yellow) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Header / Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--dark);
+            border-bottom: 2px solid var(--yellow);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+
+        .header-logo:hover {
+            color: var(--yellow);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .header-label {
+            color: var(--mid);
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .cta-button {
+            background-color: var(--yellow);
+            color: var(--dark);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            letter-spacing: 0.02em;
+        }
+
+        .cta-button:hover {
+            background-color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(253, 213, 0, 0.2);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 70px;
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, #2a3540 100%);
+            padding: 6rem 2rem 5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(139, 158, 174, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+        }
+        .hero h1 .accent-word {
+            color: var(--yellow);
+            text-shadow: 0 0 28px rgba(253, 213, 0, 0.40), 0 0 6px rgba(253, 213, 0, 0.20);
+            transition: text-shadow 0.6s ease;
+        }
+        .hero h1 .accent-word:hover {
+            text-shadow: 0 0 48px rgba(253, 213, 0, 0.65), 0 0 12px rgba(253, 213, 0, 0.35);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--mid);
+            max-width: 640px;
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .newsletter-form { position: relative; z-index: 1; }
+
+        /* Blog Listing */
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .blog-card {
+            background-color: var(--light);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid rgba(107, 123, 141, 0.1);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: var(--dark);
+            display: block;
+        }
+
+        .blog-card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .blog-card-excerpt {
+            color: var(--steel);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .blog-card-meta {
+            font-size: 0.85rem;
+            color: var(--mid);
+            margin-bottom: 0.75rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .blog-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: var(--dark);
+            color: var(--yellow);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            border: none;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--mid);
+        }
+
+        .empty-state p {
+            font-size: 1.1rem;
+        }
+
+        /* Listing View Toggle */
+        .listing-view {
+            display: none;
+        }
+
+        .listing-view.active {
+            display: block;
+        }
+
+        /* Individual Post View */
+        .post-view {
+            display: none;
+        }
+
+        .post-view.active {
+            display: block;
+        }
+
+        .post-back-bar {
+            position: sticky;
+            top: 70px;
+            z-index: 999;
+            background-color: var(--dark);
+            border-bottom: 1px solid rgba(139, 158, 174, 0.2);
+            padding: 0.75rem 2rem;
+        }
+
+        .post-back {
+            color: var(--yellow);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .post-back:hover {
+            color: var(--white);
+        }
+
+        /* Search Bar - Sticky */
+        .blog-search-bar {
+            position: sticky;
+            top: 70px;
+            z-index: 998;
+            background-color: var(--dark);
+            border-bottom: 1px solid rgba(139, 158, 174, 0.15);
+            padding: 1rem 2rem;
+        }
+
+        .blog-search {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .blog-search input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid rgba(139, 158, 174, 0.3);
+            border-radius: 6px;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .blog-search input::placeholder {
+            color: var(--mid);
+        }
+
+        .blog-search input:focus {
+            outline: none;
+            border-color: var(--yellow);
+            background-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .blog-search-icon {
+            position: absolute;
+            left: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--mid);
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        /* Show More Button */
+        .show-more-btn {
+            display: block;
+            margin: 0 auto 2rem;
+            background-color: var(--dark);
+            color: var(--yellow);
+            border: 1px solid var(--yellow);
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .show-more-btn:hover {
+            background-color: var(--yellow);
+            color: var(--dark);
+        }
+
+        .post-hero-wrapper {
+            background-color: var(--dark);
+            display: flex;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .post-hero-image {
+            width: 100%;
+            max-width: 900px;
+            max-height: 420px;
+            object-fit: contain;
+            display: block;
+            background-color: #fefbef;
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Two-column post layout */
+        .post-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 2rem;
+            display: flex;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+
+        .post-content {
+            flex: 1;
+            min-width: 0;
+            max-width: 760px;
+            padding: 3rem 0 2rem;
+            background-color: var(--dark);
+        }
+
+        .post-sidebar {
+            width: 300px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 130px;
+            padding-top: 3rem;
+            max-height: calc(100vh - 150px);
+            overflow-y: auto;
+        }
+
+        .sidebar-box {
+            background-color: rgba(139, 158, 174, 0.06);
+            border: 1px solid rgba(139, 158, 174, 0.2);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar-box h4 {
+            color: var(--yellow);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(253, 213, 0, 0.2);
+        }
+
+        .sidebar-insight {
+            color: #c5cdd5;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(139, 158, 174, 0.1);
+        }
+
+        .sidebar-insight:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar-related-card {
+            display: block;
+            text-decoration: none;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(139, 158, 174, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-related-card:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar-related-card:hover h5 {
+            color: var(--yellow);
+        }
+
+        .sidebar-related-card h5 {
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 0.25rem;
+            transition: color 0.2s ease;
+        }
+
+        .sidebar-related-card .sidebar-related-meta {
+            color: var(--mid);
+            font-size: 0.78rem;
+        }
+
+        .sidebar-cta {
+            background-color: rgba(253, 213, 0, 0.08);
+            border: 1px solid rgba(253, 213, 0, 0.3);
+            border-radius: 6px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .sidebar-cta p {
+            color: var(--mid);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .sidebar-cta .cta-button {
+            font-size: 0.8rem;
+            padding: 0.6rem 1.25rem;
+            display: block;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .post-layout {
+                flex-direction: column;
+            }
+            .post-sidebar {
+                width: 100%;
+                position: static;
+                max-height: none;
+                padding-top: 0;
+            }
+        }
+
+        .post-title {
+            font-size: 2.5rem;
+            color: var(--white);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .post-meta {
+            color: var(--mid);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(139, 158, 174, 0.2);
+        }
+
+        .post-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .post-body {
+            color: #c5cdd5;
+            font-size: 1.1rem;
+            line-height: 1.85;
+            margin-bottom: 3rem;
+        }
+
+        .post-body h2 {
+            color: var(--white);
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1rem 0;
+            line-height: 1.3;
+        }
+
+        .post-body h3 {
+            color: var(--white);
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin: 2rem 0 0.75rem 0;
+            line-height: 1.3;
+        }
+
+        .post-body p {
+            margin-bottom: 1.25rem;
+        }
+
+        .post-body a {
+            color: var(--yellow);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .post-body a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        .post-body blockquote {
+            border-left: 4px solid var(--yellow);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            color: var(--mid);
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .post-body ul,
+        .post-body ol {
+            margin: 1.25rem 0;
+            padding-left: 2rem;
+        }
+
+        .post-body li {
+            margin-bottom: 0.75rem;
+        }
+
+        .post-body img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            display: block;
+        }
+
+        /* CTA Section */
+        .post-cta {
+            background-color: rgba(253, 213, 0, 0.08);
+            border: 1px solid rgba(253, 213, 0, 0.3);
+            border-radius: 6px;
+            padding: 2rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .post-cta h3 {
+            color: var(--white);
+            font-size: 1.35rem;
+            margin-bottom: 1rem !important;
+        }
+
+        .post-cta p {
+            color: var(--mid);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            border-top: 1px solid rgba(139, 158, 174, 0.2);
+            padding: 2rem;
+            text-align: center;
+            color: var(--mid);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--yellow);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 0 0.5rem;
+        }
+
+        footer a:hover {
+            color: var(--white);
+        }
+
+        /* Loading Skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, var(--light) 25%, rgba(107, 123, 141, 0.1) 50%, var(--light) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        .skeleton-card {
+            background-color: var(--light);
+            border-radius: 6px;
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .skeleton-image {
+            width: 100%;
+            height: 200px;
+            background-color: var(--dark);
+        }
+
+        .skeleton-content {
+            padding: 1.5rem;
+        }
+
+        .skeleton-title {
+            height: 1.5rem;
+            background-color: var(--dark);
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
+        }
+
+        .skeleton-text {
+            height: 1rem;
+            background-color: var(--dark);
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.75rem 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .post-title {
+                font-size: 1.75rem;
+            }
+
+            .post-body {
+                font-size: 1rem;
+            }
+
+            .post-body h2 {
+                font-size: 1.5rem;
+            }
+
+            .post-body h3 {
+                font-size: 1.2rem;
+            }
+
+            .post-cta {
+                padding: 1.5rem;
+            }
+
+            .post-cta h3 {
+                font-size: 1.15rem;
+            }
+        }
+
+        /* Newsletter Signup */
+        .newsletter-form {
+            background-color: rgba(253, 213, 0, 0.08);
+            border: 1px solid rgba(253, 213, 0, 0.3);
+            border-radius: 6px;
+            padding: 2rem;
+            max-width: 500px;
+            margin: 2rem auto 0;
+        }
+
+        .newsletter-form-input {
+            display: flex;
+            gap: 0.75rem;
+            flex-direction: column;
+        }
+
+        .newsletter-form-input input {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(139, 158, 174, 0.3);
+            color: var(--white);
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form-input input::placeholder {
+            color: var(--mid);
+        }
+
+        .newsletter-form-input input:focus {
+            outline: none;
+            border-color: var(--yellow);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .newsletter-form-button {
+            background-color: var(--yellow);
+            color: var(--dark);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .newsletter-form-button:hover {
+            background-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .newsletter-form-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .newsletter-form-message {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--mid);
+        }
+
+        .newsletter-form-message.success {
+            color: var(--yellow);
+        }
+
+        .newsletter-form-message.error {
+            color: #FF6B6B;
+        }
+
+        /* Social Share Buttons */
+        .post-share {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(139, 158, 174, 0.2);
+        }
+
+        .post-share-label {
+            color: var(--mid);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .post-share-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .share-button {
+            background-color: rgba(139, 158, 174, 0.1);
+            color: var(--steel);
+            border: 1px solid rgba(139, 158, 174, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .share-button:hover {
+            background-color: rgba(253, 213, 0, 0.1);
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        /* Related Posts */
+        .related-posts {
+            margin: 3rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(139, 158, 174, 0.2);
+            border-bottom: 1px solid rgba(139, 158, 174, 0.2);
+        }
+
+        .related-posts h3 {
+            color: var(--white);
+            font-size: 1.35rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .related-posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .related-post-card {
+            background-color: rgba(139, 158, 174, 0.05);
+            border: 1px solid rgba(139, 158, 174, 0.2);
+            border-radius: 6px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .related-post-card:hover {
+            background-color: rgba(253, 213, 0, 0.08);
+            border-color: var(--yellow);
+            transform: translateY(-2px);
+        }
+
+        .related-post-card h4 {
+            color: var(--white);
+            font-size: 1.05rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .related-post-card p {
+            color: var(--mid);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .related-post-card-meta {
+            color: var(--steel);
+            font-size: 0.8rem;
+        }
+
+        /* Comments Section */
+        .comments-section {
+            margin: 3rem 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(139, 158, 174, 0.2);
+        }
+
+        .comments-section h3 {
+            color: var(--white);
+            font-size: 1.35rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .comment-form {
+            background-color: rgba(139, 158, 174, 0.05);
+            border: 1px solid rgba(139, 158, 174, 0.2);
+            border-radius: 6px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .comment-form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .comment-form-group label {
+            display: block;
+            color: var(--steel);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .comment-form-group input,
+        .comment-form-group textarea {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(139, 158, 174, 0.3);
+            color: var(--white);
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .comment-form-group input::placeholder,
+        .comment-form-group textarea::placeholder {
+            color: var(--mid);
+        }
+
+        .comment-form-group input:focus,
+        .comment-form-group textarea:focus {
+            outline: none;
+            border-color: var(--yellow);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .comment-form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .comment-form-note {
+            color: var(--mid);
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+        }
+
+        .comment-submit {
+            background-color: var(--yellow);
+            color: var(--dark);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .comment-submit:hover {
+            background-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .comment-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .comment-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .comment-message.pending {
+            background-color: rgba(253, 213, 0, 0.1);
+            border: 1px solid var(--yellow);
+            color: var(--yellow);
+        }
+
+        .comment-message.error {
+            background-color: rgba(255, 107, 107, 0.1);
+            border: 1px solid #FF6B6B;
+            color: #FF6B6B;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .comment {
+            background-color: rgba(139, 158, 174, 0.05);
+            border: 1px solid rgba(139, 158, 174, 0.2);
+            border-radius: 6px;
+            padding: 1.5rem;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .comment-name {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .comment-date {
+            color: var(--mid);
+            font-size: 0.85rem;
+        }
+
+        .comment-text {
+            color: var(--steel);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .comment-reply-link {
+            color: var(--yellow);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .comment-reply-link:hover {
+            color: var(--white);
+        }
+
+        .comment-replies {
+            margin-top: 1rem;
+            padding-left: 2rem;
+            border-left: 2px solid rgba(139, 158, 174, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .comment-reply {
+            background-color: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+            padding: 1rem;
+        }
+
+        .comment-reply-form {
+            background-color: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+            padding: 1rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .comment-reply-form.active {
+            display: block;
+        }
+
+        .comment-reply-form-group {
+            margin-bottom: 1rem;
+        }
+
+        .comment-reply-form-group input,
+        .comment-reply-form-group textarea {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(139, 158, 174, 0.3);
+            color: var(--white);
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        .comment-reply-form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .comment-reply-buttons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .comment-reply-submit {
+            background-color: var(--yellow);
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .comment-reply-submit:hover {
+            background-color: var(--white);
+        }
+
+        .comment-reply-cancel {
+            background-color: transparent;
+            color: var(--mid);
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(139, 158, 174, 0.2);
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .comment-reply-cancel:hover {
+            color: var(--steel);
+            border-color: rgba(139, 158, 174, 0.4);
+        }
+
+        /* Reading Time */
+        .reading-time {
+            color: var(--mid);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .related-posts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comment-form {
+                padding: 1.5rem;
+            }
+
+            .comment-reply-form-group input,
+            .comment-reply-form-group textarea {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                border-bottom: 1px solid var(--yellow);
+                padding: 0.75rem 1rem;
+            }
+
+            .header-logo {
+                font-size: 1rem;
+            }
+
+            .header-label {
+                display: none;
+            }
+
+            .cta-button {
+                padding: 0.6rem 1rem;
+                font-size: 0.75rem;
+            }
+
+            .hero {
+                padding: 2.5rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .blog-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .post-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .post-title {
+                font-size: 1.5rem;
+            }
+
+            .post-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .newsletter-form {
+                padding: 1.5rem;
+            }
+
+            .post-share {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .post-share-buttons {
+                width: 100%;
+            }
+
+            .share-button {
+                flex: 1;
+                text-align: center;
+            }
+
+            .comment-form {
+                padding: 1.5rem;
+            }
+
+            .comment-replies {
+                padding-left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="jnsq-scroll-progress"></div>
+
+    <nav class="jnsq-nav">
+      <div class="jnsq-nav-inner">
+        <a href="/" class="jnsq-nav-logo">STUDIO <span class="accent">JNSQ</span></a>
+        <div class="jnsq-nav-links">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/journal">Journal</a>
+      <a href="/case-studies">Portfolio</a>
+          <a href="/diagnostic">Diagnostic</a>
+        </div>
+        <a href="/diagnostic" class="jnsq-nav-cta">Take the Diagnostic</a>
+      </div>
+    </nav>
+
+    <main>
+        <!-- Blog Listing View -->
+        <div id="listingView" class="listing-view active">
+            <!-- Hero Section -->
+            <header class="jnsq-hero">
+              <div class="jnsq-container">
+                <div class="jnsq-eyebrow jnsq-hero-eyebrow" data-reveal-fade>The JNSQ Journal</div>
+                <h1 class="jnsq-hero-display" data-reveal-words>
+                  Field notes on the discipline of <span class="jnsq-accent">brand equity architecture</span>.
+                </h1>
+                <p class="jnsq-hero-lead" data-reveal>
+                  Essays, frameworks, and case-level proof on what separates brands the market overpays for from brands that compete on price. Updated weekly.
+                </p>
+                <div class="newsletter-form" data-reveal>
+                    <form id="listingNewsletterForm" class="newsletter-form-input">
+                        <input type="email" id="listingNewsletterEmail" placeholder="Your email address" required>
+                        <button type="submit" class="newsletter-form-button">Subscribe</button>
+                    </form>
+                </div>
+                <div id="listingNewsletterMessage" class="newsletter-form-message"></div>
+              </div>
+            </header>
+
+            <!-- Sticky Search Bar -->
+            <div class="blog-search-bar">
+                <div class="blog-search">
+                    <span class="blog-search-icon">&#128269;</span>
+                    <input type="text" id="blogSearchInput" placeholder="Search articles..." oninput="app.filterPosts()">
+                </div>
+            </div>
+
+            <!-- Blog Grid -->
+            <div class="blog-container">
+                <div id="blogGrid" class="blog-grid">
+                    <!-- Blog cards will be inserted here -->
+                </div>
+                <button id="showMoreBtn" class="show-more-btn" style="display:none;" onclick="app.showMore()">Show More Articles</button>
+                <div id="emptyState" class="empty-state" style="display: none;">
+                    <p>No posts yet. Check back soon for insights on brand equity architecture and market authority.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             Individual Post View — CANONICAL BIP TEMPLATE (mirrors BIP 15)
+             Powered by data fetched from blog-crud. Structure parity with
+             /blog/bip-15-why-your-marketing-is-working.html.
+             ============================================================ -->
+        <div id="postView" class="post-view canonical-article">
+
+          <!-- ============ HERO (2-col: text left, image right) ============ -->
+          <section class="article-hero">
+            <div class="wide-container">
+              <div class="hero-grid">
+                <div class="hero-text">
+                  <div id="postBreadcrumb" class="breadcrumb"></div>
+                  <a id="postSeriesChip" href="#" class="series-chip" style="display:none;"></a>
+                  <h1 id="postTitle" class="article-title"></h1>
+                  <p id="postExcerpt" class="article-excerpt"></p>
+                  <div id="postMeta" class="article-meta"></div>
+                </div>
+                <div class="hero-img-side">
+                  <div class="hero-img-frame">
+                    <div id="postHeroPlaceholder" class="placeholder">
+                      <div class="mark">Studio JNSQ</div>
+                      <div class="ph-title">The JNSQ Journal</div>
+                    </div>
+                    <img id="postHeroImage" src="" alt="" loading="eager" style="display:none;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============ 70/30 ARTICLE SHELL ============ -->
+          <div class="article-shell">
+
+            <!-- LEFT: ARTICLE BODY -->
+            <main class="article-main">
+
+              <!-- OPENING (plain italic, body size) -->
+              <p id="postOpening" class="lead-italic" style="display:none;"></p>
+
+              <!-- BODY -->
+              <div id="postBody" class="canon-body"></div>
+
+              <!-- WHAT DOES THIS MEAN CALLOUT -->
+              <div id="postWTM" class="what-this-means" style="display:none;">
+                <div class="label" id="postWTMLabel"></div>
+                <h3 id="postWTMHeadline"></h3>
+                <p id="postWTMBody"></p>
+                <ol id="postWTMItems"></ol>
+              </div>
+
+              <!-- PULL QUOTE -->
+              <blockquote id="postPullQuote" class="pull-quote" style="display:none;">
+                <span id="postPullText"></span>
+                <span class="attribution" id="postPullAttr"></span>
+              </blockquote>
+
+              <!-- CLOSING (plain paragraph, no label) -->
+              <div id="postClosing" style="display:none;"></div>
+
+              <!-- TRY THIS -->
+              <div id="postTryThis" class="try-this" style="display:none;">
+                <div class="label" id="postTryLabel">Try This</div>
+                <h3 id="postTryHeadline"></h3>
+                <p id="postTryBody"></p>
+              </div>
+
+              <!-- NEXT EDITION TEASE -->
+              <p id="postNextEdition" class="next-edition" style="display:none;"></p>
+
+              <!-- SIGN-OFF -->
+              <p id="postSignOff" class="sign-off" style="display:none;"></p>
+
+            </main>
+
+            <!-- RIGHT: STICKY SIDEBAR
+                 Order: 1) Key Insights · 2) In This Article · 3) Media CTA · 4) Engage · 5) Series -->
+            <aside class="article-aside">
+
+              <!-- 1. KEY INSIGHTS -->
+              <div id="sidebarInsights" class="aside-card" style="display:none;">
+                <div class="aside-label">Key Insights</div>
+                <ul id="sidebarInsightsList" class="insights-list"></ul>
+              </div>
+
+              <!-- 2. IN THIS ARTICLE (TOC) -->
+              <div id="sidebarToc" class="aside-card" style="display:none;">
+                <div class="aside-label">In This Article</div>
+                <ul id="sidebarTocList" class="toc-list"></ul>
+              </div>
+
+              <!-- 3. MEDIA · PRESS · COMMENTARY -->
+              <div class="aside-card media-card">
+                <div class="aside-label">Media &middot; Press &middot; Commentary</div>
+                <h4>Want Jec on record?</h4>
+                <p>For interviews, quotes, or commentary on brand equity architecture in the evolving media landscape.</p>
+                <a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" rel="noopener" class="media-btn">Book a chat &rarr;</a>
+              </div>
+
+              <!-- 4. ENGAGE -->
+              <div class="aside-card engage-card">
+                <div class="aside-label">Engage</div>
+                <h4>Want this conversation in private?</h4>
+                <p>30 minutes with Jec. No pitch. Just a sharper read on where you are.</p>
+                <a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" rel="noopener" class="engage-btn">Book the 30 &rarr;</a>
+              </div>
+
+              <!-- 5. SERIES -->
+              <div id="sidebarSeries" class="aside-card" style="display:none;">
+                <div class="aside-label">Series</div>
+                <h4 id="sidebarSeriesTitle"></h4>
+                <p id="sidebarSeriesDesc"></p>
+                <a id="sidebarSeriesLink" class="inline-link" href="#" style="font-size:11.5px;font-weight:700;letter-spacing:0.06em;">See all &rarr;</a>
+              </div>
+
+            </aside>
+          </div>
+
+          <!-- ============ FULL-WIDTH SECTIONS BELOW (FAQ, Go Deeper, Tags, Series Nav, Related, Comments) ============ -->
+
+          <!-- FAQ -->
+          <section id="postFaqSection" class="faq-section" style="display:none;">
+            <div class="faq-inner">
+              <div class="label">Frequently Asked Questions</div>
+              <h2>The questions readers keep sending after this one.</h2>
+              <div id="postFaqGrid" class="faq-grid"></div>
+            </div>
+          </section>
+
+          <!-- GO DEEPER -->
+          <section id="postGoDeeperSection" class="go-deeper" style="display:none; background: var(--jnsq-paper); border-top: 1px solid var(--jnsq-line);">
+            <div class="go-deeper-inner">
+              <div class="header">
+                <div class="label">Go Deeper</div>
+                <h2>Understand the foundation. See the pieces.</h2>
+              </div>
+              <div id="postGoDeeperGrid" class="deeper-grid"></div>
+            </div>
+          </section>
+
+          <!-- TAGS -->
+          <section id="postTagsSection" class="tags-section" style="display:none;">
+            <div class="tags-inner">
+              <div class="label">Tagged</div>
+              <div id="postTagsRow" class="tags-row"></div>
+            </div>
+          </section>
+
+          <!-- SERIES NAV -->
+          <div id="postSeriesNavWrap" class="series-nav-wrap" style="display:none;">
+            <div class="series-nav">
+              <a id="postPrevCard" class="series-nav-card" href="#">
+                <div class="direction">&larr; Previous in series</div>
+                <h4 id="postPrevTitle"></h4>
+              </a>
+              <a id="postNextCard" class="series-nav-card next" href="#">
+                <div class="direction">Next in series &rarr;</div>
+                <h4 id="postNextTitle"></h4>
+              </a>
+            </div>
+          </div>
+
+          <!-- RELATED -->
+          <section id="postRelatedSection" class="related-section" style="display:none;">
+            <div class="related-inner">
+              <div class="label">More from the Journal</div>
+              <h2>Where this thread continues.</h2>
+              <div id="postRelatedGrid" class="related-grid"></div>
+            </div>
+          </section>
+
+          <!-- COMMENTS (preserved from legacy SPA) -->
+          <section class="comments-section" style="max-width: 760px; margin: 0 auto; padding: var(--space-6) var(--space-4);">
+            <h3 style="font-family:'Lora',Georgia,serif;font-size:1.5rem;font-weight:500;color:var(--jnsq-ink);margin-bottom:var(--space-4);letter-spacing:-0.005em;">Join the conversation</h3>
+            <div class="comment-form">
+              <form id="commentForm">
+                <div class="comment-form-group">
+                  <label for="commentName">Name</label>
+                  <input type="text" id="commentName" placeholder="Your name" required>
+                </div>
+                <div class="comment-form-group">
+                  <label for="commentEmail">Email</label>
+                  <input type="email" id="commentEmail" placeholder="Your email" required>
+                  <p class="comment-form-note">Your email won't be published</p>
+                </div>
+                <div class="comment-form-group">
+                  <label for="commentText">Comment</label>
+                  <textarea id="commentText" placeholder="Share your thoughts..." required></textarea>
+                </div>
+                <button type="submit" class="comment-submit">Post Comment</button>
+              </form>
+              <div id="commentMessage" class="comment-message" style="display:none;"></div>
+            </div>
+            <div id="commentsList" class="comments-list"></div>
+          </section>
+
+          <!-- LEGACY post share (hidden by default, kept for backward compat) -->
+          <div id="postShare" style="display:none;">
+            <a id="shareTwitter" href="#"></a><a id="shareLinkedIn" href="#"></a><button id="shareLink"></button>
+          </div>
+
+          <!-- Legacy newsletter inline (hidden — newsletter still lives at the bottom CTA) -->
+          <form id="postNewsletterForm" style="display:none;">
+            <input id="postNewsletterEmail" type="email"><div id="postNewsletterMessage"></div>
+          </form>
+
+          <!-- Legacy hero wrapper kept hidden so any lingering JS that targets it doesn't crash -->
+          <div id="postHeroWrapper" style="display:none;"></div>
+        </div>
+
+        <!-- ============ CANONICAL BIP TEMPLATE STYLES (mirrors BIP 15 v3) ============ -->
+        <style>
+        .canonical-article { font-family: 'Inter', sans-serif; }
+        .canonical-article .wide-container { max-width: 1320px; margin: 0 auto; padding: 0 var(--space-4); }
+        @media (min-width: 1440px) { .canonical-article .wide-container { padding: 0 var(--space-5); } }
+
+        /* HERO */
+        .canonical-article .article-hero { padding: var(--space-7) 0 var(--space-6); position: relative; overflow: hidden; }
+        .canonical-article .article-hero::before {
+          content: ''; position: absolute; inset: 0; z-index: -1;
+          background:
+            radial-gradient(ellipse 55% 40% at 15% 25%, rgba(253, 213, 0, 0.14), transparent 70%),
+            radial-gradient(ellipse 50% 40% at 85% 75%, rgba(253, 213, 0, 0.09), transparent 70%);
+          animation: jnsqDrift 28s var(--ease-in-out-soft) infinite alternate;
+        }
+        .canonical-article .hero-grid {
+          display: grid;
+          grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+          gap: var(--space-6);
+          align-items: center;
+        }
+        @media (max-width: 960px) {
+          .canonical-article .hero-grid { grid-template-columns: 1fr; gap: var(--space-5); }
+          .canonical-article .hero-grid .hero-img-side { order: -1; }
+        }
+        .canonical-article .breadcrumb { font-size: 12px; font-weight: 500; letter-spacing: 0.04em; color: var(--jnsq-mute); margin-bottom: var(--space-3); }
+        .canonical-article .breadcrumb a { color: var(--jnsq-yellow); text-decoration: none; transition: text-shadow var(--dur-quick) ease; }
+        .canonical-article .breadcrumb a:hover { text-shadow: 0 0 12px rgba(253, 213, 0, 0.45); }
+        .canonical-article .series-chip {
+          display: inline-flex; align-items: center; gap: 8px;
+          background: var(--jnsq-ink); color: var(--jnsq-yellow);
+          font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+          letter-spacing: 0.18em; text-transform: uppercase;
+          padding: 7px 14px; border-radius: 4px; text-decoration: none;
+          margin-bottom: var(--space-3);
+          transition: transform var(--dur-quick) var(--ease-out-soft), box-shadow var(--dur-quick) ease;
+        }
+        .canonical-article .series-chip:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,26,26,0.12); }
+        .canonical-article .article-title { font-family: 'Lora', Georgia, serif; font-size: clamp(2rem, 3.6vw, 3rem); font-weight: 500; line-height: 1.08; letter-spacing: -0.015em; color: var(--jnsq-ink); max-width: 18ch; margin: 0 0 var(--space-3); }
+        .canonical-article .article-excerpt { font-family: 'Lora', Georgia, serif; font-size: clamp(1.0625rem, 1.4vw, 1.25rem); font-style: italic; line-height: 1.5; color: var(--jnsq-body); max-width: 50ch; margin: 0 0 var(--space-4); }
+        .canonical-article .article-meta { display: flex; gap: var(--space-3); flex-wrap: wrap; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--jnsq-mute); }
+        .canonical-article .article-meta strong { color: var(--jnsq-ink); font-weight: 700; }
+
+        .canonical-article .hero-img-side { width: 100%; }
+        .canonical-article .hero-img-frame {
+          position: relative; width: 100%;
+          aspect-ratio: 16 / 9;
+          border-radius: 6px; overflow: hidden;
+          background: linear-gradient(135deg, rgba(253,213,0,0.18), rgba(253,213,0,0.04)), var(--jnsq-paper);
+          box-shadow: 0 24px 60px rgba(26,26,26,0.10);
+        }
+        .canonical-article .hero-img-frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .canonical-article .hero-img-frame .placeholder {
+          position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+          flex-direction: column; gap: 14px; padding: var(--space-4);
+          font-family: 'Lora', Georgia, serif;
+        }
+        .canonical-article .hero-img-frame .placeholder .mark { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--jnsq-yellow); text-shadow: 0 0 14px rgba(253,213,0,0.35); }
+        .canonical-article .hero-img-frame .placeholder .ph-title { font-size: clamp(1.125rem, 2vw, 1.5rem); font-style: italic; color: var(--jnsq-ink); text-align: center; max-width: 32ch; line-height: 1.35; }
+
+        /* 70/30 SHELL */
+        .canonical-article .article-shell {
+          max-width: 1320px; margin: 0 auto;
+          padding: var(--space-7) var(--space-4) var(--space-5);
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) 320px;
+          gap: var(--space-6);
+          align-items: start;
+        }
+        @media (max-width: 1024px) {
+          .canonical-article .article-shell { grid-template-columns: 1fr; gap: var(--space-5); }
+          .canonical-article .article-aside { order: -1; position: static !important; }
+        }
+
+        /* MAIN */
+        .canonical-article .article-main { min-width: 0; max-width: 760px; }
+        .canonical-article .article-main h2, .canonical-article .canon-body h2 {
+          font-family: 'Lora', Georgia, serif;
+          font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 500;
+          line-height: 1.2; letter-spacing: -0.005em; color: var(--jnsq-ink);
+          margin: var(--space-6) 0 var(--space-3);
+          scroll-margin-top: 90px;
+        }
+        .canonical-article .article-main h2::before, .canonical-article .canon-body h2::before {
+          content: ''; display: block; width: 36px; height: 3px; background: var(--jnsq-yellow);
+          margin-bottom: 14px; border-radius: 2px;
+        }
+        .canonical-article .canon-body p, .canonical-article .article-main p:not(.lead-italic):not(.next-edition):not(.sign-off):not(.article-excerpt):not(.article-meta) {
+          font-family: 'Inter', sans-serif;
+          font-size: 1.0625rem; line-height: 1.85;
+          color: var(--jnsq-body); margin-bottom: var(--space-3);
+        }
+        .canonical-article .canon-body strong, .canonical-article .article-main p strong { color: var(--jnsq-ink); font-weight: 600; }
+        .canonical-article .canon-body em, .canonical-article .article-main p em { color: var(--jnsq-ink); font-style: italic; }
+        .canonical-article .canon-body a, .canonical-article .article-main a {
+          color: var(--jnsq-ink); text-decoration: underline;
+          text-decoration-color: var(--jnsq-yellow);
+          text-decoration-thickness: 2px; text-underline-offset: 4px;
+          transition: background var(--dur-quick) ease;
+        }
+        .canonical-article .canon-body a:hover, .canonical-article .article-main a:hover { background: var(--jnsq-yellow-soft); }
+        .canonical-article .canon-body ol, .canonical-article .article-main ol { margin: 0 0 var(--space-3) var(--space-4); }
+        .canonical-article .canon-body ol li, .canonical-article .article-main ol li { margin-bottom: 12px; line-height: 1.75; font-size: 1.0625rem; }
+        .canonical-article .canon-body ol li::marker { color: var(--jnsq-yellow); font-weight: 700; }
+        .canonical-article .article-main .lead-italic { font-family: 'Inter', sans-serif; font-style: italic; color: var(--jnsq-body); margin-bottom: var(--space-3); font-size: 1.0625rem; line-height: 1.85; }
+
+        /* WHAT DOES THIS MEAN */
+        .canonical-article .what-this-means {
+          background: linear-gradient(135deg, rgba(253,213,0,0.10), rgba(253,213,0,0.04));
+          border: 1px solid rgba(253,213,0,0.30);
+          border-radius: 8px; padding: var(--space-5);
+          margin: var(--space-6) 0; position: relative;
+        }
+        .canonical-article .what-this-means .label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--jnsq-yellow); margin-bottom: var(--space-2); text-shadow: 0 0 14px rgba(253,213,0,0.30); }
+        .canonical-article .what-this-means h3 { font-family: 'Lora', Georgia, serif; font-size: 1.375rem; font-weight: 500; color: var(--jnsq-ink); margin-bottom: var(--space-3); line-height: 1.3; }
+        .canonical-article .what-this-means p { margin-bottom: var(--space-2); }
+        .canonical-article .what-this-means ol { margin: var(--space-3) 0 0 var(--space-4); }
+
+        /* PULL QUOTE */
+        .canonical-article .pull-quote {
+          font-family: 'Lora', Georgia, serif; font-weight: 500; font-style: italic;
+          font-size: clamp(1.375rem, 2.2vw, 1.75rem); line-height: 1.35; color: var(--jnsq-ink);
+          border-left: 4px solid var(--jnsq-yellow); padding: var(--space-3) var(--space-4);
+          margin: var(--space-6) 0; background: rgba(253,213,0,0.04); letter-spacing: -0.005em;
+        }
+        .canonical-article .pull-quote .attribution { display: block; font-style: normal; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--jnsq-mute); margin-top: var(--space-2); }
+
+        /* TRY THIS */
+        .canonical-article .try-this {
+          background: var(--jnsq-ink); color: #fff; border-radius: 8px;
+          padding: var(--space-5); margin: var(--space-5) 0; position: relative; overflow: hidden;
+        }
+        .canonical-article .try-this::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--jnsq-yellow); }
+        .canonical-article .try-this .label { display: inline-block; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--jnsq-yellow); margin-bottom: var(--space-3); text-shadow: 0 0 14px rgba(253,213,0,0.40); }
+        .canonical-article .try-this h3 { font-family: 'Lora', Georgia, serif; font-size: 1.375rem; font-weight: 500; color: #fff; margin-bottom: var(--space-3); line-height: 1.3; }
+        .canonical-article .try-this p { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.85); margin-bottom: 0; }
+
+        /* NEXT EDITION / SIGN-OFF */
+        .canonical-article .next-edition { font-family: 'Lora', Georgia, serif; font-style: italic; font-size: 14px; line-height: 1.6; color: var(--jnsq-mute); padding: var(--space-3) 0; border-top: 1px solid var(--jnsq-line); margin-top: var(--space-5); }
+        .canonical-article .next-edition a { color: var(--jnsq-ink); text-decoration: underline; text-decoration-color: var(--jnsq-yellow); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+        .canonical-article .sign-off { font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: 1.5rem; color: var(--jnsq-ink); margin: var(--space-5) 0 var(--space-3); letter-spacing: -0.01em; }
+
+        /* SIDEBAR */
+        .canonical-article .article-aside {
+          position: sticky; top: 80px;
+          display: flex; flex-direction: column; gap: var(--space-3);
+          max-height: calc(100vh - 96px);
+          overflow-y: auto; padding-right: 4px;
+        }
+        .canonical-article .aside-card { background: var(--jnsq-paper); border: 1px solid var(--jnsq-line); border-radius: 6px; padding: var(--space-3) var(--space-4); position: relative; transition: border-color var(--dur-medium) ease; }
+        .canonical-article .aside-card:hover { border-color: rgba(253,213,0,0.30); }
+        .canonical-article .aside-label { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--jnsq-yellow); margin-bottom: 10px; }
+        .canonical-article .aside-card h4 { font-family: 'Lora', Georgia, serif; font-size: 14px; font-weight: 500; color: var(--jnsq-ink); margin-bottom: 6px; line-height: 1.3; }
+        .canonical-article .aside-card p { font-family: 'Inter', sans-serif; font-size: 12.5px; line-height: 1.55; color: var(--jnsq-body); }
+        .canonical-article .aside-card p a, .canonical-article .aside-card .inline-link { color: var(--jnsq-ink); text-decoration: underline; text-decoration-color: var(--jnsq-yellow); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+        .canonical-article .aside-card p a:hover, .canonical-article .aside-card .inline-link:hover { background: var(--jnsq-yellow-soft); }
+
+        .canonical-article .insights-list { list-style: none; padding: 0; margin: 0; }
+        .canonical-article .insights-list li { border-left: 2px solid var(--jnsq-yellow); padding: 8px 0 8px 12px; font-family: 'Inter', sans-serif; font-size: 12.5px; line-height: 1.5; color: var(--jnsq-body); margin-bottom: 8px; }
+        .canonical-article .insights-list li:last-child { margin-bottom: 0; }
+
+        .canonical-article .toc-list { list-style: none; padding: 0; margin: 0; }
+        .canonical-article .toc-list li { padding: 6px 0; border-bottom: 1px dashed rgba(0,0,0,0.06); }
+        .canonical-article .toc-list li:last-child { border-bottom: none; }
+        .canonical-article .toc-list a { display: block; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--jnsq-body); text-decoration: none; transition: color var(--dur-quick) ease, padding-left var(--dur-quick) ease; }
+        .canonical-article .toc-list a:hover { color: var(--jnsq-ink); padding-left: 6px; background: none; }
+        .canonical-article .toc-list a::before { content: '→'; color: var(--jnsq-yellow); margin-right: 6px; font-weight: 700; opacity: 0.7; }
+
+        /* MEDIA CARD + ENGAGE BUTTON */
+        .canonical-article .aside-card.media-card { background: var(--jnsq-yellow); border-color: var(--jnsq-yellow); }
+        .canonical-article .aside-card.media-card .aside-label { color: var(--jnsq-ink); opacity: 0.7; }
+        .canonical-article .aside-card.media-card h4 { color: var(--jnsq-ink); }
+        .canonical-article .aside-card.media-card p { color: var(--jnsq-ink); opacity: 0.85; margin-bottom: 10px; }
+        .canonical-article .aside-card.media-card .media-btn { display: block; text-align: center; background: var(--jnsq-ink); color: var(--jnsq-yellow); font-family: 'Inter', sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 10px 12px; border-radius: 4px; text-decoration: none; transition: transform var(--dur-quick) var(--ease-out-soft), box-shadow var(--dur-quick) ease; }
+        .canonical-article .aside-card.media-card .media-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(26,26,26,0.20); background: var(--jnsq-ink); }
+
+        .canonical-article .aside-card .engage-btn {
+          display: block; text-align: center;
+          background: var(--jnsq-yellow);
+          color: var(--jnsq-ink) !important;
+          font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700;
+          letter-spacing: 0.14em; text-transform: uppercase;
+          padding: 12px 16px; border-radius: 4px;
+          text-decoration: none !important;
+          margin-top: 10px;
+          box-shadow: 0 6px 18px rgba(253,213,0,0.30);
+          transition: transform var(--dur-quick) var(--ease-out-soft), box-shadow var(--dur-quick) ease;
+        }
+        .canonical-article .aside-card .engage-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 28px rgba(253,213,0,0.40);
+          background: var(--jnsq-yellow);
+          color: var(--jnsq-ink) !important;
+        }
+
+        /* FAQ — dynamic cards */
+        .canonical-article .faq-section { padding: var(--space-7) 0 var(--space-5); }
+        .canonical-article .faq-inner { max-width: 1320px; margin: 0 auto; padding: 0 var(--space-4); }
+        .canonical-article .faq-section .label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--jnsq-yellow); margin-bottom: var(--space-3); text-align: center; }
+        .canonical-article .faq-section h2 { font-family: 'Lora', Georgia, serif; font-size: clamp(1.5rem, 2.5vw, 2.25rem); font-weight: 500; color: var(--jnsq-ink); text-align: center; margin-bottom: var(--space-5); letter-spacing: -0.005em; }
+        .canonical-article .faq-grid { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+        .canonical-article .faq-grid details { background: var(--jnsq-paper); border: 1px solid var(--jnsq-line); border-radius: 8px; padding: 18px 22px; position: relative; overflow: hidden; transition: border-color var(--dur-medium) ease, box-shadow var(--dur-medium) var(--ease-out-soft), transform var(--dur-medium) var(--ease-out-soft), background var(--dur-medium) ease; }
+        .canonical-article .faq-grid details::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--jnsq-yellow); transform: scaleX(0); transform-origin: left; transition: transform var(--dur-slow) var(--ease-out-soft); }
+        .canonical-article .faq-grid details:hover { border-color: rgba(253,213,0,0.30); box-shadow: 0 14px 36px rgba(26,26,26,0.07); transform: translateY(-2px); }
+        .canonical-article .faq-grid details:hover::before { transform: scaleX(1); }
+        .canonical-article .faq-grid details[open] { border-color: rgba(253,213,0,0.55); background: linear-gradient(135deg, rgba(253,213,0,0.07), rgba(253,213,0,0.02)); box-shadow: 0 14px 36px rgba(26,26,26,0.05); transform: none; }
+        .canonical-article .faq-grid details[open]::before { transform: scaleX(1); }
+        .canonical-article .faq-grid summary { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; color: var(--jnsq-ink); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); transition: color var(--dur-quick) ease; }
+        .canonical-article .faq-grid summary::-webkit-details-marker { display: none; }
+        .canonical-article .faq-grid summary::after { content: '+'; font-size: 26px; font-weight: 300; color: var(--jnsq-yellow); flex-shrink: 0; transition: transform 0.3s var(--ease-out-soft); line-height: 1; }
+        .canonical-article .faq-grid details[open] summary { font-weight: 700; }
+        .canonical-article .faq-grid details[open] summary::after { transform: rotate(45deg); }
+        .canonical-article .faq-grid details p { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.75; color: var(--jnsq-body); padding-top: var(--space-3); margin: 0; max-width: 80ch; border-top: 1px dashed rgba(253,213,0,0.30); margin-top: var(--space-3); }
+        .canonical-article .faq-grid a { color: var(--jnsq-ink); text-decoration: underline; text-decoration-color: var(--jnsq-yellow); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+
+        /* GO DEEPER */
+        .canonical-article .go-deeper { padding: var(--space-7) 0 var(--space-5); }
+        .canonical-article .go-deeper-inner { max-width: 1320px; margin: 0 auto; padding: 0 var(--space-4); }
+        .canonical-article .go-deeper .header { text-align: center; margin-bottom: var(--space-5); }
+        .canonical-article .go-deeper .label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--jnsq-yellow); margin-bottom: var(--space-2); }
+        .canonical-article .go-deeper h2 { font-family: 'Lora', Georgia, serif; font-size: clamp(1.5rem, 2.5vw, 2.25rem); font-weight: 500; color: var(--jnsq-ink); letter-spacing: -0.005em; }
+        .canonical-article .deeper-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+        @media (max-width: 900px) { .canonical-article .deeper-grid { grid-template-columns: 1fr; } }
+        .canonical-article .deeper-card { background: var(--jnsq-paper); border: 1px solid var(--jnsq-line); border-radius: 6px; padding: var(--space-4); text-decoration: none; color: inherit; position: relative; transition: transform var(--dur-medium) var(--ease-out-soft), box-shadow var(--dur-medium) var(--ease-out-soft), border-color var(--dur-medium) ease; }
+        .canonical-article .deeper-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--jnsq-yellow); transform: scaleX(0); transform-origin: left; transition: transform var(--dur-slow) var(--ease-out-soft); }
+        .canonical-article .deeper-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(26,26,26,0.07); border-color: rgba(253,213,0,0.30); }
+        .canonical-article .deeper-card:hover::before { transform: scaleX(1); }
+        .canonical-article .deeper-card .num { font-family: 'Lora', Georgia, serif; font-size: 1.75rem; font-weight: 500; color: var(--jnsq-yellow); line-height: 1; margin-bottom: 12px; }
+        .canonical-article .deeper-card h3 { font-family: 'Lora', Georgia, serif; font-size: 1.0625rem; font-weight: 500; line-height: 1.35; color: var(--jnsq-ink); margin-bottom: 6px; }
+        .canonical-article .deeper-card p { font-family: 'Inter', sans-serif; font-size: 13.5px; color: var(--jnsq-body); line-height: 1.55; }
+        .canonical-article .deeper-card .series-tag { display: inline-block; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jnsq-mute); margin-top: 10px; }
+
+        /* TAGS */
+        .canonical-article .tags-section { padding: var(--space-4) 0; }
+        .canonical-article .tags-inner { max-width: 1320px; margin: 0 auto; padding: 0 var(--space-4); }
+        .canonical-article .tags-section .label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--jnsq-mute); margin-bottom: var(--space-2); }
+        .canonical-article .tags-row { display: flex; gap: 8px; flex-wrap: wrap; }
+        .canonical-article .tag-pill { display: inline-block; padding: 7px 14px; background: var(--jnsq-paper); border: 1px solid var(--jnsq-line); border-radius: 100px; font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 500; color: var(--jnsq-body); text-decoration: none; transition: all var(--dur-quick) ease; }
+        .canonical-article .tag-pill:hover { background: var(--jnsq-yellow-soft); border-color: var(--jnsq-yellow); color: var(--jnsq-ink); transform: translateY(-1px); }
+
+        /* SERIES NAV */
+        .canonical-article .series-nav-wrap { padding: var(--space-4) 0; }
+        .canonical-article .series-nav { max-width: 1320px; margin: 0 auto; padding: 0 var(--space-4); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+        @media (max-width: 700px) { .canonical-article .series-nav { grid-template-columns: 1fr; } }
+        .canonical-article .series-nav-card { background: var(--jnsq-bg); border: 1px solid var(--jnsq-line); border-radius: 6px; padding: var(--space-3) var(--space-4); text-decoration: none; color: inherit; transition: border-color var(--dur-medium) ease, transform var(--dur-medium) var(--ease-out-soft); }
+        .canonical-article .series-nav-card:hover { border-color: rgba(253,213,0,0.30); transform: translateY(-2px); }
+        .canonical-article .series-nav-card .direction { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--jnsq-yellow); margin-bottom: 6px; }
+        .canonical-article .series-nav-card.next { text-align: right; }
+        .canonical-article .series-nav-card h4 { font-family: 'Lora', Georgia, serif; font-size: 1rem; font-weight: 500; color: var(--jnsq-ink); line-height: 1.3; }
+        .canonical-article .series-nav-card.disabled { opacity: 0.4; pointer-events: none; }
+
+        /* RELATED */
+        .canonical-article .related-section { background: var(--jnsq-paper); padding: var(--space-7) 0; border-top: 1px solid var(--jnsq-line); }
+        .canonical-article .related-inner { max-width: 1320px; margin: 0 auto; padding: 0 var(--space-4); }
+        .canonical-article .related-section .label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--jnsq-yellow); margin-bottom: var(--space-2); text-align: center; }
+        .canonical-article .related-section h2 { font-family: 'Lora', Georgia, serif; font-size: clamp(1.5rem, 2.5vw, 2.25rem); font-weight: 500; color: var(--jnsq-ink); text-align: center; margin-bottom: var(--space-5); letter-spacing: -0.005em; }
+        .canonical-article .related-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3); }
+        @media (max-width: 900px) { .canonical-article .related-grid { grid-template-columns: 1fr; } }
+        .canonical-article .related-card { background: var(--jnsq-bg); border: 1px solid var(--jnsq-line); border-radius: 6px; padding: var(--space-4); text-decoration: none; color: inherit; transition: transform var(--dur-medium) var(--ease-out-soft), box-shadow var(--dur-medium) var(--ease-out-soft), border-color var(--dur-medium) ease; }
+        .canonical-article .related-card:hover { transform: translateY(-3px); box-shadow: 0 18px 44px rgba(26,26,26,0.06); border-color: rgba(253,213,0,0.30); }
+        .canonical-article .related-card .r-title { font-family: 'Lora', Georgia, serif; font-size: 1.0625rem; font-weight: 500; line-height: 1.35; color: var(--jnsq-ink); margin-bottom: 8px; }
+        .canonical-article .related-card .r-excerpt { font-family: 'Inter', sans-serif; font-size: 13.5px; color: var(--jnsq-body); line-height: 1.55; }
+        </style>
+    </main>
+
+    <!-- CTA -->
+    <section class="jnsq-cta-section">
+      <div class="jnsq-container">
+        <div class="jnsq-eyebrow" data-reveal-fade>Reading is half the work</div>
+        <h2 class="jnsq-display-2" data-reveal>Ready to score what your <span class="jnsq-accent">brand is worth</span>?</h2>
+        <p class="jnsq-lead" data-reveal>The MAD™ and RVF™ diagnostics turn the ideas in the Journal into a measurable read on your brand equity. Free to start.</p>
+        <div class="jnsq-hero-actions" style="justify-content: center; align-items: center; margin-top: var(--space-4);" data-reveal>
+          <a href="/diagnostic/MAD" class="jnsq-btn jnsq-btn-ghost" style="color:var(--jnsq-bg); border-color:rgba(255,255,255,0.25);">Start with MAD™</a>
+          <span style="font-family: 'Lora', Georgia, serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.55); padding: 0 4px;">or</span>
+          <a href="/diagnostic/RVF" class="jnsq-btn jnsq-btn-ghost" style="color:var(--jnsq-bg); border-color:rgba(255,255,255,0.25);">Start with RVF™</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="jnsq-footer">
+      <div class="jnsq-container">
+        <div class="jnsq-footer-grid">
+          <div>
+            <div class="jnsq-footer-brand">STUDIO <span class="accent">JNSQ</span></div>
+            <p class="jnsq-footer-tagline">Others make you profitable.<br>Brand equity makes you valuable.</p>
+          </div>
+          <div class="jnsq-footer-col">
+            <h4>Discipline</h4>
+            <ul>
+              <li><a href="/about">About</a></li>
+              <li><a href="/diagnostic">Diagnostic</a></li>
+              <li><a href="/journal">Journal</a>
+      <a href="/case-studies">Portfolio</a></li>
+            </ul>
+          </div>
+          <div class="jnsq-footer-col">
+            <h4>Frameworks</h4>
+            <ul>
+              <li><a href="/diagnostic/MAD">MAD™</a></li>
+              <li><a href="/diagnostic/RVF">RVF™</a></li>
+              <li><a href="/journal/branding-vs-brand-equity-vs-brand-architecture">The doctrine</a></li>
+            </ul>
+          </div>
+          <div class="jnsq-footer-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" rel="noopener">Book a call</a></li>
+              <li><a href="/diagnostic">Start a diagnosis</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="jnsq-footer-bottom">
+          <div>&copy; 2026 Studio JNSQ. The brand equity architecture firm for valuable brands.</div>
+          <div class="legal"><a href="/">studiojnsq.com</a></div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+        var app = {
+            blogData: null,
+            currentPost: null,
+            visibleCount: 9,
+            filteredData: null,
+
+            init: function() {
+                this.checkRoute();
+                window.addEventListener('hashchange', function() {
+                    app.checkRoute();
+                });
+                window.addEventListener('load', function() {
+                    app.checkRoute();
+                });
+                this.setupListingNewsletter();
+                this.setupPostNewsletter();
+            },
+
+            checkRoute: function() {
+                var params = new URLSearchParams(window.location.search);
+                var postSlug = params.get('post');
+
+                // Also detect slug from clean URL path: /blog/:slug
+                if (!postSlug) {
+                    var pathMatch = window.location.pathname.match(/^\/blog\/([a-z0-9][a-z0-9-]+[a-z0-9])$/);
+                    if (pathMatch) {
+                        postSlug = pathMatch[1];
+                    }
+                }
+
+                if (postSlug) {
+                    this.showPostView(postSlug);
+                } else {
+                    this.showListingView();
+                }
+            },
+
+            showListingView: function() {
+                document.getElementById('listingView').classList.add('active');
+                document.getElementById('postView').classList.remove('active');
+                this.fetchBlogPosts();
+            },
+
+            showPostView: function(slug) {
+                document.getElementById('listingView').classList.remove('active');
+                document.getElementById('postView').classList.add('active');
+                this.fetchPost(slug);
+                // Also fetch blog index for sidebar related posts
+                if (!this.blogData || this.blogData.length === 0) {
+                    var self = this;
+                    fetch('/.netlify/functions/blog-crud?status=published')
+                        .then(function(r) { return r.json(); })
+                        .then(function(data) {
+                            self.blogData = Array.isArray(data) ? data : (data.posts || []);
+                            if (self.currentPost) {
+                                self.loadRelatedPosts(self.currentPost);
+                            }
+                        })
+                        .catch(function() {});
+                }
+                window.scrollTo(0, 0);
+            },
+
+            fetchBlogPosts: function() {
+                var self = this;
+                var gridElement = document.getElementById('blogGrid');
+                var emptyState = document.getElementById('emptyState');
+
+                if (!gridElement.hasAttribute('data-ssr')) { gridElement.innerHTML = this.renderSkeletons(6); }
+                emptyState.style.display = 'none';
+
+                fetch('/.netlify/functions/blog-crud?status=published')
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        self.blogData = Array.isArray(data) ? data : (data.posts || []);
+                        // Pinned slugs always appear first
+                        var pinnedSlugs = [
+                            'what-is-the-market-authority-diamond-for-brand-equity',
+                            'what-is-the-resource-value-formula-for-brand-equity',
+                            'where-do-mad-and-rvf-meet-for-brand-equity-architecture'
+                        ];
+                        self.blogData.sort(function(a, b) {
+                            var aPin = pinnedSlugs.indexOf(a.slug);
+                            var bPin = pinnedSlugs.indexOf(b.slug);
+                            if (aPin !== -1 && bPin !== -1) return aPin - bPin;
+                            if (aPin !== -1) return -1;
+                            if (bPin !== -1) return 1;
+                            return new Date(b.publishDate) - new Date(a.publishDate);
+                        });
+                        self.filteredData = self.blogData.slice();
+                        self.visibleCount = 9;
+
+                        if (self.blogData.length === 0) {
+                            gridElement.innerHTML = '';
+                            emptyState.style.display = 'block';
+                        } else {
+                            self.renderVisibleCards();
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error('Error fetching blog posts:', error);
+                        gridElement.innerHTML = '';
+                        emptyState.style.display = 'block';
+                        emptyState.innerHTML = '<p>Unable to load blog posts. Please try again later.</p>';
+                    });
+            },
+
+            fetchPost: function(slug) {
+                var self = this;
+                fetch('/.netlify/functions/blog-crud?slug=' + encodeURIComponent(slug))
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        self.currentPost = data;
+                        self.renderPost(data);
+                        self.loadComments(slug);
+                        self.setupCommentForm(slug);
+                        self.setOgTags(data);
+                        self.setupShareButtons(data, slug);
+                        self.loadRelatedPosts(data);
+                    })
+                    .catch(function(error) {
+                        console.error('Error fetching post:', error);
+                        var comingSoonSource = 'coming-soon:' + (slug || 'unknown');
+                        document.getElementById('postBody').innerHTML =
+                            '<div style="text-align:center;padding:80px 24px;max-width:640px;margin:0 auto;">' +
+                            '<div style="display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border:1px solid #e8e6df;border-radius:999px;background:#fff;font-size:11px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#1A1A1A;margin-bottom:24px;">' +
+                            '<img src="/images/jnsq-logo-mark.png" alt="" style="width:20px;height:20px;display:inline-block;filter:drop-shadow(0 0 6px rgba(253,213,0,0.35));">In the works</div>' +
+                            '<h1 style="font-family:Lora,Georgia,serif;font-weight:500;font-size:clamp(2rem,5vw,3.25rem);line-height:1.05;letter-spacing:-0.02em;color:#1A1A1A;margin:0 0 20px;">This piece is <em style="background:linear-gradient(180deg,transparent 60%,#fefbef 60%);">coming soon.</em></h1>' +
+                            '<p style="font-family:Lora,Georgia,serif;font-style:italic;font-size:1.0625rem;line-height:1.6;color:#7a7a7a;margin:0 auto 32px;max-width:520px;">We are still writing this edition. The Journal drops a new piece every week.</p>' +
+                            // Subscribe form
+                            '<form id="csSubscribeForm" novalidate style="max-width:520px;margin:0 auto 28px;">' +
+                                '<div style="font-family:Inter,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#1A1A1A;margin-bottom:12px;">Get the drop the moment it publishes.</div>' +
+                                '<div style="display:flex;gap:8px;padding:8px;background:#fff;border:1px solid #e8e6df;border-radius:10px;box-shadow:0 6px 20px rgba(26,26,26,0.05);">' +
+                                    '<input type="email" name="email" placeholder="your@email.com" required autocomplete="email" style="flex:1;border:none;background:transparent;padding:12px 14px;font-family:Inter,sans-serif;font-size:15px;color:#1A1A1A;outline:none;">' +
+                                    '<button type="submit" style="background:#1A1A1A;color:#FDD500;border:none;border-radius:6px;padding:12px 22px;font-family:Inter,sans-serif;font-size:12.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;white-space:nowrap;">Subscribe →</button>' +
+                                '</div>' +
+                                '<p id="csSubscribeNote" role="status" aria-live="polite" style="margin:10px 0 0;font-family:Inter,sans-serif;font-size:13px;line-height:1.5;text-align:center;min-height:20px;"></p>' +
+                            '</form>' +
+                            // Divider
+                            '<div style="display:flex;align-items:center;gap:14px;margin:24px 0 20px;color:#7a7a7a;">' +
+                                '<span style="flex:1;height:1px;background:#e8e6df;"></span>' +
+                                '<span style="font-family:Inter,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;">Or</span>' +
+                                '<span style="flex:1;height:1px;background:#e8e6df;"></span>' +
+                            '</div>' +
+                            '<div style="display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center;">' +
+                            '<a href="/journal" style="display:inline-flex;align-items:center;padding:14px 26px;background:#1A1A1A;color:#FDD500;font-size:12.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;border-radius:6px;border:2px solid #1A1A1A;">Browse the Journal →</a>' +
+                            '<a href="/diagnostic" style="display:inline-flex;align-items:center;padding:14px 26px;background:transparent;color:#1A1A1A;font-size:12.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;border-radius:6px;border:2px solid #1A1A1A;">Take the diagnostic</a>' +
+                            '</div></div>';
+                        // Wire the form
+                        var form = document.getElementById('csSubscribeForm');
+                        if (form) {
+                            form.addEventListener('submit', function(e) {
+                                e.preventDefault();
+                                var input = form.querySelector('input[name=email]');
+                                var btn = form.querySelector('button');
+                                var note = document.getElementById('csSubscribeNote');
+                                var email = input.value.trim();
+                                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                                    note.textContent = 'Please enter a valid email.';
+                                    note.style.color = '#B8412A';
+                                    return;
+                                }
+                                btn.disabled = true; btn.textContent = 'Sending...'; note.textContent = '';
+                                fetch('/.netlify/functions/newsletter-subscribe', {
+                                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ email: email, source: comingSoonSource, list: 'coming-soon' })
+                                })
+                                .then(function(r) { return r.ok ? r.json() : r.json().then(function(j) { throw new Error(j.error || 'Server error'); }); })
+                                .then(function(resp) {
+                                    note.textContent = resp.alreadySubscribed
+                                        ? 'You are already on the list. We will email you the moment this drops.'
+                                        : 'You are on the list. Watch your inbox for the drop.';
+                                    note.style.color = '#0F6E56';
+                                    input.disabled = true; btn.disabled = true; btn.textContent = 'Subscribed ✓';
+                                })
+                                .catch(function(err) {
+                                    note.textContent = (err && err.message) ? err.message : 'Something went wrong. Try again.';
+                                    note.style.color = '#B8412A';
+                                    btn.disabled = false; btn.textContent = 'Subscribe →';
+                                });
+                            });
+                        }
+                    });
+            },
+
+            decodeEntities: function(s) {
+                if (s == null) return '';
+                var d = document.createElement('textarea');
+                d.innerHTML = String(s);
+                return d.value;
+            },
+
+            renderPost: function(post) {
+                var self = this;
+                var d = function(s) { return self.decodeEntities(s); };
+
+                // Pre-decode plain-text fields (rich-text editor often double-encodes &, <, >)
+                post.title = d(post.title);
+                post.excerpt = d(post.excerpt);
+                post.opening = d(post.opening);
+                post.closing = d(post.closing);
+                post.signOff = d(post.signOff);
+                if (post.whatThisMeans) {
+                    post.whatThisMeans.label = d(post.whatThisMeans.label);
+                    post.whatThisMeans.headline = d(post.whatThisMeans.headline);
+                    post.whatThisMeans.body = d(post.whatThisMeans.body);
+                    if (Array.isArray(post.whatThisMeans.items)) post.whatThisMeans.items = post.whatThisMeans.items.map(d);
+                }
+                if (post.pullQuote) {
+                    post.pullQuote.text = d(post.pullQuote.text);
+                    post.pullQuote.attribution = d(post.pullQuote.attribution);
+                }
+                if (post.tryThis) {
+                    post.tryThis.label = d(post.tryThis.label);
+                    post.tryThis.headline = d(post.tryThis.headline);
+                    post.tryThis.body = d(post.tryThis.body);
+                }
+                if (post.nextEdition) {
+                    post.nextEdition.text = d(post.nextEdition.text);
+                    post.nextEdition.linkLabel = d(post.nextEdition.linkLabel);
+                }
+                if (Array.isArray(post.keyInsights)) post.keyInsights = post.keyInsights.map(d);
+                if (Array.isArray(post.faqs)) post.faqs = post.faqs.map(function(f){ return { question: d(f.question), answer: d(f.answer) }; });
+                if (Array.isArray(post.goDeeper)) post.goDeeper = post.goDeeper.map(function(g){ return Object.assign({}, g, { title: d(g.title), excerpt: d(g.excerpt), seriesTag: d(g.seriesTag) }); });
+                if (Array.isArray(post.related)) post.related = post.related.map(function(r){ return Object.assign({}, r, { title: d(r.title), excerpt: d(r.excerpt) }); });
+
+                // ===== HERO BLOCK =====
+                document.getElementById('postTitle').textContent = post.title || '';
+
+                // Breadcrumb
+                var crumbHtml = '<a href="/">Home</a> &nbsp;/&nbsp; <a href="/journal">Journal</a>';
+                if (post.series) {
+                    crumbHtml += ' &nbsp;/&nbsp; <a href="/blog?filter=' + encodeURIComponent(post.series) + '">' + this.seriesLabel(post.series) + '</a>';
+                }
+                if (post.seriesIndex) {
+                    crumbHtml += ' &nbsp;/&nbsp; Edition ' + post.seriesIndex;
+                }
+                document.getElementById('postBreadcrumb').innerHTML = crumbHtml;
+
+                // Series chip
+                var chipEl = document.getElementById('postSeriesChip');
+                if (post.series) {
+                    var chipLabel = post.seriesLabel || (this.seriesLabel(post.series) + (post.seriesIndex ? ' · Edition ' + post.seriesIndex : ''));
+                    chipEl.href = '/blog?filter=' + encodeURIComponent(post.series);
+                    chipEl.innerHTML = '<span>' + this.escapeHtml(chipLabel) + '</span>';
+                    chipEl.style.display = '';
+                } else {
+                    chipEl.style.display = 'none';
+                }
+
+                // Excerpt
+                var excerptEl = document.getElementById('postExcerpt');
+                if (post.excerpt) {
+                    excerptEl.textContent = post.excerpt;
+                    excerptEl.style.display = '';
+                } else {
+                    excerptEl.style.display = 'none';
+                }
+
+                // Meta
+                var metaHtml = '';
+                if (post.author) metaHtml += '<span>By <strong>' + this.escapeHtml(post.author) + '</strong></span>';
+                if (post.publishDate) {
+                    var dateStr = new Date(post.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                    metaHtml += '<span>' + dateStr + '</span>';
+                }
+                var rt = this.calculateReadingTime(post.body);
+                if (rt > 0) metaHtml += '<span>' + rt + ' min read</span>';
+                document.getElementById('postMeta').innerHTML = metaHtml;
+
+                // Hero image (with branded placeholder fallback)
+                var heroImg = document.getElementById('postHeroImage');
+                var heroPlaceholder = document.getElementById('postHeroPlaceholder');
+                if (post.heroImage) {
+                    var imageUrl = this.convertGoogleDriveUrl(post.heroImage);
+                    heroImg.src = imageUrl;
+                    heroImg.alt = post.title || 'Post hero image';
+                    heroImg.onload = function() { heroPlaceholder.style.display = 'none'; heroImg.style.display = 'block'; };
+                    heroImg.onerror = function() { heroImg.style.display = 'none'; heroPlaceholder.style.display = 'flex'; };
+                } else {
+                    heroImg.style.display = 'none';
+                    heroPlaceholder.style.display = 'flex';
+                }
+                // Update placeholder text to reflect post
+                if (post.series && post.seriesIndex) {
+                    heroPlaceholder.querySelector('.mark').textContent = 'Studio JNSQ · ' + this.seriesLabel(post.series) + ' ' + post.seriesIndex;
+                } else if (post.series) {
+                    heroPlaceholder.querySelector('.mark').textContent = 'Studio JNSQ · ' + this.seriesLabel(post.series);
+                }
+                if (post.excerpt) heroPlaceholder.querySelector('.ph-title').textContent = post.excerpt;
+
+                // ===== BODY =====
+                document.getElementById('postBody').innerHTML = post.body || '<p>No content available.</p>';
+
+                // ===== OPENING =====
+                var openingEl = document.getElementById('postOpening');
+                if (post.opening) {
+                    openingEl.textContent = post.opening;
+                    openingEl.style.display = '';
+                } else {
+                    openingEl.style.display = 'none';
+                }
+
+                // ===== WHAT THIS MEANS =====
+                var wtm = post.whatThisMeans || {};
+                if (wtm.headline || wtm.body || (wtm.items && wtm.items.length)) {
+                    document.getElementById('postWTMLabel').textContent = wtm.label || 'What does this actually mean?';
+                    document.getElementById('postWTMHeadline').textContent = wtm.headline || '';
+                    document.getElementById('postWTMBody').textContent = wtm.body || '';
+                    var itemsHtml = (wtm.items || []).map(function(it) { return '<li>' + self.escapeHtml(it) + '</li>'; }).join('');
+                    document.getElementById('postWTMItems').innerHTML = itemsHtml;
+                    document.getElementById('postWTM').style.display = '';
+                } else {
+                    document.getElementById('postWTM').style.display = 'none';
+                }
+
+                // ===== PULL QUOTE =====
+                var pq = post.pullQuote || {};
+                if (pq.text) {
+                    document.getElementById('postPullText').textContent = '"' + pq.text + '"';
+                    document.getElementById('postPullAttr').textContent = pq.attribution || '';
+                    document.getElementById('postPullQuote').style.display = '';
+                } else {
+                    document.getElementById('postPullQuote').style.display = 'none';
+                }
+
+                // ===== CLOSING =====
+                var closingEl = document.getElementById('postClosing');
+                if (post.closing) {
+                    // Render closing as a paragraph with rich HTML support (e.g. links to /diagnostic/MAD)
+                    closingEl.innerHTML = '<p>' + post.closing.replace(/\n\n+/g, '</p><p>').replace(/\n/g, '<br>') + '</p>';
+                    closingEl.style.display = '';
+                } else {
+                    closingEl.style.display = 'none';
+                }
+
+                // ===== TRY THIS =====
+                var tt = post.tryThis || {};
+                if (tt.headline || tt.body) {
+                    document.getElementById('postTryLabel').textContent = tt.label || 'Try This';
+                    document.getElementById('postTryHeadline').textContent = tt.headline || '';
+                    document.getElementById('postTryBody').textContent = tt.body || '';
+                    document.getElementById('postTryThis').style.display = '';
+                } else {
+                    document.getElementById('postTryThis').style.display = 'none';
+                }
+
+                // ===== NEXT EDITION =====
+                var ne = post.nextEdition || {};
+                var neEl = document.getElementById('postNextEdition');
+                if (ne.text) {
+                    var neHtml = self.escapeHtml(ne.text);
+                    if (ne.linkSlug && ne.linkLabel) {
+                        neHtml = neHtml.replace(self.escapeHtml(ne.linkLabel), '<a href="/journal/' + encodeURIComponent(ne.linkSlug) + '">' + self.escapeHtml(ne.linkLabel) + '</a>');
+                    }
+                    neEl.innerHTML = neHtml;
+                    neEl.style.display = '';
+                } else {
+                    neEl.style.display = 'none';
+                }
+
+                // ===== SIGN-OFF =====
+                var soEl = document.getElementById('postSignOff');
+                if (post.signOff) {
+                    soEl.textContent = post.signOff;
+                    soEl.style.display = '';
+                } else {
+                    soEl.style.display = 'none';
+                }
+
+                // ===== SIDEBAR: KEY INSIGHTS =====
+                var insightsBox = document.getElementById('sidebarInsights');
+                var insightsList = document.getElementById('sidebarInsightsList');
+                if (post.keyInsights && post.keyInsights.length) {
+                    insightsList.innerHTML = post.keyInsights.map(function(i) { return '<li>' + self.escapeHtml(i) + '</li>'; }).join('');
+                    insightsBox.style.display = '';
+                } else {
+                    // Fallback: derive from H2 headings
+                    var tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = post.body || '';
+                    var h2s = tempDiv.querySelectorAll('h2');
+                    if (h2s.length > 0) {
+                        var html = '';
+                        for (var i = 0; i < h2s.length && i < 3; i++) html += '<li>' + self.escapeHtml(h2s[i].textContent) + '</li>';
+                        insightsList.innerHTML = html;
+                        insightsBox.style.display = '';
+                    } else {
+                        insightsBox.style.display = 'none';
+                    }
+                }
+
+                // ===== SIDEBAR: TOC =====
+                var tocBox = document.getElementById('sidebarToc');
+                var tocList = document.getElementById('sidebarTocList');
+                var bodyDiv = document.createElement('div');
+                bodyDiv.innerHTML = post.body || '';
+                var h2nodes = bodyDiv.querySelectorAll('h2');
+                if (h2nodes.length > 0) {
+                    var tocHtml = '';
+                    var bodyDom = document.getElementById('postBody');
+                    var liveH2s = bodyDom.querySelectorAll('h2');
+                    for (var j = 0; j < liveH2s.length; j++) {
+                        var h = liveH2s[j];
+                        if (!h.id) h.id = 'h-' + j + '-' + (h.textContent || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 50);
+                        tocHtml += '<li><a href="#' + h.id + '">' + self.escapeHtml(h.textContent) + '</a></li>';
+                    }
+                    tocList.innerHTML = tocHtml;
+                    tocBox.style.display = '';
+                } else {
+                    tocBox.style.display = 'none';
+                }
+
+                // ===== SIDEBAR: SERIES CARD =====
+                var seriesBox = document.getElementById('sidebarSeries');
+                if (post.series) {
+                    document.getElementById('sidebarSeriesTitle').textContent = this.seriesLabel(post.series);
+                    document.getElementById('sidebarSeriesDesc').textContent = this.seriesDescription(post.series);
+                    document.getElementById('sidebarSeriesLink').href = '/blog?filter=' + encodeURIComponent(post.series);
+                    document.getElementById('sidebarSeriesLink').textContent = 'See all ' + this.seriesLabel(post.series) + ' →';
+                    seriesBox.style.display = '';
+                } else {
+                    seriesBox.style.display = 'none';
+                }
+
+                // ===== FAQ =====
+                if (post.faqs && post.faqs.length) {
+                    var faqHtml = post.faqs.map(function(f) {
+                        return '<details><summary>' + self.escapeHtml(f.question) + '</summary><p>' + self.escapeHtml(f.answer) + '</p></details>';
+                    }).join('');
+                    document.getElementById('postFaqGrid').innerHTML = faqHtml;
+                    document.getElementById('postFaqSection').style.display = '';
+                } else {
+                    document.getElementById('postFaqSection').style.display = 'none';
+                }
+
+                // ===== GO DEEPER =====
+                if (post.goDeeper && post.goDeeper.length) {
+                    var gdHtml = post.goDeeper.map(function(g) {
+                        return '<a href="/journal/' + encodeURIComponent(g.slug || '#') + '" class="deeper-card">' +
+                            '<div class="num">' + self.escapeHtml(g.num || '') + '</div>' +
+                            '<h3>' + self.escapeHtml(g.title || '') + '</h3>' +
+                            '<p>' + self.escapeHtml(g.excerpt || '') + '</p>' +
+                            (g.seriesTag ? '<span class="series-tag">' + self.escapeHtml(g.seriesTag) + '</span>' : '') +
+                            '</a>';
+                    }).join('');
+                    document.getElementById('postGoDeeperGrid').innerHTML = gdHtml;
+                    document.getElementById('postGoDeeperSection').style.display = '';
+                } else {
+                    document.getElementById('postGoDeeperSection').style.display = 'none';
+                }
+
+                // ===== TAGS =====
+                if (post.tags && post.tags.length) {
+                    var tagsHtml = post.tags.map(function(tag) {
+                        return '<a class="tag-pill" rel="tag" href="/blog?tag=' + encodeURIComponent(tag.toLowerCase().replace(/\s+/g, '-')) + '">' + self.escapeHtml(tag) + '</a>';
+                    }).join('');
+                    document.getElementById('postTagsRow').innerHTML = tagsHtml;
+                    document.getElementById('postTagsSection').style.display = '';
+                } else {
+                    document.getElementById('postTagsSection').style.display = 'none';
+                }
+
+                // ===== SERIES NAV =====
+                var prev = post.prevInSeries || {};
+                var next = post.nextInSeries || {};
+                if (prev.slug || next.slug || prev.title || next.title) {
+                    var prevCard = document.getElementById('postPrevCard');
+                    var nextCard = document.getElementById('postNextCard');
+                    if (prev.slug && prev.title) {
+                        prevCard.href = '/journal/' + encodeURIComponent(prev.slug);
+                        prevCard.classList.remove('disabled');
+                        document.getElementById('postPrevTitle').textContent = prev.title;
+                    } else {
+                        prevCard.href = '#';
+                        prevCard.classList.add('disabled');
+                        document.getElementById('postPrevTitle').textContent = 'You are at the first edition in this view.';
+                    }
+                    if (next.slug && next.title) {
+                        nextCard.href = '/journal/' + encodeURIComponent(next.slug);
+                        nextCard.classList.remove('disabled');
+                        document.getElementById('postNextTitle').textContent = next.title;
+                    } else {
+                        nextCard.href = '#';
+                        nextCard.classList.add('disabled');
+                        document.getElementById('postNextTitle').textContent = 'You are at the latest edition.';
+                    }
+                    document.getElementById('postSeriesNavWrap').style.display = '';
+                } else {
+                    document.getElementById('postSeriesNavWrap').style.display = 'none';
+                }
+
+                // ===== RELATED =====
+                if (post.related && post.related.length) {
+                    var rHtml = post.related.map(function(r) {
+                        return '<a href="/journal/' + encodeURIComponent(r.slug || '#') + '" class="related-card">' +
+                            '<div class="r-title">' + self.escapeHtml(r.title || '') + '</div>' +
+                            '<div class="r-excerpt">' + self.escapeHtml(r.excerpt || '') + '</div>' +
+                            '</a>';
+                    }).join('');
+                    document.getElementById('postRelatedGrid').innerHTML = rHtml;
+                    document.getElementById('postRelatedSection').style.display = '';
+                } else {
+                    document.getElementById('postRelatedSection').style.display = 'none';
+                }
+            },
+
+            seriesLabel: function(series) {
+                var map = { foundation: 'Foundation', mad: 'MAD™ Series', numbers: 'The Numbers', practice: 'The Practice', diagnostics: 'The Diagnostics', bip: 'Brilliant In Public', standalone: 'Standalone' };
+                return map[series] || (series || 'Journal');
+            },
+
+            seriesDescription: function(series) {
+                var map = {
+                    foundation: 'Definitional pieces. The starting line for brand equity architecture.',
+                    mad: 'The anatomy of the Market Authority Diamond™. Where brand equity actually lives.',
+                    numbers: 'CAC, MRR, LTV. Brand equity translated to the metrics your CFO already cares about.',
+                    practice: 'How the discipline shows up in operating decisions, week to week.',
+                    diagnostics: 'The MAD™ and RVF™ diagnostics, the playbooks for reading the score.',
+                    bip: 'Long-form insights from Jerico Lugo on brand equity architecture, media strategy, and the systems behind valuable brands.',
+                    standalone: 'Sharp observations that sit outside the recurring series.'
+                };
+                return map[series] || '';
+            },
+
+            calculateReadingTime: function(text) {
+                if (!text) return 0;
+                var wordCount = text.trim().split(/\s+/).length;
+                return Math.ceil(wordCount / 200);
+            },
+
+            renderBlogCards: function(posts) {
+                var self = this;
+                var pinnedSlugs = ['what-is-the-market-authority-diamond-for-brand-equity','what-is-the-resource-value-formula-for-brand-equity','where-do-mad-and-rvf-meet-for-brand-equity-architecture'];
+                return posts.map(function(post) {
+                    var imageUrl = post.heroImage ? self.convertGoogleDriveUrl(post.heroImage) : '';
+                    var dateStr = new Date(post.publishDate).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                    });
+                    var tagsHtml = (post.tags || []).map(function(tag) {
+                        return '<span class="tag">' + self.escapeHtml(tag) + '</span>';
+                    }).join('');
+                    var isPinned = pinnedSlugs.indexOf(post.slug) !== -1;
+                    var pinIcon = isPinned ? '<svg style="position:absolute;top:12px;right:12px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.15));" width="22" height="22" viewBox="0 0 24 24" fill="#FDD500" stroke="#394550" stroke-width="1.5"><path d="M12 2C12 2 8 6 8 10c0 1.5.5 2.8 1.3 3.7L7 16h4v6h2v-6h4l-2.3-2.3C15.5 12.8 16 11.5 16 10c0-4-4-8-4-8z"/></svg>' : '';
+
+                    var cardUrl = '/journal/' + encodeURIComponent(post.slug);
+
+                    return '\
+                        <a href="' + cardUrl + '" class="blog-card lift" style="position:relative;' + (isPinned ? 'border:1px solid var(--yellow);' : '') + '">\
+                            ' + (imageUrl ? '<img src="' + imageUrl + '" alt="' + self.escapeHtml(post.title) + '" class="blog-card-image" loading="lazy">' : '<div class="blog-card-image" style="background-color: var(--dark);"></div>') + '\
+                            ' + pinIcon + '\
+                            <div class="blog-card-content">\
+                                <h2 class="blog-card-title">' + self.escapeHtml(post.title) + '</h2>\
+                                <p class="blog-card-excerpt">' + self.escapeHtml(post.excerpt || (post.body || '').substring(0, 150)) + '</p>\
+                                <div class="blog-card-meta">\
+                                    ' + (post.author ? '<span>' + self.escapeHtml(post.author) + '</span>' : '') + '\
+                                    <span>' + dateStr + '</span>\
+                                </div>\
+                                ' + (tagsHtml ? '<div class="blog-card-tags">' + tagsHtml + '</div>' : '') + '\
+                            </div>\
+                        </a>\
+                    ';
+                }).join('');
+            },
+
+            renderVisibleCards: function() {
+                var gridElement = document.getElementById('blogGrid');
+                var emptyState = document.getElementById('emptyState');
+                var showMoreBtn = document.getElementById('showMoreBtn');
+                var data = this.filteredData || this.blogData || [];
+
+                if (data.length === 0) {
+                    gridElement.innerHTML = '';
+                    emptyState.style.display = 'block';
+                    emptyState.innerHTML = '<p>No articles match your search.</p>';
+                    showMoreBtn.style.display = 'none';
+                    return;
+                }
+
+                emptyState.style.display = 'none';
+                var visible = data.slice(0, this.visibleCount);
+                gridElement.innerHTML = this.renderBlogCards(visible);
+
+                if (data.length > this.visibleCount) {
+                    showMoreBtn.style.display = 'block';
+                    showMoreBtn.textContent = 'Show More Articles (' + (data.length - this.visibleCount) + ' remaining)';
+                } else {
+                    showMoreBtn.style.display = 'none';
+                }
+            },
+
+            filterPosts: function() {
+                var query = document.getElementById('blogSearchInput').value.trim().toLowerCase();
+                if (!query) {
+                    this.filteredData = (this.blogData || []).slice();
+                } else {
+                    this.filteredData = (this.blogData || []).filter(function(post) {
+                        var searchable = (post.title || '').toLowerCase() + ' ' + (post.excerpt || '').toLowerCase() + ' ' + (post.tags || []).join(' ').toLowerCase();
+                        return searchable.indexOf(query) !== -1;
+                    });
+                }
+                this.visibleCount = 9;
+                this.renderVisibleCards();
+            },
+
+            showMore: function() {
+                this.visibleCount += 9;
+                this.renderVisibleCards();
+            },
+
+            renderSkeletons: function(count) {
+                var html = '';
+                for (var i = 0; i < count; i++) {
+                    html += '\
+                        <div class="skeleton-card">\
+                            <div class="skeleton-image skeleton"></div>\
+                            <div class="skeleton-content">\
+                                <div class="skeleton-title skeleton"></div>\
+                                <div class="skeleton-text skeleton"></div>\
+                                <div class="skeleton-text skeleton" style="width: 80%;"></div>\
+                            </div>\
+                        </div>\
+                    ';
+                }
+                return html;
+            },
+
+            convertGoogleDriveUrl: function(url) {
+                if (!url) return '';
+                var fileIdMatch = url.match(/\/d\/([a-zA-Z0-9-_]+)\//);
+                if (fileIdMatch && fileIdMatch[1]) {
+                    return 'https://drive.google.com/uc?export=view&id=' + fileIdMatch[1];
+                }
+                return url;
+            },
+
+            escapeHtml: function(text) {
+                if (!text) return '';
+                var map = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                };
+                return text.replace(/[&<>"']/g, function(char) {
+                    return map[char];
+                });
+            },
+
+            setupListingNewsletter: function() {
+                var form = document.getElementById('listingNewsletterForm');
+                if (!form) return;
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    app.submitNewsletter('listing');
+                });
+            },
+
+            setupPostNewsletter: function() {
+                var form = document.getElementById('postNewsletterForm');
+                if (!form) return;
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    app.submitNewsletter('post');
+                });
+            },
+
+            submitNewsletter: function(source) {
+                var emailField = source === 'listing' ? document.getElementById('listingNewsletterEmail') : document.getElementById('postNewsletterEmail');
+                var messageEl = source === 'listing' ? document.getElementById('listingNewsletterMessage') : document.getElementById('postNewsletterMessage');
+                var button = document.querySelector((source === 'listing' ? '#listingNewsletterForm' : '#postNewsletterForm') + ' .newsletter-form-button');
+                var email = emailField.value.trim();
+
+                if (!email) {
+                    messageEl.textContent = 'Please enter a valid email.';
+                    messageEl.className = 'newsletter-form-message error';
+                    messageEl.style.display = 'block';
+                    return;
+                }
+
+                button.disabled = true;
+                button.textContent = 'Subscribing...';
+
+                fetch('/.netlify/functions/newsletter-subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        source: 'blog'
+                    })
+                })
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        button.disabled = false;
+                        button.textContent = 'Subscribe';
+                        messageEl.textContent = "You're in. We'll keep it valuable.";
+                        messageEl.className = 'newsletter-form-message success';
+                        messageEl.style.display = 'block';
+                        emailField.value = '';
+                        setTimeout(function() {
+                            messageEl.style.display = 'none';
+                        }, 5000);
+                    })
+                    .catch(function(error) {
+                        button.disabled = false;
+                        button.textContent = 'Subscribe';
+                        messageEl.textContent = 'Something went wrong. Try again.';
+                        messageEl.className = 'newsletter-form-message error';
+                        messageEl.style.display = 'block';
+                        console.error('Newsletter error:', error);
+                    });
+            },
+
+            setOgTags: function(post) {
+                var postUrl = window.location.href;
+                var imageUrl = post.heroImage ? this.convertGoogleDriveUrl(post.heroImage) : 'https://studiojnsq.com/og-image.jpg';
+
+                document.title = (post.title || 'Blog Post') + ' | The JNSQ Journal';
+                document.querySelector('meta[name="description"]').setAttribute('content', post.excerpt || post.body.substring(0, 160));
+                document.querySelector('meta[property="og:title"]').setAttribute('content', post.title || 'Blog Post');
+                document.querySelector('meta[property="og:description"]').setAttribute('content', post.excerpt || post.body.substring(0, 160));
+                document.querySelector('meta[property="og:type"]').setAttribute('content', 'article');
+                document.querySelector('meta[property="og:url"]').setAttribute('content', postUrl);
+                document.querySelector('meta[property="og:image"]').setAttribute('content', imageUrl);
+                document.querySelector('meta[name="twitter:title"]').setAttribute('content', post.title || 'Blog Post');
+                document.querySelector('meta[name="twitter:description"]').setAttribute('content', post.excerpt || post.body.substring(0, 160));
+                document.querySelector('meta[name="twitter:image"]').setAttribute('content', imageUrl);
+                document.querySelector('link[rel="canonical"]').setAttribute('href', postUrl);
+
+                // Set article-specific meta tags
+                var publishedMeta = document.querySelector('meta[property="article:published_time"]');
+                var modifiedMeta = document.querySelector('meta[property="article:modified_time"]');
+                if (publishedMeta) publishedMeta.setAttribute('content', post.publishDate || '');
+                if (modifiedMeta) modifiedMeta.setAttribute('content', post.updatedAt || post.publishDate || '');
+
+                var structuredData = {
+                    '@context': 'https://schema.org',
+                    '@type': 'BlogPosting',
+                    'headline': post.title,
+                    'description': post.excerpt || post.body.substring(0, 160),
+                    'image': imageUrl,
+                    'url': postUrl,
+                    'mainEntityOfPage': {
+                        '@type': 'WebPage',
+                        '@id': postUrl
+                    },
+                    'datePublished': post.publishDate,
+                    'dateModified': post.updatedAt || post.publishDate,
+                    'author': {
+                        '@type': 'Person',
+                        'name': 'Jerico Lugo',
+                        'url': 'https://studiojnsq.com/about',
+                        'jobTitle': 'Founder, Studio JNSQ'
+                    },
+                    'publisher': {
+                        '@type': 'Organization',
+                        'name': 'Studio JNSQ',
+                        'url': 'https://studiojnsq.com',
+                        'logo': {
+                            '@type': 'ImageObject',
+                            'url': 'https://studiojnsq.com/images/jnsq-logo-mark.png'
+                        }
+                    },
+                    'inLanguage': 'en',
+                    'isPartOf': {
+                        '@type': 'Blog',
+                        'name': 'The JNSQ Journal',
+                        'url': 'https://studiojnsq.com/journal'
+                    }
+                };
+
+                // Extract FAQ schema from post body if it contains Q&A patterns
+                var faqItems = [];
+                var bodyHtml = post.body || '';
+                var faqRegex = /<h[23][^>]*>(.*?\?)<\/h[23]>\s*([\s\S]*?)(?=<h[23]|$)/gi;
+                var faqMatch;
+                while ((faqMatch = faqRegex.exec(bodyHtml)) !== null) {
+                    var question = faqMatch[1].replace(/<[^>]+>/g, '').trim();
+                    var answer = faqMatch[2].replace(/<[^>]+>/g, '').trim().substring(0, 500);
+                    if (question && answer && answer.length > 20) {
+                        faqItems.push({
+                            '@type': 'Question',
+                            'name': question,
+                            'acceptedAnswer': {
+                                '@type': 'Answer',
+                                'text': answer
+                            }
+                        });
+                    }
+                }
+
+                var schemas = [structuredData];
+                if (faqItems.length >= 2) {
+                    schemas.push({
+                        '@context': 'https://schema.org',
+                        '@type': 'FAQPage',
+                        'mainEntity': faqItems
+                    });
+                }
+
+                var scriptEl = document.querySelector('script[type="application/ld+json"]');
+                if (scriptEl) {
+                    scriptEl.textContent = JSON.stringify(schemas.length === 1 ? schemas[0] : schemas);
+                }
+            },
+
+            setupShareButtons: function(post, slug) {
+                var shareSection = document.getElementById('postShare');
+                var postUrl = window.location.href;
+                var title = post.title || 'Check out this article';
+
+                shareSection.style.display = 'flex';
+
+                var twitterUrl = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(postUrl) + '&text=' + encodeURIComponent(title + ' - The JNSQ Journal');
+                var linkedInUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(postUrl);
+
+                document.getElementById('shareTwitter').href = twitterUrl;
+                document.getElementById('shareLinkedIn').href = linkedInUrl;
+
+                document.getElementById('shareLink').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(postUrl).then(function() {
+                            var btn = document.getElementById('shareLink');
+                            var originalText = btn.textContent;
+                            btn.textContent = 'Copied!';
+                            setTimeout(function() {
+                                btn.textContent = originalText;
+                            }, 2000);
+                        });
+                    }
+                });
+            },
+
+            loadRelatedPosts: function(post) {
+                // Canonical template renders Related cards via post.related (handled inside renderPost).
+                // If the post does not carry its own related cards, derive 3 by tag overlap and inject
+                // into the canonical full-width related section.
+                if (post.related && post.related.length) return; // already handled by renderPost
+
+                var section = document.getElementById('postRelatedSection');
+                var grid = document.getElementById('postRelatedGrid');
+                if (!section || !grid) return;
+
+                if (!post.tags || post.tags.length === 0 || !this.blogData) {
+                    section.style.display = 'none';
+                    return;
+                }
+
+                var postTags = post.tags.map(function(tag) { return String(tag).toLowerCase(); });
+                var related = this.blogData.filter(function(p) {
+                    if (p.slug === post.slug) return false;
+                    if (!p.tags) return false;
+                    var pTags = p.tags.map(function(tag) { return String(tag).toLowerCase(); });
+                    return pTags.some(function(tag) { return postTags.indexOf(tag) !== -1; });
+                }).slice(0, 3);
+
+                if (related.length === 0) {
+                    section.style.display = 'none';
+                    return;
+                }
+
+                grid.innerHTML = related.map(function(p) {
+                    var url = '/journal/' + encodeURIComponent(p.slug);
+                    return '<a href="' + url + '" class="related-card">' +
+                        '<div class="r-title">' + app.escapeHtml(p.title || '') + '</div>' +
+                        '<div class="r-excerpt">' + app.escapeHtml(p.excerpt || '') + '</div>' +
+                        '</a>';
+                }).join('');
+                section.style.display = '';
+            },
+
+            setupCommentForm: function(slug) {
+                var form = document.getElementById('commentForm');
+                if (!form) return;
+
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var name = document.getElementById('commentName').value.trim();
+                    var email = document.getElementById('commentEmail').value.trim();
+                    var text = document.getElementById('commentText').value.trim();
+
+                    if (!name || !email || !text) {
+                        app.showCommentMessage('Please fill in all fields.', 'error');
+                        return;
+                    }
+
+                    var submitBtn = form.querySelector('.comment-submit');
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Posting...';
+
+                    fetch('/.netlify/functions/blog-comments', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name: name,
+                            email: email,
+                            comment: text,
+                            slug: slug,
+                            parentId: null
+                        })
+                    })
+                        .then(function(response) {
+                            return response.json();
+                        })
+                        .then(function(data) {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Post Comment';
+                            app.showCommentMessage('Your comment is pending review', 'pending');
+                            form.reset();
+                            setTimeout(function() {
+                                app.loadComments(slug);
+                            }, 1000);
+                        })
+                        .catch(function(error) {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Post Comment';
+                            app.showCommentMessage('Error posting comment. Try again.', 'error');
+                            console.error('Comment error:', error);
+                        });
+                });
+            },
+
+            showCommentMessage: function(text, type) {
+                var messageEl = document.getElementById('commentMessage');
+                messageEl.textContent = text;
+                messageEl.className = 'comment-message ' + type;
+                messageEl.style.display = 'block';
+                setTimeout(function() {
+                    messageEl.style.display = 'none';
+                }, 4000);
+            },
+
+            loadComments: function(slug) {
+                var self = this;
+                fetch('/.netlify/functions/blog-comments?slug=' + encodeURIComponent(slug))
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        var comments = Array.isArray(data) ? data : (data.comments || []);
+                        comments.sort(function(a, b) {
+                            return new Date(b.createdAt) - new Date(a.createdAt);
+                        });
+                        var listEl = document.getElementById('commentsList');
+                        if (comments.length === 0) {
+                            listEl.innerHTML = '<p style="color: var(--mid); text-align: center; padding: 2rem;">Be the first to comment</p>';
+                            return;
+                        }
+                        listEl.innerHTML = comments.map(function(comment) {
+                            return self.renderComment(comment, slug);
+                        }).join('');
+                    })
+                    .catch(function(error) {
+                        console.error('Error loading comments:', error);
+                    });
+            },
+
+            renderComment: function(comment, slug) {
+                var self = this;
+                var dateStr = new Date(comment.createdAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+
+                var repliesHtml = '';
+                if (comment.replies && comment.replies.length > 0) {
+                    repliesHtml = '<div class="comment-replies">' +
+                        comment.replies.map(function(reply) {
+                            var replyDateStr = new Date(reply.createdAt).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric'
+                            });
+                            return '\
+                                <div class="comment-reply">\
+                                    <div class="comment-header">\
+                                        <span class="comment-name">' + self.escapeHtml(reply.name) + '</span>\
+                                        <span class="comment-date">' + replyDateStr + '</span>\
+                                    </div>\
+                                    <div class="comment-text">' + self.escapeHtml(reply.comment) + '</div>\
+                                </div>\
+                            ';
+                        }).join('') +
+                        '</div>';
+                }
+
+                return '\
+                    <div class="comment">\
+                        <div class="comment-header">\
+                            <span class="comment-name">' + this.escapeHtml(comment.name) + '</span>\
+                            <span class="comment-date">' + dateStr + '</span>\
+                        </div>\
+                        <div class="comment-text">' + this.escapeHtml(comment.comment) + '</div>\
+                        <a href="#" class="comment-reply-link" data-comment-id="' + comment.id + '" data-slug="' + slug + '">Reply</a>\
+                        ' + repliesHtml + '\
+                    </div>\
+                ';
+            }
+        };
+
+        app.init();
+    </script>
+<script src="/js/jnsq-system.js?v=2" defer></script>
+</body>
+</html>

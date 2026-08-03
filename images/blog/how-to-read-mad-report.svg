@@ -1,0 +1,53 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#fefbef"/>
+
+  <!-- Title -->
+  <text x="600" y="85" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="600" fill="#FDD500" text-anchor="middle" letter-spacing="4" text-transform="uppercase">READING YOUR MAD™ REPORT</text>
+
+  <!-- Visual: MAD Diamond with score indicators -->
+  <g>
+    <!-- Diamond shape -->
+    <!-- Top point -->
+    <circle cx="600" cy="160" r="8" fill="#FDD500"/>
+    <!-- Right point -->
+    <circle cx="800" cy="310" r="8" fill="#6D8397"/>
+    <!-- Bottom point -->
+    <circle cx="600" cy="460" r="8" fill="#6D8397"/>
+    <!-- Left point -->
+    <circle cx="400" cy="310" r="8" fill="#6D8397"/>
+
+    <!-- Diamond lines -->
+    <line x1="600" y1="160" x2="800" y2="310" stroke="#98A7B5" stroke-width="2"/>
+    <line x1="800" y1="310" x2="600" y2="460" stroke="#98A7B5" stroke-width="2"/>
+    <line x1="600" y1="460" x2="400" y2="310" stroke="#98A7B5" stroke-width="2"/>
+    <line x1="400" y1="310" x2="600" y2="160" stroke="#98A7B5" stroke-width="2"/>
+
+    <!-- Score labels at each point -->
+    <!-- Top (Demand) - highlighted yellow -->
+    <text x="600" y="135" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="600" fill="#FDD500" text-anchor="middle">92</text>
+    <text x="600" y="148" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#FDD500" text-anchor="middle">Demand</text>
+
+    <!-- Right (Visibility) -->
+    <text x="825" y="310" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="600" fill="#6D8397" text-anchor="start">78</text>
+    <text x="825" y="323" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#6D8397" text-anchor="start">Visibility</text>
+
+    <!-- Bottom (Market Trust) -->
+    <text x="600" y="485" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="600" fill="#6D8397" text-anchor="middle">65</text>
+    <text x="600" y="498" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#6D8397" text-anchor="middle">Market Trust</text>
+
+    <!-- Left (Credibility) -->
+    <text x="375" y="310" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="600" fill="#6D8397" text-anchor="end">81</text>
+    <text x="375" y="323" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#6D8397" text-anchor="end">Credibility</text>
+
+    <!-- Center note -->
+    <text x="600" y="312" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#394550" text-anchor="middle" font-weight="500">5 Facets</text>
+  </g>
+
+  <!-- One-liner text -->
+  <text x="600" y="560" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="22" font-weight="500" fill="#98A7B5" text-anchor="middle">Your scores tell a story. Here's how to read it.</text>
+
+  <!-- Brand mark: yellow dot + text -->
+  <circle cx="540" cy="600" r="3" fill="#FDD500"/>
+  <text x="600" y="604" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600" fill="#c5bfb0" letter-spacing="2">STUDIO JNSQ</text>
+</svg>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio | Studio JNSQ</title>
+<meta name="description" content="Brand equity architecture portfolio from Studio JNSQ. Real client engagements, real outcomes, measured against the scope that was agreed. Media and PR strategy, operational systems, and brand equity diagnostics.">
+<meta name="keywords" content="Studio JNSQ portfolio, brand equity architecture case study, MAD diagnostic case study, RVF diagnostic case study, media and PR strategy, brand consultancy results, brand credibility">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Portfolio | Studio JNSQ">
+<meta property="og:description" content="Real engagements. Real outcomes. Measured against the scope that was agreed.">
+<meta property="og:url" content="https://studiojnsq.com/case-studies">
+<meta property="og:site_name" content="Studio JNSQ">
+<meta property="og:image" content="https://studiojnsq.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Portfolio | Studio JNSQ">
+<meta name="twitter:description" content="Real engagements. Real outcomes. Measured against the scope that was agreed.">
+<link rel="canonical" href="https://studiojnsq.com/case-studies">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/jnsq-system.css?v=2">
+<style>
+  body { background: var(--jnsq-bg); color: var(--jnsq-body); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  .cs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .cs-card {
+    display: block;
+    background: var(--jnsq-paper);
+    border: 1px solid var(--jnsq-line);
+    border-radius: 6px;
+    padding: var(--space-5) var(--space-4) var(--space-4);
+    text-decoration: none;
+    color: inherit;
+    transition: transform var(--dur-medium) var(--ease-out-soft), box-shadow var(--dur-medium) var(--ease-out-soft), border-color var(--dur-medium) ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+  }
+  .cs-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--jnsq-yellow);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform var(--dur-slow) var(--ease-out-soft);
+  }
+  .cs-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px rgba(26, 26, 26, 0.08);
+    border-color: rgba(253, 213, 0, 0.35);
+  }
+  .cs-card:hover::before { transform: scaleX(1); }
+
+  .cs-card .cs-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--jnsq-mute);
+    margin-bottom: var(--space-3);
+  }
+
+  .cs-card .cs-client {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--jnsq-ink);
+    margin-bottom: var(--space-1);
+    letter-spacing: -0.005em;
+  }
+
+  .cs-card .cs-industry {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--jnsq-mute);
+    margin-bottom: var(--space-3);
+  }
+
+  .cs-card .cs-headline {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--jnsq-body);
+    margin-bottom: var(--space-3);
+    flex-grow: 1;
+  }
+
+  .cs-card .cs-meta {
+    display: flex;
+    gap: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--jnsq-line);
+    margin-top: auto;
+  }
+
+  .cs-card .cs-meta-item {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--jnsq-mute);
+  }
+  .cs-card .cs-meta-item strong {
+    display: block;
+    color: var(--jnsq-ink);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+    margin-top: 2px;
+  }
+
+  .cs-card .cs-tag-row {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-bottom: var(--space-3);
+  }
+  .cs-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--jnsq-line-soft);
+    color: var(--jnsq-body);
+    border: 1px solid var(--jnsq-line);
+  }
+
+  .cs-placeholder {
+    background: transparent;
+    border: 2px dashed rgba(57, 69, 80, 0.18);
+    cursor: default;
+  }
+  .cs-placeholder:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(57, 69, 80, 0.18);
+  }
+  .cs-placeholder::before { display: none; }
+  .cs-placeholder .cs-client,
+  .cs-placeholder .cs-headline {
+    color: var(--jnsq-mute);
+    font-style: italic;
+  }
+  .cs-placeholder .cs-eyebrow {
+    color: var(--jnsq-yellow);
+  }
+  .cs-placeholder .cs-soon-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: rgba(253, 213, 0, 0.12);
+    margin-bottom: var(--space-3);
+    font-size: 1.5rem;
+    color: var(--jnsq-yellow);
+    font-weight: 700;
+    font-family: 'Lora', Georgia, serif;
+  }
+
+  .principle-strip {
+    background: var(--jnsq-paper);
+    border-top: 1px solid var(--jnsq-line);
+    border-bottom: 1px solid var(--jnsq-line);
+    margin: var(--space-7) 0;
+    padding: var(--space-5) 0;
+  }
+  .principle-strip .quote {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    line-height: 1.55;
+    color: var(--jnsq-ink);
+    max-width: 56ch;
+    margin: 0 auto;
+    text-align: center;
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Portfolio | Studio JNSQ",
+  "url": "https://studiojnsq.com/case-studies",
+  "description": "Brand equity architecture portfolio from Studio JNSQ. Real engagements, real outcomes.",
+  "isPartOf": { "@type": "WebSite", "name": "Studio JNSQ", "url": "https://studiojnsq.com" },
+  "hasPart": [
+    {
+      "@type": "CreativeWork",
+      "name": "Idiyanale Business Consultancy Services Case Study",
+      "url": "https://studiojnsq.com/case-studies/idiyanale",
+      "about": "Foundational Media and PR Strategy",
+      "datePublished": "2026-05"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "International Bank Case Study",
+      "url": "https://studiojnsq.com/case-studies/international-bank",
+      "about": "Media and PR Strategy",
+      "datePublished": "2026-06"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Rovic Chicken Dealer Case Study",
+      "url": "https://studiojnsq.com/case-studies/rovic-chicken-dealer-poultry-distribution",
+      "about": "RVF Operational Systems Build",
+      "datePublished": "2026-06"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Rovic Agriventures Inc. Case Study",
+      "url": "https://studiojnsq.com/case-studies/rovic-agriventures-egg-production",
+      "about": "RVF Operational Systems Build",
+      "datePublished": "2026-06"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Advisory Reflection — Jan Christine Supan Ynares",
+      "url": "https://studiojnsq.com/case-studies/advisory-jaycee-ynares",
+      "about": "MAD Audit — Credibility and Searchability",
+      "datePublished": "2026-07"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div class="jnsq-scroll-progress"></div>
+
+<nav class="jnsq-nav">
+  <div class="jnsq-nav-inner">
+    <a href="/" class="jnsq-nav-logo">STUDIO <span class="accent">JNSQ</span></a>
+    <div class="jnsq-nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/journal">Journal</a>
+      <a href="/case-studies">Portfolio</a>
+      <a href="/diagnostic">Diagnostic</a>
+    </div>
+    <a href="/diagnostic" class="jnsq-nav-cta">Take the Diagnostic</a>
+  </div>
+</nav>
+
+<!-- HERO — centered to align with the grid below -->
+<header class="jnsq-hero" style="padding-bottom: var(--space-7);">
+  <div class="jnsq-container" style="max-width: 900px; text-align: center;">
+    <div class="jnsq-eyebrow jnsq-hero-eyebrow" data-reveal-fade style="display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border:1px solid var(--jnsq-line);border-radius:999px;background:#fff;color:var(--jnsq-ink);">
+      <img src="/images/jnsq-logo-mark.png" alt="" style="width:18px;height:18px;display:block;filter:drop-shadow(0 0 5px rgba(253,213,0,0.30));">
+      Portfolio
+    </div>
+    <h1 class="jnsq-hero-display" data-reveal-words style="margin-top: var(--space-4); max-width: 18ch; margin-left: auto; margin-right: auto;">
+      Real engagements. <span class="jnsq-accent" style="background:linear-gradient(180deg,transparent 60%,rgba(253,213,0,0.35) 60%);padding:0 0.05em;font-style:italic;">Real outcomes.</span>
+    </h1>
+    <p class="jnsq-hero-lead" data-reveal style="max-width: 60ch; margin: var(--space-4) auto 0;">
+      Each case study is measured against the scope that was agreed. No outcomes outside the brief. No claims the engagement was not designed to produce. The story is what the work actually changed, and what the client said when asked directly.
+    </p>
+  </div>
+</header>
+
+<section class="jnsq-section" style="padding-top: var(--space-3);">
+  <div class="jnsq-container">
+
+    <div class="cs-grid" data-stagger>
+
+      <!-- Published: Idiyanale -->
+      <a href="/case-studies/idiyanale" class="cs-card" data-reveal>
+        <div class="cs-eyebrow">Case Study &middot; May 2026</div>
+        <div class="cs-tag-row">
+          <span class="cs-tag">Foundational Media &amp; PR</span>
+          <span class="cs-tag">45 days</span>
+        </div>
+        <h2 class="cs-client">Idiyanale Business Consultancy Services</h2>
+        <div class="cs-industry">Organizational transformation, Philippines</div>
+        <p class="cs-headline">How a boutique consultancy built the foundation for market-facing credibility in 45 days.</p>
+        <div class="cs-meta">
+          <div class="cs-meta-item">Rating <strong>5.0 / 5</strong></div>
+          <div class="cs-meta-item">Engagement <strong>Phase 1</strong></div>
+          <div class="cs-meta-item">Status <strong>Phase 2 planning</strong></div>
+        </div>
+      </a>
+
+      <!-- Published: International Bank (Anonymized) -->
+      <a href="/case-studies/international-bank" class="cs-card" data-reveal>
+        <div class="cs-eyebrow">Case Study &middot; June 2026</div>
+        <div class="cs-tag-row">
+          <span class="cs-tag">Media &amp; PR Strategy</span>
+          <span class="cs-tag">Anonymized</span>
+        </div>
+        <h2 class="cs-client">International Bank</h2>
+        <div class="cs-industry">International banking, financial services</div>
+        <p class="cs-headline">How an international bank laid the groundwork for PR credibility in a competitive market.</p>
+        <div class="cs-meta">
+          <div class="cs-meta-item">Rating <strong>4.2 / 5</strong></div>
+          <div class="cs-meta-item">Engagement <strong>Media &amp; PR</strong></div>
+          <div class="cs-meta-item">Attribution <strong>Anonymous</strong></div>
+        </div>
+      </a>
+
+      <!-- Published: Rovic Chicken Dealer (Named, RCD) -->
+      <a href="/case-studies/rovic-chicken-dealer-poultry-distribution" class="cs-card" data-reveal>
+        <div class="cs-eyebrow">Case Study &middot; RVF&#8482; Engagement</div>
+        <div class="cs-tag-row">
+          <span class="cs-tag">Cloud CRM</span>
+          <span class="cs-tag">Named</span>
+        </div>
+        <h2 class="cs-client">Rovic Chicken Dealer</h2>
+        <div class="cs-industry">Poultry distribution, 30+ years in operation</div>
+        <p class="cs-headline">From pen and paper to a cloud CRM in two weeks. 41% of aged AR collected. Hundreds of thousands recovered.</p>
+        <div class="cs-meta">
+          <div class="cs-meta-item">Diagnostic <strong>RVF&#8482;</strong></div>
+          <div class="cs-meta-item">Delivery <strong>2 weeks</strong></div>
+          <div class="cs-meta-item">Attribution <strong>Named</strong></div>
+        </div>
+      </a>
+
+      <!-- Published: Rovic Agriventures Inc. (Named, RAI) -->
+      <a href="/case-studies/rovic-agriventures-egg-production" class="cs-card" data-reveal>
+        <div class="cs-eyebrow">Case Study &middot; RVF&#8482; Engagement</div>
+        <div class="cs-tag-row">
+          <span class="cs-tag">Custom CRM</span>
+          <span class="cs-tag">Forecasting</span>
+        </div>
+        <h2 class="cs-client">Rovic Agriventures Inc.</h2>
+        <div class="cs-industry">Egg production, agriculture, Philippines</div>
+        <p class="cs-headline">A custom CRM with forecasting delivered in 21 days, 65% under the original 60-day agreement. Investor-ready and expanding.</p>
+        <div class="cs-meta">
+          <div class="cs-meta-item">Diagnostic <strong>RVF&#8482;</strong></div>
+          <div class="cs-meta-item">Delivery <strong>21 days</strong></div>
+          <div class="cs-meta-item">Attribution <strong>Named</strong></div>
+        </div>
+      </a>
+
+      <!-- Published: Advisory — Jaycee Ynares (MAD™ Audit) -->
+      <a href="/case-studies/advisory-jaycee-ynares" class="cs-card" data-reveal>
+        <div class="cs-eyebrow">Advisory Reflection &middot; July 2026</div>
+        <div class="cs-tag-row">
+          <span class="cs-tag">MAD&#8482; Audit</span>
+          <span class="cs-tag">Written Review</span>
+        </div>
+        <h2 class="cs-client">Jan Christine Supan Ynares</h2>
+        <div class="cs-industry">Business consulting, Philippines</div>
+        <p class="cs-headline">An updated MAD&#8482; audit showed a gap between credibility earned and credibility visible. Jaycee describes what shifted in her own words.</p>
+        <div class="cs-meta">
+          <div class="cs-meta-item">Diagnostic <strong>MAD&#8482;</strong></div>
+          <div class="cs-meta-item">Read time <strong>&lt; 30 min</strong></div>
+          <div class="cs-meta-item">Attribution <strong>Named</strong></div>
+        </div>
+      </a>
+
+      <!-- Coming soon: future engagements -->
+      <div class="cs-card cs-placeholder" data-reveal>
+        <div class="cs-soon-icon">&hellip;</div>
+        <div class="cs-eyebrow">More coming soon</div>
+        <h2 class="cs-client">More case studies on the way</h2>
+        <div class="cs-industry">New engagements, currently in motion</div>
+        <p class="cs-headline">Studio JNSQ is in delivery on additional engagements across the Philippines, the Gulf, and the UK. We publish each case study only after the client confirms the outcome and grants attribution.</p>
+        <div class="cs-meta">
+          <div class="cs-meta-item">Markets <strong>SEA &middot; Gulf &middot; UK</strong></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="principle-strip">
+  <div class="jnsq-container">
+    <p class="quote" data-reveal>Results can only be measured against the scope that was agreed. Every case study you read here was reviewed by the client, attributed only with their explicit permission, and bound to what the engagement was designed to deliver.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="jnsq-cta-section">
+  <div class="jnsq-container">
+    <div class="jnsq-eyebrow" data-reveal-fade>Start with diagnosis</div>
+    <h2 class="jnsq-display-2" data-reveal>Find out where your brand <span class="jnsq-accent">leans</span>.</h2>
+    <p class="jnsq-lead" data-reveal>The Market Authority Diamond&#8482; and Resource Value Formula&#8482; diagnostics turn the patterns in these case studies into a measurable read on your own brand equity.</p>
+    <div class="jnsq-hero-actions" style="justify-content: center; align-items: center; margin-top: var(--space-4);" data-reveal>
+      <a href="/diagnostic/MAD" class="jnsq-btn jnsq-btn-ghost" style="color:var(--jnsq-bg); border-color:rgba(255,255,255,0.25);">Start with MAD&#8482;</a>
+      <span style="font-family: 'Lora', Georgia, serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.55); padding: 0 4px;">or</span>
+      <a href="/diagnostic/RVF" class="jnsq-btn jnsq-btn-ghost" style="color:var(--jnsq-bg); border-color:rgba(255,255,255,0.25);">Start with RVF&#8482;</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="jnsq-footer">
+  <div class="jnsq-container">
+    <div class="jnsq-footer-grid">
+      <div style="text-align: center;">
+        <div class="jnsq-footer-brand">STUDIO <span class="accent">JNSQ</span></div>
+        <p class="jnsq-footer-tagline">Others make you profitable.<br>Brand equity makes you valuable.</p>
+      </div>
+      <div class="jnsq-footer-col">
+        <h4>Discipline</h4>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/case-studies">Portfolio</a></li>
+          <li><a href="/diagnostic">Diagnostic</a></li>
+          <li><a href="/journal">Journal</a></li>
+        </ul>
+      </div>
+      <div class="jnsq-footer-col">
+        <h4>Frameworks</h4>
+        <ul>
+          <li><a href="/diagnostic/MAD">MAD&#8482;</a></li>
+          <li><a href="/diagnostic/RVF">RVF&#8482;</a></li>
+          <li><a href="/journal/branding-vs-brand-equity-vs-brand-architecture">The doctrine</a></li>
+        </ul>
+      </div>
+      <div class="jnsq-footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" rel="noopener">Book a call</a></li>
+          <li><a href="/diagnostic">Start a diagnosis</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="jnsq-footer-bottom">
+      <div>&copy; 2026 Studio JNSQ. The brand equity architecture firm for valuable brands.</div>
+      <div class="legal"><a href="/">studiojnsq.com</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/jnsq-system.js?v=2" defer></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#fefbef"/>
+
+  <!-- Title -->
+  <text x="600" y="85" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="600" text-anchor="middle" fill="#FDD500" letter-spacing="4">WHAT IS BRAND EQUITY</text>
+
+  <!-- Concentric rings: Outer=Perceived Value, Middle=Trust, Core=Equity -->
+
+  <!-- Outer ring: Perceived Value (tan) -->
+  <circle cx="600" cy="300" r="150" fill="none" stroke="#e8e2d3" stroke-width="30" opacity="0.5"/>
+
+  <!-- Middle ring: Trust (coral) -->
+  <circle cx="600" cy="300" r="95" fill="none" stroke="#E8917A" stroke-width="30" opacity="0.5"/>
+
+  <!-- Inner core: Equity (yellow) -->
+  <circle cx="600" cy="300" r="45" fill="#FDD500" opacity="0.85"/>
+  <text x="600" y="306" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#394550">Equity</text>
+
+  <!-- Label: Perceived Value (points to outer ring at top) -->
+  <!-- Outer ring top center: y = 300 - 150 = 150 -->
+  <line x1="600" y1="137" x2="600" y2="115" stroke="#394550" stroke-width="1" opacity="0.35"/>
+  <text x="600" y="108" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" text-anchor="middle" fill="#98A7B5">Perceived Value</text>
+
+  <!-- Label: Trust (points to middle ring at right, line extends past outer ring) -->
+  <line x1="710" y1="300" x2="820" y2="300" stroke="#394550" stroke-width="1" opacity="0.35"/>
+  <text x="830" y="305" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" text-anchor="start" fill="#98A7B5">Trust</text>
+
+  <!-- Label: Financial Value (points to core at left, line extends past outer ring) -->
+  <line x1="555" y1="300" x2="380" y2="300" stroke="#394550" stroke-width="1" opacity="0.35"/>
+  <text x="370" y="305" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" text-anchor="end" fill="#98A7B5">Financial Value</text>
+
+  <!-- One-liner -->
+  <text x="600" y="560" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="22" font-weight="500" text-anchor="middle" fill="#98A7B5">The value your brand holds without you in the room.</text>
+
+  <!-- Brand mark -->
+  <circle cx="540" cy="600" r="3" fill="#FDD500"/>
+  <text x="600" y="604" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600" fill="#c5bfb0" letter-spacing="2">STUDIO JNSQ</text>
+</svg>

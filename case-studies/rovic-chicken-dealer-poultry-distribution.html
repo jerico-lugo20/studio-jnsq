@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Ledger to Cloud in Two Weeks: Rovic Chicken Dealer | Studio JNSQ</title>
+<meta name="description" content="Rovic Chicken Dealer (RCD), a medium-sized family-owned poultry distributor, moved thirty years of pen-and-paper operations to a cloud-native system in two weeks, recovered hundreds of thousands in buried receivables, and freed 5–10 hours a week from the manager's calendar. An RVF™ engagement.">
+<meta name="keywords" content="Resource Value Formula, RVF diagnostic, Studio JNSQ case study, cloud CRM, accounts receivable, digital transformation, family business, brand equity architecture">
+<meta property="og:type" content="article">
+<meta property="og:title" content="From Ledger to Cloud in Two Weeks: Rovic Chicken Dealer | Studio JNSQ">
+<meta property="og:description" content="A two-week rebuild for a growing, medium-sized poultry distributor. Recovered hundreds of thousands in buried AR. Returned 5–10 hours weekly to the manager. An RVF™ engagement.">
+<meta property="og:url" content="https://studiojnsq.com/case-studies/rovic-chicken-dealer-poultry-distribution">
+<meta property="og:site_name" content="Studio JNSQ">
+<meta property="og:image" content="https://studiojnsq.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://studiojnsq.com/case-studies/rovic-chicken-dealer-poultry-distribution">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/jnsq-system.css?v=2">
+<link rel="stylesheet" href="/css/case-study-system.css?v=1">
+<style>
+  body { background: var(--jnsq-bg); color: var(--jnsq-body); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  .cs-hero {
+    background: linear-gradient(180deg, #FFFCEC 0%, var(--jnsq-bg) 100%);
+    padding: calc(var(--space-7) + 70px) 0 var(--space-6);
+    border-bottom: 1px solid var(--jnsq-line-soft);
+    position: relative; overflow: hidden;
+  }
+  .cs-hero::before {
+    content: ''; position: absolute; top: -140px; right: -140px;
+    width: 460px; height: 460px;
+    background: radial-gradient(circle at center, rgba(253,213,0,0.22) 0%, rgba(253,213,0,0) 65%);
+    pointer-events: none; z-index: 0;
+  }
+  .cs-hero .jnsq-container { position: relative; z-index: 1; max-width: 1120px; }
+  .cs-hero .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 18px; background: #fff;
+    border: 1px solid var(--jnsq-line); border-radius: 999px;
+    font-family: 'Inter', sans-serif; font-size: 11px;
+    font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--jnsq-ink); margin-bottom: var(--space-3);
+  }
+  .cs-hero .hero-eyebrow img { width: 18px; height: 18px; filter: drop-shadow(0 0 5px rgba(253,213,0,0.30)); }
+  .cs-hero h1 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 500; line-height: 1.05; letter-spacing: -0.02em;
+    color: var(--jnsq-ink); margin-bottom: var(--space-3); max-width: 22ch;
+  }
+  .cs-hero h1 em {
+    font-style: italic;
+    background: linear-gradient(180deg, transparent 60%, rgba(253,213,0,0.35) 60%);
+    padding: 0 0.05em;
+  }
+  .cs-hero .hero-lede {
+    font-family: 'Lora', Georgia, serif; font-style: italic;
+    font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+    line-height: 1.55; color: var(--jnsq-ink); font-weight: 500;
+    max-width: 62ch; margin-bottom: var(--space-5);
+  }
+
+  .metric-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    background: var(--jnsq-paper); border: 1px solid var(--jnsq-line);
+    border-radius: 8px; max-width: 1000px; overflow: hidden;
+    box-shadow: 0 12px 32px rgba(26,26,26,0.05);
+  }
+  .metric-strip .metric {
+    text-align: center; padding: var(--space-4) var(--space-3);
+    border-right: 1px solid var(--jnsq-line); position: relative;
+  }
+  .metric-strip .metric::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: var(--jnsq-yellow); opacity: 0.6;
+  }
+  .metric-strip .metric:last-child { border-right: none; }
+  .metric-strip .metric-value {
+    font-family: 'Lora', Georgia, serif; font-size: 1.75rem; font-weight: 500;
+    color: var(--jnsq-ink); line-height: 1.05; margin-bottom: 6px; letter-spacing: -0.005em;
+  }
+  .metric-strip .metric-label {
+    font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--jnsq-mute);
+  }
+  @media (max-width: 780px) {
+    .metric-strip { grid-template-columns: repeat(2, 1fr); }
+    .metric-strip .metric:nth-child(2) { border-right: none; }
+    .metric-strip .metric:nth-child(-n+2) { border-bottom: 1px solid var(--jnsq-line); }
+  }
+
+  .csx-section { padding: var(--space-6) 0; border-top: 1px solid var(--jnsq-line-soft); }
+  .csx-section:first-of-type { border-top: none; padding-top: var(--space-4); }
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.24em; text-transform: uppercase; color: var(--jnsq-mute);
+    margin-bottom: var(--space-3);
+  }
+  .section-eyebrow::before {
+    content: ''; width: 18px; height: 18px;
+    background: url('/images/jnsq-logo-mark.png') center / contain no-repeat;
+    filter: drop-shadow(0 0 5px rgba(253,213,0,0.30));
+  }
+  .csx-section h2 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+    font-weight: 500; line-height: 1.18;
+    color: var(--jnsq-ink); margin-bottom: var(--space-4);
+    letter-spacing: -0.005em; max-width: 24ch;
+  }
+  .csx-section h2 em {
+    font-style: italic;
+    background: linear-gradient(180deg, transparent 65%, rgba(253,213,0,0.35) 65%);
+    padding: 0 0.05em;
+  }
+
+  .cs-prose {
+    max-width: 780px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.0625rem; line-height: 1.8; color: var(--jnsq-body);
+  }
+  .cs-prose p { margin-bottom: var(--space-3); }
+  .cs-prose p:last-child { margin-bottom: 0; }
+  .cs-prose p strong { color: var(--jnsq-ink); font-weight: 600; }
+  .cs-prose p em { font-style: italic; color: var(--jnsq-ink); }
+
+  .firm-profile {
+    background: var(--jnsq-paper); border: 1px solid var(--jnsq-line);
+    border-radius: 8px; overflow: hidden; margin-top: var(--space-4);
+    max-width: 780px; box-shadow: 0 4px 12px rgba(26,26,26,0.03);
+  }
+  .firm-profile .row {
+    display: grid; grid-template-columns: 200px 1fr;
+    padding: 14px 20px; border-bottom: 1px solid var(--jnsq-line);
+    font-family: 'Inter', sans-serif; font-size: 0.9375rem;
+  }
+  .firm-profile .row:last-child { border-bottom: none; }
+  .firm-profile .row .k { font-weight: 600; color: var(--jnsq-ink); letter-spacing: 0.02em; }
+  .firm-profile .row .v { color: var(--jnsq-body); }
+  @media (max-width: 640px) {
+    .firm-profile .row { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  .testimonial {
+    margin: var(--space-5) 0;
+    padding: var(--space-5);
+    background: var(--jnsq-paper);
+    border-left: 5px solid var(--jnsq-yellow);
+    border-radius: 0 10px 10px 0;
+    max-width: 880px; box-shadow: 0 12px 32px rgba(26,26,26,0.05);
+  }
+  .testimonial .quote-mark {
+    font-family: 'Lora', Georgia, serif; font-size: 3rem;
+    line-height: 0.6; color: var(--jnsq-yellow);
+    display: block; margin-bottom: 12px;
+  }
+  .testimonial .quote-text {
+    font-family: 'Lora', Georgia, serif; font-style: italic;
+    font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+    line-height: 1.5; color: var(--jnsq-ink); margin-bottom: var(--space-3);
+  }
+  .testimonial .quote-source {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px; color: var(--jnsq-mute);
+    font-weight: 600; letter-spacing: 0.02em;
+  }
+  .testimonial .quote-source strong { color: var(--jnsq-ink); font-weight: 700; }
+
+  .outcomes-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 16px; margin: var(--space-4) 0 0;
+  }
+  .outcome-card {
+    background: var(--jnsq-paper); border: 1px solid var(--jnsq-line);
+    border-radius: 8px; padding: 22px 24px; position: relative; overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .outcome-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 3px; background: var(--jnsq-yellow);
+  }
+  .outcome-card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(26,26,26,0.08); }
+  .outcome-card .oc-label {
+    font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--jnsq-mute); margin-bottom: 10px;
+  }
+  .outcome-card .oc-body { font-family: 'Inter', sans-serif; font-size: 0.96rem; line-height: 1.65; color: var(--jnsq-ink); }
+  .outcome-card .oc-body strong { font-weight: 600; }
+  @media (max-width: 720px) { .outcomes-grid { grid-template-columns: 1fr; } }
+
+  .back-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--jnsq-mute); text-decoration: none; padding: var(--space-3) 0;
+  }
+  .back-link:hover { color: var(--jnsq-ink); }
+  .back-link::before { content: '\2190'; font-size: 1rem; }
+
+  .disclosure {
+    margin-top: var(--space-6); padding: var(--space-4);
+    background: var(--jnsq-paper); border: 1px solid var(--jnsq-line);
+    border-radius: 8px; font-family: 'Inter', sans-serif;
+    font-size: 0.8125rem; line-height: 1.7; color: var(--jnsq-mute);
+    text-align: center;
+  }
+  .disclosure strong { color: var(--jnsq-ink); }
+
+  /* System design notes */
+  .system-note {
+    margin: var(--space-4) 0;
+    background: var(--jnsq-paper);
+    border: 1px solid var(--jnsq-line);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(26,26,26,0.04);
+  }
+  .system-note-body {
+    padding: 28px 32px;
+  }
+  .system-note-idx {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--jnsq-mute);
+    margin-bottom: 6px;
+  }
+  .system-note-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--jnsq-ink);
+    margin-bottom: 10px;
+  }
+  .system-note-lead {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--jnsq-body);
+    margin-bottom: 16px;
+    max-width: 640px;
+  }
+  .system-note-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 24px;
+  }
+  @media (max-width: 640px) {
+    .system-note-features { grid-template-columns: 1fr; }
+  }
+  .system-note-features li {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.84rem;
+    line-height: 1.55;
+    color: var(--jnsq-body);
+    padding-left: 18px;
+    position: relative;
+  }
+  .system-note-features li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 7px;
+    width: 7px; height: 7px;
+    background: var(--jnsq-yellow);
+    border-radius: 50%;
+  }
+  .system-note-features li strong {
+    color: var(--jnsq-ink);
+    font-weight: 600;
+  }
+  .system-note-cta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: #1a1a1a;
+    border-top: 1px solid var(--jnsq-line);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .system-note-cta:hover { background: #333; }
+
+  .system-cta-banner {
+    margin: var(--space-5) 0;
+    padding: var(--space-5);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 12px 32px rgba(26,26,26,0.12);
+  }
+  .system-cta-banner h3 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .system-cta-banner p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 20px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  .system-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: #FDD500;
+    color: #1a1a1a;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.15s;
+  }
+  .system-cta-btn:hover { background: #ffe033; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "From Ledger to Cloud in Two Weeks: Rovic Chicken Dealer",
+  "description": "Rovic Chicken Dealer (RCD), a medium-sized family-owned poultry distributor, moved from pen-and-paper operations to a cloud-native system in two weeks. An RVF™ engagement.",
+  "url": "https://studiojnsq.com/case-studies/rovic-chicken-dealer-poultry-distribution",
+  "datePublished": "2026-06-20",
+  "author": { "@type": "Organization", "name": "Studio JNSQ", "url": "https://studiojnsq.com" },
+  "publisher": { "@type": "Organization", "name": "Studio JNSQ", "logo": { "@type": "ImageObject", "url": "https://studiojnsq.com/images/jnsq-logo-mark.png" } },
+  "about": [
+    {"@type": "Thing", "name": "Resource Value Formula"},
+    {"@type": "Thing", "name": "Brand Equity Architecture"},
+    {"@type": "Thing", "name": "Cloud CRM"},
+    {"@type": "Organization", "name": "Rovic Chicken Dealer"}
+  ],
+  "isPartOf": { "@type": "CollectionPage", "name": "Portfolio", "url": "https://studiojnsq.com/case-studies" }
+}
+</script>
+</head>
+<body>
+
+<div class="jnsq-scroll-progress"></div>
+
+<nav class="jnsq-nav">
+  <div class="jnsq-nav-inner">
+    <a href="/" class="jnsq-nav-logo" style="display:inline-flex;align-items:center;gap:12px;text-decoration:none;">
+      <img src="/images/jnsq-logo-mark.png" alt="Studio JNSQ" style="height:40px;width:auto;display:block;">
+      <span>STUDIO <span class="accent">JNSQ</span></span>
+    </a>
+    <div class="jnsq-nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/journal">Journal</a>
+      <a href="/case-studies">Portfolio</a>
+      <a href="/diagnostic">Diagnostic</a>
+    </div>
+    <a href="/diagnostic" class="jnsq-nav-cta">Take the Diagnostic</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="cs-hero">
+  <div class="jnsq-container">
+    <div class="hero-eyebrow">
+      <img src="/images/jnsq-logo-mark.png" alt="">
+      Case Study &middot; Rovic Chicken Dealer
+    </div>
+    <h1>
+      Three decades of records, one manager carrying the <em>ledgers</em> on trips, and a business that could not stop.
+    </h1>
+    <p class="hero-lede">
+      Rovic Chicken Dealer (RCD) is a medium-sized poultry distribution business in the Philippines that has been operating for more than three decades, and it is still growing. Its transaction volume is high, its operating day is complex, and until this engagement, its entire memory lived on paper. Studio JNSQ moved that memory to the cloud in two weeks, and the business found hundreds of thousands of pesos it had lost along the way.
+    </p>
+    <div class="metric-strip">
+      <div class="metric"><div class="metric-value">2 weeks</div><div class="metric-label">Delivery Window</div></div>
+      <div class="metric"><div class="metric-value">41%</div><div class="metric-label">Aged AR Collected</div></div>
+      <div class="metric"><div class="metric-value">5&ndash;10 hrs</div><div class="metric-label">Weekly Time Recovered</div></div>
+      <div class="metric"><div class="metric-value">RVF&#8482;</div><div class="metric-label">Framework Applied</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="csx-shell">
+
+  <!-- STICKY LEFT RAIL -->
+  <aside class="csx-rail" aria-label="Section navigation">
+    <div class="csx-rail-label">On this page</div>
+    <ol>
+      <li><a href="#who">Who they are</a></li>
+      <li><a href="#bind">The bind they were in</a></li>
+      <li><a href="#approach">How we approached it</a></li>
+      <li><a href="#dashboard">The dashboard</a></li>
+      <li><a href="#batches">Batches &middot; the operational unit</a></li>
+      <li><a href="#versions">Version History &middot; the safety net</a></li>
+      <li><a href="#opening">Opening AR &middot; the on-ramp</a></li>
+      <li><a href="#expenses">Expense mix &middot; non-op tab</a></li>
+      <li><a href="#ar">AR cards &middot; aged surfacing</a></li>
+      <li><a href="#words">In his words</a></li>
+      <li><a href="#outcomes">What changed on the ground</a></li>
+      <li><a href="#next">Where next</a></li>
+    </ol>
+  </aside>
+
+  <div class="csx-content">
+
+    <a href="/case-studies" class="back-link">Back to portfolio</a>
+
+    <!-- ================================================== WHO -->
+    <section class="csx-section" id="who">
+      <div class="section-eyebrow">Who they are</div>
+      <h2>Thirty years of operation, still growing, still keeping the records by hand.</h2>
+      <div class="cs-prose">
+        <p>Rovic Chicken Dealer (RCD) is a medium-sized family-owned poultry distribution business in the Philippines that has been in operation for more than three decades. It is not slowing down. On any given day, multiple trucks run multiple trips, and the operational floor layers loading exchanges, culling, supplier settlements, and customer collections into the same working window. It is a capital-intensive business, and it moves quickly.</p>
+        <p>What made RCD unusual was not the volume; it was the medium. Everything above &mdash; every transaction, every customer account, every receivable balance, every reconciliation &mdash; lived on paper. Thirty years of physical ledgers, still hand-written, still the source of truth. The records were the business, and the records were the risk.</p>
+      </div>
+
+      <div class="firm-profile">
+        <div class="row"><div class="k">Client</div><div class="v">Rovic Chicken Dealer</div></div>
+        <div class="row"><div class="k">Sector</div><div class="v">Agriculture, poultry distribution, Philippines</div></div>
+        <div class="row"><div class="k">Tenure</div><div class="v">30+ years in operation, medium-sized, still growing</div></div>
+        <div class="row"><div class="k">Operational Reality</div><div class="v">High transaction volume, multi-truck days, supplier and customer exchanges layered into the same window</div></div>
+        <div class="row"><div class="k">Engagement</div><div class="v">RVF&#8482; Advisory + Execution: Cloud-Native Operating System</div></div>
+        <div class="row"><div class="k">Delivery Window</div><div class="v">2 weeks (ahead of the owner's international trip)</div></div>
+      </div>
+    </section>
+
+    <!-- ================================================== BIND -->
+    <section class="csx-section" id="bind">
+      <div class="section-eyebrow">The bind they were in</div>
+      <h2>The records were fragile, the manager was the bottleneck, and the expenses were invisible.</h2>
+      <div class="cs-prose">
+        <p>The owner needed to travel, and travel is where the three failure modes of the paper system stacked on top of each other in the worst possible way. Normally, the manager would take the physical customer ledgers with him on trips, so that he could keep the collection notes moving by hand while he was away. That is not portability; that is the records holding the business hostage. And it made every one of the paper-era problems worse at exactly the moment they needed to be smaller.</p>
+        <p>First was the fragility. A damaged or misplaced book could take decades of accounts receivable, sales history, and customer context down with it, permanently. Second was the manager himself becoming a bottleneck &mdash; not because of anything he was doing wrong, but because reconciliation, allocation, and customer follow-up all lived in his handwriting and his memory. When he was travelling or attending to other work, the business waited on him. Third was expense drift. The business carried a growing tail of non-operating expenses, and they piled up quickly. The owner wanted to be able to look at a period, at a glance, and know: <em>why is this month bigger, and were there unusual items I should have seen coming</em>. None of that was answerable from the paper trail.</p>
+      </div>
+    </section>
+
+    <!-- ================================================== APPROACH -->
+    <section class="csx-section" id="approach">
+      <div class="section-eyebrow">How we approached it</div>
+      <h2>We did not migrate thirty years of records. We gave the business a clean starting line.</h2>
+      <div class="cs-prose">
+        <p>The instinctive move on a digital transformation this old would be to migrate the historical data first, spend months tracing missing entries, and stand up the system on the back of a full reconstruction. That approach would have failed here for two reasons. First, the delivery window was two weeks; there was no time to relitigate three decades of paper. Second, the historical records were themselves incomplete, and forcing them into a modern schema would have produced a system whose ledger nobody trusted from day one.</p>
+        <p>So we did something quieter, and more useful. Rather than migrating the past, we designed the system to accept <strong>opening balances</strong>: a clean, deliberate starting point that the business could set as-of a specific date, with the older paper records kept in their original form as reference. The one exception was accounts receivable, because AR is the one place where the past is still an active balance sheet item. So we spent a focused stretch of the engagement <strong>combing through the 2026 records from the start of the year</strong>, surfacing aged receivables that had been buried inside the manual ledgers, and adding them to the opening balances as the system went live. That single exercise turned into the largest cash-flow moment of the entire engagement.</p>
+        <p>The data engineering was built for trust. Every sale line auto-posts its unpaid balance to Accounts Receivable as a debit; every payment auto-posts as a credit. The audit module ties batches and non-operating expenses to a specific audit period, preventing double-counting. Liquidation reports compare expected ending balances (computed from prior audit + batch profits minus expenses) against actual holdings (cash, bank, inventory, A/R, floating), surfacing the variance as a single number the owner can interrogate. On the analytics side, Chart.js renders three live charts on the dashboard: per-batch net income as a signed bar chart, sales classification as a doughnut, and expense breakdown as a pie. The inventory reconciliation table runs continuously, comparing acquired versus disposed versus unaccounted chickens across all batches.</p>
+      </div>
+    </section>
+
+    <!-- Full system CTA -->
+    <div class="system-cta-banner">
+      <h3>Explore the full system</h3>
+      <p>Eight modules, every screen, with design annotations explaining the decisions behind each feature.</p>
+      <a href="/case-studies/rcd-system.html" class="system-cta-btn">Open interactive system &#8594;</a>
+    </div>
+
+    <!-- ================================================== DASHBOARD -->
+    <section class="csx-section" id="dashboard">
+      <div class="section-eyebrow">Feature: the dashboard</div>
+      <h2>Organized around the batch, because that is how the business already thinks.</h2>
+
+      <div class="cs-prose">
+        <p>The dashboard was designed around a single organizing principle: the batch. A poultry distribution business doesn't think in months or quarters; it thinks in truckloads. So the six KPI cards at the top summarize the batch universe: Gross Revenue, Cost of Goods Sold, Transaction Expenses, Net Income, Chickens Disposed, and Outstanding A/R. Below the cards, three Chart.js visualizations turn the numbers into shapes the owner can read without parsing a table: a per-batch profit bar chart (blue for profit, red for loss), a sales classification doughnut (Good / Semi / Reject), and an expense breakdown pie.</p>
+        <p>The inventory reconciliation table at the bottom is the feature the owner didn't ask for but uses the most. It cross-references acquired chickens against disposed chickens across every batch and surfaces the unaccounted delta in red. Before this table existed, the business discovered inventory gaps only at month-end. Now they surface the same day the batch closes.</p>
+      </div>
+
+      <!-- === SYSTEM NOTE: DASHBOARD === -->
+      <div class="system-note">
+        <div class="system-note-body">
+          <div class="system-note-idx">01 &#8212; Dashboard</div>
+          <div class="system-note-title">The batch business at a glance</div>
+          <div class="system-note-lead">Six KPI cards, three Chart.js charts, and an inventory reconciliation table &#8212; organized around the batch, because that is how the business already thinks.</div>
+          <ul class="system-note-features">
+            <li><strong>Six KPI cards.</strong> Gross Revenue, CGS, Transaction Expenses, Net Income, Chickens Disposed, Outstanding A/R &#8212; the numbers the owner checks first.</li>
+            <li><strong>Batch profit chart.</strong> A per-batch bar chart with positive (blue) and negative (red) bars so unprofitable runs are immediately visible.</li>
+            <li><strong>Sales classification.</strong> Good / Semi / Reject doughnut breaks down what the business is actually selling.</li>
+            <li><strong>Inventory reconciliation.</strong> Acquired vs disposed vs unaccounted, with variance in red when the numbers don't match.</li>
+          </ul>
+        </div>
+        <a href="/case-studies/rcd-system.html" class="system-note-cta">View this screen in the interactive system &#8594;</a>
+      </div>
+    </section>
+
+    <!-- ================================================== BATCHES -->
+    <section class="csx-section" id="batches">
+      <div class="section-eyebrow">Feature: the operational unit</div>
+      <h2>The batch stayed the same; only the medium changed.</h2>
+
+      <div class="cs-prose">
+        <p>In RCD's mental model, everything happens inside a batch &mdash; a shipment run, with its own suppliers, customers, sales lines, expense lines, and reconciliation. That vocabulary was built over thirty years, and it is exactly right for how poultry distribution actually works. So the system was designed around the batch as the primary object, rather than forcing the business into a generic invoicing model that would have felt foreign from day one.</p>
+      </div>
+
+      <div class="system-note">
+        <div class="system-note-body">
+          <div class="system-note-idx">02 &#8212; Batches</div>
+          <div class="system-note-title">Every truckload, one row</div>
+          <div class="system-note-lead">The batch list is the operational backbone. Each row tracks a procurement-to-disposal cycle with balance badges that surface data problems before they compound.</div>
+          <ul class="system-note-features">
+            <li><strong>Balance badges.</strong> "Balanced", "50 undisposed", "12 unlisted" &#8212; color-coded status at a glance so reconciliation gaps don't hide.</li>
+            <li><strong>Sortable columns.</strong> Farm, date, acquired, disposed, gross revenue, net income, A/R &#8212; each sortable for different questions.</li>
+            <li><strong>Bulk select.</strong> Checkbox column for batch-level operations like audit grouping and export.</li>
+            <li><strong>Net income inline.</strong> Profit or loss per batch shows in the list so the owner doesn't have to open each one to assess it.</li>
+          </ul>
+        </div>
+        <a href="/case-studies/rcd-system.html" class="system-note-cta">View this screen in the interactive system &#8594;</a>
+      </div>
+    </section>
+
+    <!-- ================================================== VERSIONS -->
+    <section class="csx-section" id="versions">
+      <div class="section-eyebrow">Feature: the safety net</div>
+      <h2>Every destructive action creates a snapshot, automatically.</h2>
+
+      <div class="cs-prose">
+        <p>When we asked the manager what he was most anxious about with digital tools, his answer was not about learning curves; it was about accidental deletion. Thirty years of paper had taught him that mistakes are permanent, and he had never fully believed that a computer could be more forgiving than a spreadsheet with a stray keystroke.</p>
+      </div>
+
+      <div class="system-note">
+        <div class="system-note-body">
+          <div class="system-note-idx">03 &#8212; Batch Editor</div>
+          <div class="system-note-title">One screen, entire lifecycle</div>
+          <div class="system-note-lead">The batch editor captures the full procurement-to-collection cycle: header with glance strip, procurement details, sale lines with classification, transaction expenses, and an auto-computed revenue report.</div>
+          <ul class="system-note-features">
+            <li><strong>Live glance strip.</strong> Total Acquired, Disposed, Supposed Undisposed, and Status sit at the top &#8212; updated as you type.</li>
+            <li><strong>Sale line classification.</strong> Good / Semi / Reject per line, with customer, quantity, price, paid, and balance &#8212; all editable inline.</li>
+            <li><strong>Auto-computed revenue report.</strong> Gross Revenue minus CGS minus Transaction Expenses equals Net Income, recalculated on every keystroke.</li>
+            <li><strong>Version history.</strong> Snapshots auto-created before any destructive action; restore or download as JSON.</li>
+          </ul>
+        </div>
+        <a href="/case-studies/rcd-system.html" class="system-note-cta">View this screen in the interactive system &#8594;</a>
+      </div>
+
+      <div class="cs-prose">
+        <p>The reset button lives in a section literally labelled <strong>Danger Zone</strong>, and even that is guarded by the automatic snapshot behaviour. It is a small kind of grace to build into a tool, and it is the reason the manager stopped hesitating on the third day.</p>
+      </div>
+    </section>
+
+    <!-- ================================================== OPENING AR -->
+    <section class="csx-section" id="opening">
+      <div class="section-eyebrow">Feature: the on-ramp</div>
+      <h2>A fifteen-line modal that made a thirty-year migration unnecessary.</h2>
+
+      <div class="cs-prose">
+        <p>The Opening AR modal is a small piece of UI that carries the entire delivery strategy behind it. Because we designed the system to accept balances forwarded from an older ledger, we did not have to prove the historical data was complete; we only had to prove that today's balance was correct. That single move turned a six-month migration project into a two-week implementation.</p>
+      </div>
+
+      <div class="system-note">
+        <div class="system-note-body">
+          <div class="system-note-idx">04 &#8212; Audit Records</div>
+          <div class="system-note-title">Proving the cash is really there</div>
+          <div class="system-note-lead">Periodically the dealer counts everything they hold and checks it against what the books predict. This is the reconciliation engine &#8212; the feature that makes the whole system trustworthy.</div>
+          <ul class="system-note-features">
+            <li><strong>Roll-forward math.</strong> Prior ending balance + selected batch profits &#8722; non-op expenses = expected ending.</li>
+            <li><strong>One audit per entry.</strong> Batches and non-op expenses lock to an audit so they can't be double-counted.</li>
+            <li><strong>Liquidation breakdown.</strong> Cash, bank, inventory, A/R, floating &amp; others sum to actual holdings.</li>
+            <li><strong>Variance, color-coded.</strong> Expected vs actual surfaces shrinkage or an encoding slip immediately.</li>
+          </ul>
+        </div>
+        <a href="/case-studies/rcd-system.html" class="system-note-cta">View this screen in the interactive system &#8594;</a>
+      </div>
+    </section>
+
+    <!-- ================================================== EXPENSES -->
+    <section class="csx-section" id="expenses">
+      <div class="section-eyebrow">Feature: answering the owner's real question</div>
+      <h2>Non-operating expenses live in their own tab, so nothing hides inside a total.</h2>
+
+      <div class="cs-prose">
+        <p>Non-operating expenses had a way of piling up inside a paper system, because they did not tie cleanly to any batch and nobody wanted to spend the mental effort of categorizing them mid-shift. Over time, that tail became the specific place where the owner was losing visibility. So we gave non-op expenses their own tab, kept them fully separated from operating cost, and surfaced the whole expense mix on the dashboard as two views at once.</p>
+      </div>
+
+      <div class="system-note">
+        <div class="system-note-body">
+          <div class="system-note-idx">05 &#8212; Non-Operating Expenses</div>
+          <div class="system-note-title">The money that leaves outside a batch</div>
+          <div class="system-note-lead">Owner draws, household bills, loan interest &#8212; real outflows that aren't tied to any truckload. A fast journal that feeds the audit.</div>
+          <ul class="system-note-features">
+            <li><strong>Type-to-add row.</strong> The dashed bottom row promotes to a real entry the moment you type; a fresh blank appears. Tab keeps flowing.</li>
+            <li><strong>Groups.</strong> Entries cluster into named groups so a whole set can be pulled into an audit at once.</li>
+            <li><strong>Audit lock chips.</strong> Once an entry is claimed by an audit it's read-only and tagged with that audit's date.</li>
+            <li><strong>Bulk actions.</strong> Select to export, group, ungroup or delete.</li>
+          </ul>
+        </div>
+        <a href="/case-studies/rcd-system.html" class="system-note-cta">View this screen in the interactive system &#8594;</a>
+      </div>
+
+      <div class="cs-prose">
+        <p>The owner can now ask the same question she always asks &mdash; <em>what changed this month</em> &mdash; and get the answer before she finishes the sentence.</p>
+      </div>
+    </section>
+
+    <!-- ================================================== AR -->
+    <section class="csx-section" id="ar">
+      <div class="section-eyebrow">Feature: aged receivables that stop hiding</div>
+      <h2>Every customer with an outstanding balance now has a card, and the aged ones surface first.</h2>
+
+      <div class="cs-prose">
+        <p>Before the engagement, the owner had accepted that some receivables would eventually be written off as bad debt, not because the customers were unreachable, but because tracking each account's balance and history across a stack of hand-written ledgers was too expensive to do well. The <em>work</em> of collection was possible; the <em>seeing</em> was what was broken.</p>
+      </div>
+
+      <div class="system-note">
+        <div class="system-note-body">
+          <div class="system-note-idx">06 &#8212; Accounts Receivable</div>
+          <div class="system-note-title">A running ledger per customer</div>
+          <div class="system-note-lead">Sales across every batch become debits; payments become credits. Each customer carries one running balance &#8212; proper double-entry, made legible.</div>
+          <ul class="system-note-features">
+            <li><strong>Debit / credit tags.</strong> Sales (Dr) and payments (Cr) interleave chronologically with a running balance column.</li>
+            <li><strong>Expand on click.</strong> The header row is the balance; expand for the full ledger and drill back to the batch.</li>
+            <li><strong>Opening balances.</strong> Receivables that pre-date the system can be seeded so history stays whole.</li>
+            <li><strong>Overpaid detection.</strong> Negative balances flag as "Overpaid" in amber, not hidden.</li>
+          </ul>
+        </div>
+        <a href="/case-studies/rcd-system.html" class="system-note-cta">View this screen in the interactive system &#8594;</a>
+      </div>
+
+      <div class="cs-prose">
+        <p>The record-combing exercise put <strong>hundreds of thousands of pesos</strong> back into visible AR that had been buried in the paper records, and <strong>41% of those aged balances have been collected</strong> since implementation. Average collection time improved by two to three days, quietly, without any change to the collection <em>process</em>. Only the visibility changed.</p>
+      </div>
+    </section>
+
+    <!-- ================================================== IN HIS WORDS -->
+    <section class="csx-section" id="words">
+      <div class="section-eyebrow">In the manager's words</div>
+      <h2>What JML said, unedited.</h2>
+      <div class="testimonial">
+        <span class="quote-mark">&ldquo;</span>
+        <p class="quote-text">This system not only allowed me to travel and enjoy my off times, but also really streamline the sales and collections process to make sure the business is not losing money anywhere.</p>
+        <div class="quote-source"><strong>JML</strong> &middot; Sales and Finance Manager, Rovic Chicken Dealer</div>
+      </div>
+    </section>
+
+    <!-- ================================================== OUTCOMES -->
+    <section class="csx-section" id="outcomes">
+      <div class="section-eyebrow">What changed on the ground</div>
+      <h2>Time back on the calendar, cash back in the ledger, and a bottleneck that stopped bottlenecking.</h2>
+      <div class="cs-prose">
+        <p>The manager travels now without the ledgers. The books stay behind, and the business does not stop when he is out of the office, because the system holds the operational picture and multiple people can move against it at once. That single change &mdash; the elimination of the single point of failure &mdash; had knock-on effects that reached every corner of the operating day.</p>
+        <p>Approximately <strong>five to ten hours per week</strong> came back to the manager's calendar, and in complex-transaction periods (multi-truck days, layered supplier and customer exchanges), the savings on audit alone ran two to five hours per period. The double-entry and lost-cash-flow risks that came with manual re-writes across ledgers are automated away. Cash holdings, the single most sensitive metric for a capital-intensive distribution business, are now visible at any moment, in any location.</p>
+      </div>
+
+      <div class="outcomes-grid" style="margin-top: var(--space-5); max-width: 1000px;">
+        <div class="outcome-card"><div class="oc-label">Time Recovered</div><div class="oc-body"><strong>5 to 10 hours per week</strong> saved on reconciliation and data cascades. <strong>2 to 5 hours</strong> saved per audit period on complex-transaction days.</div></div>
+        <div class="outcome-card"><div class="oc-label">Aged AR Collected</div><div class="oc-body"><strong>41% of flagged aged receivables collected</strong> since implementation. The 2026 record-combing exercise recovered <strong>hundreds of thousands</strong> of pesos in previously buried balances.</div></div>
+        <div class="outcome-card"><div class="oc-label">Collection Cycle</div><div class="oc-body">Average collection time improved by <strong>2 to 3 days</strong>. Aged balances now surface in-system, instead of appearing during an owner review.</div></div>
+        <div class="outcome-card"><div class="oc-label">Data Integrity</div><div class="oc-body">Double-entry and lost-cash-flow risks are <strong>automated away</strong>. Cash holdings are visible at any moment, from any device.</div></div>
+      </div>
+    </section>
+
+    <!-- ================================================== NEXT -->
+    <section class="csx-section" id="next">
+      <div class="section-eyebrow">Where the business is going next</div>
+      <h2>The recovered attention is now studying two new markets.</h2>
+      <div class="cs-prose">
+        <p>RCD handles high transaction volume, and the system has been running long enough to surface real patterns rather than one-month noise. That is where the compounding effect of the <strong>Resource Value Formula&#8482;</strong> starts to show up in the shape of the business itself. When you recover a manager's calendar, an owner's visibility, and a receivables position all at once, the question stops being <em>how do we survive the next week</em> and starts being <em>where do we grow to next</em>.</p>
+        <p>RCD is now studying <strong>market expansion into Visayas and Mindanao</strong>. Both regions carry logistics complexity that the paper era would have made unreadable in time to act on; both regions look answerable now, because the operating picture is finally visible day-by-day rather than reconstructed at month-end. That is the whole thesis of the RVF&#8482;. Recover the resource, and the business grows into a shape it could not previously see.</p>
+      </div>
+    </section>
+
+    <div class="disclosure">
+      <strong>About this case study.</strong> Prepared by Studio JNSQ based on a client engagement, published with the client's consent under <strong>full attribution</strong>. The client is Rovic Chicken Dealer (RCD), a poultry distribution business in the Philippines. Design notes throughout summarize the deployed system's features; an <a href="/case-studies/rcd-system.html" style="color:var(--jnsq-ink);text-decoration:underline;">interactive system page</a> shows every screen with annotations. Results are measured against the scope that was agreed. No outcomes outside the brief are claimed.
+    </div>
+
+    <a href="/case-studies" class="back-link" style="margin-top: var(--space-5);">Back to portfolio</a>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="jnsq-cta-section" style="margin-top: var(--space-7);">
+  <div class="jnsq-container">
+    <div class="jnsq-eyebrow" data-reveal-fade>Want to know where your resources are leaking?</div>
+    <h2 class="jnsq-display-2" data-reveal>Take the <span class="jnsq-accent">Resource Value Formula&#8482;</span>.</h2>
+    <p class="jnsq-lead" data-reveal>The same framework that anchored this engagement is available as a free diagnostic. Twenty questions across four aspects, five to seven minutes.</p>
+    <div class="jnsq-hero-actions" style="justify-content: center; align-items: center; margin-top: var(--space-4);" data-reveal>
+      <a href="/diagnostic/RVF" class="jnsq-btn jnsq-btn-ghost" style="color:var(--jnsq-bg); border-color:rgba(255,255,255,0.25);">Take the RVF&#8482; Diagnostic</a>
+      <span style="font-family: 'Lora', Georgia, serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.55); padding: 0 4px;">or</span>
+      <a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" rel="noopener" class="jnsq-btn jnsq-btn-ghost" style="color:var(--jnsq-bg); border-color:rgba(255,255,255,0.25);">Book a Strategy Call</a>
+    </div>
+  </div>
+</section>
+
+<footer class="jnsq-footer">
+  <div class="jnsq-container">
+    <div class="jnsq-footer-grid">
+      <div style="text-align: center;">
+        <div class="jnsq-footer-brand" style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:12px;">
+          <img src="/images/jnsq-logo-mark.png" alt="Studio JNSQ" style="height:48px;width:auto;display:block;">
+          <span style="font-family:'Inter',sans-serif;font-weight:800;font-size:18px;letter-spacing:0.16em;">STUDIO <span class="accent">JNSQ</span></span>
+        </div>
+        <p class="jnsq-footer-tagline">Others make you profitable.<br>Brand equity makes you valuable.</p>
+      </div>
+      <div class="jnsq-footer-col"><h4>Discipline</h4><ul><li><a href="/about">About</a></li><li><a href="/case-studies">Portfolio</a></li><li><a href="/diagnostic">Diagnostic</a></li><li><a href="/journal">Journal</a></li></ul></div>
+      <div class="jnsq-footer-col"><h4>Frameworks</h4><ul><li><a href="/diagnostic/MAD">MAD&#8482;</a></li><li><a href="/diagnostic/RVF">RVF&#8482;</a></li><li><a href="/journal/branding-vs-brand-equity-vs-brand-architecture">The doctrine</a></li></ul></div>
+      <div class="jnsq-footer-col"><h4>Connect</h4><ul><li><a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" rel="noopener">Book a call</a></li><li><a href="/diagnostic">Start a diagnosis</a></li></ul></div>
+    </div>
+    <div class="jnsq-footer-bottom">
+      <div>&copy; 2026 Studio JNSQ. The brand equity architecture firm for valuable brands.</div>
+      <div class="legal"><a href="/">studiojnsq.com</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/jnsq-system.js?v=2" defer></script>
+<script src="/js/case-study-rail.js?v=1" defer></script>
+</body>
+</html>

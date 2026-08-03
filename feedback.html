@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engagement Feedback | Studio JNSQ</title>
+<meta name="description" content="Share your feedback on your Studio JNSQ engagement. Quick, structured, anonymous if you prefer.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://studiojnsq.com/feedback">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/jnsq-system.css">
+<link rel="stylesheet" href="/css/jnsq-motion.css?v=1777519085">
+<style>
+  /* === PALETTE — warm editorial charcoal/cream (from css/jnsq-system.css) === */
+  :root {
+    --primary: #1A2632;        /* jnsq-charcoal — was #3D5966 */
+    --primary-light: #2D3E4D;
+    --primary-deep: #0F1721;   /* jnsq-deep */
+    --accent: #FDD500;         /* jnsq-yellow */
+    --dark: #1A1A1A;           /* jnsq-ink */
+    --mid: #4A4A4A;            /* jnsq-body */
+    --steel: #8A8A8A;          /* jnsq-mute — hint text, subtitles */
+    --off-white: #FAFAF6;      /* jnsq-bg — warm cream */
+    --light-gray: #E8E5DD;     /* jnsq-line — warm hairline */
+    --paper: #FFFFFF;          /* jnsq-paper */
+    --white: #FFFFFF;
+    --red-soft: #B8524D;       /* muted terracotta for errors */
+    --sand: #F5F2E9;           /* warmer input rest state */
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { min-height: 100%; }
+  body { font-family: 'Lora', Georgia, serif; background: var(--off-white); color: var(--dark); line-height: 1.7; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
+
+  .form-content { display: none; flex-direction: column; flex: 1; }
+  .form-content.visible { display: flex; }
+
+  /* === HEADER — editorial charcoal hero with subtle grain === */
+  .header { background: var(--primary); padding: 3rem 2rem 2.5rem; text-align: center; position: relative; overflow: hidden; }
+  .header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--accent); z-index: 2; }
+  .header::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 0%, rgba(253,213,0,0.06), transparent 60%), radial-gradient(ellipse at 80% 100%, rgba(253,213,0,0.04), transparent 55%); pointer-events: none; z-index: 0; }
+  .header > * { position: relative; z-index: 1; }
+  .header h1 { font-family: 'Lora', serif; font-size: 2.4rem; font-weight: 500; color: var(--white); margin-bottom: 0.6rem; letter-spacing: -0.015em; line-height: 1.15; }
+  .header p { font-size: 0.95rem; color: rgba(255,255,255,0.72); font-style: italic; font-family: 'Lora', serif; letter-spacing: 0.01em; }
+
+  /* === LAYOUT WIDTH — 80% viewport, capped at 1120px for readable line-length === */
+  :root { --form-width: min(80vw, 1120px); }
+
+  /* === PROMO BANNER === */
+  .promo-banner { background: var(--primary-deep); margin: 2rem auto 0; width: var(--form-width); max-width: 100%; padding: 1.5rem 2rem; border-left: 3px solid var(--accent); position: relative; }
+  .promo-banner::after { content: ''; position: absolute; top: 0; right: 0; width: 60%; height: 100%; background: radial-gradient(ellipse at 100% 0%, rgba(253,213,0,0.08), transparent 70%); pointer-events: none; }
+  .promo-banner p { font-family: 'Lora', serif; font-size: 0.92rem; color: var(--white); line-height: 1.75; position: relative; }
+  .promo-banner .rvf-label { color: var(--accent); font-weight: 600; font-family: 'Montserrat', sans-serif; letter-spacing: 0.02em; }
+
+  /* === PROGRESS BAR === */
+  .progress-bar { width: var(--form-width); max-width: 100%; margin: 2rem auto 0; padding: 0 2rem; }
+  .progress-steps { display: flex; align-items: center; justify-content: space-between; position: relative; }
+  .progress-steps::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: var(--light-gray); transform: translateY(-50%); z-index: 0; }
+  .progress-fill { position: absolute; top: 50%; left: 0; height: 2px; background: var(--accent); transform: translateY(-50%); z-index: 1; transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1); }
+  .step-dot { width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1.5px solid var(--light-gray); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; color: var(--steel); z-index: 2; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative; }
+  .step-dot:hover { border-color: var(--primary); color: var(--primary); }
+  .step-dot.active { border-color: var(--accent); background: var(--accent); color: var(--dark); transform: scale(1.18); box-shadow: 0 4px 14px rgba(253,213,0,0.35); }
+  .step-dot.completed { border-color: var(--primary); background: var(--primary); color: var(--white); }
+  .step-dot.completed::after { content: '\2713'; position: absolute; font-size: 0.85rem; }
+  .step-dot.completed { color: transparent; }
+
+  /* === CONTAINER === */
+  .container { width: var(--form-width); max-width: 100%; margin: 0 auto; padding: 1.5rem 2rem 0; }
+  .intro { margin: 0 0 1.25rem; padding: 1.5rem 1.75rem; background: linear-gradient(180deg, rgba(253,213,0,0.06) 0%, rgba(253,213,0,0) 100%); border-left: 3px solid var(--accent); border-radius: 0 4px 4px 0; }
+  .intro p { font-family: 'Lora', serif; font-size: 0.98rem; color: var(--mid); margin-bottom: 0.75rem; line-height: 1.75; }
+  .intro p:last-child { margin-bottom: 0; }
+  .intro p:first-child::first-letter { font-family: 'Lora', serif; font-size: 2.6rem; font-weight: 500; float: left; line-height: 0.9; padding: 0.15rem 0.4rem 0 0; color: var(--primary); }
+
+  /* === STEP SECTIONS === */
+  .step-wrapper { position: relative; }
+  .section { background: var(--paper); border-radius: 4px; padding: 1.75rem 2rem 2rem; box-shadow: 0 1px 3px rgba(26,38,50,0.04), 0 12px 32px rgba(26,38,50,0.05); border: 1px solid var(--light-gray); display: none; animation-duration: 0.55s; animation-fill-mode: both; animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; overflow: hidden; }
+  .section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1); }
+  .section.active { display: block; animation-name: sectionEnter; }
+  .section.active::before { transform: scaleX(1); }
+  @keyframes sectionEnter { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  /* Stagger the children so form fields fade in progressively — targets both direct children of .section (intro, header, etc.) and fields inside .section-fields */
+  .section.active > *,
+  .section.active .section-fields > * { animation: fieldEnter 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+  .section.active > *:nth-child(1) { animation-delay: 0.05s; }
+  .section.active > *:nth-child(2) { animation-delay: 0.14s; }
+  .section.active > *:nth-child(3) { animation-delay: 0.22s; }
+  .section.active .section-fields > *:nth-child(1) { animation-delay: 0.28s; }
+  .section.active .section-fields > *:nth-child(2) { animation-delay: 0.36s; }
+  .section.active .section-fields > *:nth-child(3) { animation-delay: 0.44s; }
+  .section.active .section-fields > *:nth-child(4) { animation-delay: 0.52s; }
+  .section.active .section-fields > *:nth-child(5) { animation-delay: 0.6s; }
+  .section.active .section-fields > *:nth-child(6) { animation-delay: 0.68s; }
+  .section.active .section-fields > *:nth-child(7) { animation-delay: 0.76s; }
+  @keyframes fieldEnter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* === SECTION HEADER — editorial eyebrow with yellow rule === */
+  .section-header { margin-bottom: 1.5rem; }
+  .section-header-top { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+  .section-num { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; flex-shrink: 0; padding: 0.25rem 0.65rem; background: var(--primary); border-radius: 2px; }
+  .section-title { font-family: 'Lora', serif; font-size: 1.55rem; font-weight: 500; color: var(--dark); letter-spacing: -0.01em; line-height: 1.2; }
+  .section-subtitle { font-family: 'Lora', serif; font-size: 0.92rem; color: var(--steel); font-style: italic; margin-bottom: 0.85rem; line-height: 1.55; }
+  .section-divider { height: 1px; background: linear-gradient(90deg, var(--light-gray), transparent); }
+
+  /* === FIELDS === */
+  .field { margin-bottom: 1.5rem; }
+  .field:last-child { margin-bottom: 0; }
+  .field label { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem; line-height: 1.5; letter-spacing: 0.02em; text-transform: none; }
+  .field .hint { font-family: 'Lora', serif; font-size: 0.85rem; color: var(--steel); font-style: italic; margin-bottom: 0.65rem; display: block; line-height: 1.55; }
+  .field-group-label { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; color: var(--steel); text-transform: uppercase; margin-bottom: 0.75rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--light-gray); }
+
+  /* === RATING SCALE — full width === */
+  .rating-group { display: flex; gap: 0; margin-top: 0.5rem; width: 100%; }
+  .rating-group input[type="radio"] { display: none; }
+  .rating-group label.rating-label { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 600; padding: 0.75rem 0; border: 1px solid var(--light-gray); background: var(--paper); color: var(--steel); cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); text-align: center; flex: 1; margin: 0; }
+  .rating-group label.rating-label:first-of-type { border-radius: 4px 0 0 4px; }
+  .rating-group label.rating-label:last-of-type { border-radius: 0 4px 4px 0; }
+  .rating-group label.rating-label:not(:last-of-type) { border-right: none; }
+  .rating-group label.rating-label:hover { background: var(--sand); color: var(--dark); }
+  .rating-group input[type="radio"]:checked + label.rating-label { background: var(--primary); color: var(--white); border-color: var(--primary); box-shadow: 0 2px 8px rgba(26,38,50,0.15); }
+  .rating-scale-labels { display: flex; justify-content: space-between; margin-top: 0.75rem; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; color: var(--steel); letter-spacing: 0.6px; text-transform: uppercase; }
+
+  /* === TEXTAREA === */
+  textarea { width: 100%; min-height: 140px; padding: 1rem 1.15rem; font-family: 'Lora', Georgia, serif; font-size: 0.95rem; line-height: 1.75; color: var(--dark); background: var(--sand); border: 1px solid var(--light-gray); border-radius: 4px; resize: vertical; transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease; outline: none; }
+  textarea:focus { border-color: var(--primary); background: var(--paper); box-shadow: 0 0 0 3px rgba(26,38,50,0.06); }
+  textarea.short { min-height: 100px; }
+
+  .word-counter { display: flex; justify-content: flex-end; align-items: center; gap: 0.4rem; margin-top: 0.4rem; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: var(--steel); transition: color 0.2s; letter-spacing: 0.03em; }
+  .word-counter.met { color: var(--primary); }
+  .word-counter.unmet { color: var(--red-soft); }
+  .word-counter .check { display: none; font-size: 0.8rem; }
+  .word-counter.met .check { display: inline; }
+
+  /* === INPUTS === */
+  input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="number"], select { width: 100%; padding: 0.75rem 1rem; font-family: 'Lora', Georgia, serif; font-size: 0.92rem; color: var(--dark); background: var(--sand); border: 1px solid var(--light-gray); border-radius: 4px; outline: none; transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease; }
+  input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, input[type="url"]:focus, input[type="number"]:focus, select:focus { border-color: var(--primary); background: var(--paper); box-shadow: 0 0 0 3px rgba(26,38,50,0.06); }
+  select { appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A8A8A' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.85rem center; background-size: 14px; padding-right: 2.5rem; }
+
+  /* === CHOICE GROUP === */
+  .choice-group { display: flex; flex-direction: column; gap: 0.65rem; margin-top: 0.5rem; }
+  .choice-item { display: flex; align-items: flex-start; cursor: pointer; padding: 0.75rem 1rem; border-radius: 4px; transition: all 0.2s ease; border: 1px solid var(--light-gray); background: var(--paper); position: relative; }
+  .choice-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); transform: scaleY(0); transform-origin: center; transition: transform 0.25s ease; border-radius: 3px 0 0 3px; }
+  .choice-item:hover { background: var(--sand); border-color: var(--primary); transform: translateX(2px); }
+  .choice-item:has(input:checked) { background: var(--sand); border-color: var(--primary); }
+  .choice-item:has(input:checked)::before { transform: scaleY(1); }
+  .choice-item input[type="checkbox"], .choice-item input[type="radio"] { margin-top: 0.2rem; margin-right: 12px; accent-color: var(--primary); width: 17px; height: 17px; flex-shrink: 0; cursor: pointer; }
+  .choice-item span { font-family: 'Lora', serif; font-size: 0.92rem; color: var(--dark); line-height: 1.55; }
+  .choice-item.selected { background: var(--sand); border-color: var(--primary); }
+  .choice-item.selected::before { transform: scaleY(1); }
+
+  /* Outcomes grid (advisory step 3) */
+  .outcomes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; margin-top: 0.5rem; }
+  .outcomes-grid .choice-item { padding: 0.65rem 0.85rem; }
+  .outcomes-grid .choice-item span { font-size: 0.88rem; }
+  @media (max-width: 600px) { .outcomes-grid { grid-template-columns: 1fr; } }
+
+  /* Engagement types grid (advisory step 2) — multi-select checkboxes */
+  .eng-types-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; margin-top: 0.5rem; }
+  .eng-types-grid .choice-item { padding: 0.7rem 0.9rem; }
+  .eng-types-grid .choice-item span { font-size: 0.88rem; }
+  @media (max-width: 600px) { .eng-types-grid { grid-template-columns: 1fr; } }
+
+  /* Field row — 2-column layout for compact fields */
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  @media (max-width: 600px) { .field-row { grid-template-columns: 1fr; gap: 0; } }
+
+  /* === EDITORIAL SPLIT LAYOUT (magazine-style two-column section) === */
+  /* Left rail carries the section title + subtitle; right column carries the fields.
+     Sticky-title on tall sections so the reader always knows where they are. */
+  .section-split { display: grid; grid-template-columns: minmax(240px, 300px) 1fr; gap: 3rem; align-items: start; }
+  .section-split .section-header { margin-bottom: 0; padding-right: 1.25rem; border-right: 1px solid var(--light-gray); }
+  .section-split .section-header::after { content: ''; display: block; margin-top: 1rem; width: 40px; height: 3px; background: var(--accent); }
+  .section-split .section-fields > .field:first-child { margin-top: 0; }
+  @media (max-width: 900px) {
+    .section-split { grid-template-columns: 1fr; gap: 1.5rem; }
+    .section-split .section-header { position: static; padding-right: 0; border-right: none; padding-bottom: 1rem; border-bottom: 1px solid var(--light-gray); }
+  }
+
+  /* === RATING CARDS (used on engagement Step 1) — 2-col grid + hero overall === */
+  .ratings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem; }
+  .ratings-grid .rating-card { background: var(--sand); border: 1px solid var(--light-gray); border-radius: 4px; padding: 1.25rem 1.4rem 1.1rem; transition: all 0.25s ease; position: relative; }
+  .ratings-grid .rating-card:hover { border-color: var(--primary); background: var(--paper); box-shadow: 0 4px 14px rgba(26,38,50,0.06); }
+  .ratings-grid .rating-card.hero { grid-column: 1 / -1; background: linear-gradient(135deg, rgba(253,213,0,0.08) 0%, rgba(253,213,0,0.02) 100%); border-color: rgba(253,213,0,0.5); }
+  .ratings-grid .rating-card.hero label { color: var(--primary); font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 700; }
+  .ratings-grid .rating-card label { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem; }
+  .ratings-grid .rating-card .hint { display: block; font-family: 'Lora', serif; font-size: 0.82rem; color: var(--steel); font-style: italic; margin-bottom: 0.85rem; line-height: 1.5; }
+  .ratings-grid .rating-card .rating-group { margin-top: 0.3rem; }
+  .ratings-grid .rating-card .rating-scale-labels { margin-top: 0.5rem; font-size: 0.6rem; }
+  @media (max-width: 700px) { .ratings-grid { grid-template-columns: 1fr; } }
+
+  /* Wider outcomes grid — 3 columns on wide screens */
+  @media (min-width: 900px) {
+    .outcomes-grid { grid-template-columns: repeat(3, 1fr); }
+    .eng-types-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* Editorial pull-quote break — visual rest between long stretches of textareas */
+  .editorial-break { margin: 1.75rem 0; padding: 0 1rem; text-align: center; position: relative; }
+  .editorial-break::before, .editorial-break::after { content: ''; position: absolute; top: 50%; width: calc(50% - 1.5rem); height: 1px; background: linear-gradient(90deg, transparent, var(--light-gray), transparent); }
+  .editorial-break::before { left: 0; }
+  .editorial-break::after { right: 0; }
+  .editorial-break span { font-family: 'Lora', serif; font-style: italic; font-size: 0.85rem; color: var(--accent); letter-spacing: 0.15em; padding: 0 0.75rem; }
+
+  /* Attribution encouragement note (advisory Step 4) */
+  .attribution-nudge { margin: 0 0 1.5rem; padding: 1.25rem 1.5rem; background: linear-gradient(135deg, rgba(253,213,0,0.10) 0%, rgba(253,213,0,0.02) 100%); border-left: 3px solid var(--accent); border-radius: 0 4px 4px 0; position: relative; }
+  .attribution-nudge::before { content: '\201C'; position: absolute; top: -8px; left: 8px; font-family: 'Lora', serif; font-size: 3.5rem; color: var(--accent); opacity: 0.55; line-height: 1; }
+  .attribution-nudge p { font-family: 'Lora', serif; font-size: 0.93rem; color: var(--mid); line-height: 1.75; margin: 0 0 0 1.5rem; font-style: italic; }
+  .attribution-nudge p strong { color: var(--primary); font-style: normal; font-weight: 600; }
+  .attribution-nudge .nudge-signoff { display: block; margin-top: 0.6rem; font-family: 'Lora', serif; font-size: 0.82rem; color: var(--steel); font-style: italic; letter-spacing: 0.02em; }
+
+  /* === NAV BUTTONS === */
+  .step-nav { display: flex; justify-content: space-between; align-items: center; width: var(--form-width); max-width: 100%; margin: 1.25rem auto 0; padding: 0 2rem 2rem; }
+  .nav-btn { font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 600; letter-spacing: 1.5px; padding: 0.85rem 2.25rem; border-radius: 3px; cursor: pointer; transition: all 0.3s cubic-bezier(0.65, 0, 0.35, 1); text-transform: uppercase; position: relative; overflow: hidden; }
+  .nav-btn.back { background: transparent; border: 1px solid var(--light-gray); color: var(--steel); }
+  .nav-btn.back:hover { border-color: var(--primary); color: var(--primary); background: var(--sand); }
+  .nav-btn.next { background: var(--primary); border: 1px solid var(--primary); color: var(--white); display: inline-flex; align-items: center; gap: 8px; }
+  .nav-btn.next::after { content: '\2192'; font-size: 1rem; transition: transform 0.3s ease; }
+  .nav-btn.next:hover { background: var(--primary-deep); border-color: var(--primary-deep); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(26,38,50,0.25); }
+  .nav-btn.next:hover::after { transform: translateX(4px); }
+  .nav-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  /* === SUBMIT === */
+  .submit-section { text-align: center; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--light-gray); }
+  .submit-btn { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; color: var(--dark); background: var(--accent); border: none; padding: 1.1rem 3rem; border-radius: 3px; cursor: pointer; transition: all 0.3s cubic-bezier(0.65, 0, 0.35, 1); text-transform: uppercase; position: relative; overflow: hidden; }
+  .submit-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); transition: left 0.6s ease; }
+  .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(253,213,0,0.4); }
+  .submit-btn:hover::before { left: 100%; }
+  .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+  .submit-note { font-family: 'Lora', serif; font-size: 0.82rem; color: var(--steel); margin-top: 0.95rem; font-style: italic; }
+
+  /* === FOOTER === */
+  .footer { text-align: center; padding: 2rem; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: var(--steel); letter-spacing: 1px; margin-top: auto; text-transform: uppercase; }
+  .footer .jnsq { color: var(--primary); font-weight: 700; letter-spacing: 1.5px; }
+  .footer .tagline { display: block; margin-top: 0.5rem; font-family: 'Lora', serif; font-style: italic; font-size: 0.78rem; color: var(--steel); text-transform: none; letter-spacing: 0; }
+
+  /* === VALIDATION === */
+  .field.invalid textarea, .field.invalid input[type="text"], .field.invalid input[type="email"], .field.invalid select { border-color: var(--red-soft); background: rgba(184,82,77,0.04); }
+  .error-msg { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: var(--red-soft); margin-top: 0.4rem; display: none; letter-spacing: 0.02em; }
+  .field.invalid .error-msg { display: block; }
+
+  /* === SUCCESS === */
+  .success-screen { text-align: center; padding: 4rem 2rem; animation: fadeUp 0.6s ease-out; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* === LOADING === */
+  .loading-screen { text-align: center; padding: 4rem 2rem; }
+  .loading-screen p { font-family: 'Montserrat', sans-serif; color: var(--steel); font-size: 0.85rem; letter-spacing: 0.05em; }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 600px) {
+    .container { padding: 1.2rem 1rem 0; }
+    .section { padding: 1.75rem 1.4rem; }
+    .header { padding: 2.25rem 1.5rem 1.75rem; }
+    .header h1 { font-size: 1.5rem; }
+    .section-title { font-size: 1.15rem; }
+    .rating-group label.rating-label { padding: 0.6rem 0; font-size: 0.78rem; }
+    .promo-banner { margin: 1.5rem 1rem 0; padding: 1.2rem 1.4rem; }
+    .progress-bar { padding: 0 1rem; }
+    .step-nav { padding: 0 1rem 2rem; }
+    .step-dot { width: 28px; height: 28px; font-size: 0.65rem; }
+  }
+</style>
+</head>
+<body>
+
+<div id="loadingScreen" class="loading-screen">
+  <p>Loading feedback form...</p>
+</div>
+
+<div id="formContent" class="form-content">
+
+<!-- HEADER -->
+<div class="header mesh-hero grain" id="formHeader">
+  <a href="https://studiojnsq.com" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:1.5rem;position:relative;z-index:1;" class="reveal-fade">
+    <img id="headerLogo" src="/images/jnsq-logo-mark.png" alt="Studio JNSQ" style="height:32px;width:auto;opacity:0.95" onerror="this.style.display='none'">
+    <span style="font-family:'Montserrat',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:3px;color:#FDD500;text-transform:uppercase;">STUDIO JNSQ</span>
+  </a>
+  <h1 class="reveal" id="formTitle" style="position:relative;z-index:1;">Engagement Feedback</h1>
+  <p id="headerSubtitle" class="reveal" style="position:relative;z-index:1;"></p>
+</div>
+
+<!-- PROMO BANNER -->
+<div class="promo-banner" id="promoBanner" style="display:none;">
+  <p>Thank you for taking the time to complete this. As a token of appreciation, upon submission you will receive complimentary access to the <span class="rvf-label">RVF&trade; Diagnostic</span>, a proprietary tool that maps where your business sits in its growth cycle and what trade you should be making next.</p>
+</div>
+
+<!-- PROGRESS BAR — dots rendered dynamically based on active flow -->
+<div class="progress-bar">
+  <div class="progress-steps" id="progressStepsContainer">
+    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    <!-- step dots injected by STEPPER.renderDots() -->
+  </div>
+</div>
+
+<div class="container">
+  <form id="feedbackForm" novalidate>
+
+    <div class="step-wrapper" id="stepWrapper">
+
+      <!-- ============================================================= -->
+      <!-- ENGAGEMENT FLOW (5 steps) — DO NOT CHANGE questions or fields  -->
+      <!-- ============================================================= -->
+
+      <!-- STEP 1: ENGAGEMENT EVALUATION -->
+      <div class="section active" data-flow="engagement" data-step="0">
+        <div class="intro" style="margin-top:0;">
+          <p>This form serves two purposes. First, it helps us understand how you experienced the engagement so we can continue refining how we work. Second, with your permission, select insights may inform a case study that highlights the kind of transformation work we do alongside our clients.</p>
+          <p>There are no right answers. Candor is more valuable than courtesy.</p>
+        </div>
+        <div class="section-header">
+          <div class="section-header-top">
+            <span class="section-num">STEP 01</span>
+            <span class="section-title">Engagement Evaluation</span>
+          </div>
+          <p class="section-subtitle">Quick ratings across the core dimensions of the engagement.</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="ratings-grid">
+          <div class="rating-card">
+            <label>Strategic Value</label>
+            <span class="hint">Did the strategy, positioning, and content architecture feel genuinely tailored?</span>
+            <div class="rating-group">
+              <input type="radio" name="r_strategic" id="rs1" value="1"><label class="rating-label" for="rs1">1</label>
+              <input type="radio" name="r_strategic" id="rs2" value="2"><label class="rating-label" for="rs2">2</label>
+              <input type="radio" name="r_strategic" id="rs3" value="3"><label class="rating-label" for="rs3">3</label>
+              <input type="radio" name="r_strategic" id="rs4" value="4"><label class="rating-label" for="rs4">4</label>
+              <input type="radio" name="r_strategic" id="rs5" value="5"><label class="rating-label" for="rs5">5</label>
+            </div>
+            <div class="rating-scale-labels"><span>Did not meet expectations</span><span>Exceeded expectations</span></div>
+          </div>
+
+          <div class="rating-card">
+            <label>Content Quality</label>
+            <span class="hint">The deliverables. Did the artifacts feel finished, considered, on-brand?</span>
+            <div class="rating-group">
+              <input type="radio" name="r_content" id="rc1" value="1"><label class="rating-label" for="rc1">1</label>
+              <input type="radio" name="r_content" id="rc2" value="2"><label class="rating-label" for="rc2">2</label>
+              <input type="radio" name="r_content" id="rc3" value="3"><label class="rating-label" for="rc3">3</label>
+              <input type="radio" name="r_content" id="rc4" value="4"><label class="rating-label" for="rc4">4</label>
+              <input type="radio" name="r_content" id="rc5" value="5"><label class="rating-label" for="rc5">5</label>
+            </div>
+            <div class="rating-scale-labels"><span>Below standard</span><span>Exceptional</span></div>
+          </div>
+
+          <div class="rating-card">
+            <label>Responsiveness</label>
+            <span class="hint">Communication cadence, follow-through, how it felt to work with us day-to-day.</span>
+            <div class="rating-group">
+              <input type="radio" name="r_responsive" id="rr1" value="1"><label class="rating-label" for="rr1">1</label>
+              <input type="radio" name="r_responsive" id="rr2" value="2"><label class="rating-label" for="rr2">2</label>
+              <input type="radio" name="r_responsive" id="rr3" value="3"><label class="rating-label" for="rr3">3</label>
+              <input type="radio" name="r_responsive" id="rr4" value="4"><label class="rating-label" for="rr4">4</label>
+              <input type="radio" name="r_responsive" id="rr5" value="5"><label class="rating-label" for="rr5">5</label>
+            </div>
+            <div class="rating-scale-labels"><span>Needs improvement</span><span>Outstanding</span></div>
+          </div>
+
+          <div class="rating-card">
+            <label>Value for Investment</label>
+            <span class="hint">The candid answer, not the polite one.</span>
+            <div class="rating-group">
+              <input type="radio" name="r_value" id="rv1" value="1"><label class="rating-label" for="rv1">1</label>
+              <input type="radio" name="r_value" id="rv2" value="2"><label class="rating-label" for="rv2">2</label>
+              <input type="radio" name="r_value" id="rv3" value="3"><label class="rating-label" for="rv3">3</label>
+              <input type="radio" name="r_value" id="rv4" value="4"><label class="rating-label" for="rv4">4</label>
+              <input type="radio" name="r_value" id="rv5" value="5"><label class="rating-label" for="rv5">5</label>
+            </div>
+            <div class="rating-scale-labels"><span>Overpriced</span><span>Significant value</span></div>
+          </div>
+
+          <div class="rating-card hero">
+            <label>Overall Experience</label>
+            <span class="hint">The one-line summary of the whole engagement.</span>
+            <div class="rating-group">
+              <input type="radio" name="r_overall" id="ro1" value="1"><label class="rating-label" for="ro1">1</label>
+              <input type="radio" name="r_overall" id="ro2" value="2"><label class="rating-label" for="ro2">2</label>
+              <input type="radio" name="r_overall" id="ro3" value="3"><label class="rating-label" for="ro3">3</label>
+              <input type="radio" name="r_overall" id="ro4" value="4"><label class="rating-label" for="ro4">4</label>
+              <input type="radio" name="r_overall" id="ro5" value="5"><label class="rating-label" for="ro5">5</label>
+            </div>
+            <div class="rating-scale-labels"><span>Would not recommend</span><span>Would strongly recommend</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2: THE EXPERIENCE -->
+      <div class="section" data-flow="engagement" data-step="1">
+        <div class="section-split">
+          <div class="section-header">
+            <div class="section-header-top">
+              <span class="section-num">STEP 02</span>
+            </div>
+            <h2 class="section-title" style="font-size:1.75rem;margin-bottom:0.6rem;">The Experience</h2>
+            <p class="section-subtitle">We would love to hear the story of this engagement in your own words.</p>
+          </div>
+          <div class="section-fields">
+            <div class="field">
+              <label>What was the situation before this engagement?</label>
+              <span class="hint">Where you were as a brand, the challenges, what you were hoping to solve.</span>
+              <textarea name="q_before" data-min-words="50" placeholder="Share your perspective..."></textarea>
+              <div class="word-counter" data-for="q_before"><span class="check">&check;</span> <span class="count">0</span> / 50 words minimum</div>
+              <div class="error-msg">Please share at least 50 words so we can fully understand your experience.</div>
+            </div>
+
+            <div class="field">
+              <label>What stood out most about the work?</label>
+              <span class="hint">A strategy decision, a deliverable, the training, or even a conversation.</span>
+              <textarea name="q_standout" data-min-words="50" placeholder="Tell us what resonated..."></textarea>
+              <div class="word-counter" data-for="q_standout"><span class="check">&check;</span> <span class="count">0</span> / 50 words minimum</div>
+              <div class="error-msg">Please share at least 50 words so we can fully understand your experience.</div>
+            </div>
+
+            <div class="editorial-break"><span>&sect;</span></div>
+
+            <div class="field">
+              <label>How has this engagement changed the way you approach your market presence?</label>
+              <textarea name="q_impact" data-min-words="50" placeholder="Describe the shift..."></textarea>
+              <div class="word-counter" data-for="q_impact"><span class="check">&check;</span> <span class="count">0</span> / 50 words minimum</div>
+              <div class="error-msg">Please share at least 50 words so we can fully understand your experience.</div>
+            </div>
+
+            <div class="field">
+              <label>How would you describe the experience of working with Studio JNSQ to a peer?</label>
+              <textarea name="q_describe" data-min-words="50" placeholder="In your own words..."></textarea>
+              <div class="word-counter" data-for="q_describe"><span class="check">&check;</span> <span class="count">0</span> / 50 words minimum</div>
+              <div class="error-msg">Please share at least 50 words so we can fully understand your experience.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: MAKING IT BETTER -->
+      <div class="section" data-flow="engagement" data-step="2">
+        <div class="section-split">
+          <div class="section-header">
+            <div class="section-header-top">
+              <span class="section-num">STEP 03</span>
+            </div>
+            <h2 class="section-title" style="font-size:1.75rem;margin-bottom:0.6rem;">Making It Better</h2>
+            <p class="section-subtitle">Honest feedback sharpens the work. This helps us serve the next client even better.</p>
+          </div>
+          <div class="section-fields">
+            <div class="field">
+              <label>If we were to do this engagement again, what would you want us to do differently?</label>
+              <span class="hint">Process, communication, deliverables, pacing, or anything else.</span>
+              <textarea name="q_improve" class="short" placeholder="Be candid..."></textarea>
+            </div>
+
+            <div class="field">
+              <label>Was there anything you expected to receive that was not included?</label>
+              <textarea name="q_gaps" class="short" placeholder="Tell us what was missing, if anything..."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4: EXTENDING THE WORK -->
+      <div class="section" data-flow="engagement" data-step="3">
+        <div class="section-split">
+          <div class="section-header">
+            <div class="section-header-top">
+              <span class="section-num">STEP 04</span>
+            </div>
+            <h2 class="section-title" style="font-size:1.75rem;margin-bottom:0.6rem;">Extending the Work</h2>
+            <p class="section-subtitle">The best engagements start with a warm introduction from someone who has experienced the work firsthand.</p>
+          </div>
+          <div class="section-fields">
+            <div class="field-row">
+              <div class="field"><label>Their full name</label><input type="text" name="ref_name" placeholder="Full name"></div>
+              <div class="field"><label>Phone number</label><input type="tel" name="ref_phone" placeholder="Phone number"></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Email address</label><input type="email" name="ref_email" placeholder="Email address"></div>
+              <div class="field"><label>Company</label><input type="text" name="ref_company" placeholder="Company name"></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Position / Role</label><input type="text" name="ref_position" placeholder="Their role or title"></div>
+              <div class="field"><label>Brief description of what they may need</label><input type="text" name="ref_description" placeholder="A short note on their situation."></div>
+            </div>
+            <div class="field">
+              <label>Would you be open to a brief introduction if we reach out?</label>
+              <div class="choice-group">
+                <label class="choice-item"><input type="radio" name="referral_intro" value="yes"><span>Yes, I am happy to make an introduction</span></label>
+                <label class="choice-item"><input type="radio" name="referral_intro" value="share_details"><span>You may reach out to them directly and mention my name</span></label>
+                <label class="choice-item"><input type="radio" name="referral_intro" value="not_now"><span>No one comes to mind right now</span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5: PERMISSIONS -->
+      <div class="section" data-flow="engagement" data-step="4">
+        <div class="section-split">
+          <div class="section-header">
+            <div class="section-header-top">
+              <span class="section-num">STEP 05</span>
+            </div>
+            <h2 class="section-title" style="font-size:1.75rem;margin-bottom:0.6rem;">Permissions</h2>
+            <p class="section-subtitle">Required before submission.</p>
+          </div>
+          <div class="section-fields">
+            <div class="field">
+              <label>May we feature insights from your feedback in our portfolio or case studies? <span style="color:var(--red-soft)">*</span></label>
+              <div class="choice-group">
+                <label class="choice-item"><input type="radio" name="consent_use" value="named" required><span id="consentNamedLabel">Yes, you may quote me by name</span></label>
+                <label class="choice-item"><input type="radio" name="consent_use" value="anonymous"><span>Yes, but please keep the company anonymous</span></label>
+                <label class="choice-item"><input type="radio" name="consent_use" value="no"><span>I prefer this feedback to remain private</span></label>
+              </div>
+              <div class="error-msg">Please select one option.</div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label>Your name <span style="color:var(--red-soft)">*</span></label>
+                <input type="text" name="respondent_name" placeholder="Full name" required>
+                <div class="error-msg">Please enter your name.</div>
+              </div>
+              <div class="field">
+                <label>Your email <span style="color:var(--red-soft)">*</span></label>
+                <input type="email" name="respondent_email" placeholder="Email address" required>
+                <div class="error-msg">Please enter a valid email address.</div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Anything else you would like to add?</label>
+              <textarea name="q_final" class="short" placeholder="Optional. Completely open-ended."></textarea>
+            </div>
+
+            <div class="submit-section">
+              <button type="submit" class="submit-btn" data-flow="engagement">Submit Feedback</button>
+              <p class="submit-note">Your responses will be sent directly to Jerico Lugo at Studio JNSQ.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================= -->
+      <!-- ADVISORY / CONSULTATION FLOW (4 steps)                          -->
+      <!-- ============================================================= -->
+
+      <!-- ADVISORY STEP 1: YOUR BACKGROUND -->
+      <div class="section" data-flow="advisory" data-step="0">
+        <div class="intro" style="margin-top:0;">
+          <p>Thank you for taking the time to reflect on the advice, review, or informal audit you received from Jec. This is not a client engagement questionnaire. It is a way for us to preserve the impact of the quiet work Jec does with friends, peers, and founders in his circle.</p>
+          <p>With your permission, insights from this may inform how we tell the story of what Studio JNSQ does. Candor over courtesy, always.</p>
+        </div>
+        <div class="section-split">
+          <div class="section-header">
+            <div class="section-header-top">
+              <span class="section-num">STEP 01</span>
+            </div>
+            <h2 class="section-title" style="font-size:1.75rem;margin-bottom:0.6rem;">Your Background</h2>
+            <p class="section-subtitle">A little context on who you are and how you know Jec.</p>
+          </div>
+          <div class="section-fields">
+            <div class="field">
+              <label>How do you know Jec? <span style="color:var(--red-soft)">*</span></label>
+              <span class="hint">This helps us frame your reflection appropriately.</span>
+              <div class="eng-types-grid">
+                <label class="choice-item"><input type="radio" name="adv_relationship" value="friend"><span>Personal friend</span></label>
+                <label class="choice-item"><input type="radio" name="adv_relationship" value="peer"><span>Industry peer or fellow founder</span></label>
+                <label class="choice-item"><input type="radio" name="adv_relationship" value="mentor_mentee"><span>Mentor / mentee relationship</span></label>
+                <label class="choice-item"><input type="radio" name="adv_relationship" value="colleague"><span>Former colleague or collaborator</span></label>
+                <label class="choice-item"><input type="radio" name="adv_relationship" value="referral"><span>Introduced through a mutual contact</span></label>
+                <label class="choice-item"><input type="radio" name="adv_relationship" value="other"><span>Other</span></label>
+              </div>
+              <div class="error-msg">Please select one option.</div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label>Your name <span style="color:var(--red-soft)">*</span></label>
+                <input type="text" name="adv_name" placeholder="Full name">
+                <div class="error-msg">Please enter your name.</div>
+              </div>
+              <div class="field">
+                <label>Your email <span style="color:var(--red-soft)">*</span></label>
+                <input type="email" name="adv_email" placeholder="Email address">
+                <div class="error-msg">Please enter a valid email address.</div>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label>Your role or title</label>
+                <input type="text" name="adv_role" placeholder="Founder, CEO, Head of Marketing...">
+              </div>
+              <div class="field">
+                <label>Your organization</label>
+                <input type="text" name="adv_organization" placeholder="Company or business name">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADVISORY STEP 2: WHAT YOU RECEIVED -->
+      <div class="section" data-flow="advisory" data-step="1">
+        <div class="section-split">
+          <div class="section-header">
+            <div class="section-header-top">
+              <span class="section-num">STEP 02</span>
+            </div>
+            <h2 class="section-title" style="font-size:1.75rem;margin-bottom:0.6rem;">What You Received</h2>
+            <p class="section-subtitle">Describe the shape of the advice or audit Jec gave you.</p>
+          </div>
+          <div class="section-fields">
+            <div class="field">
+              <label>What kind of engagement was it? <span style="color:var(--red-soft)">*</span></label>
+              <span class="hint">Check every kind of support that came up. Sometimes one conversation covers several &mdash; a MAD&trade; audit that turned into strategic advice, a brand review that opened into a sounding board. Pick all that fit.</span>
+              <div class="eng-types-grid">
+                <label class="choice-item"><input type="checkbox" name="adv_engagement_type" value="informal_mad_audit"><span>Informal MAD&trade; audit</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_engagement_type" value="informal_rvf_audit"><span>Informal RVF&trade; audit</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_engagement_type" value="brand_review"><span>Brand review or critique</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_engagement_type" value="positioning_consultation"><span>Positioning consultation</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_engagement_type" value="strategic_advice"><span>Strategic advice / sounding board</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_engagement_type" value="founder_coaching"><span>Founder coaching / mentorship</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_engagement_type" value="workshop_teach"><span>Workshop or teaching session</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_engagement_type" value="other"><span>Something else</span></label>
+              </div>
+              <div class="error-msg">Please select at least one engagement type.</div>
+            </div>
+
+            <div class="editorial-break"><span>&sect;</span></div>
+
+            <div class="field">
+              <label>How did the conversation happen?</label>
+              <div class="eng-types-grid">
+                <label class="choice-item"><input type="radio" name="adv_format" value="in_person"><span>In person, over coffee or a meal</span></label>
+                <label class="choice-item"><input type="radio" name="adv_format" value="video_call"><span>Video call</span></label>
+                <label class="choice-item"><input type="radio" name="adv_format" value="phone_call"><span>Phone call</span></label>
+                <label class="choice-item"><input type="radio" name="adv_format" value="written_review"><span>A written review or notes Jec sent</span></label>
+                <label class="choice-item"><input type="radio" name="adv_format" value="mixed"><span>A mix of formats over time</span></label>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label>Roughly how long did it last?</label>
+                <select name="adv_duration">
+                  <option value="">Select duration...</option>
+                  <option value="under_30m">Under 30 minutes</option>
+                  <option value="30m_1h">30 minutes to 1 hour</option>
+                  <option value="1h_3h">1 to 3 hours</option>
+                  <option value="half_day">Half day or more</option>
+                  <option value="ongoing">Ongoing across multiple sessions</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>When did this happen?</label>
+                <input type="text" name="adv_timing" placeholder="Approximate date or period">
+              </div>
+            </div>
+
+            <div class="field">
+              <label>In your own words, what did you actually receive?</label>
+              <span class="hint">The framework, the reframe, the specific piece of advice, the audit finding. What you walked away with.</span>
+              <textarea name="adv_received_description" data-min-words="40" placeholder="Describe what Jec offered you..."></textarea>
+              <div class="word-counter" data-for="adv_received_description"><span class="check">&check;</span> <span class="count">0</span> / 40 words minimum</div>
+              <div class="error-msg">Please share at least 40 words so we can understand what you received.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADVISORY STEP 3: THE IMPACT -->
+      <div class="section" data-flow="advisory" data-step="2">
+        <div class="section-split">
+          <div class="section-header">
+            <div class="section-header-top">
+              <span class="section-num">STEP 03</span>
+            </div>
+            <h2 class="section-title" style="font-size:1.75rem;margin-bottom:0.6rem;">The Impact</h2>
+            <p class="section-subtitle">What actually changed as a result of the advice or audit.</p>
+          </div>
+          <div class="section-fields">
+            <div class="field">
+              <label>Which of these outcomes did the engagement contribute to?</label>
+              <span class="hint">Select all that apply. This is where the real story lives.</span>
+              <div class="outcomes-grid">
+                <label class="choice-item"><input type="checkbox" name="adv_outcome" value="clarity"><span>Clarity on what to build or fix next</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_outcome" value="positioning_shift"><span>Sharper positioning or messaging</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_outcome" value="pricing_shift"><span>Pricing or packaging change</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_outcome" value="strategic_pivot"><span>A meaningful strategic pivot</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_outcome" value="team_alignment"><span>Team or founder alignment</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_outcome" value="revenue_lift"><span>Revenue or client acquisition lift</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_outcome" value="brand_equity"><span>Rebuilt or grew brand equity</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_outcome" value="market_authority"><span>Grew market authority or trust</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_outcome" value="new_opportunities"><span>Doors opened, new opportunities</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_outcome" value="avoided_mistake"><span>Avoided a costly mistake</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_outcome" value="personal_confidence"><span>Personal or founder confidence</span></label>
+                <label class="choice-item"><input type="checkbox" name="adv_outcome" value="other"><span>Something else</span></label>
+              </div>
+            </div>
+
+            <div class="editorial-break"><span>&sect;</span></div>
+
+            <div class="field">
+              <label>Tell the story. What did this shift for you, your business, or your team? <span style="color:var(--red-soft)">*</span></label>
+              <span class="hint">The before and after. Not a summary, the actual narrative. This is the part that matters most.</span>
+              <textarea name="adv_narrative" data-min-words="60" placeholder="What was true before, what changed, what is true now..." style="min-height:180px;"></textarea>
+              <div class="word-counter" data-for="adv_narrative"><span class="check">&check;</span> <span class="count">0</span> / 60 words minimum</div>
+              <div class="error-msg">Please share at least 60 words so we can capture the real story.</div>
+            </div>
+
+            <div class="field">
+              <label>If you had to attach a rough dollar value to what you received, what would it be?</label>
+              <span class="hint">Optional. Time saved, revenue unlocked, mistake avoided. A gut estimate is fine.</span>
+              <input type="text" name="adv_estimated_value" placeholder="e.g. $25K in avoided rebrand costs, or 6 months of clarity">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADVISORY STEP 4: ATTRIBUTION & CONSENT -->
+      <div class="section" data-flow="advisory" data-step="3">
+        <div class="section-split">
+          <div class="section-header">
+            <div class="section-header-top">
+              <span class="section-num">STEP 04</span>
+            </div>
+            <h2 class="section-title" style="font-size:1.75rem;margin-bottom:0.6rem;">Attribution &amp; Consent</h2>
+            <p class="section-subtitle">How, if at all, may we reference your reflection.</p>
+          </div>
+          <div class="section-fields">
+            <div class="attribution-nudge">
+              <p><strong>A quiet note from us.</strong> If it feels right, we would be genuinely grateful for a full named attribution. It helps others see the shape of the quiet work Jec does, and it puts a real face and voice behind what could otherwise sound like just another testimonial.</p>
+              <p style="margin-top:0.6rem;">That said, the choice is entirely yours. Any level of consent, or none at all, means the world to us. Your time and honesty are already the gift.</p>
+              <span class="nudge-signoff">&mdash; Studio JNSQ</span>
+            </div>
+
+            <div class="field">
+              <label>May we use insights from your reflection when we tell the story of Studio JNSQ? <span style="color:var(--red-soft)">*</span></label>
+              <div class="choice-group">
+                <label class="choice-item"><input type="radio" name="adv_consent_use" value="named" required><span>Yes, you may quote me by name and organization</span></label>
+                <label class="choice-item"><input type="radio" name="adv_consent_use" value="anonymous"><span>Yes, but please keep me and my organization anonymous</span></label>
+                <label class="choice-item"><input type="radio" name="adv_consent_use" value="no"><span>Please keep this private. It is for Jec&rsquo;s reflection only.</span></label>
+              </div>
+              <div class="error-msg">Please select one option.</div>
+            </div>
+
+            <div class="field">
+              <label>Anything else you would like to add?</label>
+              <span class="hint">Optional. A specific thank-you, a caveat, or context we should keep in mind.</span>
+              <textarea name="adv_additional_comments" class="short" placeholder="Completely open-ended..."></textarea>
+            </div>
+
+            <div class="submit-section">
+              <button type="submit" class="submit-btn" data-flow="advisory">Submit Reflection</button>
+              <p class="submit-note">Your reflection will be sent directly to Jerico Lugo at Studio JNSQ.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /step-wrapper -->
+
+    <!-- STEP NAVIGATION -->
+    <div class="step-nav">
+      <button type="button" class="nav-btn back" id="backBtn" onclick="STEPPER.prev()" style="visibility:hidden">Back</button>
+      <button type="button" class="nav-btn next" id="nextBtn" onclick="STEPPER.next()">Continue</button>
+    </div>
+
+  </form>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <a href="https://studiojnsq.com" target="_blank" rel="noopener" style="text-decoration:none;"><span class="jnsq">STUDIO JNSQ</span></a> &nbsp;&middot;&nbsp; BRAND EQUITY ARCHITECTURE
+  <span class="tagline">Others make you profitable. Brand equity makes you valuable.</span>
+</div>
+</div>
+
+<script>
+  // === FORM CONFIG state ===
+  var FORM_CONFIG = null;
+  var FORM_TYPE = 'engagement'; // 'engagement' | 'advisory' — set at load time
+  var __qs = new URLSearchParams(window.location.search);
+  var FORM_ID = __qs.get('form');
+  var FORM_SLUG = __qs.get('slug');
+
+  // === STEPPER ===
+  var STEPPER = {
+    current: 0,
+    total: 5, // reset by activateFlow()
+    flow: 'engagement',
+
+    activateFlow: function(flowName) {
+      this.flow = flowName;
+      var allSections = document.querySelectorAll('.step-wrapper .section');
+      var flowSections = [];
+      for (var i = 0; i < allSections.length; i++) {
+        var s = allSections[i];
+        if (s.getAttribute('data-flow') === flowName) {
+          s.style.display = ''; // let .active class control display
+          flowSections.push(s);
+        } else {
+          s.style.display = 'none';
+          s.classList.remove('active');
+        }
+      }
+      this.total = flowSections.length;
+      this.current = 0;
+      if (flowSections.length > 0) {
+        flowSections.forEach(function(s, idx) {
+          if (idx === 0) s.classList.add('active');
+          else s.classList.remove('active');
+        });
+      }
+      this.renderDots();
+      this.updateUI();
+    },
+
+    renderDots: function() {
+      var container = document.getElementById('progressStepsContainer');
+      // Remove old dots but keep progressFill
+      var dots = container.querySelectorAll('.step-dot');
+      for (var i = dots.length - 1; i >= 0; i--) dots[i].remove();
+      for (var j = 0; j < this.total; j++) {
+        var dot = document.createElement('div');
+        dot.className = 'step-dot' + (j === 0 ? ' active' : '');
+        dot.setAttribute('data-step', String(j));
+        dot.textContent = String(j + 1);
+        (function(step) {
+          dot.addEventListener('click', function() { STEPPER.goTo(step); });
+        })(j);
+        container.appendChild(dot);
+      }
+    },
+
+    goTo: function(step) {
+      if (step < 0 || step >= this.total) return;
+      var sections = document.querySelectorAll('.step-wrapper .section[data-flow="' + this.flow + '"]');
+      for (var i = 0; i < sections.length; i++) sections[i].classList.remove('active');
+      sections[step].classList.add('active');
+      this.current = step;
+      this.updateUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+
+    next: function() { this.goTo(this.current + 1); },
+    prev: function() { this.goTo(this.current - 1); },
+
+    updateUI: function() {
+      // Progress dots
+      var dots = document.querySelectorAll('.step-dot');
+      var self = this;
+      dots.forEach(function(dot, i) {
+        dot.classList.remove('active', 'completed');
+        if (i === self.current) dot.classList.add('active');
+        else if (i < self.current) dot.classList.add('completed');
+      });
+
+      // Progress fill
+      var pct = this.total > 1 ? (this.current / (this.total - 1)) * 100 : 0;
+      var pf = document.getElementById('progressFill');
+      if (pf) pf.style.width = pct + '%';
+
+      // Nav buttons
+      var isLast = this.current === this.total - 1;
+      document.getElementById('backBtn').style.visibility = this.current === 0 ? 'hidden' : 'visible';
+      document.getElementById('nextBtn').style.display = isLast ? 'none' : 'inline-block';
+    }
+  };
+
+  // === PREVIEW SHIM ===
+  // Guarded by ?preview=engagement|advisory — no live user URL ever hits this
+  // branch. Bakes in a mock config, skips the fetch, and intercepts submit.
+  // URL overrides let the admin builder pipe live form-config values in so
+  // you can eyeball the branded form BEFORE hitting Create.
+  var PREVIEW_MODE = __qs.get('preview');
+  if (PREVIEW_MODE === 'engagement' || PREVIEW_MODE === 'advisory') {
+    FORM_ID = 'preview-' + PREVIEW_MODE;
+    var _urlBool = function(name) { var v = __qs.get(name); return v === '1' || v === 'true' || v === 'yes'; };
+    var mockConfig = {
+      id: FORM_ID,
+      formType: PREVIEW_MODE,
+      clientName: __qs.get('clientName') || (PREVIEW_MODE === 'advisory' ? 'M. Reyes' : 'Frennie Diaz'),
+      company: __qs.get('company') || (PREVIEW_MODE === 'advisory' ? 'Verde Studio' : 'Idiyanale Business Consultancy'),
+      serviceAvailed: __qs.get('serviceAvailed') || 'Foundational Media & PR Strategy',
+      engagementContext: __qs.get('engagementContext') || 'Positioning teardown, Sept 2026',
+      industry: __qs.get('industry') || (PREVIEW_MODE === 'advisory' ? 'Boutique interior design' : 'Business consultancy'),
+      logoUrl: __qs.get('logoUrl') || '',
+      primaryColor: __qs.get('primaryColor') || '#1A2632',
+      accentColor: __qs.get('accentColor') || '#FDD500',
+      useJNSQBranding: __qs.has('useJNSQBranding') ? _urlBool('useJNSQBranding') : true,
+      givePromo: __qs.has('givePromo') ? _urlBool('givePromo') : (PREVIEW_MODE === 'engagement'),
+      promoCode: __qs.get('promoCode') || (PREVIEW_MODE === 'engagement' ? 'IDI2026' : ''),
+      diagnosticType: __qs.get('diagnosticType') || 'RVF',
+      clientType: __qs.get('clientType') || 'new'
+    };
+    FORM_CONFIG = mockConfig;
+    FORM_TYPE = PREVIEW_MODE;
+    applyFormConfig(mockConfig);
+    STEPPER.activateFlow(PREVIEW_MODE);
+    document.getElementById('loadingScreen').style.display = 'none';
+    document.getElementById('formContent').classList.add('visible');
+    // Show a preview ribbon
+    var ribbon = document.createElement('div');
+    ribbon.style.cssText = 'position:fixed;top:12px;right:12px;background:#B8524D;color:#fff;padding:6px 14px;border-radius:3px;font-family:Montserrat,sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;z-index:9999;box-shadow:0 4px 14px rgba(0,0,0,0.15);';
+    ribbon.textContent = 'PREVIEW · ' + PREVIEW_MODE;
+    document.body.appendChild(ribbon);
+    // If admin previewed with engagementTypes=a,b,c, precheck those boxes so preview reflects the builder state
+    var preTypes = __qs.get('engagementTypes');
+    if (preTypes) {
+      var typeList = preTypes.split(',').map(function(s) { return s.trim(); }).filter(Boolean);
+      setTimeout(function() {
+        document.querySelectorAll('input[name="adv_engagement_type"]').forEach(function(el) {
+          if (typeList.indexOf(el.value) !== -1) el.checked = true;
+        });
+      }, 50);
+    }
+    // Intercept the submit — show the payload instead of POSTing
+    window.__previewIntercept = true;
+  }
+
+  // === LOAD FORM CONFIG ===
+  var __lookupUrl = null;
+  if (!PREVIEW_MODE) {
+    if (FORM_SLUG) __lookupUrl = '/.netlify/functions/feedback-crud?action=get-form&slug=' + encodeURIComponent(FORM_SLUG);
+    else if (FORM_ID) __lookupUrl = '/.netlify/functions/feedback-crud?action=get-form&id=' + encodeURIComponent(FORM_ID);
+  }
+
+  if (PREVIEW_MODE) {
+    // already handled above
+  } else if (!__lookupUrl) {
+    document.getElementById('loadingScreen').innerHTML = '<p style="color:#B8524D;">No form specified. Please use the link provided to you.</p>';
+  } else {
+    fetch(__lookupUrl)
+      .then(function(r) { return r.json(); })
+      .then(function(config) {
+        if (config.error) {
+          document.getElementById('loadingScreen').innerHTML = '<p style="color:#B8524D;">This feedback form was not found.</p>';
+          return;
+        }
+        FORM_CONFIG = config;
+        FORM_TYPE = (config.formType === 'advisory') ? 'advisory' : 'engagement';
+        // Backfill FORM_ID for the submission flow if we resolved via slug
+        if (!FORM_ID && config.id) FORM_ID = config.id;
+        applyFormConfig(config);
+        STEPPER.activateFlow(FORM_TYPE);
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('formContent').classList.add('visible');
+      })
+      .catch(function(err) {
+        document.getElementById('loadingScreen').innerHTML = '<p style="color:#B8524D;">Error loading form. Please try again.</p>';
+      });
+  }
+
+  function applyFormConfig(config) {
+    // Allow client-specified primary/accent to override the warm-charcoal default
+    // (falls back to charcoal + yellow when config doesn't specify).
+    if (config.primaryColor) document.documentElement.style.setProperty('--primary', config.primaryColor);
+    if (config.accentColor) document.documentElement.style.setProperty('--accent', config.accentColor);
+
+    var formType = (config.formType === 'advisory') ? 'advisory' : 'engagement';
+
+    // Title + subtitle vary by form type
+    var titleEl = document.getElementById('formTitle');
+    var subtitleEl = document.getElementById('headerSubtitle');
+    if (formType === 'advisory') {
+      document.title = 'Advisory Reflection | Studio JNSQ';
+      if (titleEl) titleEl.textContent = 'Advisory Reflection';
+      if (subtitleEl) {
+        var subBits = [];
+        if (config.clientName) subBits.push('For ' + config.clientName);
+        else if (config.company) subBits.push(config.company);
+        if (config.engagementContext) subBits.push(config.engagementContext);
+        subtitleEl.textContent = subBits.join(' — ');
+      }
+    } else {
+      document.title = 'Engagement Feedback | ' + (config.company || 'Studio JNSQ');
+      if (titleEl) titleEl.textContent = 'Engagement Feedback';
+      if (subtitleEl && config.company) {
+        subtitleEl.textContent = config.company + (config.serviceAvailed ? ' — ' + config.serviceAvailed : '');
+      }
+    }
+
+    if (config.useJNSQBranding || !config.logoUrl) {
+      document.getElementById('headerLogo').src = '/images/jnsq-logo-mark.png';
+    } else if (config.logoUrl) {
+      document.getElementById('headerLogo').src = config.logoUrl;
+    }
+
+    // Consent label — only relevant for engagement (advisory has its own label)
+    var consentNamedLabelEl = document.getElementById('consentNamedLabel');
+    if (consentNamedLabelEl && config.company) {
+      consentNamedLabelEl.textContent = 'Yes, you may quote me and identify ' + config.company + ' by name';
+    }
+
+    // Promo banner: only shown for ENGAGEMENT flow (advisory has no promo)
+    if (formType === 'engagement') {
+      var givePromo = (config.givePromo === true) || !!config.promoCode;
+      if (givePromo) {
+        var diagType = (config.diagnosticType || '').toUpperCase();
+        var banner = document.getElementById('promoBanner');
+        var p = banner.querySelector('p');
+        if (p) {
+          if (diagType === 'MAD') {
+            p.innerHTML = 'Thank you for taking the time to complete this. As a token of appreciation, upon submission you will receive complimentary access to the <span class="rvf-label">MAD&trade; Diagnostic</span>, our Market Authority Diamond&trade;, the proprietary tool that scores your brand equity across five facets and reveals where your authority leans or leaks.';
+          } else {
+            p.innerHTML = 'Thank you for taking the time to complete this. As a token of appreciation, upon submission you will receive complimentary access to the <span class="rvf-label">RVF&trade; Diagnostic</span>, a proprietary tool that maps where your business sits in its growth cycle and what trade you should be making next.';
+          }
+        }
+        banner.style.display = 'block';
+      }
+    }
+
+    // Tailor the engagement section-1 intro by client type
+    if (formType === 'engagement' && config.clientType === 'recurring') {
+      var introTarget = document.querySelector('.section[data-flow="engagement"][data-step="0"] .intro p');
+      if (introTarget) {
+        introTarget.textContent = 'Thank you for trusting us again. This form helps us understand how this engagement compared to your past work with Studio JNSQ, and where the relationship continues to deliver. With your permission, select insights may inform a case study that highlights the kind of long-term work we do alongside our clients.';
+      }
+    }
+  }
+
+  // === WORD COUNTER ===
+  document.querySelectorAll('textarea[data-min-words]').forEach(function(ta) {
+    var minWords = parseInt(ta.dataset.minWords);
+    var counter = ta.closest('.field').querySelector('.word-counter');
+    if (!counter) return;
+    var countSpan = counter.querySelector('.count');
+    ta.addEventListener('input', function() {
+      var words = ta.value.trim().split(/\s+/).filter(function(w) { return w.length > 0; }).length;
+      countSpan.textContent = words;
+      if (words >= minWords) { counter.classList.add('met'); counter.classList.remove('unmet'); ta.closest('.field').classList.remove('invalid'); }
+      else if (words > 0) { counter.classList.remove('met'); counter.classList.add('unmet'); }
+      else { counter.classList.remove('met', 'unmet'); }
+    });
+  });
+
+  // === FORM SUBMISSION ===
+  document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = this;
+
+    if (FORM_TYPE === 'advisory') submitAdvisory(form);
+    else submitEngagement(form);
+  });
+
+  function getVal(form, name) { var el = form.querySelector('[name="' + name + '"]'); return el ? el.value.trim() : ''; }
+  function getRadio(form, name) { var el = form.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : null; }
+  function getCheckboxValues(form, name) {
+    var els = form.querySelectorAll('input[name="' + name + '"]:checked');
+    var vals = [];
+    for (var i = 0; i < els.length; i++) vals.push(els[i].value);
+    return vals;
+  }
+
+  function submitEngagement(form) {
+    var valid = true;
+
+    // Check word minimums across ENGAGEMENT flow
+    form.querySelectorAll('.section[data-flow="engagement"] textarea[data-min-words]').forEach(function(ta) {
+      var minWords = parseInt(ta.dataset.minWords);
+      var words = ta.value.trim().split(/\s+/).filter(function(w) { return w.length > 0; }).length;
+      if (words < minWords) { ta.closest('.field').classList.add('invalid'); valid = false; }
+      else { ta.closest('.field').classList.remove('invalid'); }
+    });
+
+    ['r_strategic', 'r_content', 'r_responsive', 'r_value', 'r_overall'].forEach(function(name) {
+      if (!form.querySelector('input[name="' + name + '"]:checked')) {
+        valid = false;
+        var field = form.querySelector('input[name="' + name + '"]').closest('.field');
+        field.style.outline = '2px solid var(--red-soft)';
+        field.style.outlineOffset = '4px';
+        field.style.borderRadius = '6px';
+        setTimeout(function() { field.style.outline = 'none'; }, 3000);
+      }
+    });
+
+    if (!form.querySelector('input[name="consent_use"]:checked')) {
+      valid = false;
+      form.querySelector('input[name="consent_use"]').closest('.field').classList.add('invalid');
+    }
+    var nameInput = form.querySelector('input[name="respondent_name"]');
+    if (!nameInput.value.trim()) { valid = false; nameInput.closest('.field').classList.add('invalid'); }
+    else { nameInput.closest('.field').classList.remove('invalid'); }
+    var emailInput = form.querySelector('input[name="respondent_email"]');
+    if (!emailInput.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) { valid = false; emailInput.closest('.field').classList.add('invalid'); }
+    else { emailInput.closest('.field').classList.remove('invalid'); }
+
+    if (!valid) return scrollToFirstError(form);
+
+    // === EXISTING engagement payload — unchanged shape ===
+    var payload = {
+      action: 'submit-response',
+      formId: FORM_ID,
+      formType: 'engagement',
+      ratings: { strategic: getRadio(form, 'r_strategic'), content: getRadio(form, 'r_content'), responsive: getRadio(form, 'r_responsive'), value: getRadio(form, 'r_value'), overall: getRadio(form, 'r_overall') },
+      answers: { before: getVal(form, 'q_before'), standout: getVal(form, 'q_standout'), impact: getVal(form, 'q_impact'), describe: getVal(form, 'q_describe'), improve: getVal(form, 'q_improve'), gaps: getVal(form, 'q_gaps'), final: getVal(form, 'q_final') },
+      referral: { name: getVal(form, 'ref_name'), phone: getVal(form, 'ref_phone'), email: getVal(form, 'ref_email'), company: getVal(form, 'ref_company'), position: getVal(form, 'ref_position'), description: getVal(form, 'ref_description'), introPreference: getRadio(form, 'referral_intro') },
+      consent: { use: getRadio(form, 'consent_use') },
+      respondent: { name: getVal(form, 'respondent_name'), email: getVal(form, 'respondent_email') }
+    };
+
+    sendSubmission(form, payload, payload.respondent.name);
+  }
+
+  function submitAdvisory(form) {
+    var valid = true;
+
+    // Required radio: relationship
+    if (!form.querySelector('input[name="adv_relationship"]:checked')) {
+      valid = false;
+      form.querySelector('input[name="adv_relationship"]').closest('.field').classList.add('invalid');
+    }
+    // Required text: name
+    var nameInput = form.querySelector('input[name="adv_name"]');
+    if (!nameInput.value.trim()) { valid = false; nameInput.closest('.field').classList.add('invalid'); }
+    else { nameInput.closest('.field').classList.remove('invalid'); }
+    // Required text: email (valid format)
+    var emailInput = form.querySelector('input[name="adv_email"]');
+    if (!emailInput.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) { valid = false; emailInput.closest('.field').classList.add('invalid'); }
+    else { emailInput.closest('.field').classList.remove('invalid'); }
+    // Required multi-select: at least one engagement type checkbox
+    var engagementTypeChecked = form.querySelectorAll('input[name="adv_engagement_type"]:checked');
+    var engagementTypeField = form.querySelector('input[name="adv_engagement_type"]').closest('.field');
+    if (engagementTypeChecked.length === 0) { valid = false; engagementTypeField.classList.add('invalid'); }
+    else { engagementTypeField.classList.remove('invalid'); }
+    // Word minimums (advisory)
+    form.querySelectorAll('.section[data-flow="advisory"] textarea[data-min-words]').forEach(function(ta) {
+      var minWords = parseInt(ta.dataset.minWords);
+      var words = ta.value.trim().split(/\s+/).filter(function(w) { return w.length > 0; }).length;
+      if (words < minWords) { ta.closest('.field').classList.add('invalid'); valid = false; }
+      else { ta.closest('.field').classList.remove('invalid'); }
+    });
+    // Required radio: consent
+    if (!form.querySelector('input[name="adv_consent_use"]:checked')) {
+      valid = false;
+      form.querySelector('input[name="adv_consent_use"]').closest('.field').classList.add('invalid');
+    }
+
+    if (!valid) return scrollToFirstError(form);
+
+    // === NEW advisory payload ===
+    var payload = {
+      action: 'submit-response',
+      formId: FORM_ID,
+      formType: 'advisory',
+      respondent: {
+        name: getVal(form, 'adv_name'),
+        email: getVal(form, 'adv_email'),
+        role: getVal(form, 'adv_role'),
+        organization: getVal(form, 'adv_organization'),
+        relationship: getRadio(form, 'adv_relationship')
+      },
+      engagement: {
+        // NEW: canonical multi-select array of engagement types
+        types: getCheckboxValues(form, 'adv_engagement_type'),
+        // Legacy singular kept for backward-compat with older admin viewers
+        type: getCheckboxValues(form, 'adv_engagement_type')[0] || '',
+        format: getRadio(form, 'adv_format'),
+        duration: getVal(form, 'adv_duration'),
+        timing: getVal(form, 'adv_timing'),
+        receivedDescription: getVal(form, 'adv_received_description')
+      },
+      impact: {
+        outcomes: getCheckboxValues(form, 'adv_outcome'),
+        narrative: getVal(form, 'adv_narrative'),
+        estimatedValue: getVal(form, 'adv_estimated_value')
+      },
+      consent: { use: getRadio(form, 'adv_consent_use') },
+      additionalComments: getVal(form, 'adv_additional_comments')
+    };
+
+    sendSubmission(form, payload, payload.respondent.name);
+  }
+
+  function scrollToFirstError(form) {
+    var firstInvalid = form.querySelector('.field.invalid, .field[style*="outline"]');
+    if (firstInvalid) {
+      var stepSection = firstInvalid.closest('.section[data-step]');
+      if (stepSection) {
+        var stepNum = parseInt(stepSection.dataset.step);
+        if (stepNum !== STEPPER.current) { STEPPER.goTo(stepNum); }
+      }
+      setTimeout(function() { firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 200);
+    }
+  }
+
+  function sendSubmission(form, payload, respondentName) {
+    var submitBtn = form.querySelector('.submit-btn[data-flow="' + FORM_TYPE + '"]') || form.querySelector('.submit-btn');
+    submitBtn.disabled = true;
+    var originalLabel = submitBtn.textContent;
+    submitBtn.textContent = 'Submitting...';
+
+    // Preview mode — don't POST, show the payload so it's inspectable.
+    if (window.__previewIntercept) {
+      setTimeout(function() {
+        var previewHtml = '<div class="success-screen">';
+        previewHtml += '<div style="font-size:2.2rem;margin-bottom:0.75rem;color:var(--primary);">&#10003;</div>';
+        previewHtml += '<h2 style="font-family:\'Lora\',serif;font-weight:500;color:var(--dark);margin-bottom:1rem;font-size:1.6rem;">Preview payload captured</h2>';
+        previewHtml += '<p style="font-family:\'Lora\',serif;font-size:0.9rem;color:var(--mid);max-width:520px;margin:0 auto 1.25rem;line-height:1.7;">This is what would be POSTed to <code style="background:var(--sand);padding:2px 6px;border-radius:3px;font-family:monospace;">/.netlify/functions/feedback-crud</code> in production.</p>';
+        previewHtml += '<pre style="text-align:left;max-width:640px;margin:0 auto;background:#1A2632;color:#FDD500;font-family:monospace;font-size:0.75rem;line-height:1.55;padding:1.25rem 1.5rem;border-radius:4px;overflow:auto;">' + JSON.stringify(payload, null, 2).replace(/</g, '&lt;') + '</pre>';
+        previewHtml += '<p style="margin-top:1.25rem;"><button onclick="location.reload()" style="font-family:Montserrat,sans-serif;font-size:0.75rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;background:var(--accent);color:var(--dark);border:none;padding:0.75rem 2rem;border-radius:3px;cursor:pointer;">Reset preview</button></p>';
+        previewHtml += '</div>';
+        document.querySelector('.container').innerHTML = previewHtml;
+        document.querySelector('.progress-bar').style.display = 'none';
+        var pb = document.getElementById('promoBanner'); if (pb) pb.style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 250);
+      return;
+    }
+
+    fetch('/.netlify/functions/feedback-crud', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(result) {
+      if (result.success) {
+        renderSuccess(respondentName, result);
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+        alert('There was an error submitting your feedback. Please try again.');
+      }
+    })
+    .catch(function(err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+      alert('There was an error submitting your feedback. Please try again.');
+    });
+  }
+
+  function renderSuccess(fullName, result) {
+    var firstName = (fullName || '').split(' ')[0] || 'friend';
+    var isAdvisory = FORM_TYPE === 'advisory';
+    var html = '<div class="success-screen">';
+    html += '<div style="font-size:2.5rem;margin-bottom:1rem;color:var(--primary);">&#10003;</div>';
+    html += '<h2 style="font-family:\'Lora\',serif;font-weight:500;color:var(--dark);margin-bottom:1rem;font-size:1.75rem;">Thank you, ' + firstName + '.</h2>';
+    var msg = isAdvisory
+      ? 'Your reflection has been received. It matters more than you might think.'
+      : 'Your feedback has been received. It will shape how we continue to refine the work we do for founders like you.';
+    html += '<p style="font-family:\'Lora\',serif;font-size:0.98rem;color:var(--mid);max-width:480px;margin:0 auto 1.5rem;line-height:1.75;">' + msg + '</p>';
+    if (!isAdvisory && result.promoCode) {
+      var diag = (result.diagnosticType || (FORM_CONFIG && FORM_CONFIG.diagnosticType) || 'RVF').toUpperCase();
+      var diagLabel = (diag === 'MAD') ? 'MAD&trade; Diagnostic' : 'RVF&trade; Diagnostic';
+      var diagHref = (diag === 'MAD') ? '/diagnostic/MAD' : '/diagnostic/RVF';
+      html += '<div style="background:var(--primary);color:var(--white);display:inline-block;padding:1.15rem 2.25rem;border-radius:4px;margin-top:0.5rem;">';
+      html += '<p style="font-family:\'Montserrat\',sans-serif;font-size:0.75rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:0.4rem;opacity:0.85;">Your ' + diagLabel + ' code</p>';
+      html += '<p style="font-family:\'Montserrat\',sans-serif;font-size:1.4rem;font-weight:700;color:var(--accent);letter-spacing:2px;">' + result.promoCode + '</p>';
+      html += '<p style="font-family:\'Montserrat\',sans-serif;font-size:0.72rem;margin-top:0.6rem;opacity:0.9;"><a href="' + diagHref + '" target="_blank" style="color:var(--accent);text-decoration:underline;">Take the ' + diagLabel + ' &rarr;</a></p>';
+      html += '</div>';
+    }
+    html += '</div>';
+    document.querySelector('.container').innerHTML = html;
+    document.querySelector('.progress-bar').style.display = 'none';
+    var pb = document.getElementById('promoBanner'); if (pb) pb.style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+<script src="/js/jnsq-motion.js?v=1777519085" defer></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Case Study Coming Soon | Studio JNSQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/jnsq-system.css?v=2">
+<style>
+  :root{
+    --jnsq-bg:#FAFAF6;
+    --jnsq-ink:#1A1A1A;
+    --jnsq-body:#4A4A4A;
+    --jnsq-mute:#7a7a7a;
+    --jnsq-line:#e8e6df;
+    --jnsq-yellow:#FDD500;
+    --jnsq-yellow-soft:#fefbef;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:var(--jnsq-bg);color:var(--jnsq-body);min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+
+  /* Nav */
+  .cs-nav{padding:20px 32px;border-bottom:1px solid var(--jnsq-line);background:var(--jnsq-bg);}
+  .cs-nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+  .cs-logo{display:inline-flex;align-items:center;gap:12px;text-decoration:none;}
+  .cs-logo img{height:36px;width:auto;display:block;}
+  .cs-logo-word{font-family:'Inter',sans-serif;font-weight:800;font-size:14px;letter-spacing:0.24em;color:var(--jnsq-ink);}
+  .cs-logo-word .accent{color:var(--jnsq-yellow);}
+  .cs-nav-links{display:flex;gap:28px;font-size:13.5px;letter-spacing:0.02em;}
+  .cs-nav-links a{color:var(--jnsq-ink);text-decoration:none;}
+  .cs-nav-links a:hover{color:var(--jnsq-yellow);}
+  .cs-nav-cta{padding:10px 20px;background:var(--jnsq-ink);color:var(--jnsq-yellow);font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;border-radius:999px;}
+  .cs-nav-cta:hover{background:#000;}
+
+  /* Main */
+  .cs-main{flex:1;display:flex;align-items:center;justify-content:center;padding:80px 24px;position:relative;overflow:hidden;}
+  .cs-main::before{content:'';position:absolute;top:-160px;left:50%;width:720px;height:720px;background:radial-gradient(circle at center,rgba(253,213,0,0.14) 0%,rgba(253,213,0,0) 60%);transform:translateX(-50%);pointer-events:none;}
+  .cs-card{position:relative;z-index:1;max-width:720px;text-align:center;}
+  /* Two chips at the top — kept identical in height, padding, and typographic scale */
+  .cs-chip-row{display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin-bottom:28px;}
+  .cs-eyebrow,
+  .cs-client-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    height:38px;
+    padding:0 18px;
+    border-radius:999px;
+    font-family:'Inter',sans-serif;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--jnsq-ink);
+    line-height:1;
+    box-sizing:border-box;
+  }
+  .cs-eyebrow{background:#fff;border:1px solid var(--jnsq-line);}
+  .cs-eyebrow img{width:20px;height:20px;display:block;filter:drop-shadow(0 0 6px rgba(253,213,0,0.35));}
+  .cs-eyebrow-anim{animation:cs-glow 2.2s ease-in-out infinite;}
+  @keyframes cs-glow{0%,100%{filter:drop-shadow(0 0 6px rgba(253,213,0,0.35));}50%{filter:drop-shadow(0 0 14px rgba(253,213,0,0.15));}}
+  .cs-client-badge{background:var(--jnsq-yellow-soft);border:1px solid var(--jnsq-yellow);}
+
+  .cs-title{font-family:'Lora',Georgia,serif;font-weight:500;font-size:clamp(2.25rem,5.5vw,3.75rem);line-height:1.08;letter-spacing:-0.02em;color:var(--jnsq-ink);margin:0 0 24px;}
+  .cs-title em{font-style:italic;background:linear-gradient(180deg,transparent 60%,var(--jnsq-yellow-soft) 60%);padding:0 0.05em;}
+  .cs-title::after{content:'';display:block;width:60px;height:3px;background:var(--jnsq-yellow);margin:24px auto 0;border-radius:999px;}
+
+  .cs-sub{font-family:'Lora',Georgia,serif;font-style:italic;font-size:1.125rem;line-height:1.7;color:var(--jnsq-mute);margin:0 auto 40px;max-width:52ch;}
+
+  .cs-context{background:#fff;border:1px solid var(--jnsq-line);border-radius:12px;padding:24px 28px;margin:0 auto 40px;max-width:520px;text-align:left;box-shadow:0 12px 32px rgba(26,26,26,0.05);}
+  .cs-context-title{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--jnsq-mute);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+  .cs-context-title::before{content:'';width:16px;height:16px;background:url('/images/jnsq-logo-mark.png') center / contain no-repeat;filter:drop-shadow(0 0 4px rgba(253,213,0,0.25));}
+  .cs-context-body{font-family:'Inter',sans-serif;font-size:14.5px;line-height:1.65;color:var(--jnsq-body);}
+  .cs-context-body strong{color:var(--jnsq-ink);font-weight:600;}
+
+  .cs-actions{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;}
+  .cs-btn{display:inline-flex;align-items:center;padding:14px 26px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;border-radius:6px;transition:transform 0.15s ease,box-shadow 0.15s ease;}
+  .cs-btn-primary{background:var(--jnsq-ink);color:var(--jnsq-yellow);border:2px solid var(--jnsq-ink);box-shadow:0 8px 20px rgba(26,26,26,0.15);}
+  .cs-btn-primary:hover{transform:translateY(-1px);box-shadow:0 16px 34px rgba(26,26,26,0.28);}
+  .cs-btn-secondary{background:transparent;color:var(--jnsq-ink);border:2px solid var(--jnsq-ink);}
+  .cs-btn-secondary:hover{background:var(--jnsq-ink);color:var(--jnsq-yellow);}
+
+  .cs-foot{padding:24px;text-align:center;font-size:12px;letter-spacing:0.08em;color:var(--jnsq-mute);border-top:1px solid var(--jnsq-line);}
+  .cs-foot span{color:var(--jnsq-ink);}
+
+  @media (max-width:600px){
+    .cs-nav-links{display:none;}
+    .cs-main{padding:56px 20px;}
+    .cs-title{font-size:2rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="cs-nav">
+  <div class="cs-nav-inner">
+    <a href="/" class="cs-logo">
+      <img src="/images/jnsq-logo-mark.png" alt="Studio JNSQ">
+      <span class="cs-logo-word">STUDIO <span class="accent">JNSQ</span></span>
+    </a>
+    <div class="cs-nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/journal">Journal</a>
+      <a href="/case-studies/">Case Studies</a>
+      <a href="/diagnostic">Diagnostic</a>
+    </div>
+    <a href="/diagnostic" class="cs-nav-cta">Take the Diagnostic</a>
+  </div>
+</nav>
+
+<main class="cs-main">
+  <div class="cs-card">
+    <div class="cs-chip-row">
+      <div class="cs-eyebrow">
+        <img src="/images/jnsq-logo-mark.png" alt="" class="cs-eyebrow-anim">
+        Case Study &middot; In the works
+      </div>
+      <div id="csClientBadge" class="cs-client-badge" style="display:none;"></div>
+    </div>
+
+    <h1 class="cs-title">This case study is <em>currently in the works.</em></h1>
+
+    <p class="cs-sub">
+      The engagement is finalized. The story is not yet published. Studio JNSQ
+      only releases a case study once the client has confirmed the outcome and
+      granted attribution.
+    </p>
+
+    <div class="cs-context">
+      <div class="cs-context-title">Why the wait</div>
+      <p class="cs-context-body">
+        Every case study runs through the same rule: <strong>no outcomes outside
+        the brief, no claims the engagement was not designed to produce</strong>.
+        Once the client signs off on the narrative and the numbers, the case
+        study publishes here.
+      </p>
+    </div>
+
+    <div class="cs-actions">
+      <a href="/case-studies/" class="cs-btn cs-btn-primary">See published case studies &rarr;</a>
+      <a href="/diagnostic" class="cs-btn cs-btn-secondary">Take the diagnostic</a>
+    </div>
+  </div>
+</main>
+
+<footer class="cs-foot">
+  <span>Studio JNSQ</span> &middot; The brand equity architecture firm for valuable brands
+</footer>
+
+<script>
+  // Personalize the badge if ?client=... is provided by the redirect.
+  (function(){
+    var params = new URLSearchParams(location.search);
+    var client = params.get('client');
+    if (client) {
+      var badge = document.getElementById('csClientBadge');
+      badge.textContent = client;
+      badge.style.display = 'inline-flex';
+      document.title = client + ' Case Study — In the works | Studio JNSQ';
+    }
+  })();
+</script>
+
+</body>
+</html>

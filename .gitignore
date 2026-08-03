@@ -1,1 +1,17 @@
+# Dependencies
 node_modules/
+
+# Local Netlify state
+.netlify/
+
+# OS / editor cruft
+.DS_Store
+*.bak-rank-*
+index.html.backup
+
+# Secrets — never commit
+.env
+.env.*
+
+# Business-sensitive data (do not expose in a public repo)
+JNSQ_Indochina_Prospecting_List.xlsx

@@ -1,0 +1,44 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; font-weight: 600; fill: #FDD500; text-anchor: middle; letter-spacing: 4; }
+      .oneliner-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 22px; font-weight: 500; fill: #98A7B5; text-anchor: middle; }
+      .label-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; font-weight: 600; fill: #394550; text-anchor: start; }
+      .brand-mark { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11px; font-weight: 600; fill: #394550; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="630" fill="#fefbef"/>
+
+  <!-- Title -->
+  <text x="600" y="85" class="title-text">MRR MEETS BRAND EQUITY</text>
+
+  <!-- Base MRR layer -->
+  <rect x="280" y="380" width="360" height="40" fill="#E8917A" rx="4"/>
+  <text x="295" y="405" class="label-text">Base MRR</text>
+
+  <!-- Trust layer -->
+  <rect x="280" y="325" width="400" height="40" fill="#98A7B5" rx="4"/>
+  <text x="295" y="350" class="label-text">+ Trust Layer</text>
+
+  <!-- Value perception layer -->
+  <rect x="280" y="270" width="440" height="40" fill="#6D8397" rx="4"/>
+  <text x="295" y="295" class="label-text">+ Value Perception</text>
+
+  <!-- Brand equity layer -->
+  <rect x="280" y="215" width="480" height="40" fill="#FDD500" rx="4"/>
+  <text x="295" y="240" class="label-text">+ Brand Equity</text>
+
+  <!-- Growth indicator -->
+  <g transform="translate(800, 300)">
+    <path d="M 0 60 L 0 0" fill="none" stroke="#FDD500" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="0,0 -10,18 10,18" fill="#FDD500"/>
+  </g>
+
+  <!-- One-liner -->
+  <text x="600" y="560" class="oneliner-text">Revenue compounds when trust does.</text>
+
+  <!-- Brand mark -->
+  <circle cx="540" cy="600" r="3" fill="#FDD500"/>
+  <text x="600" y="604" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600" fill="#c5bfb0" letter-spacing="2">STUDIO JNSQ</text>
+</svg>

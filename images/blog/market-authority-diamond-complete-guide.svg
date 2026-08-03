@@ -1,0 +1,38 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+
+  <rect width="1200" height="630" fill="#fefbef"/>
+
+  <!-- Title -->
+  <text x="600" y="85" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="600" fill="#FDD500" letter-spacing="4">HOW MARKET AUTHORITY IS MEASURED</text>
+
+  <!-- Diamond - large, breathing room -->
+  <polygon points="600,145 795,315 600,485 405,315" fill="none" stroke="#FDD500" stroke-width="2.5"/>
+
+  <!-- Faint internal cross -->
+  <line x1="600" y1="145" x2="600" y2="485" stroke="#e8e2d3" stroke-width="1"/>
+  <line x1="405" y1="315" x2="795" y2="315" stroke="#e8e2d3" stroke-width="1"/>
+
+  <!-- Center - Branding -->
+  <circle cx="600" cy="315" r="30" fill="#FDD500" opacity="0.8"/>
+  <text x="600" y="319" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" font-weight="700" fill="#394550" letter-spacing="1">BRANDING</text>
+
+  <!-- Vertex dots -->
+  <circle cx="600" cy="155" r="6" fill="#394550" opacity="0.55"/>
+  <circle cx="785" cy="315" r="6" fill="#394550" opacity="0.55"/>
+  <circle cx="600" cy="475" r="6" fill="#394550" opacity="0.55"/>
+  <circle cx="415" cy="315" r="6" fill="#394550" opacity="0.55"/>
+
+  <!-- Facet labels - single word, clear placement -->
+  <text x="600" y="133" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700" fill="#394550">Demand</text>
+  <text x="820" y="319" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700" fill="#394550">Visibility</text>
+  <text x="600" y="503" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700" fill="#394550">Market Trust</text>
+  <text x="380" y="319" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700" fill="#394550">Credibility</text>
+
+
+  <!-- One-liner -->
+  <text x="600" y="560" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="22" font-weight="500" fill="#98A7B5">A balanced diamond is rare. Most lean.</text>
+
+  <!-- Brand mark -->
+  <circle cx="540" cy="600" r="3" fill="#FDD500"/>
+  <text x="600" y="604" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600" fill="#c5bfb0" letter-spacing="2">STUDIO JNSQ</text>
+</svg>

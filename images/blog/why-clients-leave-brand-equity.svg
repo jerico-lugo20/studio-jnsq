@@ -1,0 +1,44 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#fefbef"/>
+
+  <!-- Title -->
+  <text x="600" y="85" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="600" fill="#FDD500" text-anchor="middle" letter-spacing="4" text-transform="uppercase">WHY CLIENTS STAY OR LEAVE</text>
+
+  <!-- Visual: Central circle with orbiting clients -->
+  <g>
+    <!-- Central brand with yellow aura -->
+    <circle cx="600" cy="310" r="80" fill="none" stroke="#FDD500" stroke-width="4" opacity="0.4"/>
+    <circle cx="600" cy="310" r="65" fill="#FDD500"/>
+    <text x="600" y="320" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="600" fill="#394550" text-anchor="middle">Brand</text>
+
+    <!-- Orbiting clients (staying close) -->
+    <!-- Client 1: Top -->
+    <circle cx="600" cy="180" r="20" fill="#98A7B5"/>
+    <line x1="600" y1="280" x2="600" y2="200" stroke="#98A7B5" stroke-width="1" opacity="0.5" stroke-dasharray="2,2"/>
+
+    <!-- Client 2: Right -->
+    <circle cx="770" cy="310" r="20" fill="#98A7B5"/>
+    <line x1="665" y1="310" x2="750" y2="310" stroke="#98A7B5" stroke-width="1" opacity="0.5" stroke-dasharray="2,2"/>
+
+    <!-- Client 3: Bottom-left -->
+    <circle cx="480" cy="420" r="20" fill="#98A7B5"/>
+    <line x1="545" y1="360" x2="500" y2="405" stroke="#98A7B5" stroke-width="1" opacity="0.5" stroke-dasharray="2,2"/>
+
+    <!-- Client 4: Bottom-right -->
+    <circle cx="720" cy="420" r="20" fill="#98A7B5"/>
+    <line x1="655" y1="360" x2="700" y2="405" stroke="#98A7B5" stroke-width="1" opacity="0.5" stroke-dasharray="2,2"/>
+
+    <!-- Drifting client (leaving) — line starts near brand circle edge -->
+    <circle cx="950" cy="180" r="20" fill="#E8917A" opacity="0.6"/>
+    <line x1="660" y1="275" x2="930" y2="190" stroke="#E8917A" stroke-width="2" stroke-dasharray="3,3" opacity="0.7"/>
+    <polygon points="935,188 920,195 928,207" fill="#E8917A" opacity="0.6"/>
+  </g>
+
+  <!-- One-liner text -->
+  <text x="600" y="560" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="22" font-weight="500" fill="#98A7B5" text-anchor="middle">Retention is a brand equity problem.</text>
+
+  <!-- Brand mark: yellow dot + text -->
+  <circle cx="540" cy="600" r="3" fill="#FDD500"/>
+  <text x="600" y="604" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600" fill="#c5bfb0" letter-spacing="2">STUDIO JNSQ</text>
+</svg>

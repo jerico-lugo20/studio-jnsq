@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAD™ Diagnostic | Market Authority Diamond | Studio JNSQ</title>
+<meta name="description" content="The Market Authority Diamond™ scores brand equity across five facets in literal diamond positions: Demand at the peak, Market Trust as the foundation, Credibility and Visibility as the walls, Branding at the centre. Free diagnostic. 44 questions. Built by Studio JNSQ.">
+<meta name="keywords" content="MAD diagnostic, market authority diamond, brand authority diagnostic, brand equity diagnostic, demand credibility visibility branding market trust, brand equity architecture, founder authority score, CAC MRR LTV brand equity">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MAD™ Diagnostic | Market Authority Diamond | Studio JNSQ">
+<meta property="og:description" content="If your brand vanished tomorrow, would the market notice? Score authority across five diamond facets in seven minutes.">
+<meta property="og:url" content="https://studiojnsq.com/diagnostic/MAD">
+<meta property="og:site_name" content="Studio JNSQ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MAD™ Diagnostic | Market Authority Diamond">
+<meta name="twitter:description" content="If your brand vanished tomorrow, would the market notice?">
+<link rel="canonical" href="https://studiojnsq.com/diagnostic/MAD">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/jnsq-system.css?v=2">
+<style>
+  body { background: var(--jnsq-bg); color: var(--jnsq-body); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  /* ============== THE DIAMOND LAYOUT ============== */
+  /* Real diamond: top peak, bottom foundation, left wall, right wall, centre */
+  .diamond-stage {
+    position: relative;
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+    aspect-ratio: 5 / 4;
+    padding: var(--space-3);
+  }
+  .diamond-stage svg.connectors {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .facet-tile {
+    position: absolute;
+    background: var(--jnsq-paper);
+    border: 1px solid var(--jnsq-line);
+    border-radius: 4px;
+    padding: 22px 24px 20px;
+    width: 30%;
+    min-width: 200px;
+    box-shadow: 0 8px 24px rgba(26,26,26,0.04);
+    transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 480ms cubic-bezier(0.16, 1, 0.3, 1), border-color 480ms ease;
+    z-index: 1;
+  }
+  .facet-tile::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--jnsq-yellow);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .facet-tile:hover { transform: translateY(-4px); box-shadow: 0 22px 48px rgba(26,26,26,0.08), 0 0 0 1px rgba(253,213,0,0.30); border-color: rgba(253,213,0,0.30); }
+  .facet-tile:hover::before { transform: scaleX(1); }
+  .facet-tile .pos {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--jnsq-mute); margin-bottom: 8px;
+  }
+  .facet-tile h3 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.375rem; font-weight: 500;
+    color: var(--jnsq-ink); margin-bottom: 8px;
+    line-height: 1.2; letter-spacing: -0.01em;
+  }
+  .facet-tile p {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; line-height: 1.55;
+    color: var(--jnsq-body); margin: 0;
+  }
+  /* Centre tile is emphasized */
+  .facet-tile.centre {
+    background: linear-gradient(135deg, var(--jnsq-paper) 0%, #FFF8D8 100%);
+    border-color: var(--jnsq-yellow);
+    box-shadow: 0 14px 36px rgba(253,213,0,0.20), 0 0 0 1px rgba(253,213,0,0.40);
+    width: 32%;
+  }
+  .facet-tile.centre h3 { color: var(--jnsq-ink); }
+  .facet-tile.centre .pos { color: var(--jnsq-ink-soft); }
+  .facet-tile.centre::before {
+    transform: scaleX(1);
+    background: var(--jnsq-yellow);
+    box-shadow: 0 0 14px rgba(253,213,0,0.55);
+  }
+
+  /* Diamond positions, peak/centre/foundation evenly spaced vertically */
+  .facet-tile.peak { top: 0; left: 50%; transform: translateX(-50%); }
+  .facet-tile.peak:hover { transform: translateX(-50%) translateY(-4px); }
+  .facet-tile.left-wall { top: 50%; left: 0; transform: translateY(-50%); }
+  .facet-tile.left-wall:hover { transform: translateY(-50%) translateY(-4px); }
+  .facet-tile.right-wall { top: 50%; right: 0; transform: translateY(-50%); }
+  .facet-tile.right-wall:hover { transform: translateY(-50%) translateY(-4px); }
+  .facet-tile.centre { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  .facet-tile.centre:hover { transform: translate(-50%, -50%) translateY(-4px); }
+  .facet-tile.foundation { bottom: 0; left: 50%; transform: translateX(-50%); }
+  .facet-tile.foundation:hover { transform: translateX(-50%) translateY(-4px); }
+
+  /* Mobile fallback, stack with diamond labels */
+  @media (max-width: 880px) {
+    .diamond-stage {
+      aspect-ratio: auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
+      padding: 0;
+    }
+    .diamond-stage svg.connectors { display: none; }
+    .facet-tile { position: static; transform: none !important; width: 100% !important; min-width: 0; }
+    .facet-tile.peak,
+    .facet-tile.left-wall,
+    .facet-tile.right-wall,
+    .facet-tile.foundation,
+    .facet-tile.centre { transform: none; left: auto; right: auto; top: auto; bottom: auto; }
+    .facet-tile:hover { transform: translateY(-3px) !important; }
+  }
+
+  /* ============== STAGES TABLE ============== */
+  .stages-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-top: var(--space-5);
+    border: 1px solid var(--jnsq-line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .stage-cell {
+    padding: 24px 20px;
+    background: var(--jnsq-paper);
+    border-right: 1px solid var(--jnsq-line);
+    transition: background 220ms ease;
+  }
+  .stage-cell:last-child { border-right: none; }
+  .stage-cell:hover { background: rgba(253, 213, 0, 0.04); }
+  .stage-cell .range {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--jnsq-yellow); margin-bottom: 8px;
+    text-shadow: 0 0 10px rgba(253,213,0,0.30);
+  }
+  .stage-cell h4 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.125rem; font-weight: 500;
+    color: var(--jnsq-ink); margin-bottom: 8px;
+  }
+  .stage-cell p {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; line-height: 1.6;
+    color: var(--jnsq-body); margin: 0;
+  }
+  @media (max-width: 760px) {
+    .stages-grid { grid-template-columns: 1fr; }
+    .stage-cell { border-right: none; border-bottom: 1px solid var(--jnsq-line); }
+    .stage-cell:last-child { border-bottom: none; }
+  }
+
+  /* ============== FINANCIAL IMPACT TABLE ============== */
+  .financial-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    border: 1px solid var(--jnsq-line);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: var(--space-5);
+  }
+  .financial-grid > div {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--jnsq-line);
+    background: var(--jnsq-paper);
+  }
+  .financial-grid > div:nth-last-child(-n+2) { border-bottom: none; }
+  .financial-grid .label {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.0625rem; font-weight: 500;
+    color: var(--jnsq-ink);
+    background: var(--jnsq-line-soft);
+    border-right: 1px solid var(--jnsq-line);
+  }
+  .financial-grid .desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; line-height: 1.6;
+    color: var(--jnsq-body);
+  }
+  @media (max-width: 760px) {
+    .financial-grid { grid-template-columns: 1fr; }
+    .financial-grid .label { border-right: none; border-bottom: 1px solid var(--jnsq-line); }
+  }
+
+  /* ============== METRICS LAYER (CAC/MRR/LTV) ============== */
+  .metrics-trio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+  @media (max-width: 900px) { .metrics-trio { grid-template-columns: 1fr; } }
+  .metric-card {
+    background: var(--jnsq-paper);
+    border: 1px solid var(--jnsq-line);
+    border-radius: 4px;
+    padding: 36px 32px;
+    position: relative;
+    transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 480ms ease, border-color 480ms ease;
+  }
+  .metric-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 2px; background: var(--jnsq-yellow);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .metric-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(26,26,26,0.06); border-color: rgba(253,213,0,0.30); }
+  .metric-card:hover::before { transform: scaleX(1); }
+  .metric-card .tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--jnsq-yellow); margin-bottom: 16px;
+    text-shadow: 0 0 10px rgba(253,213,0,0.30);
+  }
+  .metric-card h3 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.375rem; font-weight: 500;
+    color: var(--jnsq-ink); line-height: 1.25;
+    letter-spacing: -0.01em; margin-bottom: 12px;
+  }
+  .metric-card p {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; line-height: 1.7;
+    color: var(--jnsq-body); margin: 0;
+  }
+
+  /* ============== TIERS ============== */
+  .tier-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+  @media (max-width: 900px) { .tier-grid { grid-template-columns: 1fr; } }
+  .tier-card-min {
+    background: var(--jnsq-bg);
+    border: 1px solid var(--jnsq-line);
+    border-radius: 4px;
+    padding: var(--space-6) var(--space-5);
+    transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1), border-color 480ms ease, box-shadow 480ms ease;
+  }
+  .tier-card-min:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(26,26,26,0.06); border-color: rgba(253,213,0,0.30); }
+  .tier-card-min.featured { border-color: var(--jnsq-yellow); box-shadow: 0 12px 32px rgba(253,213,0,0.12); }
+  .tier-card-min .tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--jnsq-yellow); margin-bottom: 14px;
+    text-shadow: 0 0 14px rgba(253,213,0,0.30);
+  }
+  .tier-card-min .price {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 2.25rem; font-weight: 500;
+    color: var(--jnsq-ink); margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+  .tier-card-min .price .currency { font-size: 1rem; color: var(--jnsq-mute); margin-right: 2px; vertical-align: top; line-height: 2; }
+  .tier-card-min .what { font-size: 13px; color: var(--jnsq-mute); margin-bottom: var(--space-3); font-family: 'Inter', sans-serif; }
+  .tier-card-min ul { list-style: none; padding: 0; margin: 0; }
+  .tier-card-min li {
+    font-size: 14px; color: var(--jnsq-body);
+    padding: 6px 0 6px 22px; position: relative; line-height: 1.6;
+  }
+  .tier-card-min li::before {
+    content: "✓"; color: var(--jnsq-yellow); font-weight: 800;
+    position: absolute; left: 0; top: 6px;
+    text-shadow: 0 0 10px rgba(253,213,0,0.35);
+  }
+
+  /* ============== FAQ ============== */
+  .faq-list { max-width: 760px; margin: var(--space-5) auto 0; }
+  .faq-list details {
+    border-bottom: 1px solid var(--jnsq-line);
+    padding: var(--space-3) 0;
+  }
+  .faq-list summary {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    color: var(--jnsq-ink); cursor: pointer;
+    list-style: none;
+    display: flex; justify-content: space-between; align-items: center;
+    padding-right: 20px;
+  }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after {
+    content: "+"; color: var(--jnsq-yellow); font-weight: 400;
+    font-size: 22px; text-shadow: 0 0 10px rgba(253,213,0,0.35);
+    transition: transform 480ms ease;
+  }
+  .faq-list details[open] summary::after { content: "−"; transform: rotate(180deg); }
+  .faq-list details p {
+    font-size: 15px; line-height: 1.75;
+    color: var(--jnsq-body); margin-top: 14px;
+    max-width: 60ch;
+  }
+
+  .quote-block {
+    border-left: 3px solid var(--jnsq-yellow);
+    padding: 20px 28px;
+    margin: var(--space-5) 0;
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1.1875rem, 1.8vw, 1.5rem);
+    line-height: 1.5;
+    color: var(--jnsq-ink);
+    background: rgba(253, 213, 0, 0.04);
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "MAD™ Diagnostic | Market Authority Diamond | Studio JNSQ",
+  "url": "https://studiojnsq.com/diagnostic/MAD",
+  "description": "The Market Authority Diamond™ scores brand equity across five facets: Demand at the peak, Market Trust as the foundation, Credibility and Visibility as the walls, Branding at the centre.",
+  "isPartOf": { "@type": "WebSite", "name": "Studio JNSQ", "url": "https://studiojnsq.com" },
+  "about": [
+    {"@type":"Thing","name":"Brand Equity Architecture"},
+    {"@type":"Thing","name":"Market Authority Diamond"},
+    {"@type":"Thing","name":"Brand Authority"},
+    {"@type":"Thing","name":"Brand Equity"},
+    {"@type":"Thing","name":"Customer Acquisition Cost"},
+    {"@type":"Thing","name":"Lifetime Value"},
+    {"@type":"Thing","name":"Monthly Recurring Revenue"}
+  ],
+  "mainEntity": {
+    "@type": "Quiz", "name": "Market Authority Diamond Diagnostic",
+    "description": "44 questions across 5 facets that score the authority your brand commands in the market: Branding (centre), Demand (peak), Market Trust (foundation), Credibility (left wall), Visibility (right wall).",
+    "numberOfQuestions": 44,
+    "url": "https://studiojnsq.com/diagnostic/MAD",
+    "provider": { "@type": "Organization", "name": "Studio JNSQ", "url": "https://studiojnsq.com" }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Why is the Market Authority Diamond™ shaped like a diamond?","acceptedAnswer":{"@type":"Answer","text":"Because the five facets are positioned literally: Branding sits at the centre, Demand at the peak, Market Trust as the foundation, Credibility as the left wall, Visibility as the right wall. The lean of the shape diagnoses where authority is leaking."}},
+    {"@type":"Question","name":"What does the MAD™ Diagnostic score?","acceptedAnswer":{"@type":"Answer","text":"Five facets of brand equity scored 1 to 5 across 44 questions: Branding (10 questions), Visibility (10), Credibility (8), Market Trust (8), Demand (8). Each facet rolls up into a percentage and one of five stages: Early, Developing, Emerging, Strong, Elite."}},
+    {"@type":"Question","name":"How does the MAD™ Diagnostic connect to financial outcomes like CAC, MRR, and LTV?","acceptedAnswer":{"@type":"Answer","text":"Strong brand equity lowers CAC because the brand pre-warms buyers, raises MRR because trust extends retention, and multiplies LTV because every cohort earns longer and refers more. The diagnostic exposes which facet is leaking value before it hits the dashboard."}},
+    {"@type":"Question","name":"Is the MAD™ Diagnostic free?","acceptedAnswer":{"@type":"Answer","text":"The free snapshot is free. The $70 report adds full per-facet analysis and a 90-day intervention roadmap. The $100 full diagnostic adds intervention plans, file uploads, and a strategist review."}},
+    {"@type":"Question","name":"How long does the MAD™ Diagnostic take?","acceptedAnswer":{"@type":"Answer","text":"Around seven minutes for the 44-question diagnostic. Instant score and visual diamond at the end."}},
+    {"@type":"Question","name":"Who is the MAD™ Diagnostic for?","acceptedAnswer":{"@type":"Answer","text":"Entrepreneurs at any stage. The doctrine is the same; the application changes. Pre-revenue founders use the MAD™ Diagnostic to invest in equity foundations that lower CAC, raise MRR, and multiply LTV before they spend on marketing. Established brands use the same five facets to shift the question from 'how do I become profitable' to 'how do I become valuable.' Acquirers price predictable pipelines, founder-independent referrals, and compounding market authority into the exit multiple. The five facets measure the same thing at both stages. The difference is what you do with the score."}},
+    {"@type":"Question","name":"How is the diagnostic different from a commissioned audit?","acceptedAnswer":{"@type":"Answer","text":"The diagnostic is a self-assessment. You answer the questions, and the framework scores your responses. It is fast, free to start, and gives you a clear read on where you stand. A commissioned audit is conducted by a strategist who examines your brand externally: how it presents across touchpoints, how the market actually perceives it, and where the gaps are between what you report and what the market sees. The diagnostic tells you where you think you are. The commissioned audit tells you where you actually are."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<div class="jnsq-scroll-progress"></div>
+
+<nav class="jnsq-nav">
+  <div class="jnsq-nav-inner">
+    <a href="/" class="jnsq-nav-logo">STUDIO <span class="accent">JNSQ</span></a>
+    <div class="jnsq-nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/journal">Journal</a>
+      <a href="/case-studies">Portfolio</a>
+      <a href="/diagnostic">Diagnostic</a>
+    </div>
+    <a href="/?openDiagnostic=MAD" class="jnsq-nav-cta">Start MAD&#8482;</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="jnsq-hero">
+  <div class="jnsq-container">
+    <div class="jnsq-eyebrow jnsq-hero-eyebrow" data-reveal-fade>MAD&#8482; Diagnostic &middot; Market Authority Diamond</div>
+    <h1 class="jnsq-hero-display" data-reveal-words>
+      If your brand vanished tomorrow, <span class="jnsq-accent">would the market notice?</span>
+    </h1>
+    <p class="jnsq-hero-lead" data-reveal>
+      Market authority is not fame, not reach, not revenue. It is the structural position your brand occupies in the minds of your buyers, and the financial value that position generates. The MAD&#8482; Diagnostic measures it across five facets in a literal diamond shape.
+    </p>
+    <div class="jnsq-hero-actions" data-reveal>
+      <a href="/?openDiagnostic=MAD" class="jnsq-btn jnsq-btn-primary jnsq-btn-arrow">Start the MAD&#8482; Diagnostic</a>
+      <a href="#diamond" class="jnsq-btn jnsq-btn-ghost">See the diamond</a>
+    </div>
+    <div class="jnsq-small" style="margin-top: var(--space-3); color: var(--jnsq-mute);">Free snapshot. ~7 minutes. No credit card.</div>
+  </div>
+</header>
+
+<!-- THESIS -->
+<section class="jnsq-section">
+  <div class="jnsq-container jnsq-container-default">
+    <div class="jnsq-section-header">
+      <div class="jnsq-eyebrow" data-reveal-fade>The thesis</div>
+      <h2 class="jnsq-display-2" data-reveal>Most founders confuse visibility with authority. <span class="jnsq-accent">Then they wonder why their pipeline stalls.</span></h2>
+    </div>
+    <div class="jnsq-prose" data-reveal>
+      <p>You can be everywhere and still not be chosen. You can rank, post, sponsor, and show up on every list, and still lose deals to a smaller competitor with a sharper position. Visibility is a metric. Authority is leverage. The MAD&#8482; Diagnostic measures the second thing.</p>
+      <p>The diamond is a polygon. Each wall represents a facet's percentage score. When all five are balanced and high, the diamond is full and symmetrical. When one is weak, the diamond leans. <strong>That lean is the diagnosis.</strong></p>
+      <div class="quote-block">Brand equity architecture treats your brand as a financial asset, not a marketing line item. The Diamond measures one dimension of that asset: the authority your brand commands in the market.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DIAMOND -->
+<section class="jnsq-section" id="diamond" style="background: var(--jnsq-paper);">
+  <div class="jnsq-container">
+    <div class="jnsq-section-header center">
+      <div class="jnsq-eyebrow" data-reveal-fade>The five facets &middot; in their actual diamond positions</div>
+      <h2 class="jnsq-display-2" data-reveal>Branding at the centre. <span class="jnsq-accent">Everything radiates from it.</span></h2>
+      <p class="jnsq-lead" data-reveal>Demand sits at the peak. Market Trust at the foundation. Credibility on the left wall. Visibility on the right. Each facet reinforces the others. Without a strong centre, every wall leans inward.</p>
+    </div>
+
+    <div class="diamond-stage" data-reveal>
+      <svg class="connectors" viewBox="0 0 1000 800" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(253,213,0,0.55)"/>
+            <stop offset="100%" stop-color="rgba(253,213,0,0.20)"/>
+          </linearGradient>
+        </defs>
+        <!-- Diamond outline: peak -> right -> foundation -> left -> peak -->
+        <polygon points="500,100 870,400 500,700 130,400" fill="none" stroke="url(#lineGrad)" stroke-width="1.5" stroke-dasharray="6 6"/>
+        <!-- Spokes from centre to each facet -->
+        <line x1="500" y1="400" x2="500" y2="100" stroke="rgba(253,213,0,0.45)" stroke-width="1" stroke-dasharray="4 6"/>
+        <line x1="500" y1="400" x2="870" y2="400" stroke="rgba(253,213,0,0.45)" stroke-width="1" stroke-dasharray="4 6"/>
+        <line x1="500" y1="400" x2="500" y2="700" stroke="rgba(253,213,0,0.45)" stroke-width="1" stroke-dasharray="4 6"/>
+        <line x1="500" y1="400" x2="130" y2="400" stroke="rgba(253,213,0,0.45)" stroke-width="1" stroke-dasharray="4 6"/>
+      </svg>
+
+      <div class="facet-tile peak">
+        <div class="pos">Peak &middot; Outcome</div>
+        <h3>Demand</h3>
+        <p>Inbound interest, market pull, pipeline predictability. The outcome of the other four working together.</p>
+      </div>
+
+      <div class="facet-tile left-wall">
+        <div class="pos">Left wall &middot; Proof</div>
+        <h3>Credibility</h3>
+        <p>Track record, third-party validation, peer recognition, authority signals. Can you prove you are as good as you say?</p>
+      </div>
+
+      <div class="facet-tile centre">
+        <div class="pos">Centre &middot; Source</div>
+        <h3>Branding</h3>
+        <p>Clarity, consistency, architecture, positioning. Without a strong centre, every wall leans. Everything radiates from here.</p>
+      </div>
+
+      <div class="facet-tile right-wall">
+        <div class="pos">Right wall &middot; Presence</div>
+        <h3>Visibility</h3>
+        <p>Media presence, search positioning, executive presence, content systems. Are you seen, strategically, by the right people?</p>
+      </div>
+
+      <div class="facet-tile foundation">
+        <div class="pos">Foundation &middot; Asset</div>
+        <h3>Market Trust</h3>
+        <p>Brand equity. Client loyalty, referral velocity, pricing power, perception alignment. Slowest to build, fastest to lose.</p>
+      </div>
+    </div>
+
+    <p class="jnsq-small" style="text-align:center; margin-top: var(--space-5); color: var(--jnsq-mute); max-width: 640px; margin-left: auto; margin-right: auto;" data-reveal-fade>
+      A diamond that collapses on the left has presence but no proof. A diamond that collapses on the right has reputation but no reach. A weak foundation means clients do not stick. A weak peak means authority does not convert to revenue. A weak centre makes every wall lean inward.
+    </p>
+
+    <!-- Inline scoring-stage row (compact) -->
+    <div class="stage-row" data-reveal style="display:flex;justify-content:center;align-items:stretch;gap:0;margin-top:var(--space-6);max-width:880px;margin-left:auto;margin-right:auto;border:1px solid var(--jnsq-line);border-radius:4px;overflow:hidden;background:var(--jnsq-bg);">
+      <div style="flex:1;padding:14px 12px;border-right:1px solid var(--jnsq-line);text-align:center;">
+        <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.20em;text-transform:uppercase;color:var(--jnsq-yellow);text-shadow:0 0 10px rgba(253,213,0,0.30);margin-bottom:4px;">&lt; 40%</div>
+        <div style="font-family:'Lora',Georgia,serif;font-size:14px;color:var(--jnsq-ink);">Early</div>
+      </div>
+      <div style="flex:1;padding:14px 12px;border-right:1px solid var(--jnsq-line);text-align:center;">
+        <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.20em;text-transform:uppercase;color:var(--jnsq-yellow);text-shadow:0 0 10px rgba(253,213,0,0.30);margin-bottom:4px;">40 &ndash; 59%</div>
+        <div style="font-family:'Lora',Georgia,serif;font-size:14px;color:var(--jnsq-ink);">Developing</div>
+      </div>
+      <div style="flex:1;padding:14px 12px;border-right:1px solid var(--jnsq-line);text-align:center;">
+        <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.20em;text-transform:uppercase;color:var(--jnsq-yellow);text-shadow:0 0 10px rgba(253,213,0,0.30);margin-bottom:4px;">60 &ndash; 74%</div>
+        <div style="font-family:'Lora',Georgia,serif;font-size:14px;color:var(--jnsq-ink);">Emerging</div>
+      </div>
+      <div style="flex:1;padding:14px 12px;border-right:1px solid var(--jnsq-line);text-align:center;">
+        <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.20em;text-transform:uppercase;color:var(--jnsq-yellow);text-shadow:0 0 10px rgba(253,213,0,0.30);margin-bottom:4px;">75 &ndash; 89%</div>
+        <div style="font-family:'Lora',Georgia,serif;font-size:14px;color:var(--jnsq-ink);">Strong</div>
+      </div>
+      <div style="flex:1;padding:14px 12px;text-align:center;">
+        <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.20em;text-transform:uppercase;color:var(--jnsq-yellow);text-shadow:0 0 10px rgba(253,213,0,0.30);margin-bottom:4px;">90% +</div>
+        <div style="font-family:'Lora',Georgia,serif;font-size:14px;color:var(--jnsq-ink);">Elite</div>
+      </div>
+    </div>
+    <p class="jnsq-small" style="text-align:center;margin-top:var(--space-2);color:var(--jnsq-mute);font-size:13px;" data-reveal-fade>Each facet scores on this five-stage ladder. Interventions are stage-gated.</p>
+  </div>
+</section>
+
+<!-- THE METRICS LAYER (CAC / MRR / LTV) -->
+<section class="jnsq-section">
+  <div class="jnsq-container">
+    <div class="jnsq-section-header center">
+      <div class="jnsq-eyebrow" data-reveal-fade>The metrics layer</div>
+      <h2 class="jnsq-display-2" data-reveal>The Diamond moves the three numbers your <span class="jnsq-accent">CFO already cares about</span>.</h2>
+      <p class="jnsq-lead" data-reveal>Brand equity is not a marketing concept. It is a financial fingerprint that shows up in CAC, MRR, and LTV. The MAD&#8482; Diagnostic shows you which facet is leaking value before it bends those metrics the wrong way.</p>
+    </div>
+    <div class="metrics-trio" data-stagger>
+      <div class="metric-card" data-reveal>
+        <div class="tag">CAC &middot; Acquisition cost</div>
+        <h3>Strong brand equity does pre-conversion work the marketing budget shouldn&#8217;t have to do.</h3>
+        <p>When the market already trusts you, every dollar of acquisition spend works harder. CAC stays flat as you scale instead of climbing alongside spend. <a href="/journal/brand-equity-lowers-cac" style="color: var(--jnsq-ink); text-decoration: underline; text-decoration-color: var(--jnsq-yellow); text-decoration-thickness: 2px; text-underline-offset: 3px;">How brand equity lowers CAC &rarr;</a></p>
+      </div>
+      <div class="metric-card" data-reveal>
+        <div class="tag">MRR &middot; Recurring revenue</div>
+        <h3>MRR is brand equity made visible on a dashboard, month after month.</h3>
+        <p>Stickiness is not a product feature. It is a brand equity outcome. Customers stay where the brand keeps earning them. <a href="/journal/brand-equity-mrr-compounding" style="color: var(--jnsq-ink); text-decoration: underline; text-decoration-color: var(--jnsq-yellow); text-decoration-thickness: 2px; text-underline-offset: 3px;">The MRR compounding effect &rarr;</a></p>
+      </div>
+      <div class="metric-card" data-reveal>
+        <div class="tag">LTV &middot; Lifetime value</div>
+        <h3>LTV is the truest financial fingerprint of how strong your brand actually is.</h3>
+        <p>Customers stay longer, spend more, and refer their peers when the brand earns the relationship. The LTV multiplier shows up in valuation. <a href="/journal/brand-equity-ltv-multiplier" style="color: var(--jnsq-ink); text-decoration: underline; text-decoration-color: var(--jnsq-yellow); text-decoration-thickness: 2px; text-underline-offset: 3px;">The LTV multiplier &rarr;</a></p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top: var(--space-5);" data-reveal>
+      <a href="/journal/mad-rvf-full-picture-metrics" class="jnsq-btn jnsq-btn-ghost">Read the full picture: MAD&#8482; &times; RVF&#8482; &rarr;</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- NAMED PATTERNS -->
+<style>
+  .patterns-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+  @media (max-width: 900px) { .patterns-grid { grid-template-columns: 1fr; } }
+  .pattern-trio {
+    display: grid;
+    grid-template-rows: auto repeat(3, 1fr);
+    gap: var(--space-2);
+  }
+  .pattern-trio-header {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--jnsq-yellow);
+    text-shadow: 0 0 14px rgba(253,213,0,0.30);
+    margin-bottom: 4px;
+  }
+  .pattern-card {
+    background: var(--jnsq-bg);
+    border: 1px solid var(--jnsq-line);
+    border-radius: 4px;
+    padding: 22px 24px;
+    min-height: 190px;
+    transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1), border-color 480ms ease, box-shadow 480ms ease;
+    position: relative;
+  }
+  .pattern-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--jnsq-yellow);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .pattern-card:hover { transform: translateY(-3px); border-color: rgba(253,213,0,0.30); }
+  .pattern-card:hover::before { transform: scaleX(1); }
+  .pattern-card h4 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.125rem; font-weight: 500;
+    color: var(--jnsq-ink); margin-bottom: 8px;
+    letter-spacing: -0.005em;
+  }
+  .pattern-card p {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; line-height: 1.6;
+    color: var(--jnsq-body); margin: 0;
+  }
+</style>
+<section class="jnsq-section">
+  <div class="jnsq-container">
+    <div class="jnsq-section-header center">
+      <div class="jnsq-eyebrow" data-reveal-fade>Named patterns</div>
+      <h2 class="jnsq-display-2" data-reveal>Six recurring shapes a leaning <span class="jnsq-accent">diamond takes</span>.</h2>
+      <p class="jnsq-lead" data-reveal>The diagnostic does not just produce a number. It exposes the pattern. These are the six most common ways the Diamond leans, named so you can see your own.</p>
+    </div>
+
+    <div class="patterns-grid" data-stagger>
+      <div class="pattern-trio" data-reveal>
+        <div class="pattern-trio-header">Visibility &amp; trust patterns</div>
+        <div class="pattern-card">
+          <h4>The Backstage Brand</h4>
+          <p>You built visibility for everyone except yourself. Your clients are known; you are not.</p>
+        </div>
+        <div class="pattern-card">
+          <h4>The Visibility Trap</h4>
+          <p>You are everywhere and it is costing you everything. Visibility without credibility is noise. The market sees you; it does not trust you yet.</p>
+        </div>
+      </div>
+
+      <div class="pattern-trio" data-reveal>
+        <div class="pattern-trio-header">Authority &amp; demand patterns</div>
+        <div class="pattern-card">
+          <h4>The Authority Mirage</h4>
+          <p>You look credible on paper. Certifications, testimonials, case studies. But the market does not come to you first. Authority without demand is a trophy case with no buyers.</p>
+        </div>
+        <div class="pattern-card">
+          <h4>The Discount Loop</h4>
+          <p>A company shops for a cheaper rate, burns months on underwhelming work, comes back to the original choice at a higher price. The budget was protected; the brand was not.</p>
+        </div>
+      </div>
+
+      <div class="pattern-trio" data-reveal>
+        <div class="pattern-trio-header">Founder &amp; ceiling patterns</div>
+        <div class="pattern-card">
+          <h4>The Presence Tax</h4>
+          <p>Revenue that only exists when the founder is present. The business works, but only because one person shows up every single day.</p>
+        </div>
+        <div class="pattern-card">
+          <h4>The Trust Ceiling</h4>
+          <p>Referrals come in. Repeat clients stay. But new business from cold channels does not convert. Market trust has a ceiling when credibility and visibility do not support it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARC: profitable → valuable (cross-link to RVF) -->
+<section class="jnsq-section">
+  <div class="jnsq-container">
+    <div class="jnsq-section-header center">
+      <div class="jnsq-eyebrow" data-reveal-fade>The arc</div>
+      <h2 class="jnsq-display-2" data-reveal>Profitable today. <span class="jnsq-accent">Valuable forever.</span></h2>
+      <p class="jnsq-lead" data-reveal>Brand equity has two layers. MAD&#8482; reads the surface. RVF&#8482; reads the structure beneath.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:var(--space-4);align-items:stretch;margin-top:var(--space-5);max-width:1080px;margin-left:auto;margin-right:auto;" data-stagger>
+
+      <!-- MAD: profitability layer -->
+      <div class="jnsq-card" style="padding:var(--space-5);border-left:3px solid var(--jnsq-yellow);" data-reveal>
+        <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--jnsq-yellow);margin-bottom:var(--space-2);">You are here</div>
+        <h3 style="font-family:'Lora',Georgia,serif;font-size:1.5rem;font-weight:500;color:var(--jnsq-ink);margin-bottom:var(--space-2);letter-spacing:-0.005em;">MAD&#8482;: the profitability layer</h3>
+        <p style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.65;color:var(--jnsq-body);margin:0 0 var(--space-3) 0;">Demand, credibility, visibility, market trust, branding. The five facets that decide whether the market recognizes you today. Strong MAD&#8482; lowers CAC, lifts MRR, multiplies LTV. It is the surface where revenue lives.</p>
+        <div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--jnsq-mute);font-style:italic;">Reads: what your brand is worth right now.</div>
+      </div>
+
+      <!-- Connector -->
+      <div style="display:flex;align-items:center;justify-content:center;" data-reveal>
+        <div style="font-family:'Lora',Georgia,serif;font-style:italic;font-size:1.25rem;color:var(--jnsq-mute);">then</div>
+      </div>
+
+      <!-- RVF: valuability layer -->
+      <div class="jnsq-card" style="padding:var(--space-5);border-left:3px solid var(--jnsq-line);background:var(--jnsq-paper);" data-reveal>
+        <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--jnsq-mute);margin-bottom:var(--space-2);">The next layer</div>
+        <h3 style="font-family:'Lora',Georgia,serif;font-size:1.5rem;font-weight:500;color:var(--jnsq-ink);margin-bottom:var(--space-2);letter-spacing:-0.005em;">RVF&#8482;: the valuability layer</h3>
+        <p style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.65;color:var(--jnsq-body);margin:0 0 var(--space-3) 0;">Time, money, effort. The three trades that decide whether profit compounds without your daily presence. Strong RVF&#8482; means the business holds its value when you step out, the founder dependency drops, and the multiple at exit holds.</p>
+        <a href="/diagnostic/RVF" class="jnsq-link" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--jnsq-ink);text-decoration:none;border-bottom:2px solid var(--jnsq-yellow);padding-bottom:2px;">Diagnose with RVF&#8482; &rarr;</a>
+      </div>
+
+    </div>
+
+    <p class="jnsq-lead" style="text-align:center;margin-top:var(--space-5);font-family:'Lora',Georgia,serif;font-style:italic;color:var(--jnsq-ink);max-width:720px;margin-left:auto;margin-right:auto;" data-reveal>Profitability is the floor. Valuability is the ceiling. The goal is the latter.</p>
+  </div>
+</section>
+
+<!-- TIERS -->
+<section class="jnsq-section" style="background: var(--jnsq-paper);">
+  <div class="jnsq-container jnsq-container-grand">
+    <div class="jnsq-section-header center">
+      <div class="jnsq-eyebrow" data-reveal-fade>What you get</div>
+      <h2 class="jnsq-display-2" data-reveal>Start free. <span class="jnsq-accent">Upgrade only if you want the prescription.</span></h2>
+    </div>
+    <div class="tier-grid" data-stagger>
+      <div class="tier-card-min" data-reveal>
+        <div class="tag">Free Snapshot</div>
+        <div class="price">Free</div>
+        <div class="what">Score and shape</div>
+        <ul>
+          <li>Overall authority score</li>
+          <li>Your diamond visualization</li>
+          <li>Strongest and weakest facet</li>
+          <li>One headline insight</li>
+        </ul>
+      </div>
+      <div class="tier-card-min featured" data-reveal>
+        <div class="tag">Diagnostic Report</div>
+        <div class="price"><span class="currency">$</span>70</div>
+        <div class="what">Score, shape, and roadmap</div>
+        <ul>
+          <li>Everything in the free snapshot</li>
+          <li>Full per-facet analysis</li>
+          <li>Where you leak authority</li>
+          <li>90-day intervention roadmap</li>
+          <li>Branded PDF report</li>
+        </ul>
+      </div>
+      <div class="tier-card-min" data-reveal>
+        <div class="tag">Full Diagnostic</div>
+        <div class="price"><span class="currency">$</span>100</div>
+        <div class="what">Full prescription with strategist review</div>
+        <ul>
+          <li>Everything in the report</li>
+          <li>Trap and overcome plans</li>
+          <li>File uploads (brand assets)</li>
+          <li>Strategist quick-review notes</li>
+          <li>Roadmap with weighted markers</li>
+        </ul>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:var(--space-4); font-family:'Inter',sans-serif; font-size:13px; color:var(--jnsq-mute);">
+      Want more than a self-assessment? <a href="https://calendly.com/jerico-studio-jnsq/30min" class="jnsq-link">Ask about a commissioned audit</a> with a strategist.
+    </p>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="jnsq-section" style="background: var(--jnsq-paper);">
+  <div class="jnsq-container jnsq-container-default">
+    <div class="jnsq-section-header center">
+      <div class="jnsq-eyebrow" data-reveal-fade>Common questions</div>
+      <h2 class="jnsq-display-2" data-reveal>What founders ask before they start.</h2>
+    </div>
+    <div class="faq-list" data-reveal>
+      <details>
+        <summary>Why is the MAD&#8482; shaped like a diamond?</summary>
+        <p>Because the five facets sit in literal positions. Branding is the centre. Everything radiates from it. Demand is the peak (top), Market Trust the foundation (bottom), Credibility the left wall, Visibility the right. The shape leans toward whichever facet is weak. That lean is the diagnosis.</p>
+      </details>
+      <details>
+        <summary>What does the MAD&#8482; Diagnostic actually measure?</summary>
+        <p>Five facets of brand equity scored across 44 questions: Branding (10 questions), Visibility (10), Credibility (8), Market Trust (8), and Demand (8). Each rolls up into a percentage score and one of five stages: Early (&lt;40%), Developing (40&ndash;59%), Emerging (60&ndash;74%), Strong (75&ndash;89%), Elite (90%+).</p>
+      </details>
+      <details>
+        <summary>How does the Diamond connect to financial outcomes?</summary>
+        <p>Strong brand equity lowers CAC because the brand pre-warms buyers, raises MRR because trust extends retention, and multiplies LTV because every cohort earns longer and refers more. The Diamond exposes the leaking facet before it shows up on the financial dashboard.</p>
+      </details>
+      <details>
+        <summary>How does the MAD&#8482; Diagnostic connect to RVF&#8482;?</summary>
+        <p>MAD&#8482; measures the external position: what the market believes about your brand. RVF&#8482; measures the internal engine: how the business allocates Money, Effort, and Time. A business can have strong market authority (high MAD&#8482;) but poor resource allocation (low RVF&#8482;) so the market values it but operations cannot sustain demand. The reverse also happens. Alignment is the goal. <a href="/diagnostic/RVF" class="jnsq-link">Take the RVF&#8482; Diagnostic</a> for the complete picture.</p>
+      </details>
+      <details>
+        <summary>How is this different from a brand audit?</summary>
+        <p>A brand audit looks at the surface (identity, messaging, materials). The MAD&#8482; Diagnostic looks at the structure underneath: the authority your brand commands in the market. One tells you what your brand looks like. The other tells you what your brand is worth.</p>
+      </details>
+      <details>
+        <summary>How is the diagnostic different from a commissioned audit?</summary>
+        <p>The diagnostic is a self-assessment. You answer the questions, and the framework scores your responses. It is fast, free to start, and gives you a clear read on where you stand. A commissioned audit is conducted by a strategist who examines your brand externally: how it presents across touchpoints, how the market actually perceives it, and where the gaps are between what you report and what the market sees. The diagnostic tells you where you think you are. The commissioned audit tells you where you actually are.</p>
+      </details>
+      <details>
+        <summary>How is brand equity architecture different from branding?</summary>
+        <p>Branding is the surface layer. Brand architecture is portfolio structure. <a href="/journal/branding-vs-brand-equity-vs-brand-architecture" class="jnsq-link">Brand equity architecture</a> is the discipline of building the financial and reputational value a brand holds in the market. It sits where PR meets finance. The MAD&#8482; Diagnostic measures one component of it.</p>
+      </details>
+      <details>
+        <summary>Who is this for?</summary>
+        <p>Entrepreneurs at any stage. The doctrine is the same; the application changes.</p>
+        <p>If you are pre-revenue or building your first brand, the MAD&#8482; Diagnostic shows you where to invest before you spend. A strong equity foundation lowers your customer acquisition cost because the brand pre-qualifies buyers before the first pitch. It raises your MRR because trust compounds retention faster than discounts ever could. It multiplies lifetime value because every cohort stays longer, spends more, and refers without being asked. You are not just building a business. You are building an asset that earns while you are not in the room.</p>
+        <p>If you are an established brand with real revenue, the diagnostic shifts from &ldquo;how do I become profitable&rdquo; to &ldquo;how do I become valuable.&rdquo; Exit strategies become far more profound when acquirers see more than generated revenue. They see a predictable pipeline that does not depend on one person's network. They see referrals that arrive independent of who the founder knows. They see market authority that compounds quarter over quarter. Those are the factors that turn revenue into multiples during exit negotiations.</p>
+        <p>The five facets measure the same thing at both stages. The difference is what you do with the score.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="jnsq-cta-section">
+  <div class="jnsq-container">
+    <div class="jnsq-eyebrow" data-reveal-fade>Authority is the only metric that compounds</div>
+    <h2 class="jnsq-display-2" data-reveal>Stop guessing where your brand <span class="jnsq-accent">leaks</span>.</h2>
+    <p class="jnsq-lead" data-reveal>The diamond shows you in seven minutes. Free snapshot. No credit card. Real clarity on what your brand is actually worth.</p>
+    <div class="jnsq-hero-actions" style="justify-content: center; align-items: center; margin-top: var(--space-4);" data-reveal>
+      <a href="/?openDiagnostic=MAD" class="jnsq-btn jnsq-btn-primary jnsq-btn-arrow">Start the MAD&#8482; Diagnostic</a>
+      <span style="font-family: 'Lora', Georgia, serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.55); padding: 0 4px;">or</span>
+      <a href="/diagnostic/RVF" class="jnsq-btn jnsq-btn-ghost" style="color:var(--jnsq-bg); border-color:rgba(255,255,255,0.25);">Diagnose with RVF&#8482;</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="jnsq-footer">
+  <div class="jnsq-container">
+    <div class="jnsq-footer-grid">
+      <div style="text-align: center;">
+        <div class="jnsq-footer-brand">STUDIO <span class="accent">JNSQ</span></div>
+        <p class="jnsq-footer-tagline">Others make you profitable.<br>Brand equity makes you valuable.</p>
+      </div>
+      <div class="jnsq-footer-col">
+        <h4>Discipline</h4>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/diagnostic">Diagnostic</a></li>
+          <li><a href="/journal">Journal</a>
+      <a href="/case-studies">Portfolio</a></li>
+        </ul>
+      </div>
+      <div class="jnsq-footer-col">
+        <h4>Frameworks</h4>
+        <ul>
+          <li><a href="/diagnostic/MAD">MAD&#8482;</a></li>
+          <li><a href="/diagnostic/RVF">RVF&#8482;</a></li>
+          <li><a href="/journal/branding-vs-brand-equity-vs-brand-architecture">The doctrine</a></li>
+        </ul>
+      </div>
+      <div class="jnsq-footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" rel="noopener">Book a call</a></li>
+          <li><a href="/diagnostic">Start a diagnosis</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="jnsq-footer-bottom">
+      <div>&copy; 2026 Studio JNSQ. The brand equity architecture firm for valuable brands.</div>
+      <div class="legal"><a href="/">studiojnsq.com</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/jnsq-system.js?v=2" defer></script>
+</body>
+</html>

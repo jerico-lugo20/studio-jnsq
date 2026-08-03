@@ -5,24 +5,364 @@
 [functions]
   node_bundler = "esbuild"
 
+# Server-rendered journal index needs the blog.html template in its bundle
+[functions."render-journal-index"]
+  included_files = ["blog.html"]
+
+# blog-ai-fill calls Claude Sonnet 4.5 which can take 15-30s.
+# Bump timeout so it doesn't 504 (Netlify's default is 10s; Pro allows up to 26s).
+[functions."blog-ai-fill"]
+  timeout = 26
+
+# Scheduled publisher: every 30 min, flip any 'scheduled' post whose 8AM UK drop time has arrived.
+[functions."scheduled-publisher"]
+  schedule = "*/30 * * * *"
+
 [[headers]]
   for = "/.netlify/functions/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
-    Access-Control-Allow-Headers = "Content-Type"
-    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"
+    Access-Control-Allow-Methods = "GET, POST, DELETE, OPTIONS"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# ============================================================
+# Redirect order matters — Netlify uses FIRST MATCH wins.
+# Put query-conditional + most-specific rules BEFORE catch-alls.
+# ============================================================
+
+# Dynamic sitemap (auto-includes all published journal posts)
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/.netlify/functions/sitemap-gen"
+  status = 200
+  force = true
+
+# ------------------------------------------------------------
+# /blog -> /journal migration (Journal is now the canonical namespace).
+# All /blog and /blog/* URLs 301 to their /journal counterpart.
+# ------------------------------------------------------------
+[[redirects]]
+  from = "/blog"
+  to = "/journal"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/journal/:splat"
+  status = 301
+  force = true
+
+# Legacy query-param blog URLs -> journal clean paths (301 permanent)
+[[redirects]]
+  from = "/journal"
+  to = "/journal/:post"
+  status = 301
+  force = true
+  query = {post = ":post"}
+
+# Tag filter URLs preserve the journal index (server-rendered)
+[[redirects]]
+  from = "/journal"
+  to = "/.netlify/functions/render-journal-index"
+  status = 200
+  query = {tag = ":tag"}
+
+# Retire the /journal-mock preview — redirect to the live Journal (301 permanent)
+[[redirects]]
+  from = "/journal-mock"
+  to = "/journal"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal-mock/*"
+  to = "/journal/:splat"
+  status = 301
+  force = true
+
+# Legacy per-post redirects — old slugs to new canonical slugs (301 permanent)
+[[redirects]]
+  from = "/journal/bip-15-why-your-marketing-is-working"
+  to = "/journal/why-is-your-marketing-working-but-your-brand-equity-isnt"
+  status = 301
+  force = true
+
+# ------------------------------------------------------------
+# July 2026 re-slug: every pre-July short slug 301s to its
+# question-style canonical slug. Added 2026-07-31 (SEO Phase 1).
+# ------------------------------------------------------------
+[[redirects]]
+  from = "/journal/what-is-brand-equity"
+  to = "/journal/what-is-brand-equity-and-why-should-you-care-about-it"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/brand-identity-not-brand-equity"
+  to = "/journal/your-brand-identity-is-not-your-brand-equity"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/branding-vs-brand-equity-vs-brand-architecture"
+  to = "/journal/what-is-the-difference-between-branding-and-brand-equity-architecture"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/5-facets-market-authority"
+  to = "/journal/what-are-the-4-facets-that-build-brand-equity-and-market-authority"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/what-demand-means-for-brand"
+  to = "/journal/what-demand-really-means-for-your-brand"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/credibility-most-underrated-brand-asset"
+  to = "/journal/why-is-credibility-the-most-underrated-brand-equity-asset"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/market-trust-premium-pricing"
+  to = "/journal/why-is-market-trust-the-silent-force-behind-brand-equity"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/revenue-plateau-brand-bottleneck"
+  to = "/journal/revenue-plateau-your-brand-might-be-the-bottleneck"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/visibility-without-value"
+  to = "/journal/visibility-without-value-the-trap-most-brands-fall-into"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/competing-on-price-race-to-bottom"
+  to = "/journal/why-is-competing-on-price-a-race-to-the-bottom-for-your-brand-equity"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/brand-equity-lowers-cac"
+  to = "/journal/how-brand-equity-lowers-your-customer-acquisition-cost"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/rebranding-trap-new-look"
+  to = "/journal/why-does-rebranding-fail-to-fix-your-brand-equity-problems"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/brand-equity-mrr-compounding"
+  to = "/journal/how-does-brand-equity-compound-mrr-growth-most-founders-miss"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/brand-equity-ltv-multiplier"
+  to = "/journal/why-is-brand-equity-the-best-long-term-investment-for-ltv"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/competitors-charge-more-brand-equity"
+  to = "/journal/how-do-competitors-charge-more-for-the-same-thing-using-brand-equity"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/why-clients-leave-brand-equity"
+  to = "/journal/why-do-clients-leave-and-what-does-brand-equity-have-to-do-with-it"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/building-brand-equity-small-budget"
+  to = "/journal/how-do-you-build-brand-equity-on-a-small-budget"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/scaling-founder-led-brand"
+  to = "/journal/how-do-you-scale-a-founder-led-brand-without-losing-equity"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/brand-equity-makes-you-valuable"
+  to = "/journal/what-makes-brand-equity-the-difference-between-profit-and-value"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/brand-audit-checklist"
+  to = "/journal/what-is-the-brand-equity-audit-checklist-you-need"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/market-authority-diamond-complete-guide"
+  to = "/journal/what-is-the-market-authority-diamond-for-brand-equity"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/resource-value-formula-complete-guide"
+  to = "/journal/what-is-the-resource-value-formula-for-brand-equity"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/introducing-rvf-diagnostic"
+  to = "/journal/what-is-the-rvf-diagnostic-for-brand-equity-assessment"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/how-to-read-mad-report"
+  to = "/journal/how-do-you-read-your-mad-brand-equity-report"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/what-happens-after-mad-diagnostic"
+  to = "/journal/what-happens-after-your-mad-brand-equity-diagnostic"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/rvf-actionability-diagnostic-to-action"
+  to = "/journal/how-does-the-rvf-turn-brand-equity-diagnostics-into-action"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/rvf-clarity-decision-paralysis"
+  to = "/journal/how-does-the-rvf-cut-through-brand-equity-decision-paralysis"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/mad-meets-rvf-inflection-points"
+  to = "/journal/where-do-mad-and-rvf-meet-for-brand-equity-architecture"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/mad-rvf-full-picture-metrics"
+  to = "/journal/how-do-mad-and-rvf-together-drive-brand-equity-and-revenue"
+  status = 301
+  force = true
+
+# ------------------------------------------------------------
+# Case Studies — full attribution as of 2026-07-31.
+# Canonical URLs now carry the client names. Both the anonymized
+# initials-based slugs and the original legacy slugs 301 here.
+# ------------------------------------------------------------
+[[redirects]]
+  from = "/case-studies/rovic-agriventures"
+  to = "/case-studies/rovic-agriventures-egg-production"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-studies/poultry-distribution"
+  to = "/case-studies/rovic-chicken-dealer-poultry-distribution"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-studies/rai-egg-production"
+  to = "/case-studies/rovic-agriventures-egg-production"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-studies/rcd-poultry-distribution"
+  to = "/case-studies/rovic-chicken-dealer-poultry-distribution"
+  status = 301
+  force = true
+
+# Journal post clean URLs: static .html wins when present; otherwise the server-side
+# renderer function builds the canonical BIP template with the post's data from the
+# blog-crud blob store. This guarantees every dynamically-published post renders
+# the EXACT approved canonical layout — no SPA, no CSS leak, no hydration race.
+[[redirects]]
+  from = "/journal/:slug"
+  to = "/.netlify/functions/render-blog-post?slug=:slug"
+  status = 200
+
+# Journal index is server-rendered so crawlers see real article links.
+# The function falls back to serving blog.html verbatim on any error.
+[[redirects]]
+  from = "/journal"
+  to = "/.netlify/functions/render-journal-index"
+  status = 200
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
 
 [[redirects]]
   from = "/diagnostic"
-  to = "/index.html"
+  to = "/diagnostic.html"
   status = 200
 
 [[redirects]]
-  from = "/diagnostic/*"
-  to = "/index.html"
+  from = "/diagnostic/MAD"
+  to = "/diagnostic-mad.html"
   status = 200
 
+[[redirects]]
+  from = "/diagnostic/mad"
+  to = "/diagnostic-mad.html"
+  status = 200
+
+[[redirects]]
+  from = "/diagnostic/RVF"
+  to = "/diagnostic-rvf.html"
+  status = 200
+
+[[redirects]]
+  from = "/diagnostic/rvf"
+  to = "/diagnostic-rvf.html"
+  status = 200
+
+# Strategist Portal — restore /strategist URL access (JS overlay opens on load)
 [[redirects]]
   from = "/strategist"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/strategist/*"
   to = "/index.html"
   status = 200

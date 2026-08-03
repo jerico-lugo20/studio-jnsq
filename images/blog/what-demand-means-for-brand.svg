@@ -1,0 +1,41 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#fefbef"/>
+
+  <!-- Title -->
+  <text x="600" y="85" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="600" text-anchor="middle" fill="#FDD500" letter-spacing="4">WHAT DEMAND REALLY MEANS</text>
+
+  <!-- Background: Faded arrows pointing in various directions (false demand) -->
+  <!-- Arrow shape: rect body + triangle head, each rotated -->
+
+  <!-- Scattered faded arrows (wrong directions) -->
+  <g opacity="0.15">
+    <!-- Arrow pointing left -->
+    <rect x="280" y="245" width="60" height="12" rx="6" fill="#E8917A" transform="rotate(-30 310 251)"/>
+    <!-- Arrow pointing down-right -->
+    <rect x="820" y="220" width="55" height="12" rx="6" fill="#E8917A" transform="rotate(40 847 226)"/>
+    <!-- Arrow pointing up-left -->
+    <rect x="340" y="380" width="50" height="12" rx="6" fill="#6D8397" transform="rotate(-60 365 386)"/>
+    <!-- Arrow pointing right -->
+    <rect x="780" y="400" width="55" height="12" rx="6" fill="#6D8397" transform="rotate(25 807 406)"/>
+    <!-- Arrow pointing down -->
+    <rect x="450" y="350" width="45" height="12" rx="6" fill="#98A7B5" transform="rotate(80 472 356)"/>
+    <!-- Arrow pointing up-right -->
+    <rect x="720" y="350" width="45" height="12" rx="6" fill="#98A7B5" transform="rotate(-45 742 356)"/>
+  </g>
+
+  <!-- Central STRONG arrow pointing UP (real demand) -->
+  <rect x="580" y="220" width="40" height="180" rx="8" fill="#FDD500" opacity="0.85"/>
+  <!-- Arrow head -->
+  <polygon points="600,155 565,225 635,225" fill="#FDD500" opacity="0.85"/>
+
+  <!-- Label below arrow -->
+  <text x="600" y="440" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="600" text-anchor="middle" fill="#394550">Your Brand</text>
+  <text x="600" y="460" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" text-anchor="middle" fill="#98A7B5">Real demand points here</text>
+
+  <!-- One-liner -->
+  <text x="600" y="560" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="22" font-weight="500" text-anchor="middle" fill="#98A7B5">Real demand points to you. Not just anyone.</text>
+
+  <!-- Brand mark -->
+  <circle cx="540" cy="600" r="3" fill="#FDD500"/>
+  <text x="600" y="604" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600" fill="#c5bfb0" letter-spacing="2">STUDIO JNSQ</text>
+</svg>

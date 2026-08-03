@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RAI Operations Console | Studio JNSQ</title>
+<meta name="description" content="Case study: RAI Operations Console — a single back-office application that replaced disconnected spreadsheets for a commercial egg-layer farm. Built by Studio JNSQ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+/* ===== sticky nav bar ===== */
+.site-nav{position:sticky;top:0;z-index:100;background:#1b1b1b;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:44px;font-family:"Inter",system-ui,sans-serif}
+.site-nav a{text-decoration:none}
+.site-nav-back{font-size:13px;font-weight:600;color:#fff;opacity:.85;display:inline-flex;align-items:center;gap:6px}
+.site-nav-back:hover{opacity:1;color:#fff}
+.site-nav-right{display:flex;align-items:center;gap:14px}
+.site-nav-sample{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:.4px;color:#A0400A;background:#FFE9D6;padding:3px 10px;border-radius:999px}
+.site-nav-sample::before{content:"";width:5px;height:5px;border-radius:50%;background:#D25510}
+.site-nav-wordmark{font-size:13px;font-weight:700;color:#fff;letter-spacing:.6px;opacity:.9}
+.site-nav-wordmark:hover{opacity:1;color:#fff}
+
+/* ===== case-study canvas chrome ===== */
+body{margin:0;background:#e9e7e2;font-family:"Inter",system-ui,sans-serif;color:#1b1b1b}
+a{color:#D25510;text-decoration:none}a:hover{color:#A0400A}
+.cs-wrap{padding:64px 72px 120px;display:flex;flex-direction:column;gap:88px}
+.cs-hero{max-width:1100px}
+.cs-hero .cs-eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#D25510}
+.cs-hero h1{font-size:52px;line-height:1.04;margin:14px 0 6px;font-weight:800;letter-spacing:-1.2px}
+.cs-hero .cs-org{font-size:16px;font-weight:600;color:#6B6B6B;letter-spacing:.3px}
+.cs-hero p{font-size:17px;line-height:1.6;color:#3A3A3A;max-width:760px;margin:22px 0 0;text-wrap:pretty}
+.cs-meta{display:flex;gap:36px;margin-top:30px;flex-wrap:wrap}
+.cs-meta div{display:flex;flex-direction:column;gap:3px}
+.cs-meta .k{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#9a9a95}
+.cs-meta .v{font-size:14px;font-weight:600;color:#1b1b1b}
+.cs-disclaimer{margin-top:28px;max-width:780px;display:flex;gap:14px;align-items:flex-start;padding:16px 18px;background:#fff;border:1px solid #e7d6bf;border-left:4px solid #D25510;border-radius:10px}
+.cs-disclaimer .di{flex:none;width:26px;height:26px;border-radius:7px;background:#FFE9D6;color:#A0400A;display:flex;align-items:center;justify-content:center;font-size:15px;margin-top:1px}
+.cs-disclaimer p{margin:0;font-size:13.5px;line-height:1.55;color:#3A3A3A}
+.cs-disclaimer b{color:#A0400A}
+.cs-chip{margin-left:auto;flex:none;display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.4px;color:#A0400A;background:#FFE9D6;padding:3px 10px;border-radius:999px}
+.cs-chip::before{content:"";width:6px;height:6px;border-radius:50%;background:#D25510}
+.cs-screen{display:flex;gap:40px;align-items:flex-start}
+.cs-note{width:328px;flex:none;position:sticky;top:40px;padding-top:14px}
+.cs-note .idx{font-size:13px;font-weight:800;color:#D25510;letter-spacing:1px}
+.cs-note h2{font-size:26px;font-weight:800;letter-spacing:-.5px;margin:6px 0 4px}
+.cs-note .lead{font-size:14px;line-height:1.55;color:#3A3A3A;margin:0 0 20px;text-wrap:pretty}
+.cs-note ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.cs-note li{display:flex;gap:11px;font-size:13px;line-height:1.5;color:#3A3A3A}
+.cs-note li b{color:#1b1b1b;font-weight:700}
+.cs-note li .m{flex:none;width:22px;height:22px;border-radius:6px;background:#FFE9D6;color:#A0400A;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.cs-frameshadow{border-radius:14px;box-shadow:0 40px 80px -30px rgba(40,25,10,.45),0 8px 24px -8px rgba(0,0,0,.18);overflow:hidden;background:#fff;flex:none}
+.cs-chrome{height:40px;background:#dfdcd6;display:flex;align-items:center;gap:8px;padding:0 14px;border-bottom:1px solid #cfccc5}
+.cs-lights{display:flex;gap:7px}
+.cs-lights i{width:12px;height:12px;border-radius:50%;display:block}
+.cs-lights i:nth-child(1){background:#ff5f57}.cs-lights i:nth-child(2){background:#febc2e}.cs-lights i:nth-child(3){background:#28c840}
+.cs-url{margin-left:14px;flex:1;max-width:520px;height:24px;background:#f4f2ee;border-radius:7px;display:flex;align-items:center;padding:0 12px;font-size:12px;color:#8a8780;gap:7px}
+.cs-url svg{opacity:.6}
+.cs-app-frame{width:1380px;height:840px;overflow:hidden;position:relative}
+
+/* ===== RAI Backend — Orange Theme (faithful recreation) ===== */
+.rai{--rai-50:#FFF7EE;--rai-100:#FFE9D6;--rai-200:#FFD3A8;--rai-300:#FFB777;--rai-400:#FF974A;--rai-500:#F26B1F;--rai-600:#D25510;--rai-700:#A0400A;--rai-800:#7A3E00;--ink-900:#1B1B1B;--ink-700:#3A3A3A;--ink-500:#6B6B6B;--ink-300:#B7B7B7;--ink-100:#EEEEEE;--bg:#FAFAF7;--card:#FFFFFF;--green:#14794C;--red:#B3261E;--blue:#1F4ED2;--black:#1B1B1B;--shadow:0 1px 0 rgba(0,0,0,.04),0 1px 3px rgba(0,0,0,.06);--radius:10px;--font:"Inter","Helvetica Neue",Arial,sans-serif}
+.rai *{box-sizing:border-box}
+.rai{font-family:var(--font);background:var(--bg);color:var(--ink-900);font-size:14px;height:100%}
+.rai .app{display:grid;grid-template-columns:230px 1fr;height:840px}
+.rai .sidebar{background:linear-gradient(180deg,var(--rai-700) 0%,var(--rai-600) 100%);color:#fff;display:flex;flex-direction:column}
+.rai .brand{padding:20px 18px 14px;border-bottom:1px solid rgba(255,255,255,.12)}
+.rai .brand-mark{font-size:28px;font-weight:800;letter-spacing:1px}
+.rai .brand-sub{font-size:11px;opacity:.78;margin-top:2px;letter-spacing:.4px}
+.rai .nav-list{flex:1;padding:12px 8px;display:flex;flex-direction:column;gap:2px}
+.rai .nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;background:transparent;border:0;color:rgba(255,255,255,.86);border-radius:8px;cursor:pointer;font-size:13.5px;text-align:left}
+.rai .nav-item.active{background:rgba(255,255,255,.18);color:#fff;font-weight:600}
+.rai .nav-item .ico{width:18px;text-align:center;opacity:.9}
+.rai .sidebar-foot{padding:12px 18px;border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:space-between}
+.rai .version{font-size:11px;opacity:.7}
+.rai .btn-ghost2{background:rgba(255,255,255,.1);border:0;color:#fff;border-radius:6px;padding:4px 9px;cursor:pointer;font-size:14px}
+.rai .main{overflow:auto}
+.rai .topbar{background:#fff;border-bottom:1px solid var(--ink-100);padding:12px 22px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:5}
+.rai .crumbs{font-size:13px;color:var(--ink-500)}
+.rai .crumb-app{font-weight:600;color:var(--ink-700)}
+.rai .crumb-sep{margin:0 6px;color:var(--ink-300)}
+.rai .crumb-tab{color:var(--ink-900);font-weight:600}
+.rai .topbar-right{display:flex;align-items:center;gap:12px}
+.rai .env-tag{font-size:11px;background:var(--rai-100);color:var(--rai-700);padding:3px 8px;border-radius:999px;font-weight:600;letter-spacing:.4px}
+.rai .btn-privacy{display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--ink-100);color:var(--ink-700);padding:5px 10px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer}
+.rai .today{font-size:12px;color:var(--ink-500)}
+.rai .tab{padding:22px}
+.rai .section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--ink-100)}
+.rai .section-head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--ink-100)}
+.rai .section-head h3{margin:0;font-size:15px;color:var(--ink-900)}
+.rai .section-head .sub{font-size:12px;color:var(--ink-500);font-weight:400;margin-left:8px}
+.rai .section-body{padding:16px 18px}
+.rai .btn{background:var(--rai-500);color:#fff;border:0;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.rai .btn.secondary{background:#fff;color:var(--rai-700);border:1px solid var(--rai-200)}
+.rai .btn.danger{background:#fff;color:var(--red);border:1px solid #F5C6C2}
+.rai .btn-group{display:flex;gap:8px}
+.rai .btn-sm{padding:5px 10px;font-size:12px}
+.rai .btn-focus-toggle{background:transparent;border:1px solid var(--ink-100);color:var(--ink-500);padding:6px 10px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.rai .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 18px;border-bottom:1px solid var(--ink-100);background:var(--rai-50)}
+.rai .toolbar .search{flex:1;min-width:200px;padding:7px 11px;border:1px solid var(--ink-100);border-radius:7px;font-size:13px;background:#fff}
+.rai .toolbar select{padding:7px 9px;border:1px solid var(--ink-100);border-radius:7px;font-size:13px;background:#fff}
+.rai .toolbar-inline{display:flex;gap:8px;align-items:center}
+.rai table.grid{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}
+.rai table.grid th{background:var(--rai-100);color:var(--rai-800);font-weight:600;text-align:left;padding:9px 10px;border-bottom:2px solid var(--rai-200);font-size:12px;line-height:1.25}
+.rai table.grid td{padding:7px 10px;border-bottom:1px solid var(--ink-100);vertical-align:top}
+.rai table.grid tr:hover td{background:var(--rai-50)}
+.rai .col-actions{width:60px;text-align:center}
+.rai .col-num{text-align:left;font-variant-numeric:tabular-nums}
+.rai .tbl-wrap{overflow:auto}
+.rai .inflow{color:var(--green);font-weight:600}.rai .outflow{color:var(--red);font-weight:600}
+.rai .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;font-weight:600}
+.rai .tag.active{background:#E6F4EC;color:var(--green)}.rai .tag.inactive{background:var(--ink-100);color:var(--ink-500)}
+.rai .tag.jcl{background:var(--rai-100);color:var(--rai-700)}.rai .tag.farm{background:#E0EEFB;color:var(--blue)}
+.rai .cfi-input{color:var(--blue)}
+.rai .note-text{font-size:11px;color:var(--ink-700);max-width:200px}
+/* dashboard */
+.rai .dash-page{padding:16px 20px 30px}
+.rai .dash-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:10px}
+.rai .dash-scope{display:inline-flex;background:var(--card);border:1px solid var(--ink-100);border-radius:10px;padding:3px;gap:2px}
+.rai .dash-scope-btn{background:transparent;border:0;padding:7px 14px;border-radius:7px;font-size:13px;font-weight:600;color:var(--ink-500);cursor:pointer}
+.rai .dash-scope-btn.active{background:var(--rai-500);color:#fff}
+.rai .dash-top-right{display:flex;align-items:center;gap:10px}
+.rai .dash-scope-label{font-size:12px;color:var(--ink-500);font-weight:500}
+.rai .dash-cash-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:14px;margin-bottom:18px}
+.rai .dash-cash-card{background:var(--card);border:1px solid var(--ink-100);border-radius:12px;padding:14px 18px;box-shadow:0 1px 3px rgba(0,0,0,.03)}
+.rai .dash-cash-label{font-size:12px;color:var(--ink-500);font-weight:600}
+.rai .dash-cash-value{font-size:24px;font-weight:700;color:var(--ink-900);margin:4px 0 2px;line-height:1.1}
+.rai .dash-cash-sub{font-size:11px;color:var(--ink-300)}
+.rai .dash-cash-card-revenue{background:rgba(242,107,31,.10);border-color:rgba(242,107,31,.25)}
+.rai .dash-cash-card-revenue .dash-cash-label,.rai .dash-cash-card-revenue .dash-cash-value{color:var(--rai-700)}
+.rai .dash-cash-card-split{display:grid;grid-template-rows:1fr 1fr;gap:6px}
+.rai .dash-cash-mini{background:var(--card);border:1px solid var(--ink-100);border-radius:10px;padding:8px 12px;display:flex;flex-direction:column;justify-content:center}
+.rai .dash-cash-mini-label{font-size:11px;color:var(--ink-500);font-weight:600}
+.rai .dash-cash-mini-value{font-size:16px;font-weight:700;color:var(--ink-900);margin:1px 0}
+.rai .dash-cash-mini-sub{font-size:10px;color:var(--ink-300)}
+.rai .dash-card{background:var(--card);border:1px solid var(--ink-100);border-radius:12px;padding:14px 16px 16px;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(0,0,0,.03)}
+.rai .dash-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px}
+.rai .dash-card-title h3{margin:0;font-size:14px;color:var(--ink-900);font-weight:600}
+.rai .dash-card-sub{font-size:11px;color:var(--ink-500);margin-top:2px;font-weight:500}
+.rai .dash-card-actions{display:inline-flex;gap:6px}
+.rai .dash-hc-toggle,.rai .dash-card-expand{background:transparent;border:1px solid var(--ink-100);color:var(--ink-500);padding:4px 8px;border-radius:6px;cursor:pointer;font-size:11px;font-weight:600}
+.rai .dash-fc-tabs{display:inline-flex;background:var(--rai-50);border-radius:7px;padding:2px;gap:2px;border:1px solid var(--rai-100)}
+.rai .dash-fc-tab{background:transparent;border:0;padding:5px 12px;border-radius:5px;font-size:12px;font-weight:600;color:var(--ink-500);cursor:pointer}
+.rai .dash-fc-tab.active{background:var(--rai-500);color:#fff}
+.rai .dash-forecast-controls{display:inline-flex;align-items:center;gap:10px}
+.rai .dash-growth{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-700);font-weight:500}
+.rai .dash-growth input{width:56px;padding:5px 8px;border:1px solid var(--ink-100);border-radius:6px;font-size:13px;font-weight:600;text-align:center}
+.rai .dash-forecast-section{margin-bottom:18px}
+.rai .dash-forecast-body{height:250px;position:relative}
+.rai .dash-bottom{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:14px}
+.rai .dash-bottom-tl{grid-column:1;grid-row:1}.rai .dash-bottom-bl{grid-column:1;grid-row:2}.rai .dash-bottom-r{grid-column:2;grid-row:1/span 2}
+.rai .dash-card-body{flex:1;position:relative;min-height:150px}
+.rai .dash-card-foot{font-size:11px;color:var(--ink-500);padding-top:8px;border-top:1px dashed var(--ink-100);margin-top:8px}
+/* production */
+.rai .prod-page{display:flex;flex-direction:column;gap:12px}
+.rai .prod-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.rai .prod-top-left{display:flex;align-items:center;gap:10px}
+.rai .prod-top-left select{padding:7px 10px;border:1px solid var(--ink-100);border-radius:7px;font-size:13px;background:#fff}
+.rai .prod-month-label{font-size:12px;color:var(--ink-500)}
+.rai .prod-weather{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--ink-100);border-radius:10px;padding:8px 14px;min-width:220px}
+.rai .prod-weather-icon{font-size:28px;line-height:1}
+.rai .prod-weather-temp{font-size:14px;font-weight:700}
+.rai .prod-weather-sub{font-size:10px;color:var(--ink-500)}
+.rai .prod-layout{display:grid;grid-template-columns:4fr 1fr;gap:14px;align-items:flex-start}
+.rai .prod-bldg{background:#fff;border:1px solid var(--ink-100);border-radius:8px;margin-bottom:12px;overflow:hidden}
+.rai .prod-bldg-title{padding:8px 12px;background:var(--rai-100);color:var(--rai-700);font-weight:700;font-size:14px;border-bottom:1px solid var(--ink-100)}
+.rai .prod-grid-scroll{overflow-x:auto}
+.rai .prod-grid{border-collapse:separate;border-spacing:0;font-size:13px}
+.rai .prod-grid thead th{background:var(--rai-50);border-bottom:1px solid var(--ink-100);padding:4px;font-size:11px;font-weight:700;color:var(--ink-700)}
+.rai .prod-row-label-head{width:180px;min-width:180px;text-align:left!important;padding-left:14px!important}
+.rai .prod-day-head{width:52px;min-width:52px;text-align:center!important}
+.rai .prod-day-num{font-weight:700;font-size:12px;color:var(--ink-700)}
+.rai .prod-day-weather{font-size:14px;margin-top:2px}
+.rai .prod-row-label{padding:5px 14px!important;background:#fff;border-right:1px solid var(--ink-100);border-bottom:1px solid var(--ink-100);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.rai .prod-row-label-computed{background:var(--rai-50)}
+.rai .prod-row-name{font-weight:700;font-size:13px;color:var(--ink-900);white-space:nowrap}
+.rai .prod-row-avg{font-size:11px;color:var(--rai-700);font-weight:700;white-space:nowrap}
+.rai .prod-row-avg-unit{font-size:10px;color:var(--ink-500);font-weight:400}
+.rai .prod-cell{padding:3px 6px!important;height:26px;text-align:right;border-bottom:1px solid #f1ece4;border-right:1px solid #f5f3ee;font-variant-numeric:tabular-nums;font-size:12px}
+.rai .prod-cell-computed{background:#FAFAF5;color:var(--ink-700);font-weight:600}
+.rai .prod-trend-up{background:#DCFCE7!important;color:#166534!important;font-weight:700}
+.rai .prod-trend-down{background:#FDECEB!important;color:#991B1B!important;font-weight:700}
+.rai .prod-trend-flat{background:#FED7AA!important;color:#9A3412!important;font-weight:700}
+.rai .prod-notes-body{padding:10px 12px 12px}
+.rai .prod-notes-body textarea{width:100%;min-height:300px;padding:10px 12px;border:1px solid var(--ink-100);border-radius:6px;font-family:inherit;font-size:12px;line-height:1.5;resize:none}
+.rai .prod-notes-status{margin-top:6px;font-size:10px;color:var(--ink-500);text-align:right}
+.rai .prod-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-left:6px}
+.rai .prod-badge-locked{background:var(--ink-100);color:var(--ink-700)}
+/* sales */
+.rai .sales-page{display:flex;flex-direction:column;gap:16px}
+.rai .sales-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.rai .stat-list{display:flex;flex-direction:column;gap:4px}
+.rai .stat-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0;font-size:12px}
+.rai .stat-label{color:var(--ink-700)}.rai .stat-val{font-variant-numeric:tabular-nums}
+.rai .stat-input{width:90px;text-align:left;padding:3px 6px;border:1px solid var(--ink-100);border-radius:4px;font-size:12px}
+/* cashflow */
+.rai .cashflow-layout{display:grid;grid-template-columns:2fr 1fr;gap:16px;align-items:flex-start}
+.rai .cashflow-right{display:flex;flex-direction:column;gap:16px}
+.rai .pos-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rai .pos-cell{padding:10px 12px;background:var(--rai-50);border:1px solid var(--rai-100);border-radius:8px}
+.rai .pos-label{font-size:11px;color:var(--ink-500);font-weight:600;letter-spacing:.4px;text-transform:uppercase}
+.rai .pos-value{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:4px}
+.rai .fs-label{font-size:11px;color:var(--ink-500);font-weight:600;letter-spacing:.4px;text-transform:uppercase;margin-bottom:6px}
+.rai .fs-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rai .fs-mini{font-size:10px;color:var(--ink-500);font-weight:600}
+.rai .fs-input{padding:4px 6px;border:1px solid var(--ink-100);border-radius:4px;font-size:12px;text-align:right;width:100%}
+.rai .wk-card{background:#fff;border:1px solid var(--ink-100);border-radius:8px;padding:10px 12px;margin-top:10px}
+.rai .wk-head{display:flex;align-items:center;gap:6px;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid var(--ink-100);font-size:12px}
+.rai .wk-days{margin-left:auto;font-size:11px;color:var(--ink-500);background:var(--rai-50);padding:2px 8px;border-radius:999px;font-weight:600}
+.rai .wk-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0;font-size:12px}
+.rai .wk-row.pos span:first-child{color:var(--green);font-weight:600}
+.rai .wk-row.sub{font-weight:700;padding-top:6px;border-top:1px dashed var(--ink-100);margin-top:4px}
+.rai .wk-row.sub.final{background:var(--rai-50);margin:4px -12px -10px;padding:6px 12px;border-radius:0 0 8px 8px;border-top:2px solid var(--rai-200)}
+/* AR */
+.rai .ar-page{display:flex;flex-direction:column;gap:14px}
+.rai .ar-top{display:grid;grid-template-columns:minmax(220px,1fr) 2fr;gap:14px;align-items:stretch}
+.rai .ar-top-left{background:#fff;border:1px solid var(--ink-100);border-radius:10px;padding:14px 18px}
+.rai .ar-top-label{font-size:10px;color:var(--ink-500);font-weight:700;letter-spacing:.5px;margin-bottom:4px}
+.rai .ar-top-value{font-size:28px;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums}
+.rai .ar-top-sub{font-size:11px;color:var(--ink-500);margin-top:4px}
+.rai .ar-aging-chips{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.rai .ar-chip{background:#fff;border:1px solid var(--ink-100);border-radius:10px;padding:10px 12px;text-align:left}
+.rai .ar-chip-active{border-color:var(--rai-500);background:var(--rai-50)}
+.rai .ar-chip-label{display:block;font-size:10px;color:var(--ink-500);font-weight:700;letter-spacing:.4px}
+.rai .ar-chip-value{display:block;font-size:16px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums}
+.rai .ar-chip-02 .ar-chip-value{color:var(--green)}.rai .ar-chip-35 .ar-chip-value{color:#8B6914}.rai .ar-chip-6 .ar-chip-value{color:var(--red)}
+.rai .ar-cards-wrap{padding:8px 12px 12px;display:flex;flex-direction:column;gap:8px}
+.rai .ar-card{background:#fff;border:1px solid var(--ink-100);border-radius:10px;overflow:hidden}
+.rai .ar-card-head{display:grid;grid-template-columns:28px 1fr auto auto;gap:12px;align-items:center;padding:12px 14px}
+.rai .ar-card-arrow{font-size:14px;color:var(--ink-500);font-weight:700;text-align:center}
+.rai .ar-card-name-line{display:flex;align-items:center;gap:8px;font-size:13px}
+.rai .ar-card-meta{font-size:11px;color:var(--ink-500);margin-top:4px;display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.rai .ar-card-aging{display:inline-flex;gap:4px;margin-left:4px}
+.rai .ar-bar{padding:2px 6px;border-radius:4px;font-size:10px;font-weight:600}
+.rai .ar-bar-02{background:#DCFCE7;color:#166534}.rai .ar-bar-35{background:#FEF3C7;color:#92400E}.rai .ar-bar-6{background:#FDECEB;color:#991B1B}
+.rai .ar-card-amount{text-align:right;min-width:90px}
+.rai .ar-card-amount-value{font-size:18px;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums}
+.rai .ar-card-amount-value.ar-amt-settled{color:var(--ink-500)}
+.rai .ar-card-amount-label{font-size:10px;color:var(--ink-500);margin-top:2px}
+.rai .ar-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+.rai .ar-badge-ok{background:#DCFCE7;color:#166534}.rai .ar-badge-recent{background:var(--rai-100);color:var(--rai-700)}.rai .ar-badge-warn{background:#FEF3C7;color:#92400E}.rai .ar-badge-aged{background:#FDECEB;color:#991B1B}
+.rai .ar-card-body{background:var(--rai-50);border-top:1px solid var(--ink-100);padding:10px 14px 14px}
+.rai .ar-aged-banner{background:#FDECEB;border:1px solid #F5C6C2;border-radius:6px;padding:8px 12px;margin-bottom:10px}
+.rai .ar-aged-banner-title{font-size:11px;font-weight:700;color:#991B1B;margin-bottom:6px}
+.rai .ar-aged-item{display:grid;grid-template-columns:90px 50px 1fr auto 40px;gap:8px;align-items:center;font-size:11px;padding:3px 0}
+.rai .ar-aged-txn{color:var(--rai-700);font-weight:600;font-size:10px}.rai .ar-aged-bal{color:#991B1B;font-weight:700}.rai .ar-aged-days{color:#991B1B;font-weight:700;font-size:10px;text-align:right}
+.rai .ar-ledger-wrap{background:#fff;border-radius:6px;overflow:hidden}
+.rai .ar-ledger-table{font-size:11px}
+.rai .ar-ledger-table thead th{background:var(--rai-100);padding:6px 10px;font-size:10px}
+.rai .ar-ledger-table td{padding:6px 10px}
+.rai .ar-ledger-payment td{background:#F0FDF4}
+.rai .ar-row-pay-btn{background:var(--rai-500);color:#fff;border:0;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700}
+/* expenses */
+.rai .expenses-layout{display:grid;grid-template-columns:7fr 3fr;gap:16px;align-items:flex-start}
+.rai .exp-analytics-body{padding:8px 12px 12px}
+.rai .exp-chart-block{margin-bottom:18px;padding:12px;background:#fff;border:1px solid var(--ink-100);border-radius:8px}
+.rai .exp-chart-title{font-size:12px;font-weight:600;color:var(--ink-700);margin-bottom:8px;text-transform:uppercase;letter-spacing:.4px}
+.rai .exp-chart-canvas-wrap{position:relative;height:170px;width:100%}
+.rai .exp-unusual-row{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:var(--rai-50);border-radius:6px;font-size:12px;margin-bottom:6px}
+.rai .exp-unusual-row .u-title{flex:1;font-weight:600;color:var(--ink-700)}
+.rai .exp-unusual-row .u-meta{font-size:10px;color:var(--ink-500);margin-left:6px}
+.rai .exp-unusual-row .u-amount{font-weight:700;color:var(--rai-700);margin-left:12px}
+/* customers */
+.rai .customers-layout{display:grid;grid-template-columns:2fr 3fr;gap:16px;align-items:flex-start}
+.rai .cust-row.selected td{background:var(--rai-100)}
+.rai .port-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rai .port-grid-6{grid-template-columns:1fr 1fr 1fr}
+.rai .port-cell{padding:12px 14px;background:var(--rai-50);border:1px solid var(--rai-100);border-radius:8px}
+.rai .port-label{font-size:10px;color:var(--ink-500);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.rai .port-value{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:4px}
+.rai .port-sub{font-size:11px;color:var(--ink-500);margin-top:2px}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/case-studies/rai-egg-production" class="site-nav-back">&larr; Back to Case Study</a>
+  <div class="site-nav-right">
+    <span class="site-nav-sample">Sample data</span>
+    <a href="/" class="site-nav-wordmark">Studio JNSQ</a>
+  </div>
+</nav>
+
+<div class="cs-wrap">
+
+  <header class="cs-hero">
+    <div class="cs-eyebrow">Internal Tools · Case Study</div>
+    <h1>RAI Operations Console</h1>
+    <div class="cs-org">Rovic Agriventures Inc. — commercial egg-layer farm</div>
+    <p>A single back-office application that replaced a stack of disconnected spreadsheets. It ties daily production, sales &amp; collection, cash flow, receivables, expenses and customers into one source of truth — built around how the family actually runs the farm, not around accounting theory. Every screen below is the real interface, populated with representative figures.</p>
+    <div class="cs-meta">
+      <div><span class="k">Role</span><span class="v">Product design &amp; build</span></div>
+      <div><span class="k">Surface</span><span class="v">Web app · 7 modules</span></div>
+      <div><span class="k">Users</span><span class="v">Owner + 2 encoders</span></div>
+      <div><span class="k">Stack</span><span class="v">Google Sheets backend</span></div>
+    </div>
+    <div class="cs-disclaimer"><span class="di">&#x1F512;</span><p><b>Sample data — nothing real.</b> Every figure, customer name, invoice and balance on these screens is invented purely to demonstrate the interface. No actual Rovic Agriventures Inc. records, client information or financial data appears here, and none has been exposed or shared.</p></div>
+  </header>
+
+  <!-- ============ 1 · DASHBOARD ============ -->
+  <section class="cs-screen">
+    <aside class="cs-note">
+      <div class="idx">01 — DASHBOARD</div>
+      <h2>The morning glance</h2>
+      <p class="lead">The one screen the owner opens with coffee. It answers "how are we doing, and can we cover this week?" before any drill-down.</p>
+      <ul>
+        <li><span class="m">&#x20B1;</span><span><b>Money first.</b> Four liquidity tiles — revenue, cash on hand, receivables, inventory value — read left to right the way you'd think about the business.</span></li>
+        <li><span class="m">&#x2194;</span><span><b>Scope is one tap.</b> Week / MTD / QTD / YTD / All / Custom re-scopes every tile and chart at once, so comparisons stay honest.</span></li>
+        <li><span class="m">&#x1F4C8;</span><span><b>Forecast up top.</b> A grower's year-end projection with an adjustable growth factor — planning, not just reporting.</span></li>
+        <li><span class="m">&#x25F1;</span><span><b>Hide-&#x20B1; mode.</b> Cash holdings blur on demand so the screen can be shown to staff without exposing balances.</span></li>
+      </ul>
+    </aside>
+    <div class="cs-frameshadow">
+      <div class="cs-chrome"><div class="cs-lights"><i></i><i></i><i></i></div>
+        <div class="cs-url"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>script.google.com/rai-console · Dashboard</div><span class="cs-chip">Sample data</span>
+      </div>
+      <div class="cs-app-frame">
+        <div class="rai"><div class="app">
+          <aside class="sidebar">
+            <div class="brand"><div class="brand-mark">RAI</div><div class="brand-sub">ROVIC AGRIVENTURES INC.</div></div>
+            <nav class="nav-list">
+              <button class="nav-item active"><span class="ico">&#x25A6;</span><span>Dashboard</span></button>
+              <button class="nav-item"><span class="ico">&#x25A4;</span><span>Production</span></button>
+              <button class="nav-item"><span class="ico">&#x20B1;</span><span>Sales &amp; Collection</span></button>
+              <button class="nav-item"><span class="ico">&#x21C5;</span><span>Cash Flow</span></button>
+              <button class="nav-item"><span class="ico">&#x23F0;</span><span>Accounts Receivable</span></button>
+              <button class="nav-item"><span class="ico">&#x25A3;</span><span>Expenses</span></button>
+              <button class="nav-item"><span class="ico">&#x25C9;</span><span>Customers</span></button>
+            </nav>
+            <div class="sidebar-foot"><div class="version">v1.2.0</div><button class="btn-ghost2">&#x21BB;</button></div>
+          </aside>
+          <main class="main">
+            <header class="topbar">
+              <div class="crumbs"><span class="crumb-app">ROVIC AGRIVENTURES INC.</span><span class="crumb-sep">/</span><span class="crumb-tab">Dashboard</span></div>
+              <div class="topbar-right"><button class="btn-privacy"><span>&#x1F441;&#xFE0F;</span><span>Hide &#x20B1;</span></button><span class="env-tag">PROD</span><span class="today">Tue, 30 Jun 2026</span></div>
+            </header>
+            <section class="tab">
+              <div class="dash-page">
+                <div class="dash-top">
+                  <div class="dash-scope">
+                    <button class="dash-scope-btn">Week</button><button class="dash-scope-btn">MTD</button><button class="dash-scope-btn">QTD</button><button class="dash-scope-btn active">YTD</button><button class="dash-scope-btn">All</button><button class="dash-scope-btn">Custom</button>
+                  </div>
+                  <div class="dash-top-right"><span style="font-size:11px;font-weight:700;letter-spacing:.4px;color:#A0400A;background:#FFE9D6;padding:3px 10px;border-radius:999px">Sample data — illustrative figures only</span><span class="dash-scope-label">Year to date · 2026</span><button class="btn secondary btn-sm">&#x21BB;</button></div>
+                </div>
+                <div class="dash-cash-row">
+                  <div class="dash-cash-card dash-cash-card-revenue"><div class="dash-cash-label">Revenue</div><div class="dash-cash-value">&#x20B1;39,120,000</div><div class="dash-cash-sub">Period-based</div></div>
+                  <div class="dash-cash-card"><div class="dash-cash-label">Cash Holdings</div><div class="dash-cash-value">&#x20B1;19,720,000</div><div class="dash-cash-sub">Current · GXI + RCBC + Cash</div></div>
+                  <div class="dash-cash-card"><div class="dash-cash-label">Accounts Receivable</div><div class="dash-cash-value">&#x20B1;284,300</div><div class="dash-cash-sub">Current · Unpaid from sales</div></div>
+                  <div class="dash-cash-card"><div class="dash-cash-label">Inventory Value</div><div class="dash-cash-value">&#x20B1;549,100</div><div class="dash-cash-sub">Current · Live × avg price</div></div>
+                  <div class="dash-cash-card-split">
+                    <div class="dash-cash-mini"><div class="dash-cash-mini-label">Avg Good / Day</div><div class="dash-cash-mini-value">1,501 tr</div><div class="dash-cash-mini-sub">Period · production days</div></div>
+                    <div class="dash-cash-mini"><div class="dash-cash-mini-label">Avg Good Price</div><div class="dash-cash-mini-value">&#x20B1;208</div><div class="dash-cash-mini-sub">Period · &#x20B1; per tray</div></div>
+                  </div>
+                </div>
+                <div class="dash-forecast-section">
+                  <div class="dash-card">
+                    <div class="dash-card-head">
+                      <div class="dash-card-title"><h3>Year-End Forecast</h3><div class="dash-card-sub">Projected 468,000 good trays · &#x20B1;97.3M revenue at current pace</div></div>
+                      <div class="dash-forecast-controls">
+                        <div class="dash-fc-tabs"><button class="dash-fc-tab active">Good</button><button class="dash-fc-tab">Crack</button><button class="dash-fc-tab">Revenue</button></div>
+                        <label class="dash-growth">Growth ×<input value="1.05"></label>
+                        <button class="btn btn-sm">Apply</button><button class="dash-card-expand">&#x2922;</button>
+                      </div>
+                    </div>
+                    <div class="dash-card-body dash-forecast-body"><canvas id="raiChartForecast"></canvas></div>
+                    <div class="dash-card-foot">Actuals Jan–May · dashed projection Jun–Dec at 5% assumed growth</div>
+                  </div>
+                </div>
+                <div class="dash-bottom">
+                  <div class="dash-card dash-bottom-tl">
+                    <div class="dash-card-head"><div class="dash-card-title"><h3>Production · Good</h3><div class="dash-card-sub">2026 vs 2025 · trays/mo</div></div><div class="dash-card-actions"><button class="dash-hc-toggle">+ HC</button><button class="dash-card-expand">&#x2922;</button></div></div>
+                    <div class="dash-card-body"><canvas id="raiChartGood"></canvas></div>
+                  </div>
+                  <div class="dash-card dash-bottom-bl">
+                    <div class="dash-card-head"><div class="dash-card-title"><h3>Production · Crack</h3><div class="dash-card-sub">2026 vs 2025 · trays/mo</div></div><div class="dash-card-actions"><button class="dash-hc-toggle">+ HC</button><button class="dash-card-expand">&#x2922;</button></div></div>
+                    <div class="dash-card-body"><canvas id="raiChartCrack"></canvas></div>
+                  </div>
+                  <div class="dash-card dash-bottom-r">
+                    <div class="dash-card-head"><div class="dash-card-title"><h3>Expenses · By Category</h3><div class="dash-card-sub">YTD · &#x20B1;61.9M total</div></div><button class="dash-card-expand">&#x2922;</button></div>
+                    <div class="dash-card-body"><canvas id="raiChartExpense"></canvas></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2 · PRODUCTION ============ -->
+  <section class="cs-screen">
+    <aside class="cs-note">
+      <div class="idx">02 — PRODUCTION</div>
+      <h2>The farm as a spreadsheet — but smarter</h2>
+      <p class="lead">Encoders already thought in day-columns, so the grid keeps that muscle memory while doing the math for them.</p>
+      <ul>
+        <li><span class="m">&#x25A4;</span><span><b>Familiar grid.</b> One column per day, one row per metric — the layout the paper logbook already used.</span></li>
+        <li><span class="m">&#x0192;</span><span><b>Derived rows are locked.</b> Crack %, production rate and trend compute automatically and can't be typed over.</span></li>
+        <li><span class="m">&#x2600;</span><span><b>Weather in the header.</b> Daily conditions sit above each day so dips in lay rate have context.</span></li>
+        <li><span class="m">&#x1F512;</span><span><b>Month locking.</b> Closed months become read-only to protect audited history.</span></li>
+      </ul>
+    </aside>
+    <div class="cs-frameshadow">
+      <div class="cs-chrome"><div class="cs-lights"><i></i><i></i><i></i></div><div class="cs-url"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>script.google.com/rai-console · Production</div><span class="cs-chip">Sample data</span></div>
+      <div class="cs-app-frame">
+        <div class="rai"><div class="app">
+          <aside class="sidebar">
+            <div class="brand"><div class="brand-mark">RAI</div><div class="brand-sub">ROVIC AGRIVENTURES INC.</div></div>
+            <nav class="nav-list">
+              <button class="nav-item"><span class="ico">&#x25A6;</span><span>Dashboard</span></button>
+              <button class="nav-item active"><span class="ico">&#x25A4;</span><span>Production</span></button>
+              <button class="nav-item"><span class="ico">&#x20B1;</span><span>Sales &amp; Collection</span></button>
+              <button class="nav-item"><span class="ico">&#x21C5;</span><span>Cash Flow</span></button>
+              <button class="nav-item"><span class="ico">&#x23F0;</span><span>Accounts Receivable</span></button>
+              <button class="nav-item"><span class="ico">&#x25A3;</span><span>Expenses</span></button>
+              <button class="nav-item"><span class="ico">&#x25C9;</span><span>Customers</span></button>
+            </nav>
+            <div class="sidebar-foot"><div class="version">v1.2.0</div><button class="btn-ghost2">&#x21BB;</button></div>
+          </aside>
+          <main class="main">
+            <header class="topbar"><div class="crumbs"><span class="crumb-app">ROVIC AGRIVENTURES INC.</span><span class="crumb-sep">/</span><span class="crumb-tab">Production</span></div><div class="topbar-right"><button class="btn-privacy"><span>&#x1F441;&#xFE0F;</span><span>Hide &#x20B1;</span></button><span class="env-tag">PROD</span><span class="today">Tue, 30 Jun 2026</span></div></header>
+            <section class="tab">
+              <div class="prod-page">
+                <div class="prod-top">
+                  <div class="prod-top-left"><select><option>June 2026</option></select><span class="prod-month-label">Building 1 · 50,000 hens · lay rate 90.4%</span></div>
+                  <div class="prod-weather"><div class="prod-weather-icon">&#x26C5;</div><div><div class="prod-weather-temp">31°C · Cabuyao</div><div class="prod-weather-sub">Partly cloudy · humidity 78%</div></div></div>
+                </div>
+                <div class="prod-layout">
+                  <div class="section" style="overflow:hidden">
+                    <div class="section-head"><div><h3>Production <span class="sub">Building 1 <span class="prod-badge prod-badge-locked">Unlocked</span></span></h3></div><div class="btn-group"><button class="btn-focus-toggle">&#x26F6; Focus</button><button class="btn btn-sm">&#x1F4CA; Forecast</button><button class="btn secondary btn-sm">&#x2913; CSV</button><button class="btn secondary btn-sm">&#x2399; PDF</button></div></div>
+                    <div style="padding:10px 12px 14px">
+                      <div class="prod-bldg">
+                        <div class="prod-bldg-title">Building 1 — Layer House A</div>
+                        <div class="prod-grid-scroll">
+                          <table class="prod-grid">
+                            <thead><tr>
+                              <th class="prod-row-label-head">Accounts</th>
+                              <th class="prod-day-head"><div class="prod-day-num">1</div><div class="prod-day-weather">&#x2600;</div></th>
+                              <th class="prod-day-head"><div class="prod-day-num">2</div><div class="prod-day-weather">&#x2600;</div></th>
+                              <th class="prod-day-head"><div class="prod-day-num">3</div><div class="prod-day-weather">&#x26C5;</div></th>
+                              <th class="prod-day-head"><div class="prod-day-num">4</div><div class="prod-day-weather">&#x1F327;</div></th>
+                              <th class="prod-day-head"><div class="prod-day-num">5</div><div class="prod-day-weather">&#x1F327;</div></th>
+                              <th class="prod-day-head"><div class="prod-day-num">6</div><div class="prod-day-weather">&#x26C5;</div></th>
+                              <th class="prod-day-head"><div class="prod-day-num">7</div><div class="prod-day-weather">&#x2600;</div></th>
+                              <th class="prod-day-head"><div class="prod-day-num">8</div><div class="prod-day-weather">&#x2600;</div></th>
+                              <th class="prod-day-head"><div class="prod-day-num">9</div><div class="prod-day-weather">&#x26C5;</div></th>
+                              <th class="prod-day-head"><div class="prod-day-num">10</div><div class="prod-day-weather">&#x2600;</div></th>
+                              <th class="prod-day-head"><div class="prod-day-num">11</div><div class="prod-day-weather">&#x2600;</div></th>
+                              <th class="prod-day-head"><div class="prod-day-num">12</div><div class="prod-day-weather">&#x26C5;</div></th>
+                              <th class="prod-day-head"><div class="prod-day-num">13</div><div class="prod-day-weather">&#x1F327;</div></th>
+                              <th class="prod-day-head"><div class="prod-day-num">14</div><div class="prod-day-weather">&#x26C5;</div></th>
+                            </tr></thead>
+                            <tbody>
+                              <tr><td class="prod-row-label prod-row-label-computed"><span class="prod-row-name">Head Count</span><span class="prod-row-avg-empty prod-row-avg-unit">hd</span></td><td class="prod-cell prod-cell-computed">50,000</td><td class="prod-cell prod-cell-computed">50,000</td><td class="prod-cell prod-cell-computed">49,996</td><td class="prod-cell prod-cell-computed">49,992</td><td class="prod-cell prod-cell-computed">49,988</td><td class="prod-cell prod-cell-computed">49,984</td><td class="prod-cell prod-cell-computed">49,980</td><td class="prod-cell prod-cell-computed">49,977</td><td class="prod-cell prod-cell-computed">49,973</td><td class="prod-cell prod-cell-computed">49,969</td><td class="prod-cell prod-cell-computed">49,966</td><td class="prod-cell prod-cell-computed">49,962</td><td class="prod-cell prod-cell-computed">49,958</td><td class="prod-cell prod-cell-computed">49,955</td></tr>
+                              <tr><td class="prod-row-label"><span class="prod-row-name">Good</span><span class="prod-row-avg">1,501 <span class="prod-row-avg-unit">tr/d</span></span></td><td class="prod-cell">1,522</td><td class="prod-cell">1,535</td><td class="prod-cell">1,503</td><td class="prod-cell">1,458</td><td class="prod-cell">1,439</td><td class="prod-cell">1,484</td><td class="prod-cell">1,527</td><td class="prod-cell">1,540</td><td class="prod-cell">1,508</td><td class="prod-cell">1,522</td><td class="prod-cell">1,533</td><td class="prod-cell">1,492</td><td class="prod-cell">1,447</td><td class="prod-cell">1,506</td></tr>
+                              <tr><td class="prod-row-label"><span class="prod-row-name">Crack</span><span class="prod-row-avg">65.9 <span class="prod-row-avg-unit">tr/d</span></span></td><td class="prod-cell">54</td><td class="prod-cell">62</td><td class="prod-cell">70</td><td class="prod-cell">83</td><td class="prod-cell">91</td><td class="prod-cell">67</td><td class="prod-cell">54</td><td class="prod-cell">48</td><td class="prod-cell">62</td><td class="prod-cell">59</td><td class="prod-cell">54</td><td class="prod-cell">70</td><td class="prod-cell">86</td><td class="prod-cell">62</td></tr>
+                              <tr><td class="prod-row-label"><span class="prod-row-name">Mortality</span><span class="prod-row-avg">5.1 <span class="prod-row-avg-unit">ck/d</span></span></td><td class="prod-cell">5</td><td class="prod-cell">0</td><td class="prod-cell">5</td><td class="prod-cell">16</td><td class="prod-cell">8</td><td class="prod-cell">0</td><td class="prod-cell">3</td><td class="prod-cell">5</td><td class="prod-cell">11</td><td class="prod-cell">0</td><td class="prod-cell">3</td><td class="prod-cell">5</td><td class="prod-cell">8</td><td class="prod-cell">3</td></tr>
+                              <tr><td class="prod-row-label"><span class="prod-row-name">Adjustments</span><span class="prod-row-avg-empty prod-row-avg-unit">ck</span></td><td class="prod-cell">—</td><td class="prod-cell">—</td><td class="prod-cell">—</td><td class="prod-cell">—</td><td class="prod-cell">−4</td><td class="prod-cell">—</td><td class="prod-cell">—</td><td class="prod-cell">—</td><td class="prod-cell">—</td><td class="prod-cell">—</td><td class="prod-cell">—</td><td class="prod-cell">—</td><td class="prod-cell">—</td><td class="prod-cell">—</td></tr>
+                              <tr><td class="prod-row-label prod-row-label-computed"><span class="prod-row-name">Crack %</span><span class="prod-row-avg-empty prod-row-avg-unit">%</span></td><td class="prod-cell prod-cell-computed">3.23%</td><td class="prod-cell prod-cell-computed">3.64%</td><td class="prod-cell prod-cell-computed">4.15%</td><td class="prod-cell prod-cell-computed">5.19%</td><td class="prod-cell prod-cell-computed">5.71%</td><td class="prod-cell prod-cell-computed">4.21%</td><td class="prod-cell prod-cell-computed">3.21%</td><td class="prod-cell prod-cell-computed">2.74%</td><td class="prod-cell prod-cell-computed">3.69%</td><td class="prod-cell prod-cell-computed">3.67%</td><td class="prod-cell prod-cell-computed">3.20%</td><td class="prod-cell prod-cell-computed">4.19%</td><td class="prod-cell prod-cell-computed">5.24%</td><td class="prod-cell prod-cell-computed">3.72%</td></tr>
+                              <tr><td class="prod-row-label prod-row-label-computed"><span class="prod-row-name">Production Rate</span><span class="prod-row-avg-empty prod-row-avg-unit">%</span></td><td class="prod-cell prod-cell-computed">92.9%</td><td class="prod-cell prod-cell-computed">93.8%</td><td class="prod-cell prod-cell-computed">92.1%</td><td class="prod-cell prod-cell-computed">89.1%</td><td class="prod-cell prod-cell-computed">87.8%</td><td class="prod-cell prod-cell-computed">91.0%</td><td class="prod-cell prod-cell-computed">93.6%</td><td class="prod-cell prod-cell-computed">94.5%</td><td class="prod-cell prod-cell-computed">92.7%</td><td class="prod-cell prod-cell-computed">93.2%</td><td class="prod-cell prod-cell-computed">94.1%</td><td class="prod-cell prod-cell-computed">91.5%</td><td class="prod-cell prod-cell-computed">88.4%</td><td class="prod-cell prod-cell-computed">92.0%</td></tr>
+                              <tr><td class="prod-row-label prod-row-label-computed"><span class="prod-row-name">Production Trend</span><span class="prod-row-avg-empty prod-row-avg-unit">&#x0394;</span></td><td class="prod-cell prod-cell-computed">—</td><td class="prod-cell prod-trend-up">+0.90%</td><td class="prod-cell prod-trend-down">−1.70%</td><td class="prod-cell prod-trend-down">−3.00%</td><td class="prod-cell prod-trend-down">−1.30%</td><td class="prod-cell prod-trend-up">+3.20%</td><td class="prod-cell prod-trend-up">+2.60%</td><td class="prod-cell prod-trend-up">+0.90%</td><td class="prod-cell prod-trend-down">−1.80%</td><td class="prod-cell prod-trend-up">+0.50%</td><td class="prod-cell prod-trend-up">+0.90%</td><td class="prod-cell prod-trend-down">−2.60%</td><td class="prod-cell prod-trend-down">−3.10%</td><td class="prod-cell prod-trend-up">+3.60%</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="section">
+                    <div class="section-head"><h3>Notes <span class="sub">June 2026</span></h3></div>
+                    <div class="prod-notes-body">
+                      <textarea readonly>Jun 3–4: heat index hit 42°C, lay rate dipped ~4pts, recovered by the 6th with extra electrolytes.
+
+Jun 5: culled 4 non-layers from Row C (adjustment logged).
+
+Feeds: shifted to new Purina lot #2291 on the 5th — no visible change in crack.
+
+Vet visit scheduled Jul 2 for routine deworming.</textarea>
+                      <div class="prod-notes-status">auto-saves</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3 · SALES & COLLECTION ============ -->
+  <section class="cs-screen">
+    <aside class="cs-note">
+      <div class="idx">03 — SALES &amp; COLLECTION</div>
+      <h2>Sell and get paid, in one row</h2>
+      <p class="lead">Egg sales and their collection are the same event to a farmer, so the record captures both — total, paid, and balance side by side.</p>
+      <ul>
+        <li><span class="m">&#x2263;</span><span><b>Live inventory panel.</b> System vs physical count sit above the ledger, surfacing shrinkage as a variance.</span></li>
+        <li><span class="m">&#xFF0B;</span><span><b>Bottom "auto-row".</b> A dashed entry row means adding a sale never needs a modal.</span></li>
+        <li><span class="m">&#x1F3F7;</span><span><b>Good vs Crack.</b> Category and Paid-To (JCL / Farm) are colour-chips so the eye scans channels fast.</span></li>
+        <li><span class="m">&#x270E;</span><span><b>Spreadsheet edit mode.</b> Power users flip the whole table into keyboard-navigable cells.</span></li>
+      </ul>
+    </aside>
+    <div class="cs-frameshadow">
+      <div class="cs-chrome"><div class="cs-lights"><i></i><i></i><i></i></div><div class="cs-url"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>script.google.com/rai-console · Sales</div><span class="cs-chip">Sample data</span></div>
+      <div class="cs-app-frame">
+        <div class="rai"><div class="app">
+          <aside class="sidebar">
+            <div class="brand"><div class="brand-mark">RAI</div><div class="brand-sub">ROVIC AGRIVENTURES INC.</div></div>
+            <nav class="nav-list">
+              <button class="nav-item"><span class="ico">&#x25A6;</span><span>Dashboard</span></button>
+              <button class="nav-item"><span class="ico">&#x25A4;</span><span>Production</span></button>
+              <button class="nav-item active"><span class="ico">&#x20B1;</span><span>Sales &amp; Collection</span></button>
+              <button class="nav-item"><span class="ico">&#x21C5;</span><span>Cash Flow</span></button>
+              <button class="nav-item"><span class="ico">&#x23F0;</span><span>Accounts Receivable</span></button>
+              <button class="nav-item"><span class="ico">&#x25A3;</span><span>Expenses</span></button>
+              <button class="nav-item"><span class="ico">&#x25C9;</span><span>Customers</span></button>
+            </nav>
+            <div class="sidebar-foot"><div class="version">v1.2.0</div><button class="btn-ghost2">&#x21BB;</button></div>
+          </aside>
+          <main class="main">
+            <header class="topbar"><div class="crumbs"><span class="crumb-app">ROVIC AGRIVENTURES INC.</span><span class="crumb-sep">/</span><span class="crumb-tab">Sales &amp; Collection</span></div><div class="topbar-right"><button class="btn-privacy"><span>&#x1F441;&#xFE0F;</span><span>Hide &#x20B1;</span></button><span class="env-tag">PROD</span><span class="today">Tue, 30 Jun 2026</span></div></header>
+            <section class="tab">
+              <div class="sales-page">
+                <div class="sales-stats">
+                  <div class="section"><div class="section-head"><h3>System Inventory <span class="sub">· 2026-06</span></h3></div><div class="section-body">
+                    <div class="stat-list">
+                      <div style="font-size:10px;color:var(--ink-500);font-weight:600;margin-bottom:3px;letter-spacing:.4px">GOOD</div>
+                      <div class="stat-row"><span class="stat-label">Beginning Inventory</span><span class="stat-val">2,560</span></div>
+                      <div class="stat-row"><span class="stat-label">+ Prod MTD</span><span class="stat-val" style="color:var(--green)">39,600</span></div>
+                      <div class="stat-row"><span class="stat-label">− Sold MTD</span><span class="stat-val" style="color:var(--red)">39,520</span></div>
+                      <div class="stat-row" style="border-top:1px solid var(--ink-100);padding-top:5px;margin-top:4px;font-weight:700"><span class="stat-label">= Ending Inventory</span><span class="stat-val" style="color:var(--ink-900)">2,640</span></div>
+                      <div style="font-size:10px;color:var(--ink-500);font-weight:600;margin:10px 0 3px;letter-spacing:.4px">CRACK <span style="font-weight:400;text-transform:none">(info only — sold on farm)</span></div>
+                      <div class="stat-row"><span class="stat-label">Crack Prod MTD</span><span class="stat-val" style="color:var(--ink-500)">1,670</span></div>
+                    </div>
+                  </div></div>
+                  <div class="section"><div class="section-head"><h3>Live Inventory <span class="sub">· last update 09 Jun</span></h3></div><div class="section-body">
+                    <div class="stat-list">
+                      <div class="stat-row"><span class="stat-label">Good Live</span><input class="stat-input" value="2,640"></div>
+                      <div class="stat-row"><span class="stat-label">Good→Crack Adj.</span><input class="stat-input" value="48"></div>
+                      <div class="stat-row" style="border-top:1px solid var(--ink-100);padding-top:5px;margin-top:4px;font-weight:700"><span class="stat-label">Good Variance</span><span class="stat-val" style="color:var(--green)">+50</span></div>
+                      <div style="margin-top:8px;display:flex;align-items:center;gap:8px"><input value="Physical count after AM collection" style="flex:1;padding:4px 8px;border:1px solid var(--ink-100);border-radius:4px;font-size:11px"><span style="font-size:10px;color:var(--ink-500)">auto-saves</span></div>
+                    </div>
+                  </div></div>
+                  <div class="section"><div class="section-head"><h3>Financials <span class="sub">· 2026-06</span></h3></div><div class="section-body">
+                    <div class="stat-list">
+                      <div class="stat-row" style="font-weight:700"><span class="stat-label">Total Revenue</span><span class="stat-val" style="color:var(--green)">&#x20B1;8,150,000</span></div>
+                      <div class="stat-row"><span class="stat-label">− Expenses</span><span class="stat-val" style="color:var(--red)">&#x20B1;6,874,000</span></div>
+                      <div class="stat-row" style="border-top:1px solid var(--ink-100);padding-top:5px;margin-top:4px;font-weight:700"><span class="stat-label">= Net</span><span class="stat-val" style="color:var(--green)">&#x20B1;1,276,000</span></div>
+                      <div class="stat-row" style="border-top:1px solid var(--ink-100);padding-top:5px;margin-top:4px"><span class="stat-label">Total Receivables (AR)</span><span class="stat-val" style="color:var(--red)">&#x20B1;284,300</span></div>
+                      <div class="stat-row"><span class="stat-label">Total Collected</span><span class="stat-val">&#x20B1;7,800,000</span></div>
+                      <div class="stat-row" style="border-top:1px solid var(--ink-100);padding-top:5px;margin-top:4px"><span class="stat-label">Crack Adjustments</span><span class="stat-val">&#x20B1;136,000</span></div>
+                    </div>
+                  </div></div>
+                </div>
+                <div class="section">
+                  <div class="section-head"><div><h3>Sales &amp; Collection <span class="sub">· 7</span></h3></div><div class="btn-group"><button class="btn-focus-toggle">&#x26F6; Focus</button><button class="btn secondary btn-sm">&#x2913; CSV</button><button class="btn secondary btn-sm">&#x2399; PDF</button><button class="btn btn-sm">&#x270E; Edit Records</button><button class="btn btn-sm">+ Add</button></div></div>
+                  <div class="toolbar"><input class="search" placeholder="Search customer, invoice, notes…"><select><option>2026-06</option></select><select><option>All categories</option></select><select><option>All paid-to</option></select></div>
+                  <div class="tbl-wrap">
+                    <table class="grid">
+                      <thead><tr><th style="width:26px"></th><th style="width:82px">Date</th><th style="width:52px">Txn #</th><th style="width:78px">Invoice</th><th>Customer</th><th style="width:60px">Cat</th><th style="width:48px">Qty</th><th style="width:64px">Price</th><th style="width:96px">Total (&#x20B1;)</th><th style="width:92px">Paid</th><th style="width:96px">Balance</th><th style="width:70px">Paid To</th><th>Notes</th><th class="col-actions">&#x22EF;</th></tr></thead>
+                      <tbody>
+                        <tr><td></td><td>08 Jun</td><td><b style="color:var(--rai-700)">1042</b></td><td>INV-2291</td><td><b>Other Customers</b></td><td><span class="tag" style="background:#E6F4EC;color:var(--green)">Good</span></td><td>36</td><td>&#x20B1;240</td><td class="cfi-input"><b class="inflow">&#x20B1;8,640</b></td><td style="color:var(--green)">&#x20B1;8,640</td><td><b style="color:var(--ink-500)">&#x20B1;0</b></td><td><span class="tag farm">Farm</span></td><td class="note-text">Walk-in retail, mixed</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>09 Jun</td><td><b style="color:var(--rai-700)">1043</b></td><td>INV-2292</td><td><b>Aling Nena Sari-Sari</b></td><td><span class="tag" style="background:#E6F4EC;color:var(--green)">Good</span></td><td>60</td><td>&#x20B1;242</td><td class="cfi-input"><b class="inflow">&#x20B1;14,520</b></td><td style="color:var(--green)">&#x20B1;14,520</td><td><b style="color:var(--ink-500)">&#x20B1;0</b></td><td><span class="tag jcl">JCL</span></td><td class="note-text">Paid GCash</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>10 Jun</td><td><b style="color:var(--rai-700)">1044</b></td><td>INV-2293</td><td><b>Golden Yolk Bakery</b></td><td><span class="tag" style="background:#E6F4EC;color:var(--green)">Good</span></td><td>150</td><td>&#x20B1;238</td><td class="cfi-input"><b class="inflow">&#x20B1;35,700</b></td><td style="color:var(--green)">&#x20B1;20,000</td><td><b style="color:var(--red)">&#x20B1;15,700</b></td><td><span class="tag jcl">JCL</span></td><td class="note-text">Balance due 21 Jun</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>11 Jun</td><td><b style="color:var(--rai-700)">1045</b></td><td>INV-2294</td><td><b>Mang Tonio Eatery</b></td><td><span class="tag" style="background:#E6F4EC;color:var(--green)">Good</span></td><td>45</td><td>&#x20B1;245</td><td class="cfi-input"><b class="inflow">&#x20B1;11,025</b></td><td style="color:var(--green)">&#x20B1;11,025</td><td><b style="color:var(--ink-500)">&#x20B1;0</b></td><td><span class="tag jcl">JCL</span></td><td class="note-text"></td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>12 Jun</td><td><b style="color:var(--rai-700)">1046</b></td><td>INV-2295</td><td><b>RML Poultry Supply</b></td><td><span class="tag" style="background:#FFF7E0;color:#8B6914">Crack</span></td><td>90</td><td>&#x20B1;150</td><td class="cfi-input"><b class="inflow">&#x20B1;13,500</b></td><td style="color:var(--green)">&#x20B1;13,500</td><td><b style="color:var(--ink-500)">&#x20B1;0</b></td><td><span class="tag farm">Farm</span></td><td class="note-text">Crack sold on farm</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>13 Jun</td><td><b style="color:var(--rai-700)">1047</b></td><td>INV-2296</td><td><b>Sps. Villanueva Store</b></td><td><span class="tag" style="background:#E6F4EC;color:var(--green)">Good</span></td><td>120</td><td>&#x20B1;240</td><td class="cfi-input"><b class="inflow">&#x20B1;28,800</b></td><td style="color:var(--green)">&#x20B1;10,000</td><td><b style="color:var(--red)">&#x20B1;18,800</b></td><td><span class="tag jcl">JCL</span></td><td class="note-text">Regular · weekly terms</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>14 Jun</td><td><b style="color:var(--rai-700)">1048</b></td><td>INV-2297</td><td><b>Reyes Carinderia</b></td><td><span class="tag" style="background:#E6F4EC;color:var(--green)">Good</span></td><td>30</td><td>&#x20B1;245</td><td class="cfi-input"><b class="inflow">&#x20B1;7,350</b></td><td style="color:var(--green)">&#x20B1;7,350</td><td><b style="color:var(--ink-500)">&#x20B1;0</b></td><td><span class="tag jcl">JCL</span></td><td class="note-text"></td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr class="auto-row" style="background:#FFFEF7"><td></td><td colspan="4" style="border-top:2px dashed var(--rai-200);color:var(--ink-500);font-size:11px">&#xFF0B; Add sale — type here…</td><td style="border-top:2px dashed var(--rai-200)"></td><td style="border-top:2px dashed var(--rai-200)"></td><td style="border-top:2px dashed var(--rai-200)"></td><td style="border-top:2px dashed var(--rai-200)"></td><td style="border-top:2px dashed var(--rai-200)"></td><td style="border-top:2px dashed var(--rai-200)"></td><td style="border-top:2px dashed var(--rai-200)"></td><td style="border-top:2px dashed var(--rai-200)"></td><td class="col-actions" style="border-top:2px dashed var(--rai-200);color:var(--green);font-weight:700">&#x2713;</td></tr>
+                      </tbody>
+                      <tfoot><tr style="background:var(--rai-50);font-weight:700"><td colspan="8" style="padding:9px 12px">Period totals:</td><td style="padding:9px 12px"><span class="inflow">&#x20B1;119,535</span></td><td style="padding:9px 12px"><span class="inflow">&#x20B1;85,035</span></td><td style="padding:9px 12px"><span class="outflow">&#x20B1;34,500</span></td><td colspan="3"></td></tr></tfoot>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4 · CASH FLOW ============ -->
+  <section class="cs-screen">
+    <aside class="cs-note">
+      <div class="idx">04 — CASH FLOW</div>
+      <h2>Where the money actually is</h2>
+      <p class="lead">Cash lives across GCash (GXI), RCBC, BDO and a cash box. The ledger tracks each location and the right rail forecasts the weeks ahead.</p>
+      <ul>
+        <li><span class="m">&#x21C5;</span><span><b>Signed amounts.</b> Inflows green, outflows red — net position reads at a glance, no debit/credit columns.</span></li>
+        <li><span class="m">&#x25A6;</span><span><b>Position tiles.</b> RCBC · GXI · Cash · AR balances update from every posted row.</span></li>
+        <li><span class="m">&#x1F4C5;</span><span><b>Weekly waterfall.</b> Opening balance rolls week to week with editable assumed price &amp; production.</span></li>
+        <li><span class="m">&#x21AA;</span><span><b>Apply Payment.</b> A collection can be posted straight against a customer's receivable.</span></li>
+      </ul>
+    </aside>
+    <div class="cs-frameshadow">
+      <div class="cs-chrome"><div class="cs-lights"><i></i><i></i><i></i></div><div class="cs-url"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>script.google.com/rai-console · Cash Flow</div><span class="cs-chip">Sample data</span></div>
+      <div class="cs-app-frame">
+        <div class="rai"><div class="app">
+          <aside class="sidebar">
+            <div class="brand"><div class="brand-mark">RAI</div><div class="brand-sub">ROVIC AGRIVENTURES INC.</div></div>
+            <nav class="nav-list">
+              <button class="nav-item"><span class="ico">&#x25A6;</span><span>Dashboard</span></button>
+              <button class="nav-item"><span class="ico">&#x25A4;</span><span>Production</span></button>
+              <button class="nav-item"><span class="ico">&#x20B1;</span><span>Sales &amp; Collection</span></button>
+              <button class="nav-item active"><span class="ico">&#x21C5;</span><span>Cash Flow</span></button>
+              <button class="nav-item"><span class="ico">&#x23F0;</span><span>Accounts Receivable</span></button>
+              <button class="nav-item"><span class="ico">&#x25A3;</span><span>Expenses</span></button>
+              <button class="nav-item"><span class="ico">&#x25C9;</span><span>Customers</span></button>
+            </nav>
+            <div class="sidebar-foot"><div class="version">v1.2.0</div><button class="btn-ghost2">&#x21BB;</button></div>
+          </aside>
+          <main class="main">
+            <header class="topbar"><div class="crumbs"><span class="crumb-app">ROVIC AGRIVENTURES INC.</span><span class="crumb-sep">/</span><span class="crumb-tab">Cash Flow</span></div><div class="topbar-right"><button class="btn-privacy"><span>&#x1F441;&#xFE0F;</span><span>Hide &#x20B1;</span></button><span class="env-tag">PROD</span><span class="today">Tue, 30 Jun 2026</span></div></header>
+            <section class="tab">
+              <div class="cashflow-layout">
+                <div class="section">
+                  <div class="section-head"><div><h3>Cash Flow Records <span class="sub">· 8</span></h3></div><div class="btn-group"><button class="btn-focus-toggle">&#x26F6; Focus</button><button class="btn secondary btn-sm">&#x2913; CSV</button><button class="btn btn-sm" style="background:var(--green)">&#x21AA; Apply Payment</button><button class="btn btn-sm">+ Add</button></div></div>
+                  <div class="toolbar"><input class="search" placeholder="Search name, notes…"><select><option>2026-06</option></select><select><option>All locations</option></select><select><option>All types</option></select></div>
+                  <div class="tbl-wrap">
+                    <table class="grid">
+                      <thead><tr><th style="width:26px"></th><th style="width:82px">Date</th><th style="width:46px">Txn #</th><th>Name</th><th class="col-num" style="width:120px">Amount (&#x20B1;)</th><th style="width:82px">Cash<br>Position</th><th style="width:46px">Pyt #</th><th style="width:160px">Notes</th><th class="col-actions">&#x22EF;</th></tr></thead>
+                      <tbody>
+                        <tr><td></td><td>09 Jun</td><td><b style="color:var(--rai-700)">1043</b></td><td><b>Aling Nena Sari-Sari</b></td><td class="col-num cfi-input"><b style="color:var(--green)">&#x20B1;14,520</b></td><td>GXI</td><td style="text-align:center"><b style="color:#5520D2">P-311</b></td><td class="note-text">Collection · GCash</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>09 Jun</td><td><span style="color:var(--ink-300)">–</span></td><td><b>Purina Feeds — Lot 2291</b></td><td class="col-num cfi-input"><b style="color:var(--red)">−&#x20B1;1,450,000</b></td><td>RCBC</td><td style="text-align:center"><span style="color:var(--ink-300)">–</span></td><td class="note-text">~820 bags layer mash</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>10 Jun</td><td><b style="color:var(--rai-700)">1044</b></td><td><b>Golden Yolk Bakery</b></td><td class="col-num cfi-input"><b style="color:var(--green)">&#x20B1;20,000</b></td><td>RCBC</td><td style="text-align:center"><b style="color:#5520D2">P-312</b></td><td class="note-text">Partial vs INV-2293</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>11 Jun</td><td><span style="color:var(--ink-300)">–</span></td><td><b>Payroll — 14 farmhands</b></td><td class="col-num cfi-input"><b style="color:var(--red)">−&#x20B1;215,000</b></td><td>Cash</td><td style="text-align:center"><span style="color:var(--ink-300)">–</span></td><td class="note-text">Jun 5–11 cycle</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>11 Jun</td><td><b style="color:var(--rai-700)">1045</b></td><td><b>Mang Tonio Eatery</b></td><td class="col-num cfi-input"><b style="color:var(--green)">&#x20B1;11,025</b></td><td>Cash</td><td style="text-align:center"><b style="color:#5520D2">P-313</b></td><td class="note-text">Cash on delivery</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>12 Jun</td><td><span style="color:var(--ink-300)">–</span></td><td><b>Meralco — Jun bill</b></td><td class="col-num cfi-input"><b style="color:var(--red)">−&#x20B1;96,000</b></td><td>GXI</td><td style="text-align:center"><span style="color:var(--ink-300)">–</span></td><td class="note-text">Auto-debit</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>13 Jun</td><td><b style="color:var(--rai-700)">1047</b></td><td><b>Sps. Villanueva Store</b></td><td class="col-num cfi-input"><b style="color:var(--green)">&#x20B1;10,000</b></td><td>GXI</td><td style="text-align:center"><b style="color:#5520D2">P-314</b></td><td class="note-text">Partial vs INV-2296</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>14 Jun</td><td><span style="color:var(--ink-300)">–</span></td><td><b>Diesel — delivery truck</b></td><td class="col-num cfi-input"><b style="color:var(--red)">−&#x20B1;58,000</b></td><td>Cash</td><td style="text-align:center"><span style="color:var(--ink-300)">–</span></td><td class="note-text">Full tank</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr class="auto-row" style="background:#FFFEF7"><td></td><td colspan="3" style="border-top:2px dashed var(--rai-200);color:var(--ink-500);font-size:11px">&#xFF0B; Add entry — type here…</td><td class="col-num" style="border-top:2px dashed var(--rai-200)"></td><td style="border-top:2px dashed var(--rai-200)"></td><td style="border-top:2px dashed var(--rai-200)"></td><td style="border-top:2px dashed var(--rai-200)"></td><td class="col-actions" style="border-top:2px dashed var(--rai-200);color:var(--green);font-weight:700">&#x2713;</td></tr>
+                      </tbody>
+                      <tfoot><tr style="background:var(--rai-50);font-weight:700"><td colspan="4" style="text-align:right;padding:9px 12px">Period Net:</td><td class="col-num" style="padding:9px 12px;color:var(--red)">−&#x20B1;1,763,455</td><td colspan="4"></td></tr></tfoot>
+                    </table>
+                  </div>
+                </div>
+                <div class="cashflow-right">
+                  <div class="section">
+                    <div class="section-head"><h3>Cash Positions <span class="sub">· as of 2026-06-11</span></h3></div>
+                    <div class="section-body">
+                      <div class="pos-grid">
+                        <div class="pos-cell"><div class="pos-label">RCBC</div><div class="pos-value" style="color:var(--rai-600)">&#x20B1;11,850,000</div></div>
+                        <div class="pos-cell"><div class="pos-label">GXI</div><div class="pos-value" style="color:#5520D2">&#x20B1;3,420,000</div></div>
+                        <div class="pos-cell"><div class="pos-label">Cash</div><div class="pos-value" style="color:var(--green)">&#x20B1;4,450,000</div></div>
+                        <div class="pos-cell"><div class="pos-label">AR</div><div class="pos-value" style="color:var(--blue)">&#x20B1;284,300</div></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="section">
+                    <div class="section-head"><div><h3>Weekly Forecast <span class="sub">· 2026-06</span></h3></div><div class="btn-group" style="align-items:center;gap:10px"><button class="btn btn-sm">&#x1F4BE; Save</button><select style="padding:5px 8px;border:1px solid var(--ink-100);border-radius:6px;font-size:12px"><option>2026-06</option></select></div></div>
+                    <div class="section-body">
+                      <div class="fs-label">Assumptions</div>
+                      <div class="fs-row"><label><span class="fs-mini">Assumed price &#x20B1;/tray</span><input class="fs-input" value="208"></label><label><span class="fs-mini">Assumed prod tr/day</span><input class="fs-input" value="1,500"></label></div>
+                      <div class="wk-card">
+                        <div class="wk-head"><b>Week 4</b><span style="color:var(--ink-500)">15–21 Jun</span><span class="wk-days">7 days</span></div>
+                        <div class="wk-row pos"><span>+ Egg sales</span><span>&#x20B1;2,184,000</span></div>
+                        <div class="wk-row pos"><span>+ AR collections</span><span>&#x20B1;260,000</span></div>
+                        <div class="wk-row"><span>− Feeds</span><span style="color:var(--red)">&#x20B1;1,360,000</span></div>
+                        <div class="wk-row"><span>− Payroll &amp; ops</span><span style="color:var(--red)">&#x20B1;360,000</span></div>
+                        <div class="wk-row sub"><span>Net movement</span><span>+&#x20B1;724,000</span></div>
+                        <div class="wk-row sub final"><span>Projected close</span><span>&#x20B1;4,180,000</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5 · ACCOUNTS RECEIVABLE ============ -->
+  <section class="cs-screen">
+    <aside class="cs-note">
+      <div class="idx">05 — ACCOUNTS RECEIVABLE</div>
+      <h2>Who owes what — and how late</h2>
+      <p class="lead">Eggs move on trust, so aging is the real risk. AR is built around the collection conversation, not a static balance list.</p>
+      <ul>
+        <li><span class="m">&#x25D4;</span><span><b>Aging buckets.</b> 0–2 / 3–5 / 6+ days as tappable filters — perishable-goods terms, not 30/60/90.</span></li>
+        <li><span class="m">&#x25B8;</span><span><b>Expand to a ledger.</b> Each customer opens into interleaved sales &amp; payments with a running balance.</span></li>
+        <li><span class="m">&#x26A0;</span><span><b>Aged-sales banner.</b> Overdue invoices are pulled to the top in red so calls get prioritised.</span></li>
+        <li><span class="m">&#xFF0B;</span><span><b>Pay from context.</b> "+ Pay" on any charge records against that exact invoice.</span></li>
+      </ul>
+    </aside>
+    <div class="cs-frameshadow">
+      <div class="cs-chrome"><div class="cs-lights"><i></i><i></i><i></i></div><div class="cs-url"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>script.google.com/rai-console · Accounts Receivable</div><span class="cs-chip">Sample data</span></div>
+      <div class="cs-app-frame">
+        <div class="rai"><div class="app">
+          <aside class="sidebar">
+            <div class="brand"><div class="brand-mark">RAI</div><div class="brand-sub">ROVIC AGRIVENTURES INC.</div></div>
+            <nav class="nav-list">
+              <button class="nav-item"><span class="ico">&#x25A6;</span><span>Dashboard</span></button>
+              <button class="nav-item"><span class="ico">&#x25A4;</span><span>Production</span></button>
+              <button class="nav-item"><span class="ico">&#x20B1;</span><span>Sales &amp; Collection</span></button>
+              <button class="nav-item"><span class="ico">&#x21C5;</span><span>Cash Flow</span></button>
+              <button class="nav-item active"><span class="ico">&#x23F0;</span><span>Accounts Receivable</span></button>
+              <button class="nav-item"><span class="ico">&#x25A3;</span><span>Expenses</span></button>
+              <button class="nav-item"><span class="ico">&#x25C9;</span><span>Customers</span></button>
+            </nav>
+            <div class="sidebar-foot"><div class="version">v1.2.0</div><button class="btn-ghost2">&#x21BB;</button></div>
+          </aside>
+          <main class="main">
+            <header class="topbar"><div class="crumbs"><span class="crumb-app">ROVIC AGRIVENTURES INC.</span><span class="crumb-sep">/</span><span class="crumb-tab">Accounts Receivable</span></div><div class="topbar-right"><button class="btn-privacy"><span>&#x1F441;&#xFE0F;</span><span>Hide &#x20B1;</span></button><span class="env-tag">PROD</span><span class="today">Tue, 30 Jun 2026</span></div></header>
+            <section class="tab">
+              <div class="ar-page">
+                <div class="ar-top">
+                  <div class="ar-top-left"><div class="ar-top-label">TOTAL OUTSTANDING</div><div class="ar-top-value">&#x20B1;284,300</div><div class="ar-top-sub">6 customers with AR</div><div style="font-size:10px;color:var(--rai-700);background:var(--rai-100);padding:2px 7px;border-radius:999px;display:inline-block;margin-top:8px;font-weight:600">Sample data — names &amp; amounts invented</div></div>
+                  <div class="ar-aging-chips">
+                    <button class="ar-chip ar-chip-active"><span class="ar-chip-label">ALL</span><span class="ar-chip-value">&#x20B1;284,300</span></button>
+                    <button class="ar-chip ar-chip-02"><span class="ar-chip-label">0–2 DAYS</span><span class="ar-chip-value">&#x20B1;120,800</span></button>
+                    <button class="ar-chip ar-chip-35"><span class="ar-chip-label">3–5 DAYS</span><span class="ar-chip-value">&#x20B1;97,700</span></button>
+                    <button class="ar-chip ar-chip-6"><span class="ar-chip-label">6+ DAYS</span><span class="ar-chip-value">&#x20B1;65,800</span></button>
+                  </div>
+                </div>
+                <div class="section">
+                  <div class="section-head"><div><h3>Accounts Receivable <span class="sub">· 6</span></h3></div><div class="btn-group"><button class="btn secondary btn-sm">&#x2913; CSV</button><button class="btn secondary btn-sm">&#x2399; PDF</button></div></div>
+                  <div class="toolbar"><input class="search" placeholder="Search customers…"><div class="toolbar-inline"><select><option>Show: All AR</option></select><select><option>Sort: Outstanding ↓</option></select></div></div>
+                  <div class="ar-cards-wrap">
+                    <div class="ar-card">
+                      <div class="ar-card-head">
+                        <div class="ar-card-arrow">&#x25BE;</div>
+                        <div><div class="ar-card-name-line"><b>Golden Yolk Bakery</b><span class="ar-badge ar-badge-aged">Overdue · 7d</span></div><div class="ar-card-meta">4 sales · 2 payments <span class="ar-card-aging"><span class="ar-bar ar-bar-6">6+: &#x20B1;15,700</span></span></div></div>
+                        <div class="ar-card-amount"><div class="ar-card-amount-value">&#x20B1;15,700</div><div class="ar-card-amount-label">outstanding</div></div>
+                        <button class="btn btn-sm">+ Payment</button>
+                      </div>
+                      <div class="ar-card-body">
+                        <div class="ar-aged-banner"><div class="ar-aged-banner-title">&#x26A0; Aged sales (6+ days) — 1 unpaid</div>
+                          <div class="ar-aged-item"><span>08 Jun</span><span class="ar-aged-txn">#1044</span><span>Good · 150tr</span><span class="ar-aged-bal">&#x20B1;15,700</span><span class="ar-aged-days">7d</span></div>
+                        </div>
+                        <div class="ar-ledger-wrap"><table class="grid ar-ledger-table"><thead><tr><th style="width:80px">Date</th><th style="width:54px">Ref</th><th>Description</th><th class="col-num" style="width:96px">Charge</th><th class="col-num" style="width:110px">Paid / Payment</th><th class="col-num" style="width:96px">Balance</th><th class="col-num" style="width:48px">Age</th><th class="col-num" style="width:60px"></th></tr></thead><tbody>
+                          <tr class="ar-ledger-payment"><td>10 Jun</td><td><span style="color:var(--green);font-weight:700">PMT</span></td><td>Payment received (RCBC)</td><td class="col-num">–</td><td class="col-num" style="color:var(--green);font-weight:700">&#x20B1;20,000</td><td class="col-num">–</td><td class="col-num">–</td><td></td></tr>
+                          <tr><td>08 Jun</td><td><b>1044</b></td><td>Sale · Good · 150tr</td><td class="col-num">&#x20B1;35,700</td><td class="col-num" style="color:var(--ink-500)">&#x20B1;20,000</td><td class="col-num"><b>&#x20B1;15,700</b></td><td class="col-num"><span style="color:var(--red);font-weight:700;font-size:10px">7d</span></td><td class="col-num"><button class="ar-row-pay-btn">+ Pay</button></td></tr>
+                        </tbody></table></div>
+                      </div>
+                    </div>
+                    <div class="ar-card"><div class="ar-card-head"><div class="ar-card-arrow">&#x25B8;</div><div><div class="ar-card-name-line"><b>Sps. Villanueva Store</b><span class="ar-badge ar-badge-recent">Outstanding</span></div><div class="ar-card-meta">7 sales · 5 payments <span class="ar-card-aging"><span class="ar-bar ar-bar-02">0-2: &#x20B1;18,800</span></span></div></div><div class="ar-card-amount"><div class="ar-card-amount-value">&#x20B1;18,800</div><div class="ar-card-amount-label">outstanding</div></div><button class="btn btn-sm">+ Payment</button></div></div>
+                    <div class="ar-card"><div class="ar-card-head"><div class="ar-card-arrow">&#x25B8;</div><div><div class="ar-card-name-line"><b>Dizon Poultry Trading</b><span class="ar-badge ar-badge-warn">Aging</span></div><div class="ar-card-meta">3 sales · 1 payment <span class="ar-card-aging"><span class="ar-bar ar-bar-35">3-5: &#x20B1;62,400</span></span></div></div><div class="ar-card-amount"><div class="ar-card-amount-value">&#x20B1;62,400</div><div class="ar-card-amount-label">outstanding</div></div><button class="btn btn-sm">+ Payment</button></div></div>
+                    <div class="ar-card"><div class="ar-card-head"><div class="ar-card-arrow">&#x25B8;</div><div><div class="ar-card-name-line"><b>Sunrise Groceries — Sta. Rosa</b><span class="ar-badge ar-badge-aged">Overdue · 9d</span></div><div class="ar-card-meta">5 sales · 3 payments <span class="ar-card-aging"><span class="ar-bar ar-bar-35">3-5: &#x20B1;35,300</span><span class="ar-bar ar-bar-6">6+: &#x20B1;50,100</span></span></div></div><div class="ar-card-amount"><div class="ar-card-amount-value">&#x20B1;85,400</div><div class="ar-card-amount-label">outstanding</div></div><button class="btn btn-sm">+ Payment</button></div></div>
+                    <div class="ar-card"><div class="ar-card-head"><div class="ar-card-arrow">&#x25B8;</div><div><div class="ar-card-name-line"><b>Aling Rosa Carinderia</b><span class="ar-badge ar-badge-recent">Outstanding</span></div><div class="ar-card-meta">2 sales · 1 payment <span class="ar-card-aging"><span class="ar-bar ar-bar-02">0-2: &#x20B1;9,600</span></span></div></div><div class="ar-card-amount"><div class="ar-card-amount-value">&#x20B1;9,600</div><div class="ar-card-amount-label">outstanding</div></div><button class="btn btn-sm">+ Payment</button></div></div>
+                    <div class="ar-card"><div class="ar-card-head"><div class="ar-card-arrow">&#x25B8;</div><div><div class="ar-card-name-line"><b>JCL Trading</b><span class="ar-badge ar-badge-recent">Outstanding</span></div><div class="ar-card-meta">9 sales · 8 payments <span class="ar-card-aging"><span class="ar-bar ar-bar-02">0-2: &#x20B1;92,400</span></span></div></div><div class="ar-card-amount"><div class="ar-card-amount-value">&#x20B1;92,400</div><div class="ar-card-amount-label">outstanding</div></div><button class="btn btn-sm">+ Payment</button></div></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6 · EXPENSES ============ -->
+  <section class="cs-screen">
+    <aside class="cs-note">
+      <div class="idx">06 — EXPENSES</div>
+      <h2>Spend, watched not just logged</h2>
+      <p class="lead">A 70/30 split: the ledger has room to breathe on the left while analytics quietly watch for anomalies on the right.</p>
+      <ul>
+        <li><span class="m">&#x25A3;</span><span><b>Category discipline.</b> Feeds, Labor, Utilities, Vet &amp; Meds, Logistics — the categories a farm P&amp;L actually needs.</span></li>
+        <li><span class="m">&#x25D4;</span><span><b>Spend by category &amp; week.</b> Two small charts turn rows into a shape you can react to.</span></li>
+        <li><span class="m">!</span><span><b>Unusual detector.</b> Titles never seen in prior months surface automatically — a cheap fraud/error check.</span></li>
+        <li><span class="m">&#x2913;</span><span><b>Export-ready.</b> CSV / PDF straight out for the accountant.</span></li>
+      </ul>
+    </aside>
+    <div class="cs-frameshadow">
+      <div class="cs-chrome"><div class="cs-lights"><i></i><i></i><i></i></div><div class="cs-url"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>script.google.com/rai-console · Expenses</div><span class="cs-chip">Sample data</span></div>
+      <div class="cs-app-frame">
+        <div class="rai"><div class="app">
+          <aside class="sidebar">
+            <div class="brand"><div class="brand-mark">RAI</div><div class="brand-sub">ROVIC AGRIVENTURES INC.</div></div>
+            <nav class="nav-list">
+              <button class="nav-item"><span class="ico">&#x25A6;</span><span>Dashboard</span></button>
+              <button class="nav-item"><span class="ico">&#x25A4;</span><span>Production</span></button>
+              <button class="nav-item"><span class="ico">&#x20B1;</span><span>Sales &amp; Collection</span></button>
+              <button class="nav-item"><span class="ico">&#x21C5;</span><span>Cash Flow</span></button>
+              <button class="nav-item"><span class="ico">&#x23F0;</span><span>Accounts Receivable</span></button>
+              <button class="nav-item active"><span class="ico">&#x25A3;</span><span>Expenses</span></button>
+              <button class="nav-item"><span class="ico">&#x25C9;</span><span>Customers</span></button>
+            </nav>
+            <div class="sidebar-foot"><div class="version">v1.2.0</div><button class="btn-ghost2">&#x21BB;</button></div>
+          </aside>
+          <main class="main">
+            <header class="topbar"><div class="crumbs"><span class="crumb-app">ROVIC AGRIVENTURES INC.</span><span class="crumb-sep">/</span><span class="crumb-tab">Expenses</span></div><div class="topbar-right"><button class="btn-privacy"><span>&#x1F441;&#xFE0F;</span><span>Hide &#x20B1;</span></button><span class="env-tag">PROD</span><span class="today">Tue, 30 Jun 2026</span></div></header>
+            <section class="tab">
+              <div class="expenses-layout">
+                <div class="section">
+                  <div class="section-head"><div><h3>Expenses <span class="sub">· 8</span></h3></div><div class="btn-group"><button class="btn-focus-toggle">&#x26F6; Focus</button><button class="btn secondary btn-sm">&#x2913; CSV</button><button class="btn btn-sm">&#x270E; Edit Records</button><button class="btn btn-sm">+ Add Expense</button></div></div>
+                  <div class="toolbar"><input class="search" placeholder="Search title, notes, category…"><select><option>2026-06</option></select><select><option>All categories</option></select><select><option>No grouping</option></select></div>
+                  <div class="tbl-wrap">
+                    <table class="grid">
+                      <thead><tr><th style="width:26px"></th><th style="width:82px">Date</th><th>Expense Title</th><th style="width:120px">Category</th><th class="col-num" style="width:120px">Amount (&#x20B1;)</th><th style="width:82px">Cash<br>Position</th><th>Notes</th><th class="col-actions">&#x22EF;</th></tr></thead>
+                      <tbody>
+                        <tr><td></td><td>01 Jun</td><td><b>Layer mash — 3,300 bags</b></td><td><span class="tag jcl">Feeds</span></td><td class="col-num"><b>&#x20B1;5,850,000</b></td><td>RCBC</td><td class="note-text">Purina, monthly stock</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>02 Jun</td><td><b>Vitamins &amp; electrolytes</b></td><td><span class="tag farm">Vet &amp; Meds</span></td><td class="col-num"><b>&#x20B1;42,000</b></td><td>Cash</td><td class="note-text">Heat-stress prep</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>03 Jun</td><td><b>Payroll — farmhands (cycle 1)</b></td><td><span class="tag" style="background:#E0EEFB;color:var(--blue)">Labor</span></td><td class="col-num"><b>&#x20B1;215,000</b></td><td>Cash</td><td class="note-text">14 staff × 6 days</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>05 Jun</td><td><b>Meralco — electricity</b></td><td><span class="tag" style="background:#FFF7E0;color:#8B6914">Utilities</span></td><td class="col-num"><b>&#x20B1;96,000</b></td><td>GXI</td><td class="note-text">Jun billing</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>07 Jun</td><td><b>Egg trays — 60,000 pcs</b></td><td><span class="tag" style="background:#F3E8FF;color:#5520D2">Packaging</span></td><td class="col-num"><b>&#x20B1;210,000</b></td><td>Cash</td><td class="note-text">Pulp trays</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>09 Jun</td><td><b>Diesel — delivery truck</b></td><td><span class="tag" style="background:#E6F4EC;color:var(--green)">Logistics</span></td><td class="col-num"><b>&#x20B1;58,000</b></td><td>Cash</td><td class="note-text">2 fill-ups</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>11 Jun</td><td><b>Payroll — farmhands (cycle 2)</b></td><td><span class="tag" style="background:#E0EEFB;color:var(--blue)">Labor</span></td><td class="col-num"><b>&#x20B1;215,000</b></td><td>Cash</td><td class="note-text">14 staff × 6 days</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr><td></td><td>13 Jun</td><td><b>Coop roof repair — GI sheets</b></td><td><span class="tag inactive">Repairs</span></td><td class="col-num"><b>&#x20B1;188,000</b></td><td>RCBC</td><td class="note-text">Storm damage B2</td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                      </tbody>
+                      <tfoot><tr style="background:var(--rai-50);font-weight:700"><td colspan="4" style="text-align:right;padding:9px 12px">Total shown:</td><td class="col-num" style="padding:9px 12px">&#x20B1;6,874,000</td><td colspan="3"></td></tr></tfoot>
+                    </table>
+                  </div>
+                </div>
+                <div class="section">
+                  <div class="section-head"><h3>Analytics <span class="sub">· 2026-06</span></h3></div>
+                  <div class="exp-analytics-body">
+                    <div class="exp-chart-block"><div class="exp-chart-title">Spend by Category</div><div class="exp-chart-canvas-wrap"><canvas id="raiExpCat"></canvas></div></div>
+                    <div class="exp-chart-block"><div class="exp-chart-title">Spend by Week</div><div class="exp-chart-canvas-wrap"><canvas id="raiExpWeek"></canvas></div></div>
+                    <div class="exp-chart-block"><div class="exp-chart-title">Unusual <span style="font-weight:400;color:var(--ink-500);font-size:10px">(titles not seen in prior months)</span></div>
+                      <div class="exp-unusual-row"><span class="u-title">Coop roof repair — GI sheets<span class="u-meta">Repairs · 13 Jun</span></span><span class="u-amount">&#x20B1;188,000</span></div>
+                      <div class="exp-unusual-row"><span class="u-title">Egg trays — 60,000 pcs<span class="u-meta">Packaging · 07 Jun</span></span><span class="u-amount">&#x20B1;210,000</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7 · CUSTOMERS ============ -->
+  <section class="cs-screen">
+    <aside class="cs-note">
+      <div class="idx">07 — CUSTOMERS</div>
+      <h2>Relationships, quantified</h2>
+      <p class="lead">A list on the left, a full analytics panel on the right — the same customer seen as a name and as a book of business.</p>
+      <ul>
+        <li><span class="m">&#x25C9;</span><span><b>Portfolio overview.</b> When nothing is selected, the panel summarises the whole book — LTV, AR, avg price, txn size.</span></li>
+        <li><span class="m">&#x20B1;</span><span><b>LTV &amp; cycle.</b> Per-customer lifetime value, trays split good/crack, and detected payment cadence.</span></li>
+        <li><span class="m">&#x25F1;</span><span><b>Credit awareness.</b> On-file credit is flagged against open AR so it can be applied, not forgotten.</span></li>
+        <li><span class="m">&#x2581;</span><span><b>Monthly revenue bars.</b> A compact trend so you can see a customer cooling off early.</span></li>
+      </ul>
+    </aside>
+    <div class="cs-frameshadow">
+      <div class="cs-chrome"><div class="cs-lights"><i></i><i></i><i></i></div><div class="cs-url"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>script.google.com/rai-console · Customers</div><span class="cs-chip">Sample data</span></div>
+      <div class="cs-app-frame">
+        <div class="rai"><div class="app">
+          <aside class="sidebar">
+            <div class="brand"><div class="brand-mark">RAI</div><div class="brand-sub">ROVIC AGRIVENTURES INC.</div></div>
+            <nav class="nav-list">
+              <button class="nav-item"><span class="ico">&#x25A6;</span><span>Dashboard</span></button>
+              <button class="nav-item"><span class="ico">&#x25A4;</span><span>Production</span></button>
+              <button class="nav-item"><span class="ico">&#x20B1;</span><span>Sales &amp; Collection</span></button>
+              <button class="nav-item"><span class="ico">&#x21C5;</span><span>Cash Flow</span></button>
+              <button class="nav-item"><span class="ico">&#x23F0;</span><span>Accounts Receivable</span></button>
+              <button class="nav-item"><span class="ico">&#x25A3;</span><span>Expenses</span></button>
+              <button class="nav-item active"><span class="ico">&#x25C9;</span><span>Customers</span></button>
+            </nav>
+            <div class="sidebar-foot"><div class="version">v1.2.0</div><button class="btn-ghost2">&#x21BB;</button></div>
+          </aside>
+          <main class="main">
+            <header class="topbar"><div class="crumbs"><span class="crumb-app">ROVIC AGRIVENTURES INC.</span><span class="crumb-sep">/</span><span class="crumb-tab">Customers</span></div><div class="topbar-right"><button class="btn-privacy"><span>&#x1F441;&#xFE0F;</span><span>Hide &#x20B1;</span></button><span class="env-tag">PROD</span><span class="today">Tue, 30 Jun 2026</span></div></header>
+            <section class="tab">
+              <div class="customers-layout">
+                <div class="section">
+                  <div class="section-head"><div><h3>Customers <span class="sub">· 24</span></h3></div><div class="btn-group"><button class="btn secondary btn-sm">&#x2913; CSV</button><button class="btn btn-sm">+ Add</button></div></div>
+                  <div class="toolbar"><input class="search" placeholder="Search customers…"><div class="toolbar-inline"><select><option>View: All time</option></select><select><option>Sort: LTV ↓</option></select></div></div>
+                  <div class="tbl-wrap">
+                    <table class="grid">
+                      <thead><tr><th>Customer</th><th style="width:110px">Last<br>Purchase</th><th class="col-num" style="width:130px">LTV (&#x20B1;)</th><th class="col-actions">&#x22EF;</th></tr></thead>
+                      <tbody>
+                        <tr class="cust-row selected"><td><b>JCL Trading</b><div style="font-size:11px;color:var(--ink-500);margin-top:2px">142 txns</div></td><td style="font-size:12px">25 June 2026</td><td class="col-num"><b>&#x20B1;1,684,200</b></td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr class="cust-row"><td><b>Golden Yolk Bakery</b><div style="font-size:11px;color:var(--ink-500);margin-top:2px">88 txns</div></td><td style="font-size:12px">21 June 2026</td><td class="col-num"><b>&#x20B1;812,600</b></td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr class="cust-row"><td><b>Sunrise Groceries — Sta. Rosa</b><div style="font-size:11px;color:var(--ink-500);margin-top:2px">64 txns</div></td><td style="font-size:12px">17 June 2026</td><td class="col-num"><b>&#x20B1;598,300</b></td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr class="cust-row"><td><b>Sps. Villanueva Store</b><div style="font-size:11px;color:var(--ink-500);margin-top:2px">51 txns</div></td><td style="font-size:12px">24 June 2026</td><td class="col-num"><b>&#x20B1;472,900</b></td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr class="cust-row"><td><b>Aling Nena Sari-Sari</b><div style="font-size:11px;color:var(--ink-500);margin-top:2px">39 txns</div></td><td style="font-size:12px">20 June 2026</td><td class="col-num"><b>&#x20B1;214,500</b></td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr class="cust-row"><td><b>Dizon Poultry Trading</b><div style="font-size:11px;color:var(--ink-500);margin-top:2px">28 txns</div></td><td style="font-size:12px">16 June 2026</td><td class="col-num"><b>&#x20B1;188,700</b></td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr class="cust-row"><td><b>Mang Tonio Eatery</b><div style="font-size:11px;color:var(--ink-500);margin-top:2px">22 txns</div></td><td style="font-size:12px">22 June 2026</td><td class="col-num"><b>&#x20B1;96,400</b></td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                        <tr class="cust-row"><td><b>Reyes Carinderia</b><div style="font-size:11px;color:var(--ink-500);margin-top:2px">14 txns</div></td><td style="font-size:12px">25 June 2026</td><td class="col-num"><b>&#x20B1;58,200</b></td><td class="col-actions"><span style="color:var(--rai-600)">&#x270E;</span></td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="section">
+                  <div class="section-head"><h3>JCL Trading</h3></div>
+                  <div class="section-body">
+                    <div class="port-grid">
+                      <div class="port-cell"><div class="port-label">LTV</div><div class="port-value" style="color:var(--green)">&#x20B1;1,684,200</div></div>
+                      <div class="port-cell"><div class="port-label">AR Balance</div><div class="port-value" style="color:var(--red)">&#x20B1;92,400</div></div>
+                      <div class="port-cell"><div class="port-label">Transactions</div><div class="port-value">142</div><div class="port-sub">avg &#x20B1;241.4/tray</div></div>
+                      <div class="port-cell"><div class="port-label">Trays</div><div class="port-value">6,970</div><div class="port-sub">6,540 good · 430 crack</div></div>
+                      <div class="port-cell"><div class="port-label">Credit Balance</div><div class="port-value" style="color:#5520D2">&#x20B1;4,800</div><div class="port-sub">Adjust &#x21BB;</div></div>
+                      <div class="port-cell"><div class="port-label">Payment Cycle</div><div class="port-value">~6 days</div><div class="port-sub" style="font-size:10px">weekly, reliable</div></div>
+                    </div>
+                    <div style="margin:10px 0;padding:10px 12px;background:#F3E8FF;border-left:4px solid #5520D2;border-radius:4px;font-size:12px;color:var(--ink-700)"><b style="color:#5520D2">&#x20B1;4,800 credit available to apply</b> against this customer's outstanding &#x20B1;92,400.<br><span style="color:var(--ink-500);font-size:11px">Use Cash Flow → Apply Payment → Apply Existing Credit to consume the credit.</span></div>
+                    <div style="margin:14px 0;font-size:12px;color:var(--ink-500)">First purchase: <b>04 Jan 2023</b> · Last purchase: <b>25 June 2026</b></div>
+                    <h4 style="margin:14px 0 6px;font-size:13px;color:var(--ink-700)">Monthly revenue</h4>
+                    <div style="display:flex;flex-direction:column;gap:4px">
+                      <div style="display:flex;align-items:center;gap:8px;font-size:11px"><span style="width:60px;color:var(--ink-500)">2026-06</span><div style="flex:1;height:16px;background:var(--ink-100);border-radius:4px;overflow:hidden"><div style="width:86%;height:100%;background:var(--rai-400)"></div></div></div>
+                      <div style="display:flex;align-items:center;gap:8px;font-size:11px"><span style="width:60px;color:var(--ink-500)">2026-04</span><div style="flex:1;height:16px;background:var(--ink-100);border-radius:4px;overflow:hidden"><div style="width:100%;height:100%;background:var(--rai-400)"></div></div></div>
+                      <div style="display:flex;align-items:center;gap:8px;font-size:11px"><span style="width:60px;color:var(--ink-500)">2026-03</span><div style="flex:1;height:16px;background:var(--ink-100);border-radius:4px;overflow:hidden"><div style="width:78%;height:100%;background:var(--rai-400)"></div></div></div>
+                      <div style="display:flex;align-items:center;gap:8px;font-size:11px"><span style="width:60px;color:var(--ink-500)">2026-02</span><div style="flex:1;height:16px;background:var(--ink-100);border-radius:4px;overflow:hidden"><div style="width:71%;height:100%;background:var(--rai-400)"></div></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var start = function() {
+    if (window.Chart) {
+      drawCharts();
+    } else {
+      setTimeout(start, 120);
+    }
+  };
+  start();
+});
+
+function drawCharts() {
+  var C = window.Chart, orange = '#F26B1F', orange2 = '#FF974A', gray = '#B7B7B7';
+  var F = { family: 'Inter, sans-serif', size: 11 };
+  C.defaults.font.family = 'Inter, sans-serif';
+  var mk = function(id, cfg) { var el = document.getElementById(id); if (el && !el._done) { el._done = true; new C(el, cfg); } };
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  mk('raiChartForecast', { type:'line', data:{ labels: months, datasets:[
+    { label:'2026 actual', data:[37200,37800,38600,38100,39200,null,null,null,null,null,null,null], borderColor:orange, backgroundColor:'rgba(242,107,31,.08)', fill:true, tension:.35, pointRadius:2 },
+    { label:'projection', data:[null,null,null,null,39200,39600,39900,39500,39600,40100,40600,41100], borderColor:orange, borderDash:[6,4], tension:.35, pointRadius:0 }
+  ]}, options:{ maintainAspectRatio:false, plugins:{ legend:{ labels:{ boxWidth:12, font:F } } }, scales:{ y:{ ticks:{ font:F } }, x:{ ticks:{ font:F } } } } });
+
+  var cmp = function(id, a, b) { mk(id, { type:'bar', data:{ labels: months.slice(0,9), datasets:[
+    { label:'2026', data:a, backgroundColor:orange, borderRadius:3, maxBarThickness:14 },
+    { label:'2025', data:b, backgroundColor:'#FFD3A8', borderRadius:3, maxBarThickness:14 }
+  ]}, options:{ maintainAspectRatio:false, plugins:{ legend:{ labels:{ boxWidth:12, font:F } } }, scales:{ y:{ ticks:{ font:F } }, x:{ ticks:{ font:F } } } } }); };
+  cmp('raiChartGood', [37200,37800,38600,38100,39200,null,null,null,null], [32400,32900,33600,33200,34100,34500,34700,34400,34500]);
+  cmp('raiChartCrack', [1555,1679,1490,1802,1902,null,null,null,null], [1367,1490,1445,1606,1700,1525,1512,1590,1461]);
+
+  mk('raiChartExpense', { type:'pie', data:{ labels:['Feeds','Labor','Utilities','Vet & Meds','Logistics','Packaging','Repairs'], datasets:[{ data:[52650000,3870000,864000,378000,522000,1890000,1692000], backgroundColor:['#F26B1F','#FF974A','#FFB777','#FFD3A8','#A0400A','#D25510','#B7B7B7'] }] }, options:{ maintainAspectRatio:false, plugins:{ legend:{ position:'right', labels:{ boxWidth:12, font:F } } } } });
+
+  mk('raiExpCat', { type:'doughnut', data:{ labels:['Feeds','Labor','Packaging','Utilities','Logistics','Repairs','Vet'], datasets:[{ data:[5850000,430000,210000,96000,58000,188000,42000], backgroundColor:['#F26B1F','#FF974A','#5520D2','#FFB777','#14794C','#B7B7B7','#FFD3A8'] }] }, options:{ maintainAspectRatio:false, plugins:{ legend:{ position:'right', labels:{ boxWidth:10, font:{ family:'Inter', size:10 } } } } } });
+  mk('raiExpWeek', { type:'bar', data:{ labels:['Wk 1','Wk 2','Wk 3','Wk 4'], datasets:[{ data:[1780000,1700000,1720000,1674000], backgroundColor:orange, borderRadius:3, maxBarThickness:26 }] }, options:{ maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ ticks:{ font:F } }, x:{ ticks:{ font:F } } } } });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How a Coffee, a Question, and 45 Minutes Rebuilt a Consulting Practice | Aireeza Tandih | Studio JNSQ</title>
+<meta name="description" content="An advisory reflection from Aireeza Tandih. What Studio JNSQ calls brand equity architecture in miniature: one informal positioning consultation over coffee, a single reframing question, and a doubled minimum rate within sixty days. Published with full attribution.">
+<meta name="keywords" content="advisory reflection, brand equity architecture, positioning consultation, informal audit, Studio JNSQ, founder consulting, Aireeza Tandih">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How a Coffee, a Question, and 45 Minutes Rebuilt a Consulting Practice | Studio JNSQ">
+<meta property="og:description" content="Aireeza Tandih on the informal positioning consultation that reshaped her practice, and the one question that broke her pricing block open.">
+<meta property="og:url" content="https://studiojnsq.com/case-studies/advisory-aireeza-tandih">
+<meta property="og:site_name" content="Studio JNSQ">
+<meta property="og:image" content="https://studiojnsq.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How a Coffee, a Question, and 45 Minutes Rebuilt a Consulting Practice | Studio JNSQ">
+<meta name="twitter:description" content="An advisory reflection from Aireeza Tandih. Published with full attribution.">
+<link rel="canonical" href="https://studiojnsq.com/case-studies/advisory-aireeza-tandih">
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/jnsq-system.css?v=2">
+<link rel="stylesheet" href="/css/case-study-system.css?v=1">
+<style>
+  body { background: var(--jnsq-bg); color: var(--jnsq-body); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  /* === HERO — cream-to-soft-yellow gradient, mirrors idiyanale + international-bank === */
+  .cs-hero {
+    background: linear-gradient(180deg, #FFFCEC 0%, var(--jnsq-bg) 100%);
+    padding: calc(var(--space-7) + 70px) 0 var(--space-6);
+    border-bottom: 1px solid var(--jnsq-line-soft);
+  }
+  .cs-hero .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--jnsq-yellow);
+    margin-bottom: var(--space-3);
+  }
+  .cs-hero h1 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    color: var(--jnsq-ink);
+    margin-bottom: var(--space-3);
+    max-width: 20ch;
+  }
+  .cs-hero .subhead {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+    line-height: 1.4;
+    color: var(--jnsq-ink);
+    font-weight: 500;
+    max-width: 52ch;
+    margin-bottom: var(--space-3);
+  }
+  .cs-hero .lede {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--jnsq-body);
+    max-width: 60ch;
+  }
+  .attribution-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: rgba(34,197,94,0.10);
+    border: 1px solid rgba(34,197,94,0.35);
+    color: #15803d;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin-top: var(--space-4);
+  }
+  .attribution-badge::before {
+    content: '\2713';
+    font-weight: 700;
+  }
+
+  /* === METRIC STRIP — same shape as idiyanale (3-column stat row) === */
+  .metric-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: var(--jnsq-paper);
+    border: 1px solid var(--jnsq-line);
+    border-radius: 6px;
+    margin: var(--space-6) auto 0;
+    max-width: 720px;
+    overflow: hidden;
+  }
+  .metric-strip .metric {
+    text-align: center;
+    padding: var(--space-4) var(--space-3);
+    border-right: 1px solid var(--jnsq-line);
+  }
+  .metric-strip .metric:last-child { border-right: none; }
+  .metric-strip .metric-value {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.875rem;
+    font-weight: 500;
+    color: var(--jnsq-ink);
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -0.005em;
+  }
+  .metric-strip .metric-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--jnsq-mute);
+  }
+  @media (max-width: 640px) {
+    .metric-strip { grid-template-columns: 1fr; }
+    .metric-strip .metric { border-right: none; border-bottom: 1px solid var(--jnsq-line); }
+    .metric-strip .metric:last-child { border-bottom: none; }
+  }
+
+  /* === BODY SECTIONS === */
+  .cs-body { max-width: 720px; margin: 0 auto; padding: 0 var(--space-4); }
+  .cs-section { padding: var(--space-6) 0; }
+  .cs-section + .cs-section { border-top: 1px solid var(--jnsq-line-soft); }
+  .cs-section h2 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--jnsq-ink);
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.005em;
+  }
+  .cs-section p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--jnsq-body);
+    margin-bottom: var(--space-3);
+  }
+  .cs-section p:last-child { margin-bottom: 0; }
+
+  /* === REFLECTOR PROFILE — kv table (same shape as firm-profile) === */
+  .reflector-profile {
+    margin: var(--space-4) 0 0;
+    background: var(--jnsq-paper);
+    border: 1px solid var(--jnsq-line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .reflector-profile .row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--jnsq-line);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+  }
+  .reflector-profile .row:last-child { border-bottom: none; }
+  .reflector-profile .row .k { font-weight: 600; color: var(--jnsq-ink); }
+  .reflector-profile .row .v { color: var(--jnsq-body); }
+  @media (max-width: 640px) {
+    .reflector-profile .row { grid-template-columns: 1fr; gap: 2px; }
+  }
+
+  /* === ENGAGEMENT CHIPS (multi-select from feedback form) === */
+  .eng-chips { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+  .eng-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px;
+    background: var(--jnsq-ink);
+    color: var(--jnsq-yellow);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border-radius: 3px;
+  }
+  .eng-chip .chip-dot { width: 5px; height: 5px; background: var(--jnsq-yellow); border-radius: 50%; }
+
+  /* Outcomes list — yellow-square-marker like built-list from idiyanale */
+  .outcomes-list { list-style: none; padding: 0; margin: var(--space-3) 0 0; }
+  .outcomes-list li {
+    position: relative;
+    padding: var(--space-2) 0 var(--space-2) calc(var(--space-3) + 14px);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--jnsq-body);
+    border-bottom: 1px solid var(--jnsq-line-soft);
+  }
+  .outcomes-list li:last-child { border-bottom: none; }
+  .outcomes-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: calc(var(--space-2) + 8px);
+    width: 10px; height: 10px;
+    background: var(--jnsq-yellow);
+    border-radius: 1px;
+  }
+  .outcomes-list li strong { color: var(--jnsq-ink); font-weight: 600; }
+
+  /* === PULL QUOTES — small (yellow-left-border) and big (paper card) === */
+  .pull-quote {
+    margin: var(--space-4) 0;
+    padding: var(--space-3) var(--space-4);
+    border-left: 3px solid var(--jnsq-yellow);
+    background: rgba(253, 213, 0, 0.04);
+    border-radius: 0 4px 4px 0;
+  }
+  .pull-quote .quote-text {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 1.125rem;
+    line-height: 1.55;
+    color: var(--jnsq-ink);
+    margin-bottom: var(--space-2);
+  }
+  .pull-quote .quote-source {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--jnsq-mute);
+    font-weight: 500;
+  }
+
+  .big-quote {
+    margin: var(--space-5) 0;
+    padding: var(--space-4) var(--space-5);
+    background: var(--jnsq-paper);
+    border-left: 4px solid var(--jnsq-yellow);
+    border-radius: 0 6px 6px 0;
+  }
+  .big-quote .quote-text {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.55;
+    color: var(--jnsq-ink);
+    margin-bottom: var(--space-2);
+  }
+  .big-quote .quote-source {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--jnsq-mute);
+    font-weight: 500;
+  }
+
+  /* Hero-scale pull quote — used once as the moment of impact */
+  .hero-quote {
+    margin: var(--space-5) 0 var(--space-6);
+    padding: var(--space-5) var(--space-5);
+    background: linear-gradient(135deg, rgba(26,38,50,0.03) 0%, rgba(253,213,0,0.09) 100%);
+    border-top: 3px solid var(--jnsq-yellow);
+    border-bottom: 3px solid var(--jnsq-yellow);
+    position: relative;
+    text-align: center;
+  }
+  .hero-quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -0.5rem; left: var(--space-4);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 6rem;
+    color: var(--jnsq-yellow);
+    opacity: 0.35;
+    line-height: 1;
+    font-weight: 500;
+  }
+  .hero-quote .quote-text {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: var(--jnsq-ink);
+    font-weight: 500;
+    max-width: 42ch;
+    margin: 0 auto var(--space-3);
+  }
+  .hero-quote .quote-source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--jnsq-mute);
+    font-weight: 700;
+  }
+
+  /* Dialogue block for the coffee moment */
+  .dialogue {
+    margin: var(--space-4) 0;
+    padding: var(--space-4);
+    background: var(--jnsq-paper);
+    border: 1px solid var(--jnsq-line);
+    border-radius: 4px;
+  }
+  .dialogue .exchange { margin-bottom: var(--space-3); }
+  .dialogue .exchange:last-child { margin-bottom: 0; }
+  .dialogue .speaker {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    color: var(--jnsq-yellow);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .dialogue .line {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--jnsq-ink);
+    font-style: italic;
+  }
+
+  /* Value callout box */
+  .value-callout {
+    margin: var(--space-4) 0 0;
+    padding: var(--space-4);
+    background: linear-gradient(135deg, rgba(253,213,0,0.10) 0%, rgba(253,213,0,0.02) 100%);
+    border: 1px solid rgba(253,213,0,0.35);
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-3);
+    align-items: center;
+  }
+  .value-callout .vc-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: #7d6600;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    background: var(--jnsq-yellow);
+    color: var(--jnsq-ink);
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .value-callout .vc-value {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    color: var(--jnsq-ink);
+    font-weight: 500;
+  }
+  @media (max-width: 560px) {
+    .value-callout { grid-template-columns: 1fr; }
+  }
+
+  /* Back link */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--jnsq-mute);
+    text-decoration: none;
+    padding: var(--space-3) 0;
+  }
+  .back-link:hover { color: var(--jnsq-ink); }
+  .back-link::before { content: '\2190'; font-size: 1rem; }
+
+  /* Disclosure note — consent status shown at bottom */
+  .disclosure {
+    margin-top: var(--space-6);
+    padding: var(--space-4);
+    background: var(--jnsq-paper);
+    border: 1px solid var(--jnsq-line);
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--jnsq-mute);
+    line-height: 1.65;
+  }
+  .disclosure strong { color: var(--jnsq-ink); font-weight: 600; }
+
+  /* Closing CTA strip */
+  .cs-cta {
+    background: var(--jnsq-ink);
+    color: var(--jnsq-bg);
+    padding: var(--space-7) 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cs-cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--jnsq-yellow);
+  }
+  .cs-cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 50%, rgba(253,213,0,0.06), transparent 60%);
+    pointer-events: none;
+  }
+  .cs-cta-inner { max-width: 720px; margin: 0 auto; padding: 0 var(--space-4); position: relative; }
+  .cs-cta h3 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--jnsq-bg);
+    margin-bottom: var(--space-3);
+    letter-spacing: -0.005em;
+    max-width: 24ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cs-cta p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(250,250,246,0.75);
+    margin-bottom: var(--space-4);
+    max-width: 52ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cs-cta .cta-actions { display: inline-flex; gap: var(--space-3); flex-wrap: wrap; justify-content: center; }
+  .cs-cta .cta-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 14px 26px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cs-cta .cta-btn.primary { background: var(--jnsq-yellow); color: var(--jnsq-ink); border: 1px solid var(--jnsq-yellow); }
+  .cs-cta .cta-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(253,213,0,0.35); }
+  .cs-cta .cta-btn.ghost { background: transparent; color: var(--jnsq-bg); border: 1px solid rgba(255,255,255,0.25); }
+  .cs-cta .cta-btn.ghost:hover { border-color: var(--jnsq-yellow); color: var(--jnsq-yellow); }
+  .cs-cta .cta-btn::after { content: '\2192'; transition: transform 0.25s ease; }
+  .cs-cta .cta-btn:hover::after { transform: translateX(4px); }
+
+  /* csx-shell overrides (same as idiyanale) */
+  .csx-content .cs-body { max-width: 100%; padding: 0; }
+  .csx-content .cs-section h2 { max-width: 26ch; }
+  .csx-content .cs-section p, .csx-content .cs-section .cs-prose { max-width: 780px; }
+  .csx-content .reflector-profile, .csx-content .pull-quote, .csx-content .big-quote, .csx-content .value-callout, .csx-content .dialogue, .csx-content .hero-quote { max-width: 780px; }
+
+  /* === RAW SUBMISSION FIELDSET — shows the actual textarea entries from the form === */
+  .raw-fields {
+    margin: var(--space-4) 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 780px;
+  }
+  .raw-field {
+    background: var(--jnsq-paper);
+    border: 1px solid var(--jnsq-line);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .raw-field-header {
+    padding: 12px 18px;
+    background: var(--jnsq-ink);
+    color: var(--jnsq-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .raw-field-header .field-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--jnsq-yellow);
+  }
+  .raw-field-header .field-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: rgba(250,250,246,0.55);
+    font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  }
+  .raw-field-header .field-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: rgba(250,250,246,0.55);
+    letter-spacing: 0.05em;
+  }
+  .raw-field-question {
+    padding: 14px 18px 4px;
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--jnsq-body);
+    background: var(--jnsq-bg);
+    border-bottom: 1px solid var(--jnsq-line-soft);
+    padding-bottom: 14px;
+  }
+  .raw-field-body {
+    padding: 20px 22px;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--jnsq-ink);
+    white-space: pre-wrap;
+  }
+  .raw-field-body p { margin-bottom: 1rem; }
+  .raw-field-body p:last-child { margin-bottom: 0; }
+  .raw-note {
+    margin: var(--space-3) 0 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    color: var(--jnsq-mute);
+    line-height: 1.65;
+    font-style: italic;
+    padding-left: var(--space-3);
+    border-left: 2px solid var(--jnsq-line);
+    max-width: 780px;
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How a Coffee, a Question, and 45 Minutes Rebuilt a Consulting Practice",
+  "description": "An advisory reflection from Aireeza Tandih on the informal positioning consultation that reshaped her practice in a single afternoon.",
+  "author": { "@type": "Person", "name": "Aireeza Tandih" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Studio JNSQ",
+    "url": "https://studiojnsq.com",
+    "logo": { "@type": "ImageObject", "url": "https://studiojnsq.com/images/jnsq-logo-mark.png" }
+  },
+  "datePublished": "2026-07-08",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://studiojnsq.com/case-studies/advisory-aireeza-tandih" }
+}
+</script>
+
+</head>
+<body>
+
+<div class="jnsq-scroll-progress"></div>
+
+<nav class="jnsq-nav">
+  <div class="jnsq-nav-inner">
+    <a href="/" class="jnsq-nav-logo">STUDIO <span class="accent">JNSQ</span></a>
+    <div class="jnsq-nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/journal">Journal</a>
+      <a href="/case-studies">Portfolio</a>
+      <a href="/diagnostic">Diagnostic</a>
+    </div>
+    <a href="/diagnostic" class="jnsq-nav-cta">Take the Diagnostic</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="cs-hero">
+  <div class="jnsq-container">
+    <div class="eyebrow" data-reveal-fade>Advisory Reflection &middot; Aireeza Tandih</div>
+    <h1 data-reveal-words>How one <span class="jnsq-accent">question over coffee</span> rebuilt a consulting practice in six weeks.</h1>
+    <p class="subhead" data-reveal>An informal advisory session that started as a peer catch-up and ended as a full repositioning. This is Aireeza&rsquo;s reflection on the 45 minutes that reshaped how she prices her entire practice, in her own words.</p>
+    <span class="attribution-badge">Published with full named attribution</span>
+
+    <div class="metric-strip" data-reveal>
+      <div class="metric">
+        <div class="metric-value">45 min</div>
+        <div class="metric-label">Advisory Duration</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">2&times;</div>
+        <div class="metric-label">Pricing Lift, 60 Days</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">4</div>
+        <div class="metric-label">Outcomes Flagged</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="csx-shell">
+  <aside class="csx-rail" aria-label="Section navigation">
+    <div class="csx-rail-label">On this page</div>
+    <ol>
+      <li><a href="#reflector">Who is Aireeza</a></li>
+      <li><a href="#before">The situation before</a></li>
+      <li><a href="#advisory">The advisory itself</a></li>
+      <li><a href="#moment">The moment it turned</a></li>
+      <li><a href="#shift">What actually shifted</a></li>
+      <li><a href="#value">The estimated value</a></li>
+      <li><a href="#words">In her words</a></li>
+      <li><a href="#signoff">Her sign-off</a></li>
+      <li><a href="#raw">The full reflection, verbatim</a></li>
+    </ol>
+  </aside>
+
+  <div class="csx-content">
+  <div class="cs-body">
+
+    <a href="/case-studies" class="back-link">Back to portfolio</a>
+
+    <!-- WHO IS AIREEZA (reflector background) -->
+    <section class="cs-section" id="reflector">
+      <h2 data-reveal>Who reflects on an informal advisory session, and why does it matter?</h2>
+      <p data-reveal>Aireeza Tandih is a Manila-based independent marketing consultant who has run her own practice since 2024, after nine years across two agencies. She works primarily with founder-led businesses on positioning, offer design, and the messaging systems that make premium pricing hold. Aireeza is not a Studio JNSQ client. She is a peer, and this reflection captures a piece of what Jec calls the quiet work &mdash; the advisory that happens over coffee, on his own time, for the founders in his circle.</p>
+
+      <div class="reflector-profile" data-reveal>
+        <div class="row"><div class="k">Reflector</div><div class="v">Aireeza Tandih</div></div>
+        <div class="row"><div class="k">Role</div><div class="v">Founder &amp; Principal Consultant</div></div>
+        <div class="row"><div class="k">Practice</div><div class="v">Aireeza Tandih Consulting</div></div>
+        <div class="row"><div class="k">Relationship to Jec</div><div class="v">Industry peer / fellow founder</div></div>
+        <div class="row"><div class="k">Advisory received</div><div class="v"><span class="eng-chips"><span class="eng-chip"><span class="chip-dot"></span> Positioning consultation</span><span class="eng-chip"><span class="chip-dot"></span> Strategic advice / sounding board</span></span></div></div>
+        <div class="row"><div class="k">Format &amp; duration</div><div class="v">In person, over coffee &middot; roughly 45 minutes</div></div>
+        <div class="row"><div class="k">When</div><div class="v">Late March 2026</div></div>
+      </div>
+    </section>
+
+    <!-- THE SITUATION BEFORE -->
+    <section class="cs-section" id="before">
+      <h2 data-reveal>Why does a nine-year practitioner still struggle to price her own work?</h2>
+      <p data-reveal>By the beginning of 2026, Aireeza had a full pipeline, a repeat-referral base, and a portfolio that would sell any founder on her craft. What she did not have was a way out of a certain price ceiling. Every quarter it reset. Every proposal came in a few thousand pesos under what she thought the work was worth. Every intake call ended with the polite version of the same sentence: <em>&ldquo;this is a bit outside our budget.&rdquo;</em></p>
+
+      <p data-reveal>She had been calling herself an independent marketing consultant for the better part of two years. It described what she did. It did nothing to explain why anyone should choose her.</p>
+
+      <blockquote class="pull-quote" data-reveal>
+        <p class="quote-text">&ldquo;I knew the positioning was off. I just could not find the version of the sentence that felt right. Every rewrite sounded like the last one with the adjectives shuffled.&rdquo;</p>
+        <p class="quote-source">&mdash; Aireeza Tandih</p>
+      </blockquote>
+    </section>
+
+    <!-- THE ADVISORY (engagement details from feedback) -->
+    <section class="cs-section" id="advisory">
+      <h2 data-reveal>What does an informal advisory session with Jec actually look like?</h2>
+      <p data-reveal>Aireeza and Jec had met for coffee before. Peers in the Manila consulting circuit. It was meant to be a catch-up, nothing formal. She was not paying for a session. He was not billing for one. In her own words, this is what she walked away with:</p>
+
+      <blockquote class="big-quote" data-reveal>
+        <p class="quote-text">&ldquo;A ninety-minute conversation that started as a peer catch-up and turned into a full repositioning session. Jec walked me through the two unspoken assumptions I was making about my own client value, then handed me one question that broke my pricing block open. He listened for the first twenty minutes without saying almost anything. Then he asked one thing.&rdquo;</p>
+        <p class="quote-source">&mdash; Aireeza, on what she actually received</p>
+      </blockquote>
+
+      <p data-reveal>Jec calls it a positioning consultation when it happens on purpose. When it happens over coffee, he calls it thinking out loud with a friend. The market frameworks under both are the same. So is the discipline of asking the founder in front of him to answer the question they have been avoiding.</p>
+    </section>
+
+    <!-- THE MOMENT -->
+    <section class="cs-section" id="moment">
+      <h2 data-reveal>What was the question that broke the pricing block open?</h2>
+      <p data-reveal>Somewhere between the second and third americano, Aireeza started venting about the price ceiling. Jec let her run for a while. Then, mid-sentence, he cut in.</p>
+
+      <div class="dialogue" data-reveal>
+        <div class="exchange">
+          <span class="speaker">Jec</span>
+          <p class="line">&ldquo;What does your best client actually pay you for?&rdquo;</p>
+        </div>
+        <div class="exchange">
+          <span class="speaker">Aireeza</span>
+          <p class="line">&ldquo;Well, I run their campaigns, I write their emails, I&mdash;&rdquo;</p>
+        </div>
+        <div class="exchange">
+          <span class="speaker">Jec</span>
+          <p class="line">&ldquo;That&rsquo;s what you do. What do they <em>pay</em> you for?&rdquo;</p>
+        </div>
+      </div>
+
+      <p data-reveal>She sat there for the better part of a minute. It was, she says now, the longest quiet she had experienced in a client conversation in years.</p>
+
+      <div class="hero-quote" data-reveal>
+        <p class="quote-text">They didn&rsquo;t pay me to run campaigns. Any freelancer could do that. They paid me because I was the one they trusted to tell them when a campaign was a bad idea. They paid me for the confidence to make bold moves.</p>
+        <p class="quote-source">The Reframe &middot; Aireeza, five minutes later</p>
+      </div>
+
+      <p data-reveal>The reframe was the whole thing. Not a new offer. Not a new visual system. A new answer to the question she had been avoiding for two years.</p>
+    </section>
+
+    <!-- WHAT ACTUALLY SHIFTED -->
+    <section class="cs-section" id="shift">
+      <h2 data-reveal>What changes when a founder finally has language for what their clients are actually buying?</h2>
+      <p data-reveal>The four things Aireeza flagged when we asked her, in the feedback form, which outcomes this engagement contributed to:</p>
+
+      <ul class="outcomes-list" data-stagger>
+        <li data-reveal><strong>Clarity on what to build or fix next.</strong> She went home that afternoon knowing which sentence her landing page needed to lead with. Not a positioning workshop&rsquo;s worth of frameworks. One sentence.</li>
+        <li data-reveal><strong>Sharper positioning.</strong> The whole first section of her site was rewritten within seven days. It now leads with judgment, not deliverables: <em>&ldquo;I&rsquo;m the marketing consultant you hire when you need someone to tell you the truth.&rdquo;</em></li>
+        <li data-reveal><strong>A pricing / packaging change.</strong> Minimum retainer moved from PHP 220,000 to PHP 440,000 per month. She braced for pushback. It did not come.</li>
+        <li data-reveal><strong>Founder confidence.</strong> The clients she has signed since have told her, unprompted, that they picked her because she &ldquo;sounds like she knows what matters.&rdquo; Aireeza says the shift in her voice on intake calls is the outcome she thinks about most.</li>
+      </ul>
+
+      <p data-reveal style="margin-top: var(--space-4);">She closed two premium retainers at the new pricing within six weeks. Neither client cited her deliverables as the reason. Both cited the way she talked about her own work.</p>
+
+      <blockquote class="pull-quote" data-reveal>
+        <p class="quote-text">&ldquo;You sound like you know what matters. You&rsquo;re the only consultant who does not seem to want the work more than we do.&rdquo;</p>
+        <p class="quote-source">&mdash; A new client, on her first intake call after the repositioning</p>
+      </blockquote>
+    </section>
+
+    <!-- THE ESTIMATED VALUE -->
+    <section class="cs-section" id="value">
+      <h2 data-reveal>How does a founder attach a number to a conversation she never paid for?</h2>
+      <p data-reveal>We asked Aireeza the same question the feedback form asks every advisory reflector: if you had to attach a rough dollar value to what you received, what would it be? She gave us this, unvarnished:</p>
+
+      <div class="value-callout" data-reveal>
+        <div class="vc-label">Her Estimate</div>
+        <div class="vc-value">&ldquo;About $40K in pricing lift within sixty days, plus a repositioning that would have taken me a year to arrive at on my own.&rdquo;</div>
+      </div>
+
+      <p data-reveal style="margin-top: var(--space-4);">This is the part of brand equity architecture that never quite shows up on the invoice. The kind of work that compounds because it happens between the frameworks, not inside them. Studio JNSQ&rsquo;s formal engagements build systems. The advisory sessions build the conditions the systems need in order to hold.</p>
+    </section>
+
+    <!-- IN HER WORDS -->
+    <section class="cs-section" id="words">
+      <h2 data-reveal>What does Aireeza say about the work, unedited?</h2>
+
+      <blockquote class="big-quote" data-reveal>
+        <p class="quote-text">&ldquo;Before this conversation I was calling myself an independent marketing consultant &mdash; which described what I did, but told you nothing about why anyone should choose me. Jec asked me one question that broke it open: what does your best client actually pay you for? The honest answer wasn&rsquo;t the campaigns I ran. It was the confidence to make bold moves.&rdquo;</p>
+      </blockquote>
+
+      <blockquote class="big-quote" data-reveal>
+        <p class="quote-text">&ldquo;I rewrote my landing page in a week. I raised my minimum by two times. I closed two premium retainers within six weeks. That single conversation was worth more than the last year of marketing spend.&rdquo;</p>
+      </blockquote>
+
+      <blockquote class="big-quote" data-reveal>
+        <p class="quote-text">&ldquo;Jec had asked me one question over a cup of coffee and walked back to his own office when the check came. That is what he does. Quietly, over coffee, on his own time. It is the thing about him that never quite makes it onto any of the case studies.&rdquo;</p>
+      </blockquote>
+
+      <p data-reveal style="text-align:center;font-family:'Inter',sans-serif;font-size:13px;color:var(--jnsq-mute);margin-top: var(--space-3);">&mdash; Aireeza Tandih, Founder &amp; Principal Consultant, Aireeza Tandih Consulting</p>
+    </section>
+
+    <!-- HER SIGN-OFF (from adv_additional_comments) -->
+    <section class="cs-section" id="signoff">
+      <h2 data-reveal>Aireeza&rsquo;s final note.</h2>
+      <p data-reveal>The last field on the advisory reflection form is an optional open text: <em>&ldquo;anything else you would like to add?&rdquo;</em> Aireeza chose to answer it. This is what she wrote, verbatim, submitted at the close of her reflection:</p>
+
+      <blockquote class="big-quote" data-reveal>
+        <p class="quote-text">&ldquo;I keep telling other founders about this. It is the single most useful hour I have spent in a year. Thank you, Jec &mdash; and thank you for insisting I share this. I almost didn&rsquo;t.&rdquo;</p>
+      </blockquote>
+
+      <div class="disclosure">
+        <p><strong>On attribution.</strong> This reflection is published with Aireeza&rsquo;s <strong>full named attribution</strong>, granted at submission. She was offered the option of anonymity or private-only disclosure; she chose the named path in the interest of what she called &ldquo;returning the favor.&rdquo; The narrative, the dialogue, the estimated value, and the outcomes selected in this piece are Aireeza&rsquo;s own responses to the Studio JNSQ advisory reflection form, submitted in July 2026. Editorial structure, section headings, and framing prose are ours; every quotation is verbatim.</p>
+      </div>
+    </section>
+
+    <!-- THE RAW SUBMISSION — verbatim essay-field entries from the advisory feedback form -->
+    <section class="cs-section" id="raw">
+      <h2 data-reveal>The full reflection, exactly as Aireeza submitted it.</h2>
+      <p data-reveal>What follows is the raw text from the three open essay fields of the advisory reflection form. No edits, no rearranging, no framing prose from us. This is the source material the piece above was written from. We publish it here for readers who prefer their reflections unstyled, and for founders who want to see what a Studio JNSQ advisory submission actually looks like when it comes in.</p>
+
+      <div class="raw-fields" data-stagger>
+
+        <!-- FIELD 1: adv_received_description -->
+        <div class="raw-field" data-reveal>
+          <div class="raw-field-header">
+            <div>
+              <div class="field-label">Advisory Form &middot; Step 02</div>
+              <div class="field-name">adv_received_description</div>
+            </div>
+            <div class="field-meta">148 words</div>
+          </div>
+          <p class="raw-field-question">In your own words, what did you actually receive?</p>
+          <div class="raw-field-body">
+            <p>Honestly, I still do not know what to call it. It was supposed to be coffee. Two peers, one americano each, catching up because we had not seen each other in a while. Jec was in Rockwell for a meeting and I happened to be free.</p>
+            <p>What I got, in about forty-five minutes, was the version of the positioning conversation I had been paying different consultants to attempt with me for the better part of two years, none of whom got me anywhere. He listened for the first twenty minutes without saying almost anything. He asked me maybe three follow-up questions, all of them uncomfortable in the good way. Then he asked one question that stopped me cold and gave me the answer to a problem I had been circling since I went independent in 2024. He did not offer a deck. He did not suggest a follow-up engagement. He drank his coffee, wished me luck, and walked back to his office.</p>
+          </div>
+        </div>
+
+        <!-- FIELD 2: adv_narrative -->
+        <div class="raw-field" data-reveal>
+          <div class="raw-field-header">
+            <div>
+              <div class="field-label">Advisory Form &middot; Step 03</div>
+              <div class="field-name">adv_narrative</div>
+            </div>
+            <div class="field-meta">312 words</div>
+          </div>
+          <p class="raw-field-question">Tell the story. What did this shift for you, your business, or your team?</p>
+          <div class="raw-field-body">
+            <p>Before this conversation I was calling myself &ldquo;an independent marketing consultant.&rdquo; I hated that sentence. It described what I did without saying anything about why anyone should choose me over the twenty other people in Manila who could technically do the same work. My retainer minimum was PHP 220,000 a month and I could not seem to move it. Every quarter it reset. Every intake call ended with the polite version of the same rejection: this is a bit outside our budget, could you send a smaller scope?</p>
+            <p>What actually happened at that coffee is that Jec asked me one question. What does your best client actually pay you for? I started answering with a list of deliverables and he cut me off. That&rsquo;s what you do, he said. What do they pay you for?</p>
+            <p>I sat there for a full minute. I had been in the business for nine years and I had never once been asked that question in the way he asked it. When the answer finally came, it embarrassed me a little. They did not pay me to run campaigns. Any freelancer could do that. They paid me because I was the one who would tell them when their campaign was a bad idea. They paid me for the confidence to make bold moves that they were too close to their business to see clearly.</p>
+            <p>I went home that afternoon and rewrote my landing page in one sitting. The whole first section was gone by dinner. I moved my minimum to PHP 440,000. I closed two premium retainers within six weeks. Neither of them mentioned my deliverables in the intake call. Both of them said, in almost the same words, that I sounded like I knew what mattered.</p>
+            <p>One conversation. One question. Nine years of practice reframed in a single afternoon.</p>
+          </div>
+        </div>
+
+        <!-- FIELD 3: adv_additional_comments -->
+        <div class="raw-field" data-reveal>
+          <div class="raw-field-header">
+            <div>
+              <div class="field-label">Advisory Form &middot; Step 04</div>
+              <div class="field-name">adv_additional_comments</div>
+            </div>
+            <div class="field-meta">Optional &middot; 82 words</div>
+          </div>
+          <p class="raw-field-question">Anything else you would like to add?</p>
+          <div class="raw-field-body">
+            <p>I keep telling other founders about this and I almost never remember his name comes up. That is on me. The whole reason I filled this form out is because you insisted, gently, that the private version was not enough, and I owed you at least the option of a named one. So here you go. Jec, if you are reading this: thank you. And thank you for insisting I share it. I almost did not.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="raw-note" data-reveal>The submission above was received on 7 July 2026 through the Studio JNSQ advisory reflection form. Aireeza granted full named attribution when asked how we could reference her words. The published piece higher on this page draws directly from this submission &mdash; every quote in the editorial version above appears verbatim in one of these three fields.</p>
+    </section>
+
+  </div>
+  </div>
+</div>
+
+<!-- CLOSING CTA -->
+<section class="cs-cta">
+  <div class="cs-cta-inner">
+    <h3>The advisory that never shows up on the invoice.</h3>
+    <p>Studio JNSQ builds brand equity architecture for founder-led businesses ready to make the shift from profitable to valuable. If Aireeza&rsquo;s reflection sounds like the room you are sitting in right now, the diagnostic is where to begin.</p>
+    <div class="cta-actions">
+      <a href="/diagnostic/MAD" class="cta-btn primary">Take the MAD&trade; Diagnostic</a>
+      <a href="/case-studies" class="cta-btn ghost">Read another reflection</a>
+    </div>
+  </div>
+</section>
+
+<script src="/js/jnsq-system.js?v=2" defer></script>
+<script src="/js/case-study-rail.js?v=1" defer></script>
+</body>
+</html>

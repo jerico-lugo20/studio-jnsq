@@ -1,0 +1,55 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; font-weight: 600; fill: #FDD500; text-anchor: middle; letter-spacing: 4; }
+      .oneliner-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 22px; font-weight: 500; fill: #98A7B5; text-anchor: middle; }
+      .label-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; font-weight: 600; fill: #394550; text-anchor: middle; }
+      .brand-mark { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11px; font-weight: 600; fill: #394550; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="630" fill="#fefbef"/>
+
+  <!-- Title -->
+  <text x="600" y="85" class="title-text">THE LTV MULTIPLIER</text>
+
+  <!-- Stepped bar chart showing LTV growth over time -->
+  <!-- Step 1 -->
+  <rect x="280" y="360" width="60" height="80" fill="#E8917A" opacity="0.6"/>
+  <text x="310" y="460" class="label-text">Year 1</text>
+
+  <!-- Step 2 -->
+  <rect x="370" y="320" width="60" height="120" fill="#98A7B5"/>
+  <text x="400" y="460" class="label-text">Year 2</text>
+
+  <!-- Step 3 -->
+  <rect x="460" y="270" width="60" height="170" fill="#6D8397"/>
+  <text x="490" y="460" class="label-text">Year 3</text>
+
+  <!-- Step 4 -->
+  <rect x="550" y="200" width="60" height="240" fill="#FDD500"/>
+  <text x="580" y="460" class="label-text">Year 4</text>
+
+  <!-- Step 5 -->
+  <rect x="640" y="120" width="60" height="320" fill="#FDD500" opacity="0.9"/>
+  <text x="670" y="460" class="label-text">Year 5</text>
+
+  <!-- Connection lines -->
+  <path d="M 340 360 L 370 320" fill="none" stroke="#394550" stroke-width="1.5" opacity="0.3"/>
+  <path d="M 430 320 L 460 270" fill="none" stroke="#394550" stroke-width="1.5" opacity="0.3"/>
+  <path d="M 520 270 L 550 200" fill="none" stroke="#394550" stroke-width="1.5" opacity="0.3"/>
+  <path d="M 610 200 L 640 120" fill="none" stroke="#394550" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- Up arrow on right -->
+  <g transform="translate(760, 300)">
+    <path d="M 0 80 L 0 0" fill="none" stroke="#FDD500" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="0,0 -8,15 8,15" fill="#FDD500"/>
+  </g>
+
+  <!-- One-liner -->
+  <text x="600" y="560" class="oneliner-text">Brand equity compounds what marketing starts.</text>
+
+  <!-- Brand mark -->
+  <circle cx="540" cy="600" r="3" fill="#FDD500"/>
+  <text x="600" y="604" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600" fill="#c5bfb0" letter-spacing="2">STUDIO JNSQ</text>
+</svg>

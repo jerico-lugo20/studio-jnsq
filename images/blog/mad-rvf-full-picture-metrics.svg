@@ -1,0 +1,63 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; font-weight: 600; fill: #FDD500; text-anchor: middle; letter-spacing: 4; }
+      .oneliner-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 22px; font-weight: 500; fill: #98A7B5; text-anchor: middle; }
+      .label-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; font-weight: 600; fill: #394550; text-anchor: middle; }
+      .brand-mark { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11px; font-weight: 600; fill: #394550; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="630" fill="#fefbef"/>
+
+  <!-- Title -->
+  <text x="600" y="85" class="title-text">FROM DIAGNOSIS TO METRICS</text>
+
+  <!-- LEFT: MAD Diamond -->
+  <g transform="translate(240, 310)">
+    <polygon points="0,-50 50,0 0,50 -50,0" fill="none" stroke="#FDD500" stroke-width="3"/>
+    <circle cx="0" cy="0" r="18" fill="#FDD500"/>
+    <text x="0" y="6" class="label-text">MAD™</text>
+  </g>
+
+  <!-- CENTER: Three metric pills with convergence -->
+  <rect x="380" y="260" width="140" height="35" fill="#FDD500" rx="18"/>
+  <text x="450" y="283" class="label-text" fill="#fff">CAC</text>
+
+  <rect x="380" y="315" width="140" height="35" fill="#E8917A" rx="18"/>
+  <text x="450" y="338" class="label-text" fill="#fff">MRR</text>
+
+  <rect x="380" y="370" width="140" height="35" fill="#6D8397" rx="18"/>
+  <text x="450" y="393" class="label-text" fill="#fff">LTV</text>
+
+  <!-- RIGHT: RVF Equation boxes -->
+  <g transform="translate(700, 310)">
+    <rect x="-55" y="-45" width="50" height="35" fill="none" stroke="#6D8397" stroke-width="2" rx="3"/>
+    <text x="-30" y="-20" class="label-text" fill="#394550">Eq. 1</text>
+
+    <rect x="10" y="-45" width="50" height="35" fill="none" stroke="#6D8397" stroke-width="2" rx="3"/>
+    <text x="35" y="-20" class="label-text" fill="#394550">Eq. 2</text>
+
+    <rect x="-55" y="10" width="50" height="35" fill="none" stroke="#6D8397" stroke-width="2" rx="3"/>
+    <text x="-30" y="35" class="label-text" fill="#394550">Eq. 3</text>
+
+    <!-- RVF label -->
+    <text x="-10" y="-65" class="label-text" fill="#6D8397">RVF&#8482;</text>
+  </g>
+
+  <!-- Convergence flow lines -->
+  <path d="M 290 285 L 380 278" fill="none" stroke="#FDD500" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 290 310 L 380 332" fill="none" stroke="#E8917A" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 290 335 L 380 387" fill="none" stroke="#6D8397" stroke-width="2.5" stroke-linecap="round"/>
+
+  <path d="M 520 278 L 645 275" fill="none" stroke="#FDD500" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 520 332 L 645 310" fill="none" stroke="#E8917A" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 520 387 L 645 345" fill="none" stroke="#6D8397" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- One-liner -->
+  <text x="600" y="560" class="oneliner-text">Where you stand meets how you grow.</text>
+
+  <!-- Brand mark -->
+  <circle cx="540" cy="600" r="3" fill="#FDD500"/>
+  <text x="600" y="604" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600" fill="#c5bfb0" letter-spacing="2">STUDIO JNSQ</text>
+</svg>
