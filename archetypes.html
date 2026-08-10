@@ -110,11 +110,15 @@
   html { scroll-behavior:smooth; }
   body { background:var(--jnsq-bg); color:var(--jnsq-body); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
 
-  .ce-wrap { max-width:1560px; width:92%; margin:0 auto; padding:0 24px; }
-  .ce-wrap--narrow { max-width:1560px; width:92%; margin:0 auto; padding:0 24px; }
+  .ce-wrap { max-width:1360px; width:80%; margin:0 auto; padding:0 24px; }
+  /* only the 16-archetype grid uses the full container; everything else is calmer */
+  .ce-col { max-width:940px; margin:0 auto; }
+  .ce-col--wide { max-width:1140px; margin:0 auto; }
+  .ce-center { text-align:center; }
+  .ce-center .ce-body, .ce-center .ce-lede { margin-left:auto; margin-right:auto; }
   /* prose keeps a readable measure inside the wide container */
   .ce-body, .ce-lede { max-width:72ch; }
-  .ce-split { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:72px; align-items:start; }
+  .ce-split { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:52px; align-items:start; }
   @media (max-width:900px){ .ce-split { grid-template-columns:1fr; gap:32px; } }
   .ce-section { padding:80px 0; }
   .ce-section--paper { background:var(--jnsq-paper, #fff); }
@@ -167,7 +171,7 @@
   .ce-diamond { display:block; margin:38px auto 8px; }
 
   /* ---------- FAQ accordion (same pattern as the MAD(tm) diagnostic) ---------- */
-  .faq-list { max-width:1100px; margin:34px auto 0; }
+  .faq-list { max-width:none; margin:28px 0 0; }
   .faq-list details { border-bottom:1px solid var(--jnsq-line); padding:20px 0; }
   .faq-list summary {
     font-family:'Inter',sans-serif; font-size:1rem; font-weight:600;
@@ -204,7 +208,7 @@
     padding:6px 16px; border-radius:8px; font-size:12px; font-family:'Inter',sans-serif; cursor:pointer;
   }
   .ce-ovbar-close:hover { color:#fff; border-color:rgba(255,255,255,.4); }
-  .ce-ovbody { max-width:1440px; width:92%; margin:0 auto; padding:44px 24px 90px; }
+  .ce-ovbody { max-width:1000px; width:88%; margin:0 auto; padding:44px 24px 90px; }
 
   /* ---------- audit-style archetype block ---------- */
   .ce-band { background:#393D3F; border-radius:12px; padding:30px 28px; text-align:center; margin-bottom:30px; }
@@ -275,38 +279,42 @@
 
 <!-- ============ HERO ============ -->
 <header class="jnsq-hero">
-  <div class="ce-wrap" style="text-align:center;">
-    <div class="jnsq-eyebrow jnsq-hero-eyebrow">Career Equity Archetype&#8482;</div>
-    <h1 class="jnsq-hero-display" style="margin-bottom:22px;">Where does your career actually stand?</h1>
-    <p class="ce-lede" style="max-width:620px;margin:0 auto 26px;">Your career holds equity the same way a company does. Most people have never been shown the shape of theirs.</p>
-    <p class="ce-body" style="max-width:600px;margin:0 auto 30px;">Fifteen questions. About three minutes. You will get one of sixteen archetypes, the tier it sits in, what breaks next if nothing changes, and the archetype you move to from here.</p>
-    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center;">
-      <a href="javascript:void(0)" onclick="openFinder()" class="jnsq-btn jnsq-btn-primary jnsq-btn-arrow">Start the Career Equity Archetype&#8482;</a>
-      <a href="#library" class="jnsq-btn jnsq-btn-ghost">Read all sixteen</a>
+  <div class="ce-wrap">
+    <div class="ce-col ce-center">
+      <div class="jnsq-eyebrow jnsq-hero-eyebrow">Career Equity Archetype&#8482;</div>
+      <h1 class="jnsq-hero-display" style="margin:0 auto 22px;max-width:16ch;">Where does your career actually stand?</h1>
+      <p class="ce-lede" style="max-width:640px;margin:0 auto 26px;">Your career holds equity the same way a company does. Most people have never been shown the shape of theirs.</p>
+      <p class="ce-body" style="max-width:600px;margin:0 auto 32px;">Fifteen questions. About three minutes. You will get one of sixteen archetypes, the tier it sits in, what breaks next if nothing changes, and the archetype you move to from here.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;align-items:center;">
+        <a href="javascript:void(0)" onclick="openFinder()" class="jnsq-btn jnsq-btn-primary jnsq-btn-arrow">Start the Career Equity Archetype&#8482;</a>
+        <a href="#library" class="jnsq-btn jnsq-btn-ghost">Read all sixteen</a>
+      </div>
+      <div style="margin-top:26px;"><span class="ce-free-pill">Free forever. No email required to see your result.</span></div>
     </div>
-    <div style="margin-top:26px;"><span class="ce-free-pill">Free forever. No email required to see your result.</span></div>
   </div>
 </header>
 
 <!-- ============ WHAT THIS IS ============ -->
 <section class="ce-section ce-section--paper">
   <div class="ce-wrap">
-    <div class="ce-split">
-      <div>
-        <div class="jnsq-eyebrow" style="margin-bottom:14px;">What this measures</div>
-        <h2 class="jnsq-display-2" style="margin-bottom:22px;">Career equity, not personal branding.</h2>
-        <p class="ce-body">Personal branding is how you present. Career equity is what you are actually worth to the market when you are not in the room: whether the right people already know your name, whether your credibility travels when your job title changes, and whether opportunity arrives without you chasing it.</p>
-        <p class="ce-body">Those are structural questions, and structures fail in a specific order. That is what the archetypes describe. Not a personality type, and not a score. The shape of what you have built, and the part of it that is not yet load-bearing.</p>
-      </div>
-      <div>
-        <div style="background:var(--jnsq-yellow-soft);border-left:3px solid var(--jnsq-yellow);border-radius:0 12px 12px 0;padding:30px 32px;">
-          <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--jnsq-mute);font-weight:700;margin-bottom:14px;">How the diamond is read</div>
-          <p style="font-size:15.5px;line-height:1.8;color:var(--jnsq-body);margin-bottom:18px;">The sixteen archetypes are read through the <strong>Market Authority Diamond&#8482;</strong>.</p>
-          <div style="display:grid;gap:11px;">
-            <div style="display:flex;gap:12px;align-items:baseline;"><span style="font-size:10px;font-weight:700;letter-spacing:1.2px;color:var(--jnsq-yellow);min-width:74px;text-transform:uppercase;">Peak</span><span style="font-size:14.5px;line-height:1.6;">Demand. Whether the market comes to you.</span></div>
-            <div style="display:flex;gap:12px;align-items:baseline;"><span style="font-size:10px;font-weight:700;letter-spacing:1.2px;color:var(--jnsq-yellow);min-width:74px;text-transform:uppercase;">Walls</span><span style="font-size:14.5px;line-height:1.6;">Credibility and Visibility. Proof, and whether it can be seen.</span></div>
-            <div style="display:flex;gap:12px;align-items:baseline;"><span style="font-size:10px;font-weight:700;letter-spacing:1.2px;color:var(--jnsq-yellow);min-width:74px;text-transform:uppercase;">Base</span><span style="font-size:14.5px;line-height:1.6;">Market Trust. Whether people act without verifying you first.</span></div>
-            <div style="display:flex;gap:12px;align-items:baseline;"><span style="font-size:10px;font-weight:700;letter-spacing:1.2px;color:var(--jnsq-yellow);min-width:74px;text-transform:uppercase;">Centre</span><span style="font-size:14.5px;line-height:1.6;">Branding. The point everything is organised around. Not a facet.</span></div>
+    <div class="ce-col--wide">
+      <div class="ce-split">
+        <div>
+          <div class="jnsq-eyebrow" style="margin-bottom:14px;">What this measures</div>
+          <h2 class="jnsq-display-2" style="margin-bottom:22px;">Career equity, not personal branding.</h2>
+          <p class="ce-body">Personal branding is how you present. Career equity is what you are actually worth to the market when you are not in the room: whether the right people already know your name, whether your credibility travels when your job title changes, and whether opportunity arrives without you chasing it.</p>
+          <p class="ce-body">Those are structural questions, and structures fail in a specific order. That is what the archetypes describe. Not a personality type, and not a score. The shape of what you have built, and the part of it that is not yet load-bearing.</p>
+          <p class="ce-body" style="margin-top:18px;color:var(--jnsq-mute);font-size:15px;">Branding sits at the centre of the diamond because it is what the other four are organised around. It is the centering point, not a fifth facet.</p>
+        </div>
+        <div>
+          <div style="border:1px solid var(--jnsq-line);border-radius:12px;padding:24px 26px;background:var(--jnsq-bg);">
+            <div style="font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--jnsq-mute);font-weight:700;margin-bottom:16px;">How the diamond is read</div>
+            <dl style="display:grid;gap:14px;margin:0;">
+              <div><dt style="font-family:'Lora',Georgia,serif;font-size:15px;color:var(--jnsq-ink);margin-bottom:3px;">Demand</dt><dd style="margin:0;font-size:14px;line-height:1.6;color:var(--jnsq-body);">The peak. Whether the market comes to you.</dd></div>
+              <div><dt style="font-family:'Lora',Georgia,serif;font-size:15px;color:var(--jnsq-ink);margin-bottom:3px;">Credibility &amp; Visibility</dt><dd style="margin:0;font-size:14px;line-height:1.6;color:var(--jnsq-body);">The walls. Proof, and whether it can be seen.</dd></div>
+              <div><dt style="font-family:'Lora',Georgia,serif;font-size:15px;color:var(--jnsq-ink);margin-bottom:3px;">Market Trust</dt><dd style="margin:0;font-size:14px;line-height:1.6;color:var(--jnsq-body);">The foundation. Whether people act without verifying you first.</dd></div>
+              <div style="padding-top:12px;border-top:1px solid var(--jnsq-line);"><dt style="font-family:'Lora',Georgia,serif;font-size:15px;color:var(--jnsq-ink);margin-bottom:3px;">Branding</dt><dd style="margin:0;font-size:14px;line-height:1.6;color:var(--jnsq-body);">The centering point. Not a facet.</dd></div>
+            </dl>
           </div>
         </div>
       </div>
@@ -317,6 +325,7 @@
 <!-- ============ HOW IT WORKS ============ -->
 <section class="ce-section">
   <div class="ce-wrap">
+    <div class="ce-col--wide">
     <div class="jnsq-eyebrow" style="margin-bottom:14px;">How it works</div>
     <h2 class="jnsq-display-2" style="margin-bottom:30px;">Three minutes. No account, no email.</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px;margin-top:8px;">
@@ -336,8 +345,9 @@
         <p style="font-size:14.5px;line-height:1.7;color:var(--jnsq-body);">Where the archetype struggles, the lever you already hold, and where it optimizes next. Not a label. A reading.</p>
       </div>
     </div>
-    <div style="margin-top:34px;">
+    <div style="margin-top:38px;text-align:center;">
       <a href="javascript:void(0)" onclick="openFinder()" class="jnsq-btn jnsq-btn-primary jnsq-btn-arrow">Start the Career Equity Archetype&#8482;</a>
+    </div>
     </div>
   </div>
 </section>
@@ -356,6 +366,7 @@
 <!-- ============ DOCTRINE ============ -->
 <section class="ce-section ce-section--paper">
   <div class="ce-wrap">
+    <div class="ce-col--wide">
     <div class="ce-split">
       <div>
         <div class="jnsq-eyebrow" style="margin-bottom:14px;">The discipline behind it</div>
@@ -381,12 +392,14 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 </section>
 
 <!-- ============ FAQ ============ -->
 <section class="ce-section">
   <div class="ce-wrap">
+    <div class="ce-col">
     <div class="jnsq-eyebrow" style="margin-bottom:14px;">Common questions</div>
     <h2 class="jnsq-display-2" style="margin-bottom:6px;">What people ask before they start.</h2>
     <div class="faq-list">
@@ -423,16 +436,19 @@
         <p>No. The finder runs entirely in your browser. Nothing is sent anywhere, nothing is saved, and closing the tab discards it.</p>
       </details>
     </div>
+    </div>
   </div>
 </section>
 
 <!-- ============ CLOSING CTA ============ -->
 <section class="jnsq-cta-section">
-  <div class="ce-wrap" style="text-align:center;">
-    <div class="jnsq-eyebrow" style="margin-bottom:14px;">Career equity compounds or it erodes</div>
-    <h2 class="jnsq-display-2" style="margin-bottom:22px;">Find out which one yours is doing.</h2>
-    <p class="ce-body" style="max-width:520px;margin:0 auto 30px;">Fifteen questions. Free forever. You will know your archetype before you finish your coffee.</p>
-    <a href="javascript:void(0)" onclick="openFinder()" class="jnsq-btn jnsq-btn-primary jnsq-btn-arrow">Start the Career Equity Archetype&#8482;</a>
+  <div class="ce-wrap">
+    <div class="ce-col ce-center">
+      <div class="jnsq-eyebrow" style="margin-bottom:14px;">Career equity compounds or it erodes</div>
+      <h2 class="jnsq-display-2" style="margin:0 auto 22px;max-width:20ch;">Find out which one yours is doing.</h2>
+      <p class="ce-body" style="max-width:540px;margin:0 auto 32px;">Fifteen questions. Free forever. You will know your archetype before you finish your coffee.</p>
+      <a href="javascript:void(0)" onclick="openFinder()" class="jnsq-btn jnsq-btn-primary jnsq-btn-arrow">Start the Career Equity Archetype&#8482;</a>
+    </div>
   </div>
 </section>
 

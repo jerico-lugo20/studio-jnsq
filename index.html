@@ -8626,8 +8626,12 @@ function generateDiagnosticPDF(tier) {
     }
 
     function setStyle(type) {
-      if (type === 'bold' || type === 'highlight') {
+      if (type === 'bold') {
         doc.setFont('helvetica', 'bold');
+      } else if (type === 'highlight') {
+        // highlight carries its own emphasis via the background band.
+        // Deliberately NOT bold: one emphasis per span, never two.
+        doc.setFont('helvetica', 'normal');
       } else if (type === 'italic') {
         doc.setFont('helvetica', 'italic');
       } else {
@@ -8919,18 +8923,18 @@ function generateDiagnosticPDF(tier) {
     doc.setFont('helvetica','normal'); doc.setFontSize(12); setC(STEEL);
     var descLines = doc.splitTextToSize(archetypeInfo.tagline || archetypeInfo.desc, CW - 80);
     doc.text(descLines, W/2, y, {align:'center'});
-    y += descLines.length * 16 + 20;
+    y += descLines.length * 15 + 12;
 
     // ── Divider ──
     hline(M + 60, y, CW - 120);
-    y += 20;
+    y += 14;
 
     // ── Definition ──
     if (archetypeInfo.definition) {
       doc.setFont('helvetica','normal'); doc.setFontSize(10); setC(DARK);
       var defL = doc.splitTextToSize(archetypeInfo.definition, CW);
       doc.text(defL, M, y);
-      y += defL.length * 14 + 16;
+      y += defL.length * 13 + 12;
     }
 
     // ── The 16 Archetypes overview ──
@@ -8950,36 +8954,45 @@ function generateDiagnosticPDF(tier) {
       CW
     );
     doc.text(overviewNote, M, y);
-    y += overviewNote.length * 11 + 14;
+    y += overviewNote.length * 10.5 + 10;
 
-    // Tier list (compact)
+    // 4 x 4 grid of archetype blocks, current one highlighted
     var tierGroupLabels = ['THE CENTER', 'THE WALLS', 'THE FOUNDATION', 'PEAK & COMPLETION'];
     var tierRoman = ['I', 'II', 'III', 'IV'];
-    var tierGroupColors = [[180,190,200], [109,131,151], [80,100,120], [57,69,80]];
+    var colGap = 8;
+    var cellW = (CW - colGap * 3) / 4;
+    var cellH = 28;
+
     for (var tg = 1; tg <= 4; tg++) {
       var tierArchetypes = [];
       for (var aKey in madArchetypes) {
         if (madArchetypes[aKey].tier === tg) tierArchetypes.push(madArchetypes[aKey].name);
       }
 
-      // Tier header pill
-      drawPill(M, y, 'TIER ' + tierRoman[tg-1], tierGroupColors[tg-1], WHITE, 7);
-      doc.setFont('helvetica','bold'); doc.setFontSize(7.5); setC(tierGroupColors[tg-1]);
-      doc.text(tierGroupLabels[tg-1], M + 46, y + 3.5);
+      // Row label
+      doc.setFont('helvetica','bold'); doc.setFontSize(7); setC(MID);
+      doc.text('TIER ' + tierRoman[tg-1] + '  \u00b7  ' + tierGroupLabels[tg-1], M, y);
+      y += 9;
 
-      // Archetype names
-      doc.setFont('helvetica','normal'); doc.setFontSize(8); setC(STEEL);
-      var namesStr = tierArchetypes.join('  \u00b7  ');
-      doc.text(namesStr, M + 46 + doc.getTextWidth(tierGroupLabels[tg-1]) + 14, y + 3.5);
+      // Four blocks across
+      for (var ci = 0; ci < tierArchetypes.length; ci++) {
+        var nm = tierArchetypes[ci];
+        var cx0 = M + ci * (cellW + colGap);
+        var isCurrent = (nm === archetypeInfo.name);
 
-      // Highlight current archetype if in this tier
-      if (archetypeInfo.tier === tg) {
-        var highlightX = namesStr.indexOf(archetypeInfo.name);
-        // Just add a subtle marker — underline already handled by bold above
+        if (isCurrent) { setF(YELLOW); } else { setF([243,245,247]); }
+        doc.roundedRect(cx0, y, cellW, cellH, 4, 4, 'F');
+
+        doc.setFont('helvetica', isCurrent ? 'bold' : 'normal');
+        doc.setFontSize(8);
+        setC(isCurrent ? DARK : STEEL);
+        var nmLines = doc.splitTextToSize(nm, cellW - 12);
+        var ty = y + (cellH - (nmLines.length * 9)) / 2 + 6.5;
+        doc.text(nmLines, cx0 + cellW / 2, ty, { align: 'center' });
       }
-      y += 18;
+      y += cellH + 8;
     }
-    y += 14;
+    y += 4;
 
     // ── Struggle / Lever / Optimizes next ──
     var blocks = [
@@ -8989,13 +9002,13 @@ function generateDiagnosticPDF(tier) {
     ];
     blocks.forEach(function(b){
       if (!b[1]) return;
-      if (y > H - 150) { y = newPage(); }
+      if (y > H - 96) { y = newPage(); }
       doc.setFont('helvetica','bold'); doc.setFontSize(9); setC([184,147,11]);
-      doc.text(b[0], M, y); y += 13;
+      doc.text(b[0], M, y); y += 12;
       doc.setFont('helvetica','normal'); doc.setFontSize(9.5); setC(STEEL);
       var lines = doc.splitTextToSize(b[1], CW);
       doc.text(lines, M, y);
-      y += lines.length * 13 + 16;
+      y += lines.length * 12.5 + 13;
     });
   }
 
@@ -11847,8 +11860,12 @@ function rvfDownloadPDF(tier) {
     }
 
     function setStyle(type) {
-      if (type === 'bold' || type === 'highlight') {
+      if (type === 'bold') {
         doc.setFont('helvetica', 'bold');
+      } else if (type === 'highlight') {
+        // highlight carries its own emphasis via the background band.
+        // Deliberately NOT bold: one emphasis per span, never two.
+        doc.setFont('helvetica', 'normal');
       } else if (type === 'italic') {
         doc.setFont('helvetica', 'italic');
       } else {
