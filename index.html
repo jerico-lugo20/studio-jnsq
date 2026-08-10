@@ -8916,6 +8916,9 @@ function generateDiagnosticPDF(tier) {
 
     // ── Tier pill ──
     var tierText = (archetypeInfo.tierLabel || ('TIER ' + archetypeInfo.tier)).toUpperCase();
+    // measure at the pill's own font/size, not whatever was last set, or the
+    // centring offset is computed from the wrong width
+    doc.setFont('helvetica','bold'); doc.setFontSize(9);
     drawPill(W/2 - (doc.getTextWidth(tierText) + 14) / 2, y, tierText, YELLOW, DARK, 9);
     y += 28;
 
