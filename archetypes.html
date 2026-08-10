@@ -104,6 +104,24 @@
   .ce-next-desc { font-size:13.5px; color:var(--jnsq-body); margin-top:7px; }
 
   .ce-diamond { display:block; margin:38px auto 8px; }
+
+  /* ---------- audit-style archetype block ---------- */
+  .ce-band { background:#393D3F; border-radius:12px; padding:30px 28px; text-align:center; margin-bottom:30px; }
+  .ce-band-tier { color:var(--jnsq-yellow); font-size:11px; font-weight:700; letter-spacing:1.6px; text-transform:uppercase; margin-bottom:14px; }
+  .ce-band-name { color:#fff; font-family:'Lora',Georgia,serif; font-size:clamp(30px,4.6vw,42px); font-weight:600; line-height:1.12; margin-bottom:12px; }
+  .ce-band-tag { color:rgba(255,255,255,.62); font-size:14.5px; font-style:italic; line-height:1.55; max-width:520px; margin:0 auto; }
+
+  .ce-block { margin-top:28px; }
+  .ce-block h3 { color:#B8930B; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:9px; }
+  .ce-block p { font-size:15.5px; line-height:1.78; color:var(--jnsq-body); }
+  .ce-defn { font-size:16.5px; line-height:1.78; color:var(--jnsq-ink); }
+
+  .ce-map { margin-top:34px; }
+  .ce-map-tier { font-size:10px; letter-spacing:1.3px; text-transform:uppercase; color:var(--jnsq-mute); font-weight:700; margin:14px 0 7px; }
+  .ce-map-row { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; }
+  .ce-chip { background:#F1EFE8; color:var(--jnsq-body); border-radius:5px; padding:8px 6px; font-size:11.5px; text-align:center; line-height:1.3; }
+  .ce-chip.on { background:var(--jnsq-yellow); color:#1A1A1A; font-weight:700; }
+  @media (max-width:640px){ .ce-map-row { grid-template-columns:repeat(2,1fr); } }
   .ce-facet-read { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:26px; }
   .ce-facet-read > div { background:#fff; border:1px solid var(--jnsq-line); border-radius:10px; padding:12px 14px; }
   .ce-facet-read .k { font-size:10px; letter-spacing:1.3px; text-transform:uppercase; color:var(--jnsq-mute); font-weight:700; }
@@ -208,23 +226,36 @@
 <!-- ============ RESULT ============ -->
 <section class="ce-section ce-section--paper ce-result" id="ceResult">
   <div class="ce-wrap">
-    <div class="ce-result-card">
-      <div class="ce-result-eyebrow">Your Career Equity Archetype&#8482;</div>
-      <div class="ce-result-name" id="ceName"></div>
-      <div class="ce-result-tier" id="ceTier"></div>
-      <p class="ce-result-desc" id="ceDesc"></p>
-      <div class="ce-next" id="ceNextWrap">
-        <div class="ce-next-label">Where you go from here</div>
-        <div class="ce-next-path" id="ceNextPath"></div>
-        <p class="ce-next-desc" id="ceNextDesc"></p>
-      </div>
+    <div class="ce-result-eyebrow" style="text-align:center;">Career Equity Archetype&#8482;</div>
+    <p style="text-align:center;color:var(--jnsq-mute);font-size:14px;margin:0 0 26px;">One of sixteen shapes a market position can take.</p>
+
+    <div class="ce-band">
+      <div class="ce-band-tier" id="ceTier"></div>
+      <div class="ce-band-name" id="ceName"></div>
+      <div class="ce-band-tag" id="ceTagline"></div>
     </div>
+
+    <p class="ce-defn" id="ceDefinition"></p>
 
     <svg class="ce-diamond" id="ceDiamond" viewBox="-45 -5 490 415" width="100%" style="max-width:400px;height:auto;" role="img" aria-labelledby="ceDiamondTitle" preserveAspectRatio="xMidYMid meet">
       <title id="ceDiamondTitle">Your Market Authority Diamond</title>
     </svg>
-
     <div class="ce-facet-read" id="ceFacetRead"></div>
+
+    <div class="ce-map">
+      <h3 style="color:#B8930B;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">Where it sits among the sixteen</h3>
+      <div id="ceMap"></div>
+    </div>
+
+    <div class="ce-block"><h3>Where this archetype struggles</h3><p id="ceStruggle"></p></div>
+    <div class="ce-block"><h3>Its biggest lever</h3><p id="ceLever"></p></div>
+    <div class="ce-block"><h3>Where it optimizes next</h3><p id="ceOptimizes"></p></div>
+
+    <div class="ce-block" id="ceNextWrap">
+      <h3>Your growth path</h3>
+      <p class="ce-next-path" id="ceNextPath" style="font-size:16px;font-weight:700;color:var(--jnsq-ink);"></p>
+      <p class="ce-next-desc" id="ceNextDesc" style="font-size:14px;color:var(--jnsq-body);margin-top:6px;"></p>
+    </div>
 
     <div class="ce-callout" style="margin-top:34px;">
       <p class="ce-body" style="margin:0;"><strong>This is the free reading, and it stays free.</strong> It tells you what you are. If you want the numbers behind it, a facet-by-facet interpretation and a sequenced plan for the next two quarters, that is what the full <a href="/diagnostic/MAD" class="jnsq-link">MAD&#8482; Diagnostic</a> does across 44 questions.</p>
@@ -499,7 +530,7 @@
       var wrap = document.createElement('div'); wrap.className = 'ce-tier';
       var head = document.createElement('div'); head.className = 'ce-tier-head';
       head.innerHTML = '<span class="ce-tier-badge">TIER ' + tier + '</span>' +
-                       '<span class="ce-tier-name">' + A[keys[0]].tierName + '</span>' +
+                       '<span class="ce-tier-name">' + A[keys[0]].tierLabel + '</span>' +
                        '<span class="ce-tier-note">' + TIER_NOTES[tier] + '</span>';
       wrap.appendChild(head);
       var cards = document.createElement('div'); cards.className = 'ce-cards';
@@ -510,10 +541,31 @@
         card.id = 'archetype-' + k;
         var nx = a.next && A[a.next] ? '<div class="nx">Next: ' + A[a.next].name + '</div>' : '<div class="nx">The top of the model</div>';
         card.innerHTML = (k === activeKey ? '<div class="ce-you-flag">This is you</div>' : '') +
-                         '<h4>' + a.name + '</h4><p>' + a.desc + '</p>' + nx;
+                         '<h4>' + a.name + '</h4><p>' + (a.tagline || a.desc) + '</p>' + nx;
         cards.appendChild(card);
       });
       wrap.appendChild(cards); host.appendChild(wrap);
+    });
+  }
+
+  /* ---------- the sixteen map (mirrors the audit page) ---------- */
+  function renderMap(activeKey){
+    var A = window.madArchetypes, host = document.getElementById('ceMap');
+    host.innerHTML = '';
+    var seen = [];
+    Object.keys(A).forEach(function(k){ if (seen.indexOf(A[k].tierLabel) < 0) seen.push(A[k].tierLabel); });
+    seen.forEach(function(tl){
+      var lbl = document.createElement('div');
+      lbl.className = 'ce-map-tier'; lbl.textContent = tl;
+      host.appendChild(lbl);
+      var row = document.createElement('div'); row.className = 'ce-map-row';
+      Object.keys(A).filter(function(k){ return A[k].tierLabel === tl; }).forEach(function(k){
+        var c = document.createElement('div');
+        c.className = 'ce-chip' + (k === activeKey ? ' on' : '');
+        c.textContent = A[k].name;
+        row.appendChild(c);
+      });
+      host.appendChild(row);
     });
   }
 
@@ -525,8 +577,13 @@
     var a = window.madArchetypes[key];
 
     document.getElementById('ceName').textContent = a.name;
-    document.getElementById('ceTier').textContent = 'Tier ' + a.tier + ' · ' + a.tierName;
-    document.getElementById('ceDesc').textContent = a.desc;
+    document.getElementById('ceTier').textContent = a.tierLabel;
+    document.getElementById('ceTagline').textContent = a.tagline;
+    document.getElementById('ceDefinition').textContent = a.definition;
+    document.getElementById('ceStruggle').textContent = a.struggle;
+    document.getElementById('ceLever').textContent = a.lever;
+    document.getElementById('ceOptimizes').textContent = a.optimizesNext;
+    renderMap(key);
 
     var nw = document.getElementById('ceNextWrap');
     if (a.next && window.madArchetypes[a.next]){

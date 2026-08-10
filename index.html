@@ -6416,7 +6416,7 @@ window.premShowResults = function(){
     window._archetype = archetype;
 
     var archetypeHTML = '<div id="archetypeDisplay" style="max-width:680px;margin:24px auto 32px;background:linear-gradient(135deg,rgba(253,213,0,0.08),rgba(253,213,0,0.02));border:2px solid rgba(253,213,0,0.25);border-radius:16px;padding:32px;text-align:center;">';
-    archetypeHTML += '<div style="font-size:9px;letter-spacing:2.5px;color:var(--steel);font-weight:700;text-transform:uppercase;margin-bottom:8px;">YOUR MARKET AUTHORITY ARCHETYPE</div>';
+    archetypeHTML += '<div style="font-size:9px;letter-spacing:2.5px;color:var(--steel);font-weight:700;text-transform:uppercase;margin-bottom:8px;">YOUR CAREER EQUITY ARCHETYPE\u2122</div>';
     archetypeHTML += '<div style="font-size:clamp(28px,4vw,40px);font-weight:800;color:var(--dark);margin-bottom:6px;">' + archetype.name + '</div>';
     archetypeHTML += '<div style="font-size:11px;letter-spacing:1px;color:var(--yellow);font-weight:700;text-transform:uppercase;margin-bottom:16px;">TIER ' + archetype.tier + ' — ' + archetype.tierName.toUpperCase() + '</div>';
     archetypeHTML += '<p style="font-size:14px;color:var(--steel);line-height:1.6;margin:0 auto;max-width:500px;">' + archetype.desc + '</p>';
@@ -8897,11 +8897,11 @@ function generateDiagnosticPDF(tier) {
   y += 52;
 
   // ════════════════════════════════════════
-  // YOUR MARKET AUTHORITY ARCHETYPE (individual only)
+  // CAREER EQUITY ARCHETYPE(tm) (individual only)
   // ════════════════════════════════════════
   if (isIndividual && archetypeInfo) {
     y = newPage();
-    y = drawSection(y, 'Your Market Authority Archetype',
+    y = drawSection(y, 'Career Equity Archetype\u2122',
       'Your responses reveal a distinct pattern of market authority. This is your archetype — a diagnostic profile based on how the four facets of the MAD™ interact in your case.');
     y += 8;
 
@@ -8956,8 +8956,8 @@ function generateDiagnosticPDF(tier) {
       doc.text(archetypeInfo.name, M, y);
       var arrowX = M + doc.getTextWidth(archetypeInfo.name) + 8;
       setC(YELLOW);
-      doc.text('\u2192', arrowX, y);
-      var nextX = arrowX + doc.getTextWidth('\u2192') + 8;
+      doc.text('>', arrowX, y);
+      var nextX = arrowX + doc.getTextWidth('>') + 8;
       setC(DARK);
       doc.text(nextArch.name, nextX, y);
       y += 18;
