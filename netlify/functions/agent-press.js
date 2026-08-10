@@ -167,7 +167,7 @@ var editorialBank = [
         email: 'jneff@adage.com',
         linkedin: '',
         subject: 'New discipline emerging: brand equity architecture vs traditional PR',
-        body: 'Hi Jack,\n\nI am reaching out because your coverage of brand strategy shifts would be a strong fit for a trend I am seeing take shape.\n\nA growing number of founders and brand leaders are moving away from traditional PR measurement (impressions, placements, share of voice) and toward what I call brand equity architecture: the strategic building of brand-derived financial value. It sits where PR meets finance, and it treats brand equity as a measurable asset rather than a sentiment metric.\n\nI run Studio JNSQ, a firm focused entirely on this discipline. We have built diagnostic tools that score brand equity and show where companies are gaining or losing value.\n\nWould you be interested in covering this shift? I can share data and framework details, or connect you with founders who have used the diagnostic.\n\nJerico Lugo\nFounder, Studio JNSQ\nstudiojnsq.com'
+        body: 'Hi Jack,\n\nI am reaching out because your coverage of brand strategy shifts would be a strong fit for a trend I am seeing take shape.\n\nA growing number of founders and brand leaders are moving away from traditional PR measurement (impressions, placements, share of voice) and toward what I call brand equity architecture: the discipline of building the financial and reputational value of a company. It sits at the convergence of PR and Finance, and it treats brand equity as a measurable asset rather than a sentiment metric.\n\nI run Studio JNSQ, a firm focused entirely on this discipline. We have built diagnostic tools that score brand equity and show where companies are gaining or losing value.\n\nWould you be interested in covering this shift? I can share data and framework details, or connect you with founders who have used the diagnostic.\n\nJerico Lugo\nFounder, Studio JNSQ\nstudiojnsq.com'
       }
     ]
   },
@@ -349,7 +349,7 @@ async function runPressScan() {
           build: function(title, url) {
             return 'Branding gives you a logo. Brand equity gives you pricing power.\n\n'
               + 'The market treats these as the same thing. They are not even close.\n\n'
-              + 'Branding is the surface layer: colors, messaging, taglines. Brand equity architecture is the financial and reputational value your brand holds in the market. One sits in your style guide. The other sits on your balance sheet.\n\n'
+              + 'Branding is the surface layer: colors, messaging, taglines. Brand equity architecture is the discipline of building the financial and reputational value of a company. One sits in your style guide. The other sits on your balance sheet.\n\n'
               + 'We break this down in "' + title + '"\n\n'
               + 'If you are building something that needs to hold value at exit, the distinction is not academic. It is structural.\n\n'
               + 'Link in the first comment.\n\n'
