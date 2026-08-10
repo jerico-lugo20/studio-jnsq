@@ -251,12 +251,6 @@
     <div class="ce-block"><h3>Its biggest lever</h3><p id="ceLever"></p></div>
     <div class="ce-block"><h3>Where it optimizes next</h3><p id="ceOptimizes"></p></div>
 
-    <div class="ce-block" id="ceNextWrap">
-      <h3>Your growth path</h3>
-      <p class="ce-next-path" id="ceNextPath" style="font-size:16px;font-weight:700;color:var(--jnsq-ink);"></p>
-      <p class="ce-next-desc" id="ceNextDesc" style="font-size:14px;color:var(--jnsq-body);margin-top:6px;"></p>
-    </div>
-
     <div class="ce-callout" style="margin-top:34px;">
       <p class="ce-body" style="margin:0;"><strong>This is the free reading, and it stays free.</strong> It tells you what you are. If you want the numbers behind it, a facet-by-facet interpretation and a sequenced plan for the next two quarters, that is what the full <a href="/diagnostic/MAD" class="jnsq-link">MAD&#8482; Diagnostic</a> does across 44 questions.</p>
     </div>
@@ -585,17 +579,6 @@
     document.getElementById('ceOptimizes').textContent = a.optimizesNext;
     renderMap(key);
 
-    var nw = document.getElementById('ceNextWrap');
-    if (a.next && window.madArchetypes[a.next]){
-      var n = window.madArchetypes[a.next];
-      document.getElementById('ceNextPath').textContent = a.name + '  →  ' + n.name;
-      document.getElementById('ceNextDesc').textContent = n.desc;
-      nw.style.display = '';
-    } else {
-      document.getElementById('ceNextPath').textContent = 'You are at the top of the model.';
-      document.getElementById('ceNextDesc').textContent = 'Market authority is compounding. The work now is protecting it.';
-      nw.style.display = '';
-    }
 
     var read = document.getElementById('ceFacetRead');
     read.innerHTML = '';
