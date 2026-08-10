@@ -8911,13 +8911,13 @@ function generateDiagnosticPDF(tier) {
     y += 14;
 
     // ── Tier pill ──
-    var tierText = 'TIER ' + archetypeInfo.tier + '  \u2014  ' + archetypeInfo.tierName.toUpperCase();
+    var tierText = (archetypeInfo.tierLabel || ('TIER ' + archetypeInfo.tier)).toUpperCase();
     drawPill(W/2 - (doc.getTextWidth(tierText) + 14) / 2, y, tierText, YELLOW, DARK, 9);
     y += 28;
 
     // ── Description ──
     doc.setFont('helvetica','normal'); doc.setFontSize(12); setC(STEEL);
-    var descLines = doc.splitTextToSize(archetypeInfo.desc, CW - 80);
+    var descLines = doc.splitTextToSize(archetypeInfo.tagline || archetypeInfo.desc, CW - 80);
     doc.text(descLines, W/2, y, {align:'center'});
     y += descLines.length * 16 + 20;
 
@@ -8925,63 +8925,12 @@ function generateDiagnosticPDF(tier) {
     hline(M + 60, y, CW - 120);
     y += 20;
 
-    // ── What this means box ──
-    var boxY = y;
-    setF(HIGHLIGHT_BG); doc.rect(M, boxY, CW, 80, 'F');
-    setD([224,224,224]); doc.setLineWidth(0.3); doc.rect(M, boxY, CW, 80, 'S');
-    setF(YELLOW); doc.rect(M, boxY + 4, 3, 72, 'F');
-
-    doc.setFont('helvetica','bold'); doc.setFontSize(9); setC(DARK);
-    doc.text('WHAT THIS MEANS', M + 14, boxY + 18);
-    doc.setFont('helvetica','normal'); doc.setFontSize(9); setC(STEEL);
-    var meanLines = doc.splitTextToSize(
-      'Your archetype is not a personality type. It is a structural diagnosis of where your market authority sits right now. ' +
-      'It tells you which walls of the diamond are load-bearing, which are missing, and what needs to happen next. ' +
-      'Two people can score similarly overall and land in completely different archetypes based on how their facets interact.',
-      CW - 32
-    );
-    doc.text(meanLines, M + 14, boxY + 32);
-    y = boxY + 92;
-
-    // ── Growth path (if exists) ──
-    if (archetypeInfo.next && madArchetypes[archetypeInfo.next]) {
-      var nextArch = madArchetypes[archetypeInfo.next];
-      y += 10;
-
-      doc.setFont('helvetica','bold'); doc.setFontSize(9); setC(DARK);
-      doc.text('YOUR GROWTH PATH', M, y); y += 16;
-
-      // Current → Next
-      doc.setFont('helvetica','bold'); doc.setFontSize(14); setC(DARK);
-      doc.text(archetypeInfo.name, M, y);
-      var arrowX = M + doc.getTextWidth(archetypeInfo.name) + 8;
-      setC(YELLOW);
-      doc.text('>', arrowX, y);
-      var nextX = arrowX + doc.getTextWidth('>') + 8;
-      setC(DARK);
-      doc.text(nextArch.name, nextX, y);
-      y += 18;
-
-      // Next tier pill
-      var nextTierText = 'TIER ' + nextArch.tier + '  \u2014  ' + nextArch.tierName.toUpperCase();
-      drawPill(M, y, nextTierText, [243,245,247], STEEL, 8);
-      y += 22;
-
-      // Next description
-      doc.setFont('helvetica','normal'); doc.setFontSize(10); setC(STEEL);
-      var nextDescLines = doc.splitTextToSize(nextArch.desc, CW);
-      doc.text(nextDescLines, M, y);
-      y += nextDescLines.length * 14 + 16;
-
-      // Context note
-      doc.setFont('helvetica','italic'); doc.setFontSize(9); setC(MID);
-      var pathNote = doc.splitTextToSize(
-        'Growth paths are not guaranteed progressions. They represent the most common trajectory when the right interventions are applied to your current archetype. ' +
-        'The roadmap in this report addresses the specific gaps standing between you and your next archetype.',
-        CW
-      );
-      doc.text(pathNote, M, y);
-      y += pathNote.length * 12 + 10;
+    // ── Definition ──
+    if (archetypeInfo.definition) {
+      doc.setFont('helvetica','normal'); doc.setFontSize(10); setC(DARK);
+      var defL = doc.splitTextToSize(archetypeInfo.definition, CW);
+      doc.text(defL, M, y);
+      y += defL.length * 14 + 16;
     }
 
     // ── The 16 Archetypes overview ──
@@ -8993,18 +8942,19 @@ function generateDiagnosticPDF(tier) {
 
     doc.setFont('helvetica','normal'); doc.setFontSize(8.5); setC(STEEL);
     var overviewNote = doc.splitTextToSize(
-      'The MAD\u2122 framework identifies 16 distinct archetypes across four tiers. ' +
-      'Tier 1 (Center Break) represents those still finding their center. ' +
-      'Tier 2 (Wall Break) marks the transition from identity to infrastructure. ' +
-      'Tier 3 (Foundation Break) is where market trust becomes the differentiator. ' +
-      'Tier 4 (Peak State) is full market authority \u2014 compounding, sustainable, and defensible.',
+      'The MAD\u2122 framework identifies 16 distinct archetypes across four tiers, ordered by where the diamond breaks first. ' +
+      'Tier I (The Center) is where the position itself has not been set. ' +
+      'Tier II (The Walls) is the transition from identity to infrastructure. ' +
+      'Tier III (The Foundation) is where market trust becomes the differentiator. ' +
+      'Tier IV (Peak & Completion) is full market authority, compounding and defensible.',
       CW
     );
     doc.text(overviewNote, M, y);
     y += overviewNote.length * 11 + 14;
 
     // Tier list (compact)
-    var tierGroupLabels = ['CENTER BREAK', 'WALL BREAK', 'FOUNDATION BREAK', 'PEAK STATE'];
+    var tierGroupLabels = ['THE CENTER', 'THE WALLS', 'THE FOUNDATION', 'PEAK & COMPLETION'];
+    var tierRoman = ['I', 'II', 'III', 'IV'];
     var tierGroupColors = [[180,190,200], [109,131,151], [80,100,120], [57,69,80]];
     for (var tg = 1; tg <= 4; tg++) {
       var tierArchetypes = [];
@@ -9013,14 +8963,14 @@ function generateDiagnosticPDF(tier) {
       }
 
       // Tier header pill
-      drawPill(M, y, 'TIER ' + tg, tierGroupColors[tg-1], WHITE, 7);
+      drawPill(M, y, 'TIER ' + tierRoman[tg-1], tierGroupColors[tg-1], WHITE, 7);
       doc.setFont('helvetica','bold'); doc.setFontSize(7.5); setC(tierGroupColors[tg-1]);
-      doc.text(tierGroupLabels[tg-1], M + 38, y + 3.5);
+      doc.text(tierGroupLabels[tg-1], M + 46, y + 3.5);
 
       // Archetype names
       doc.setFont('helvetica','normal'); doc.setFontSize(8); setC(STEEL);
       var namesStr = tierArchetypes.join('  \u00b7  ');
-      doc.text(namesStr, M + 38 + doc.getTextWidth(tierGroupLabels[tg-1]) + 12, y + 3.5);
+      doc.text(namesStr, M + 46 + doc.getTextWidth(tierGroupLabels[tg-1]) + 14, y + 3.5);
 
       // Highlight current archetype if in this tier
       if (archetypeInfo.tier === tg) {
@@ -9029,6 +8979,24 @@ function generateDiagnosticPDF(tier) {
       }
       y += 18;
     }
+    y += 14;
+
+    // ── Struggle / Lever / Optimizes next ──
+    var blocks = [
+      ['WHERE THIS ARCHETYPE STRUGGLES', archetypeInfo.struggle],
+      ['ITS BIGGEST LEVER', archetypeInfo.lever],
+      ['WHERE IT OPTIMIZES NEXT', archetypeInfo.optimizesNext]
+    ];
+    blocks.forEach(function(b){
+      if (!b[1]) return;
+      if (y > H - 150) { y = newPage(); }
+      doc.setFont('helvetica','bold'); doc.setFontSize(9); setC([184,147,11]);
+      doc.text(b[0], M, y); y += 13;
+      doc.setFont('helvetica','normal'); doc.setFontSize(9.5); setC(STEEL);
+      var lines = doc.splitTextToSize(b[1], CW);
+      doc.text(lines, M, y);
+      y += lines.length * 13 + 16;
+    });
   }
 
   // ════════════════════════════════════════
