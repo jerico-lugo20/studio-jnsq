@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Equity Archetype&#8482; | Find Where You Stand | Studio JNSQ</title>
+<meta name="description" content="Fifteen questions, free forever. Find which of the 16 Career Equity Archetypes&#8482; describes where you stand right now, what breaks next, and the one move that changes it. No email required to see your result.">
+<meta name="keywords" content="career equity archetype, market authority archetype, career archetype, professional archetype, career stage assessment, personal market authority, brand equity architecture, MAD archetype, career positioning">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Career Equity Archetype&#8482; | Studio JNSQ">
+<meta property="og:description" content="Your career holds equity the same way a company does. Fifteen questions to find out which of 16 archetypes you are. Free forever.">
+<meta property="og:url" content="https://studiojnsq.com/archetypes">
+<meta property="og:site_name" content="Studio JNSQ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Career Equity Archetype&#8482;">
+<meta name="twitter:description" content="Sixteen archetypes. Fifteen questions. Free forever.">
+<link rel="canonical" href="https://studiojnsq.com/archetypes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/jnsq-system.css?v=2">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "@id": "https://studiojnsq.com/archetypes#set",
+  "name": "Career Equity Archetypes",
+  "alternateName": "Market Authority Archetypes",
+  "description": "Sixteen archetypes describing where a professional stands in the accumulation of career equity, tiered by where the Market Authority Diamond breaks: centre, walls, foundation, peak.",
+  "url": "https://studiojnsq.com/archetypes",
+  "publisher": { "@type": "Organization", "name": "Studio JNSQ", "url": "https://studiojnsq.com" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is a Career Equity Archetype?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A Career Equity Archetype describes the shape of your professional standing right now: which parts of your market authority are load-bearing and which are not. There are sixteen, grouped into four tiers by where the structure breaks first." } },
+    { "@type": "Question", "name": "Is this the same as personal branding?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Personal branding is surface presentation. Career equity is the financial and reputational value your career actually holds, measured by whether the market moves toward you without being asked." } },
+    { "@type": "Question", "name": "Is it free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, and permanently. Your archetype, your tier, your diamond shape and your growth path are shown immediately with no email required." } },
+    { "@type": "Question", "name": "How is this different from the MAD Diagnostic?",
+      "acceptedAnswer": { "@type": "Answer", "text": "This finder places you among the sixteen archetypes in about three minutes. The MAD Diagnostic runs 44 questions and returns numeric facet scores, a full reading and an intervention roadmap. This tells you what you are. That tells you precisely how far and what to do." } }
+  ]
+}
+</script>
+
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--jnsq-bg); color:var(--jnsq-body); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
+
+  .ce-wrap { max-width:820px; margin:0 auto; padding:0 24px; }
+  .ce-section { padding:80px 0; }
+  .ce-section--paper { background:var(--jnsq-paper, #fff); }
+
+  .ce-lede { font-family:'Lora',Georgia,serif; font-size:clamp(19px,2.2vw,23px); line-height:1.65; color:var(--jnsq-ink); font-style:italic; }
+  .ce-body { font-size:16px; line-height:1.8; color:var(--jnsq-body); }
+  .ce-body + .ce-body { margin-top:18px; }
+
+  /* ---------- finder ---------- */
+  .ce-facet { margin-bottom:44px; }
+  .ce-facet-head { display:flex; align-items:baseline; gap:12px; padding-bottom:12px; margin-bottom:6px; border-bottom:1px solid var(--jnsq-line); }
+  .ce-facet-name { font-family:'Lora',Georgia,serif; font-size:21px; color:var(--jnsq-ink); font-weight:500; }
+  .ce-facet-role { font-size:11px; letter-spacing:1.6px; text-transform:uppercase; color:var(--jnsq-mute); font-weight:600; }
+
+  .ce-q { padding:22px 0; border-bottom:1px solid var(--jnsq-line-soft); }
+  .ce-q:last-child { border-bottom:none; }
+  .ce-q-text { font-size:15.5px; line-height:1.65; color:var(--jnsq-ink); margin-bottom:16px; }
+
+  .ce-scale { display:flex; gap:8px; align-items:stretch; }
+  .ce-scale button {
+    flex:1; padding:13px 4px; background:#fff; border:1.5px solid var(--jnsq-line);
+    border-radius:9px; cursor:pointer; font-family:'Inter',sans-serif; font-size:15px;
+    font-weight:600; color:var(--jnsq-mute); transition:all .18s ease;
+  }
+  .ce-scale button:hover { border-color:rgba(253,213,0,.65); color:var(--jnsq-ink); }
+  .ce-scale button:focus-visible { outline:3px solid rgba(253,213,0,.55); outline-offset:2px; }
+  .ce-scale button[aria-checked="true"] { background:var(--jnsq-yellow); border-color:var(--jnsq-yellow); color:#1A1A1A; }
+  .ce-scale-legend { display:flex; justify-content:space-between; margin-top:9px; font-size:11.5px; color:var(--jnsq-mute); }
+
+  .ce-progress { position:sticky; top:0; z-index:40; background:var(--jnsq-bg); padding:14px 0 12px; border-bottom:1px solid var(--jnsq-line); }
+  .ce-progress-bar { height:4px; background:var(--jnsq-line); border-radius:2px; overflow:hidden; }
+  .ce-progress-fill { height:100%; width:0%; background:var(--jnsq-yellow); transition:width .3s ease; }
+  .ce-progress-txt { font-size:12px; color:var(--jnsq-mute); margin-top:8px; letter-spacing:.04em; }
+
+  /* ---------- result ---------- */
+  .ce-result { display:none; }
+  .ce-result-card {
+    background:linear-gradient(135deg, rgba(253,213,0,.10), rgba(253,213,0,.02));
+    border:2px solid rgba(253,213,0,.28); border-radius:18px; padding:44px 34px; text-align:center;
+  }
+  .ce-result-eyebrow { font-size:10px; letter-spacing:2.6px; text-transform:uppercase; color:var(--jnsq-mute); font-weight:700; margin-bottom:10px; }
+  .ce-result-name { font-family:'Lora',Georgia,serif; font-size:clamp(32px,5vw,46px); font-weight:600; color:var(--jnsq-ink); line-height:1.15; margin-bottom:10px; }
+  .ce-result-tier { display:inline-block; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; color:#1A1A1A; background:var(--jnsq-yellow); padding:5px 13px; border-radius:20px; margin-bottom:20px; }
+  .ce-result-desc { font-size:16.5px; line-height:1.7; color:var(--jnsq-body); max-width:520px; margin:0 auto; }
+  .ce-next { margin-top:26px; padding-top:22px; border-top:1px solid rgba(253,213,0,.2); }
+  .ce-next-label { font-size:10px; letter-spacing:1.8px; text-transform:uppercase; color:var(--jnsq-mute); font-weight:700; margin-bottom:7px; }
+  .ce-next-path { font-size:16px; font-weight:700; color:var(--jnsq-ink); }
+  .ce-next-desc { font-size:13.5px; color:var(--jnsq-body); margin-top:7px; }
+
+  .ce-diamond { display:block; margin:38px auto 8px; }
+  .ce-facet-read { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:26px; }
+  .ce-facet-read div { background:#fff; border:1px solid var(--jnsq-line); border-radius:10px; padding:12px 14px; }
+  .ce-facet-read .k { font-size:10px; letter-spacing:1.3px; text-transform:uppercase; color:var(--jnsq-mute); font-weight:700; }
+  .ce-facet-read .v { font-size:15px; font-weight:700; margin-top:3px; }
+
+  /* ---------- library ---------- */
+  .ce-tier { margin-bottom:40px; }
+  .ce-tier-head { display:flex; align-items:center; gap:11px; margin-bottom:16px; flex-wrap:wrap; }
+  .ce-tier-badge { background:#393D3F; color:var(--jnsq-yellow); font-size:10.5px; font-weight:700; padding:4px 11px; border-radius:5px; letter-spacing:.6px; }
+  .ce-tier-name { font-family:'Lora',Georgia,serif; font-size:19px; color:var(--jnsq-ink); }
+  .ce-tier-note { font-size:13px; color:var(--jnsq-mute); font-style:italic; }
+  .ce-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; }
+  .ce-card { background:#fff; border:1px solid var(--jnsq-line); border-radius:11px; padding:18px; transition:border-color .2s ease, transform .2s ease; }
+  .ce-card.is-you { border-color:var(--jnsq-yellow); border-width:2px; background:var(--jnsq-yellow-soft); }
+  .ce-card:hover { border-color:rgba(253,213,0,.6); transform:translateY(-2px); }
+  .ce-card h4 { font-family:'Lora',Georgia,serif; font-size:17px; font-weight:600; color:var(--jnsq-ink); margin-bottom:6px; }
+  .ce-card p { font-size:13.5px; line-height:1.6; color:var(--jnsq-body); }
+  .ce-card .nx { font-size:11.5px; color:var(--jnsq-mute); margin-top:10px; }
+  .ce-you-flag { display:inline-block; font-size:9.5px; letter-spacing:1.4px; text-transform:uppercase; font-weight:700; background:var(--jnsq-yellow); color:#1A1A1A; padding:3px 8px; border-radius:12px; margin-bottom:8px; }
+
+  .ce-callout { background:var(--jnsq-yellow-soft); border-left:3px solid var(--jnsq-yellow); padding:26px 28px; border-radius:0 10px 10px 0; }
+  .ce-free-pill { display:inline-flex; align-items:center; gap:7px; background:var(--jnsq-yellow-soft); border:1px solid rgba(253,213,0,.5); color:var(--jnsq-ink); font-size:12px; font-weight:600; padding:7px 15px; border-radius:20px; letter-spacing:.03em; }
+
+  @media (max-width:640px){
+    .ce-section { padding:56px 0; }
+    .ce-scale { flex-wrap:nowrap; gap:5px; }
+    .ce-scale button { padding:14px 2px; font-size:14px; }
+    .ce-result-card { padding:32px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="jnsq-nav">
+  <div class="jnsq-nav-inner">
+    <a href="/" class="jnsq-nav-logo">STUDIO <span class="accent">JNSQ</span></a>
+    <div class="jnsq-nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/journal">Journal</a>
+      <a href="/case-studies">Portfolio</a>
+      <a href="/diagnostic">Diagnostic</a>
+    </div>
+    <a href="#finder" class="jnsq-nav-cta">Find Yours</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="jnsq-hero">
+  <div class="ce-wrap" style="text-align:center;">
+    <div class="jnsq-eyebrow jnsq-hero-eyebrow">Career Equity Archetype&#8482;</div>
+    <h1 class="jnsq-hero-display" style="margin-bottom:22px;">Where does your career actually stand?</h1>
+    <p class="ce-lede" style="max-width:620px;margin:0 auto 26px;">Your career holds equity the same way a company does. Most people have never been shown the shape of theirs.</p>
+    <p class="ce-body" style="max-width:600px;margin:0 auto 30px;">Fifteen questions. About three minutes. You will get one of sixteen archetypes, the tier it sits in, what breaks next if nothing changes, and the archetype you move to from here.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center;">
+      <a href="#finder" class="jnsq-btn jnsq-btn-primary jnsq-btn-arrow">Find your archetype</a>
+      <a href="#library" class="jnsq-btn jnsq-btn-ghost">Read all sixteen</a>
+    </div>
+    <div style="margin-top:26px;"><span class="ce-free-pill">Free forever. No email required to see your result.</span></div>
+  </div>
+</header>
+
+<!-- ============ WHAT THIS IS ============ -->
+<section class="ce-section ce-section--paper">
+  <div class="ce-wrap">
+    <div class="jnsq-eyebrow" style="margin-bottom:14px;">What this measures</div>
+    <h2 class="jnsq-display-2" style="margin-bottom:24px;">Career equity, not personal branding.</h2>
+    <p class="ce-body">Personal branding is how you present. Career equity is what you are actually worth to the market when you are not in the room: whether the right people already know your name, whether your credibility travels when your job title changes, and whether opportunity arrives without you chasing it.</p>
+    <p class="ce-body">Those are structural questions, and structures fail in a specific order. That is what the archetypes describe. Not a personality type, and not a score. The shape of what you have built, and the part of it that is not yet load-bearing.</p>
+    <div class="ce-callout" style="margin-top:30px;">
+      <p class="ce-body" style="margin:0;">The sixteen archetypes are read through the <strong>Market Authority Diamond&#8482;</strong>: Demand at the peak, Market Trust as the foundation, Credibility and Visibility as the two walls, and Branding as the centering point that holds them together. Branding sits at the centre because it is what everything else is organised around. It is not a facet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINDER ============ -->
+<section class="ce-section" id="finder">
+  <div class="ce-wrap">
+    <div class="jnsq-eyebrow" style="margin-bottom:14px;">The finder</div>
+    <h2 class="jnsq-display-2" style="margin-bottom:18px;">Fifteen questions.</h2>
+    <p class="ce-body" style="margin-bottom:8px;">Answer honestly rather than aspirationally. The result is only as useful as the input, and nobody sees this but you.</p>
+    <p class="ce-body" style="color:var(--jnsq-mute);font-size:14.5px;">1 means strongly disagree. 5 means strongly agree.</p>
+  </div>
+
+  <div class="ce-progress" style="margin-top:34px;">
+    <div class="ce-wrap">
+      <div class="ce-progress-bar"><div class="ce-progress-fill" id="ceProgressFill"></div></div>
+      <div class="ce-progress-txt" id="ceProgressTxt">0 of 15 answered</div>
+    </div>
+  </div>
+
+  <div class="ce-wrap" style="margin-top:36px;">
+    <form id="ceForm" novalidate></form>
+
+    <div style="text-align:center;margin-top:14px;">
+      <button type="button" id="ceSubmit" class="jnsq-btn jnsq-btn-primary jnsq-btn-arrow" disabled style="opacity:.4;cursor:not-allowed;">Answer all 15 to continue</button>
+      <p id="ceSubmitHint" style="font-size:12.5px;color:var(--jnsq-mute);margin-top:12px;"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULT ============ -->
+<section class="ce-section ce-section--paper ce-result" id="ceResult">
+  <div class="ce-wrap">
+    <div class="ce-result-card">
+      <div class="ce-result-eyebrow">Your Career Equity Archetype&#8482;</div>
+      <div class="ce-result-name" id="ceName"></div>
+      <div class="ce-result-tier" id="ceTier"></div>
+      <p class="ce-result-desc" id="ceDesc"></p>
+      <div class="ce-next" id="ceNextWrap">
+        <div class="ce-next-label">Where you go from here</div>
+        <div class="ce-next-path" id="ceNextPath"></div>
+        <p class="ce-next-desc" id="ceNextDesc"></p>
+      </div>
+    </div>
+
+    <svg class="ce-diamond" id="ceDiamond" width="330" height="330" viewBox="0 0 400 400" role="img" aria-labelledby="ceDiamondTitle">
+      <title id="ceDiamondTitle">Your Market Authority Diamond</title>
+    </svg>
+
+    <div class="ce-facet-read" id="ceFacetRead"></div>
+
+    <div class="ce-callout" style="margin-top:34px;">
+      <p class="ce-body" style="margin:0;"><strong>This is the free reading, and it stays free.</strong> It tells you what you are. If you want the numbers behind it, a facet-by-facet interpretation and a sequenced plan for the next two quarters, that is what the full <a href="/diagnostic/MAD" class="jnsq-link">MAD&#8482; Diagnostic</a> does across 44 questions.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="/?openDiagnostic=MAD" class="jnsq-btn jnsq-btn-primary jnsq-btn-arrow">Go deeper with MAD&#8482;</a>
+      <button type="button" class="jnsq-btn jnsq-btn-ghost" id="ceRetake">Retake</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIBRARY ============ -->
+<section class="ce-section" id="library">
+  <div class="ce-wrap">
+    <div class="jnsq-eyebrow" style="margin-bottom:14px;">The sixteen</div>
+    <h2 class="jnsq-display-2" style="margin-bottom:18px;">Every archetype, and the order they break in.</h2>
+    <p class="ce-body" style="margin-bottom:10px;">The tiers are not a ranking of people. They mark <em>where the structure gives way first</em>. A Tier 1 archetype is not a worse professional than a Tier 3 one, it is one whose centre has not been built yet, which is a different problem with a different fix.</p>
+    <p class="ce-body">Most people recognise themselves before they take the quiz. Read them cold if you prefer.</p>
+    <div id="ceLibrary" style="margin-top:40px;"></div>
+  </div>
+</section>
+
+<!-- ============ DOCTRINE ============ -->
+<section class="ce-section ce-section--paper">
+  <div class="ce-wrap">
+    <div class="jnsq-eyebrow" style="margin-bottom:14px;">The discipline behind it</div>
+    <h2 class="jnsq-display-2" style="margin-bottom:24px;">Three things the market keeps confusing.</h2>
+    <p class="ce-body"><strong>Branding</strong> is visual identity: logos, colours, messaging, taglines. The surface layer.</p>
+    <p class="ce-body"><strong>Brand architecture</strong> is portfolio structure: how a company organises multiple brands.</p>
+    <p class="ce-body"><strong>Brand equity architecture</strong> is the discipline of building the financial and reputational value of a company. It sits at the convergence of PR and Finance.</p>
+    <p class="ce-body" style="margin-top:22px;">Career equity is that same asset class read at the scale of one person. Not a fourth thing, and not personal branding. The Market Authority Diamond&#8482; measures the reputational half of it, which is the half that moves first.</p>
+    <p class="ce-body" style="margin-top:22px;">Studio JNSQ practises brand equity architecture. Smaller companies use it to reach profitability. Larger ones use it to build the case for a higher valuation at exit. This finder is the smallest free piece of that work, and it is yours permanently.</p>
+    <div style="margin-top:30px;">
+      <a href="/journal/branding-vs-brand-equity-vs-brand-architecture" class="jnsq-btn jnsq-btn-ghost">Read the full distinction</a>
+    </div>
+  </div>
+</section>
+
+<footer class="jnsq-footer">
+  <div class="jnsq-container">
+    <div class="jnsq-footer-grid">
+      <div style="text-align:center;">
+        <div class="jnsq-footer-brand">STUDIO <span class="accent">JNSQ</span></div>
+        <p class="jnsq-footer-tagline">Others make you profitable.<br>Brand equity makes you valuable.</p>
+      </div>
+      <div class="jnsq-footer-col">
+        <h4>Discipline</h4>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/diagnostic">Diagnostic</a></li>
+          <li><a href="/journal">Journal</a></li>
+          <li><a href="/case-studies">Portfolio</a></li>
+        </ul>
+      </div>
+      <div class="jnsq-footer-col">
+        <h4>Frameworks</h4>
+        <ul>
+          <li><a href="/archetypes">Career Equity Archetype&#8482;</a></li>
+          <li><a href="/diagnostic/MAD">MAD&#8482;</a></li>
+          <li><a href="/diagnostic/RVF">RVF&#8482;</a></li>
+          <li><a href="/journal/branding-vs-brand-equity-vs-brand-architecture">The doctrine</a></li>
+        </ul>
+      </div>
+      <div class="jnsq-footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" rel="noopener">Book a call</a></li>
+          <li><a href="/diagnostic">Start a diagnosis</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="jnsq-footer-bottom">
+      <div>&copy; 2026 Studio JNSQ. The brand equity architecture firm for valuable brands.</div>
+      <div class="legal"><a href="/">studiojnsq.com</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/mad-archetypes.js?v=1"></script>
+<script>
+(function(){
+  'use strict';
+
+  /* Three questions per facet. Wording is career-scale, matched to the
+     individual-path overrides used in the full MAD(tm) diagnostic. */
+  var FACETS = [
+    { key:'branding',    label:'Branding',     role:'The centering point',
+      qs:[ 'The people around you, collaborators, clients and colleagues, can explain what you stand for without your help.',
+           'Your roles, skills and areas of expertise form one coherent story rather than a list of unrelated things.',
+           'If a stranger heard you described in a single sentence, you would recognise yourself in it.' ] },
+    { key:'credibility', label:'Credibility',  role:'Wall',
+      qs:[ 'Your credibility is portable. It follows you regardless of which company, role or title you hold.',
+           'People who have never worked with you can still find evidence that you are good at what you do.',
+           'Your track record is documented somewhere other than your own CV or your own website.' ] },
+    { key:'visibility',  label:'Visibility',   role:'Wall',
+      qs:[ 'The right people in your field know who you are before you introduce yourself.',
+           'Your professional visibility is not trapped inside a single role, company or platform.',
+           'Opportunities reach you through people you have never personally met.' ] },
+    { key:'trust',       label:'Market Trust', role:'The foundation',
+      qs:[ 'People act on your recommendations the first time, without needing to verify you first.',
+           'When you commit to something, your name alone is enough for others to proceed.',
+           'Your reputation holds up with people who disagree with you.' ] },
+    { key:'demand',      label:'Demand',       role:'The peak',
+      qs:[ 'Your professional pipeline is predictable. You can forecast opportunities based on how consistently people come to you.',
+           'The effort you spend finding your next opportunity is decreasing over time.',
+           'Your professional value does not depend on a single employer, client or income source.' ] }
+  ];
+
+  var PER_FACET = 3, MAX = 5;
+  var answers = {};
+  var form = document.getElementById('ceForm');
+
+  /* ---------- build the form ---------- */
+  FACETS.forEach(function(f){
+    var sec = document.createElement('fieldset');
+    sec.className = 'ce-facet';
+    sec.style.border = 'none';
+
+    var head = document.createElement('legend');
+    head.className = 'ce-facet-head';
+    head.style.width = '100%';
+    head.innerHTML = '<span class="ce-facet-name">' + f.label + '</span><span class="ce-facet-role">' + f.role + '</span>';
+    sec.appendChild(head);
+
+    f.qs.forEach(function(text, i){
+      var key = f.key + (i+1);
+      var q = document.createElement('div');
+      q.className = 'ce-q';
+
+      var p = document.createElement('p');
+      p.className = 'ce-q-text';
+      p.id = key + '_label';
+      p.textContent = text;
+      q.appendChild(p);
+
+      /* radiogroup of real buttons: works with mouse, keyboard and screen readers.
+         Score is recorded on the control itself, not on a label wrapper. */
+      var grp = document.createElement('div');
+      grp.className = 'ce-scale';
+      grp.setAttribute('role','radiogroup');
+      grp.setAttribute('aria-labelledby', key + '_label');
+
+      for (var v=1; v<=MAX; v++){
+        (function(val){
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.textContent = val;
+          b.setAttribute('role','radio');
+          b.setAttribute('aria-checked','false');
+          b.setAttribute('aria-label', val + ' of 5');
+          b.dataset.key = key; b.dataset.val = val;
+          b.tabIndex = val === 1 ? 0 : -1;
+          b.addEventListener('click', function(){ choose(key, val, grp, b); });
+          b.addEventListener('keydown', function(e){
+            var dir = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1
+                    : e.key === 'ArrowLeft'  || e.key === 'ArrowUp'   ? -1 : 0;
+            if (dir){
+              e.preventDefault();
+              var nv = Math.min(MAX, Math.max(1, val + dir));
+              var nb = grp.querySelector('button[data-val="' + nv + '"]');
+              if (nb){ nb.focus(); choose(key, nv, grp, nb); }
+            } else if (e.key === ' ' || e.key === 'Enter'){
+              e.preventDefault(); choose(key, val, grp, b);
+            }
+          });
+          grp.appendChild(b);
+        })(v);
+      }
+      q.appendChild(grp);
+
+      var leg = document.createElement('div');
+      leg.className = 'ce-scale-legend';
+      leg.innerHTML = '<span>Strongly disagree</span><span>Strongly agree</span>';
+      q.appendChild(leg);
+
+      sec.appendChild(q);
+    });
+    form.appendChild(sec);
+  });
+
+  function choose(key, val, grp, btn){
+    answers[key] = val;
+    grp.querySelectorAll('button').forEach(function(b){
+      b.setAttribute('aria-checked','false'); b.tabIndex = -1;
+    });
+    btn.setAttribute('aria-checked','true'); btn.tabIndex = 0;
+    updateProgress();
+  }
+
+  var TOTAL = FACETS.length * PER_FACET;
+  var fill = document.getElementById('ceProgressFill');
+  var txt  = document.getElementById('ceProgressTxt');
+  var submit = document.getElementById('ceSubmit');
+  var hint = document.getElementById('ceSubmitHint');
+
+  function updateProgress(){
+    var n = Object.keys(answers).length;
+    fill.style.width = (n / TOTAL * 100) + '%';
+    txt.textContent = n + ' of ' + TOTAL + ' answered';
+    var done = n === TOTAL;
+    submit.disabled = !done;
+    submit.style.opacity = done ? '1' : '.4';
+    submit.style.cursor = done ? 'pointer' : 'not-allowed';
+    submit.textContent = done ? 'Reveal my archetype' : 'Answer all 15 to continue';
+    if (done) hint.textContent = '';
+  }
+
+  /* ---------- scoring ---------- */
+  function computePcts(){
+    var out = {};
+    FACETS.forEach(function(f){
+      var raw = 0;
+      for (var i=1; i<=PER_FACET; i++) raw += (answers[f.key + i] || 0);
+      out[f.key] = raw / (PER_FACET * MAX) * 100;
+    });
+    return out;
+  }
+
+  function bandLabel(p){ return p >= 70 ? 'Strong' : p >= 40 ? 'Forming' : 'Not yet built'; }
+  function bandColor(p){ return p >= 70 ? '#27ae60' : p >= 40 ? '#e67e22' : '#e74c3c'; }
+
+  /* ---------- diamond ---------- */
+  function drawDiamond(p){
+    var svg = document.getElementById('ceDiamond');
+    var NS = 'http://www.w3.org/2000/svg';
+    while (svg.childNodes.length > 1) svg.removeChild(svg.lastChild);
+    var c = 200, R = 132;
+    function el(t, a){ var e = document.createElementNS(NS,t); for (var k in a) e.setAttribute(k, a[k]); return e; }
+    [1, .6, .3].forEach(function(s){
+      svg.appendChild(el('polygon',{
+        points:[c+','+(c-R*s), (c+R*s)+','+c, c+','+(c+R*s), (c-R*s)+','+c].join(' '),
+        fill:'none', stroke:'#E8E5DD', 'stroke-width': s===1?1.2:0.8,
+        'stroke-dasharray': s===1?'':'4 3'
+      }));
+    });
+    var d = R*p.demand/100, v = R*p.visibility/100, t = R*p.trust/100, cr = R*p.credibility/100;
+    svg.appendChild(el('polygon',{
+      points:[c+','+(c-d), (c+v)+','+c, c+','+(c+t), (c-cr)+','+c].join(' '),
+      fill:'rgba(253,213,0,0.20)', stroke:'#FDD500', 'stroke-width':2.5, 'stroke-linejoin':'round'
+    }));
+    svg.appendChild(el('circle',{ cx:c, cy:c, r:4, fill:'#FDD500' }));
+    var labels = [
+      ['DEMAND', c, c-R-16, 'middle'], ['VISIBILITY', c+R+14, c+4, 'start'],
+      ['MARKET TRUST', c, c+R+24, 'middle'], ['CREDIBILITY', c-R-14, c+4, 'end']
+    ];
+    labels.forEach(function(L){
+      var e = el('text',{ x:L[1], y:L[2], 'text-anchor':L[3], fill:'#4A4A4A',
+        'font-family':'Inter, sans-serif', 'font-size':'10.5', 'font-weight':'700', 'letter-spacing':'1' });
+      e.textContent = L[0]; svg.appendChild(e);
+    });
+    var bc = el('text',{ x:c, y:c-12, 'text-anchor':'middle', fill:'#8A8A8A',
+      'font-family':'Inter, sans-serif', 'font-size':'9', 'font-weight':'700', 'letter-spacing':'1.2' });
+    bc.textContent = 'BRANDING'; svg.appendChild(bc);
+  }
+
+  /* ---------- library ---------- */
+  var TIER_NOTES = {
+    1:'The centre has not been built yet. Everything else is resting on nothing.',
+    2:'The centre is forming. The walls are not yet carrying weight.',
+    3:'The walls hold. The foundation underneath them does not.',
+    4:'The structure stands. Demand is now the variable.'
+  };
+
+  function renderLibrary(activeKey){
+    var host = document.getElementById('ceLibrary');
+    host.innerHTML = '';
+    var A = window.madArchetypes;
+    [1,2,3,4].forEach(function(tier){
+      var keys = Object.keys(A).filter(function(k){ return A[k].tier === tier; });
+      if (!keys.length) return;
+      var wrap = document.createElement('div'); wrap.className = 'ce-tier';
+      var head = document.createElement('div'); head.className = 'ce-tier-head';
+      head.innerHTML = '<span class="ce-tier-badge">TIER ' + tier + '</span>' +
+                       '<span class="ce-tier-name">' + A[keys[0]].tierName + '</span>' +
+                       '<span class="ce-tier-note">' + TIER_NOTES[tier] + '</span>';
+      wrap.appendChild(head);
+      var cards = document.createElement('div'); cards.className = 'ce-cards';
+      keys.forEach(function(k){
+        var a = A[k];
+        var card = document.createElement('article');
+        card.className = 'ce-card' + (k === activeKey ? ' is-you' : '');
+        card.id = 'archetype-' + k;
+        var nx = a.next && A[a.next] ? '<div class="nx">Next: ' + A[a.next].name + '</div>' : '<div class="nx">The top of the model</div>';
+        card.innerHTML = (k === activeKey ? '<div class="ce-you-flag">This is you</div>' : '') +
+                         '<h4>' + a.name + '</h4><p>' + a.desc + '</p>' + nx;
+        cards.appendChild(card);
+      });
+      wrap.appendChild(cards); host.appendChild(wrap);
+    });
+  }
+
+  /* ---------- reveal ---------- */
+  submit.addEventListener('click', function(){
+    if (Object.keys(answers).length !== TOTAL) return;
+    var p = computePcts();
+    var key = window.determineArchetype(p);
+    var a = window.madArchetypes[key];
+
+    document.getElementById('ceName').textContent = a.name;
+    document.getElementById('ceTier').textContent = 'Tier ' + a.tier + ' · ' + a.tierName;
+    document.getElementById('ceDesc').textContent = a.desc;
+
+    var nw = document.getElementById('ceNextWrap');
+    if (a.next && window.madArchetypes[a.next]){
+      var n = window.madArchetypes[a.next];
+      document.getElementById('ceNextPath').textContent = a.name + '  →  ' + n.name;
+      document.getElementById('ceNextDesc').textContent = n.desc;
+      nw.style.display = '';
+    } else {
+      document.getElementById('ceNextPath').textContent = 'You are at the top of the model.';
+      document.getElementById('ceNextDesc').textContent = 'Market authority is compounding. The work now is protecting it.';
+      nw.style.display = '';
+    }
+
+    var read = document.getElementById('ceFacetRead');
+    read.innerHTML = '';
+    FACETS.forEach(function(f){
+      var pct = p[f.key];
+      var d = document.createElement('div');
+      d.innerHTML = '<div class="k">' + f.label + '</div>' +
+                    '<div class="v" style="color:' + bandColor(pct) + '">' + bandLabel(pct) + '</div>';
+      read.appendChild(d);
+    });
+
+    drawDiamond(p);
+    renderLibrary(key);
+
+    var res = document.getElementById('ceResult');
+    res.style.display = 'block';
+    res.scrollIntoView({ behavior:'smooth', block:'start' });
+
+    if (history.replaceState) history.replaceState(null, '', '#result');
+  });
+
+  document.getElementById('ceRetake').addEventListener('click', function(){
+    answers = {};
+    form.querySelectorAll('button[role="radio"]').forEach(function(b){
+      b.setAttribute('aria-checked','false');
+      b.tabIndex = b.dataset.val === '1' ? 0 : -1;
+    });
+    document.getElementById('ceResult').style.display = 'none';
+    renderLibrary(null);
+    updateProgress();
+    document.getElementById('finder').scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+
+  renderLibrary(null);
+  updateProgress();
+})();
+</script>
+<script src="/js/jnsq-system.js?v=2" defer></script>
+</body>
+</html>

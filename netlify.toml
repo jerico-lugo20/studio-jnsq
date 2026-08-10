@@ -331,6 +331,42 @@
   to = "/about.html"
   status = 200
 
+# ---- Career Equity Archetype(tm) ----
+[[redirects]]
+  from = "/archetypes"
+  to = "/archetypes.html"
+  status = 200
+
+[[redirects]]
+  from = "/archetype"
+  to = "/archetypes"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/career-archetype"
+  to = "/archetypes"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/career-equity-archetype"
+  to = "/archetypes"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/diagnostic/mad/archetypes"
+  to = "/archetypes"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/diagnostic/MAD/archetypes"
+  to = "/archetypes"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/diagnostic"
   to = "/diagnostic.html"
