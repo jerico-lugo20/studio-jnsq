@@ -6812,6 +6812,23 @@ function renderPostReport(catPcts) {
 
 // ===== PROMO CODE SYSTEM (Feature 4) =====
 var _activePromo = null; // { code, discountPct, tiers }
+
+// Promo tiers must be canonical keys ('report' | 'full') to match the tier the
+// diagnostic actually uses. The admin previously saved display labels such as
+// "$70 Report" and "$100 Full Diagnostic", which never matched, so any code
+// restricted to a tier silently applied no discount. Normalise on read so
+// existing codes keep working alongside newly created ones.
+function _promoTiers(promo) {
+  var t = promo && promo.tiers;
+  if (!t || !t.length) return ['report', 'full'];
+  return t.map(function(v) {
+    var x = String(v).toLowerCase();
+    if (x === 'report' || x === 'full') return x;
+    if (x.indexOf('report') >= 0) return 'report';
+    if (x.indexOf('full') >= 0 || x.indexOf('diagnostic') >= 0) return 'full';
+    return x;
+  });
+}
 var _originalPrices = { report: 70, full: 100 };
 
 function applyPromoCode() {
@@ -6884,7 +6901,7 @@ function updateTierPrices() {
   var fullPriceEl = document.querySelector('#tierFull > div:nth-child(2)');
 
   if (_activePromo) {
-    var tiers = _activePromo.tiers || ['report', 'full'];
+    var tiers = _promoTiers(_activePromo);
     var disc = _activePromo.discountPct;
 
     // Update report tier price
@@ -6948,7 +6965,7 @@ function updateTierPrices() {
 function getPromoAdjustedPrice(tier) {
   // Returns adjusted price for the given tier considering active promo
   if (!_activePromo) return _originalPrices[tier] || 0;
-  var tiers = _activePromo.tiers || ['report', 'full'];
+  var tiers = _promoTiers(_activePromo);
   if (tiers.indexOf(tier) < 0) return _originalPrices[tier] || 0;
   var disc = _activePromo.discountPct;
   if (tier === 'full' && disc === 100 && !_activePromo.fullFree) return 30; // consultation fee (strategist codes only)

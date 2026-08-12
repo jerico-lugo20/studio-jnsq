@@ -892,12 +892,12 @@
                             <label>Applicable Tiers</label>
                             <div class="checkbox-group">
                                 <div class="checkbox-item">
-                                    <input type="checkbox" id="tier70" name="tiers" value="$70 Report">
-                                    <label for="tier70">$70 Report</label>
+                                    <input type="checkbox" id="tier70" name="tiers" value="report">
+                                    <label for="tier70">Report tier &mdash; $70 company / $50 individual</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input type="checkbox" id="tier100" name="tiers" value="$100 Full Diagnostic">
-                                    <label for="tier100">$100 Full Diagnostic</label>
+                                    <input type="checkbox" id="tier100" name="tiers" value="full">
+                                    <label for="tier100">Full Diagnostic &mdash; $100 company / $80 individual</label>
                                 </div>
                             </div>
                         </div>
@@ -1306,7 +1306,7 @@
                               <div class="form-group" id="blogPromoSuffixGroup" style="display:none;"><label for="blogPromoSuffix">Code suffix <span style="color:var(--steel);font-weight:400;font-size:0.75rem;">(appended to each lead's initials)</span></label><input type="text" id="blogPromoSuffix" placeholder="Foundation1" style="font-family:monospace;"></div>
                               <div class="form-group"><label for="blogPromoDiscount">Discount %</label><input type="number" id="blogPromoDiscount" min="1" max="100" placeholder="25"></div>
                               <div class="form-group"><label for="blogPromoExpiry">Expiry</label><input type="date" id="blogPromoExpiry"></div>
-                              <div class="form-group"><label for="blogPromoTier">Tier</label><select id="blogPromoTier"><option value="$70 Report">$70 Report</option><option value="$100 Full Diagnostic">$100 Full Diagnostic</option><option value="both">Both tiers</option></select></div>
+                              <div class="form-group"><label for="blogPromoTier">Tier</label><select id="blogPromoTier"><option value="report">Report tier ($70 company / $50 individual)</option><option value="full">Full Diagnostic ($100 company / $80 individual)</option><option value="both">Both tiers</option></select></div>
                               <div class="form-group full"><div class="checkbox-item"><input type="checkbox" id="blogPromoForEveryone"><label for="blogPromoForEveryone">Available to everyone, including returning customers</label></div></div>
                             </div>
 
@@ -3607,7 +3607,7 @@
                 document.getElementById('blogPromoCode').value = pg.code || '';
                 document.getElementById('blogPromoDiscount').value = pg.discountPct || '';
                 document.getElementById('blogPromoExpiry').value = pg.expiry ? String(pg.expiry).split('T')[0] : '';
-                document.getElementById('blogPromoTier').value = pg.tier || '$70 Report';
+                document.getElementById('blogPromoTier').value = _normTier(pg.tier) || 'report';
                 document.getElementById('blogPromoForEveryone').checked = !!pg.forEveryone;
 
                 // Code type: shared (default) vs unique-per-lead
@@ -4234,7 +4234,7 @@
 
             createBlogLinkedPromoCode: function (payload) {
                 var pg = payload.promoGate;
-                var tiers = pg.tier === 'both' ? ['$70 Report', '$100 Full Diagnostic'] : [pg.tier];
+                var tiers = pg.tier === 'both' ? ['report', 'full'] : [_normTier(pg.tier)];
                 return fetch('/.netlify/functions/promo-codes', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.token },
@@ -8824,5 +8824,18 @@
 
         APP.init();
     </script>
+<script>
+// Promo tiers are canonical keys ('report' | 'full') so they match the
+// diagnostic at runtime. Older codes stored display labels like "$70 Report",
+// which never matched and silently disabled the discount. Normalise both.
+function _normTier(t) {
+  if (!t) return t;
+  var v = String(t).toLowerCase();
+  if (v === 'report' || v === 'full' || v === 'both') return v;
+  if (v.indexOf('report') >= 0) return 'report';
+  if (v.indexOf('full') >= 0 || v.indexOf('diagnostic') >= 0) return 'full';
+  return t;
+}
+</script>
 </body>
 </html>
