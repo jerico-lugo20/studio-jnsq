@@ -7812,6 +7812,25 @@ function _processRetrievedDiagnosis(record, code, successEl, errorEl) {
   if (record.intake) clientIntakeData = record.intake;
   if (record.contact) contactData = record.contact;
 
+  // Restore the individual/company path. Without this the report regenerates as
+  // a company report: wrong price band, wrong subtitle, no archetype page.
+  // Records saved before the mode was persisted fall back to the code prefix,
+  // since individual codes are minted as MAD-I*.
+  var _restoredMode = record.diagnosticMode
+    || ((record.code && /^MAD-I/i.test(record.code)) ? 'individual' : 'company');
+  _diagnosticMode = _restoredMode;
+
+  // Re-resolve the archetype from the restored percentages so it can never
+  // disagree with the scores shown on the same page.
+  if (_restoredMode === 'individual' && typeof determineArchetype === 'function') {
+    var _aKey = record.archetype || determineArchetype(window._catPcts || {});
+    window._archetypeKey = _aKey;
+    window._archetype = (typeof madArchetypes !== 'undefined') ? madArchetypes[_aKey] : null;
+  } else {
+    window._archetypeKey = null;
+    window._archetype = null;
+  }
+
   // Restore intervention data into window._interventions format if needed
   // (window._interventions is already set from the IIFE on page load, keyed by stage)
 
@@ -9317,21 +9336,63 @@ function generateDiagnosticPDF(tier) {
     ];
 
     // Build action/why/kpi items for each phase per weak facet
-    function getPhaseWhy(facetLabel, phaseIdx) {
-      var whys = [
-        'Build immediate momentum and establish baseline ' + facetLabel.toLowerCase() + ' systems.',
-        'Create the structural foundation that makes ' + facetLabel.toLowerCase() + ' sustainable and scalable.',
-        'Activate compounding mechanisms so each ' + facetLabel.toLowerCase() + ' investment builds on the last.'
-      ];
-      return whys[phaseIdx] || '';
+    // Phase rationale and success metric, written per facet per phase.
+    // These are deliberately NOT templated off the facet name: a roadmap that
+    // reads as the same sentence five times undermines the diagnosis.
+    var PHASE_COPY = {
+      branding: [
+        ['Branding is the centering point, so it is settled first. Until the position is fixed, work on the other four facets accumulates against a moving target.',
+         'One-sentence position written and agreed. Three people outside the business describe you the same way, unprompted.'],
+        ['A settled position only holds if it survives contact with every touchpoint. This phase removes the places where the market meets a different version of you.',
+         'Every client-facing surface audited against the position. No unresolved contradictions remaining.'],
+        ['Once the centre holds, it should be measured rather than assumed. Perception data turns branding from an opinion into a tracked asset.',
+         'Baseline perception study complete. Position recall is trending and measurable, not anecdotal.']
+      ],
+      credibility: [
+        ['Credibility already exists inside work you have done. The first month is about locating the proof, not manufacturing more of it.',
+         'Existing proof inventoried in one place: client results, testimonials, credentials, prior coverage.'],
+        ['Proof that lives only in your own materials is a claim. This phase moves it into third-party hands, where the market weighs it differently.',
+         'At least two external validations in motion: an award submission, a named case study, or a quoted placement.'],
+        ['Credibility compounds when it is published on a rhythm rather than assembled under pressure for a pitch.',
+         'A repeatable proof cadence running. New verifiable evidence added monthly without a scramble.']
+      ],
+      visibility: [
+        ['Visibility is the cheapest facet to move because it needs exposure rather than construction. Start where the audience already is.',
+         'One owned channel chosen and publishing. A search for your name returns something you control.'],
+        ['One channel proves the habit. Infrastructure is what stops visibility from depending on how much time you have in a given week.',
+         'Content pipeline built four weeks deep. Publishing continues through a week you are unavailable.'],
+        ['Owned reach plateaus on its own. Compounding comes from borrowed audiences that send people back to something you own.',
+         'Two earned placements or guest appearances live, each pointing to an owned destination.']
+      ],
+      trust: [
+        ['Trust is the slowest facet to build and the fastest to lose, so the first month protects what already exists before adding anything.',
+         'Response and delivery standards written down. Every open commitment has a named owner and a date.'],
+        ['Trust scales through systems, not intentions. This phase makes consistency independent of who happens to be handling the account.',
+         'Onboarding, check-in, and escalation paths documented and in use on every active engagement.'],
+        ['Trust becomes an asset at the point where other people can vouch for it without you in the room.',
+         'Referral or repeat business traceable to at least three separate clients.']
+      ],
+      demand: [
+        ['Demand sits downstream of the other four facets, so month one measures it honestly rather than forcing it.',
+         'Pipeline sources mapped. You can state what share of work arrives inbound versus chased.'],
+        ['Unpredictable demand is usually undocumented demand. This phase turns a pattern you sense into a path you can repeat.',
+         'One repeatable path from first contact to signed work, documented and used twice.'],
+        ['Demand compounds when reputation does the qualifying before the first conversation happens.',
+         'Inbound share of new work up measurably, with time spent chasing new opportunities down.']
+      ]
+    };
+
+    function _phaseCopy(facetKey, facetLabel, phaseIdx) {
+      var set = PHASE_COPY[facetKey];
+      if (set && set[phaseIdx]) return set[phaseIdx];
+      // fallback keeps the report renderable if a facet key is ever added
+      return ['Move this facet to its next stage.', facetLabel + ' reassessed at the end of this phase.'];
     }
-    function getPhaseKpi(facetLabel, phaseIdx) {
-      var kpis = [
-        facetLabel + ' baseline documented; first 2 actions complete within 14 days.',
-        'All ' + facetLabel.toLowerCase() + ' systems operational; team trained on execution cadence.',
-        facetLabel + ' score improvement of 10-15% in next diagnostic reassessment.'
-      ];
-      return kpis[phaseIdx] || '';
+    function getPhaseWhy(facetLabel, phaseIdx, facetKey) {
+      return _phaseCopy(facetKey, facetLabel, phaseIdx)[0];
+    }
+    function getPhaseKpi(facetLabel, phaseIdx, facetKey) {
+      return _phaseCopy(facetKey, facetLabel, phaseIdx)[1];
     }
 
     // Unified roadmap layout for all tiers
@@ -9349,8 +9410,8 @@ function generateDiagnosticPDF(tier) {
         if (y + itemNeeded > H - 50) y = newPage();
 
         var act = stripEmDash(wf.actions[Math.min(phase.idx, wf.actions.length-1)] || '');
-        var why = getPhaseWhy(wf.label, phase.idx);
-        var kpi = getPhaseKpi(wf.label, phase.idx);
+        var why = getPhaseWhy(wf.label, phase.idx, wf.key);
+        var kpi = getPhaseKpi(wf.label, phase.idx, wf.key);
 
         y += 4;
 

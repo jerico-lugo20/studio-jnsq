@@ -21,7 +21,10 @@ exports.handler = async (event, context) => {
     const {
       code, percentages, scores, contact, tier,
       questionAnswers, interventionData, intake, fileData, timestamp,
-      type, trade, overallScore, diagnosticType
+      type, trade, overallScore, diagnosticType,
+      // MAD individual path: without these the report regenerates as a company
+      // report on retrieval (wrong price, no archetype page).
+      diagnosticMode, archetype
     } = data;
 
     if (!code) {
@@ -57,6 +60,9 @@ exports.handler = async (event, context) => {
       interventionData: interventionData || (existingRecord && existingRecord.interventionData) || {},
       intake: intake || (existingRecord && existingRecord.intake) || {},
       fileData: fileData || (existingRecord && existingRecord.fileData) || {},
+      // MAD-specific: the individual/company path and the resolved archetype
+      diagnosticMode: diagnosticMode || (existingRecord && existingRecord.diagnosticMode) || null,
+      archetype: (archetype !== undefined && archetype !== null) ? archetype : ((existingRecord && existingRecord.archetype) || null),
       // RVF-specific: trade + overallScore must persist
       trade: (trade !== undefined && trade !== null) ? trade : (existingRecord && existingRecord.trade) || null,
       overallScore: (overallScore !== undefined && overallScore !== null) ? overallScore : (existingRecord && existingRecord.overallScore) || null,
