@@ -7827,6 +7827,10 @@ function _processRetrievedDiagnosis(record, code, successEl, errorEl) {
     var _in = record.intake || {};
     contactData.name = _in.name || _in.companyName || _in.brandName || '';
   }
+  // The PDF generators read window._contactData, not the module-scoped
+  // contactData. Retrieval set only the latter, so a retrieved report printed
+  // "Client" even when the record held a perfectly good name.
+  window._contactData = contactData;
 
   // Restore the individual/company path. Without this the report regenerates as
   // a company report: wrong price band, wrong subtitle, no archetype page.
@@ -9845,6 +9849,10 @@ function storeDiagnosisData(code, catPcts, catScores) {
   const record = {
     code: code,
     type: 'mad',
+    // store-diagnosis reads tier from the TOP LEVEL. It was only ever sent
+    // nested inside contact, so every record persisted as "free" and paying
+    // clients were asked to pay again when they retrieved.
+    tier: (typeof selectedTierValue !== 'undefined' && selectedTierValue) ? selectedTierValue : 'free',
     diagnosticMode: _diagnosticMode || 'company',
     archetype: (_diagnosticMode === 'individual' && window._archetypeKey) ? window._archetypeKey : null,
     timestamp: new Date().toISOString(),
@@ -13762,6 +13770,20 @@ function _applyPresentUI() {
   if (banner) banner.style.display = presentMode ? 'inline-block' : 'none';
   if (btn) {
     btn.textContent = presentMode ? 'Exit Presentation' : '▶ Present';
+    // While presenting, offer a one-click refresh of the sealed client window so
+    // service selections made in the portal reach the client without reopening.
+    var _rb = document.getElementById('refreshClientViewBtn');
+    if (presentMode && !_rb) {
+      _rb = document.createElement('button');
+      _rb.id = 'refreshClientViewBtn';
+      _rb.textContent = '⟳ Update client view';
+      _rb.title = 'Push your current service selections to the client window';
+      _rb.style.cssText = 'margin-left:10px;padding:8px 16px;background:transparent;border:1.5px solid var(--yellow);color:var(--dark);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;';
+      _rb.onclick = function(){ openPresentation(); };
+      btn.parentNode.insertBefore(_rb, btn.nextSibling);
+    } else if (!presentMode && _rb) {
+      _rb.remove();
+    }
     btn.style.background = presentMode ? 'var(--dark)' : 'var(--yellow)';
     btn.style.color = presentMode ? '#fff' : 'var(--dark)';
     btn.style.marginLeft = presentMode ? '12px' : 'auto';
@@ -13896,7 +13918,10 @@ function openPresentation() {
 
   const blob = new Blob([docHtml], { type: 'text/html' });
   const url = URL.createObjectURL(blob);
-  const w = window.open(url, '_blank');
+  // Named target so re-presenting REPLACES the client view instead of stacking
+  // a second window. The client window stays sealed: no scripts, no data, no
+  // opener. Selecting services happens in the portal, then this refreshes it.
+  const w = window.open(url, 'jnsqClientView');
   if (w) w.opener = null; // sever the link back to the console
   // Blob URL is intentionally not revoked so the presentation survives an accidental reload
 }
