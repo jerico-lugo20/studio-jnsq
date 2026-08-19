@@ -6688,6 +6688,7 @@ window._premCatConfig = premCatConfig;
 window._getStageKey = getStageKey;
 window._getStage = getStage;
 window._interventions = interventions;
+window.renderArchetypeCard = renderArchetypeCard;
 
 })();
 
@@ -8524,8 +8525,18 @@ function generateDiagnosticPDF(tier) {
   })();
   var clientEmail = (window._contactData && window._contactData.email) ? window._contactData.email : '';
   var dateStr = new Date().toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
-  var isIndividual = _diagnosticMode === 'individual';
+  // Belt and braces: a client received a company-formatted PDF for an
+  // individual code (MAD-I*) via a path we could not reproduce. Whatever the
+  // runtime mode says, the code prefix is authoritative: individual codes are
+  // minted MAD-I* and nothing else is.
+  var isIndividual = _diagnosticMode === 'individual' || /^MAD-I/i.test(String(code || ''));
   var archetypeInfo = (isIndividual && window._archetype) ? window._archetype : null;
+  if (isIndividual && !archetypeInfo && typeof determineArchetype === 'function' && catPcts && catPcts.branding !== undefined) {
+    // Re-derive rather than skip the page when state was lost upstream.
+    var _akFix = determineArchetype(catPcts);
+    archetypeInfo = madArchetypes[_akFix];
+    window._archetypeKey = _akFix; window._archetype = archetypeInfo;
+  }
 
   // Service library for recommended services
   var serviceLibrary = {
