@@ -5289,7 +5289,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 </div>
 </div>
 
-<script src="/assets/js/mad-archetypes.js?v=1"></script>
+<script src="/assets/js/mad-archetypes.js?v=2"></script>
 <script>
 // ══════════════════════════════════════════════════════════
 // STRATEGIST PORTAL LAUNCHER
@@ -6154,7 +6154,10 @@ document.querySelectorAll('.prem-question').forEach(q => {
     const lab = document.createElement('label');
     lab.setAttribute('for',qKey+'_'+i);
     lab.textContent = i;
-    lab.onclick = function(){ premScores[qKey]=i; ratingDiv.querySelectorAll('label').forEach(l=>l.classList.remove('selected')); lab.classList.add('selected'); };
+    const _setScore = function(){ premScores[qKey]=i; ratingDiv.querySelectorAll('label').forEach(l=>l.classList.remove('selected')); lab.classList.add('selected'); };
+    lab.onclick = _setScore;
+    // Keyboard accessibility: arrow-key/space selection fires change, not label click
+    inp.addEventListener('change', _setScore);
     ratingDiv.appendChild(inp);
     ratingDiv.appendChild(lab);
   }
