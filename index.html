@@ -9874,6 +9874,28 @@ function generateDiagnosticPDF(tier) {
   doc.text('\u00A9 Studio JNSQ. All rights reserved.', W/2, H-30, {align:'center'});
 
   // ── SAVE ──
+  // ── PREFLIGHT SELF-CHECK ──
+  // Every defect that has reached a client (wrong band, missing archetype page,
+  // "Client" as the name) is checkable here before the file exists. Correctable
+  // problems were already corrected upstream; this is the last tripwire.
+  try {
+    var _pf = [];
+    if (/^MAD-I/i.test(String(code || '')) && !isIndividual) _pf.push('individual code rendered as company');
+    if (isIndividual && !archetypeInfo) _pf.push('individual report without archetype');
+    if (clientName === 'Client' && ((clientIntakeData && (clientIntakeData.name || clientIntakeData.companyName)) || (window._contactData && window._contactData.name))) _pf.push('name lost despite being captured');
+    if (_pf.length) console.error('MAD PDF preflight: ' + _pf.join('; ') + ' — code ' + code);
+  } catch(ePf) {}
+
+  // Document metadata: PDF viewers show Title when set, the raw filename when
+  // not. Setting it keeps whatever the file happens to be called off-screen.
+  var tierTitles = {free:'Diamond Snapshot', report:'Full Diamond Report', full:'Full Diagnostic + Reading'};
+  doc.setProperties({
+    title: 'Market Authority Diamond\u2122 \u2014 ' + (tierTitles[tier] || 'Report') + ' \u2014 ' + clientName,
+    subject: 'MAD\u2122 Diagnostic (' + (isIndividual ? 'Individual' : 'Company') + ') \u00b7 ' + code,
+    author: 'Studio JNSQ',
+    creator: 'Studio JNSQ \u2014 studiojnsq.com'
+  });
+
   var names = {free:'JNSQ_Diamond_Snapshot', report:'JNSQ_Full_Diamond_Report', full:'JNSQ_Full_Diagnostic'};
   var safeName = clientName.replace(/[^a-zA-Z0-9 ]/g, '').trim().replace(/\s+/g, '_');
   doc.save((names[tier] || 'JNSQ_Report') + '_' + safeName + '.pdf');
@@ -13172,6 +13194,20 @@ function rvfDownloadPDF(tier) {
   doc.text('\u00A9 Studio JNSQ. All rights reserved.', W/2, H-30, {align:'center'});
 
   // ── SAVE ──
+  // Preflight tripwire + document metadata (same rationale as the MAD generator)
+  try {
+    if (clientName === 'Client' && ((clientIntakeData && (clientIntakeData.name || clientIntakeData.companyName)) || (window._contactData && window._contactData.name))) {
+      console.error('RVF PDF preflight: name lost despite being captured \u2014 code ' + code);
+    }
+  } catch(ePf) {}
+  var rvfTierTitles = {free:'RVF Snapshot', report:'Full RVF Report', full:'Full RVF Diagnostic + Reading'};
+  doc.setProperties({
+    title: 'Resource Value Formula\u2122 \u2014 ' + (rvfTierTitles[tier] || 'Report') + ' \u2014 ' + clientName,
+    subject: 'RVF\u2122 Diagnostic \u00b7 ' + code,
+    author: 'Studio JNSQ',
+    creator: 'Studio JNSQ \u2014 studiojnsq.com'
+  });
+
   var names = {free:'JNSQ_RVF_Snapshot', report:'JNSQ_Full_RVF_Report', full:'JNSQ_Full_RVF_Diagnostic'};
   var safeName = clientName.replace(/[^a-zA-Z0-9 ]/g, '').trim().replace(/\s+/g, '_');
   doc.save((names[tier] || 'JNSQ_RVF_Report') + '_' + safeName + '.pdf');
