@@ -6385,6 +6385,46 @@ function getStageKey(pct){
   return 'early';
 }
 
+
+// Renders (or re-renders) the Career Equity Archetype(tm) card above the results.
+// Shared by the fresh path (premShowResults) and retrieval, which previously
+// rebuilt the results itself and silently dropped the card.
+function renderArchetypeCard(catPcts) {
+  var existingArchetypeDisplay = document.getElementById('archetypeDisplay');
+  if (existingArchetypeDisplay) existingArchetypeDisplay.remove();
+  if (_diagnosticMode !== 'individual') return;
+  if (typeof determineArchetype !== 'function' || !catPcts) return;
+
+  var archetypeKey = determineArchetype(catPcts);
+  var archetype = madArchetypes[archetypeKey];
+  window._archetypeKey = archetypeKey;
+  window._archetype = archetype;
+
+  var briefEl = document.getElementById('briefSummaryNote');
+  if (!briefEl) return;
+
+  var archetypeHTML = '<div id="archetypeDisplay" style="max-width:680px;margin:24px auto 32px;background:linear-gradient(135deg,rgba(253,213,0,0.08),rgba(253,213,0,0.02));border:2px solid rgba(253,213,0,0.25);border-radius:16px;padding:32px;text-align:center;">';
+  archetypeHTML += '<div style="font-size:9px;letter-spacing:2.5px;color:var(--steel);font-weight:700;text-transform:uppercase;margin-bottom:8px;">YOUR CAREER EQUITY ARCHETYPE\u2122</div>';
+  archetypeHTML += '<div style="font-size:clamp(28px,4vw,40px);font-weight:800;color:var(--dark);margin-bottom:6px;">' + archetype.name + '</div>';
+  archetypeHTML += '<div style="font-size:11px;letter-spacing:1px;color:var(--yellow);font-weight:700;text-transform:uppercase;margin-bottom:16px;">' + (archetype.tierLabel || ('TIER ' + archetype.tier)).toUpperCase() + '</div>';
+  archetypeHTML += '<p style="font-size:14px;color:var(--steel);line-height:1.6;margin:0 auto;max-width:500px;">' + (archetype.tagline || archetype.desc) + '</p>';
+  if (archetype.definition) {
+    archetypeHTML += '<p style="font-size:13px;color:var(--steel);line-height:1.7;margin:14px auto 0;max-width:540px;text-align:left;">' + archetype.definition + '</p>';
+  }
+  archetypeHTML += '<div style="margin-top:16px;"><a href="/archetypes" target="_blank" rel="noopener" style="font-size:12px;color:var(--steel);text-decoration:underline;">Read all 16 archetypes</a></div>';
+  archetypeHTML += '</div>';
+
+  briefEl.insertAdjacentHTML('afterend', archetypeHTML);
+
+  var resultsHeader = document.querySelector('.prem-results-header');
+  if (resultsHeader) {
+    var rhH3 = resultsHeader.querySelector('h3');
+    var rhP = resultsHeader.querySelector('p');
+    if (rhH3) rhH3.textContent = 'Your Market Authority Diamond';
+    if (rhP) rhP.textContent = 'Here\'s a high-level view of where you stand as a professional across the five facets of Market Authority.';
+  }
+}
+
 window.premShowResults = function(){
   const cats = document.querySelectorAll('.prem-category');
   cats[premCurrent].classList.remove('active');
@@ -6430,41 +6470,7 @@ window.premShowResults = function(){
     'Select a tier below to access your full assessment.';
   briefEl.style.display = 'block';
 
-  var existingArchetypeDisplay = document.getElementById('archetypeDisplay');
-  if (existingArchetypeDisplay) existingArchetypeDisplay.remove();
-  if (_diagnosticMode === 'individual') {
-    var archetypeKey = determineArchetype(catPcts);
-    var archetype = madArchetypes[archetypeKey];
-    window._archetypeKey = archetypeKey;
-    window._archetype = archetype;
-
-    var archetypeHTML = '<div id="archetypeDisplay" style="max-width:680px;margin:24px auto 32px;background:linear-gradient(135deg,rgba(253,213,0,0.08),rgba(253,213,0,0.02));border:2px solid rgba(253,213,0,0.25);border-radius:16px;padding:32px;text-align:center;">';
-    archetypeHTML += '<div style="font-size:9px;letter-spacing:2.5px;color:var(--steel);font-weight:700;text-transform:uppercase;margin-bottom:8px;">YOUR CAREER EQUITY ARCHETYPE\u2122</div>';
-    archetypeHTML += '<div style="font-size:clamp(28px,4vw,40px);font-weight:800;color:var(--dark);margin-bottom:6px;">' + archetype.name + '</div>';
-    archetypeHTML += '<div style="font-size:11px;letter-spacing:1px;color:var(--yellow);font-weight:700;text-transform:uppercase;margin-bottom:16px;">TIER ' + archetype.tier + ' — ' + archetype.tierName.toUpperCase() + '</div>';
-    archetypeHTML += '<p style="font-size:14px;color:var(--steel);line-height:1.6;margin:0 auto;max-width:500px;">' + archetype.desc + '</p>';
-
-    if (archetype.next && madArchetypes[archetype.next]) {
-      var nextArch = madArchetypes[archetype.next];
-      archetypeHTML += '<div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(253,213,0,0.15);">';
-      archetypeHTML += '<div style="font-size:10px;letter-spacing:1.5px;color:var(--steel);font-weight:600;text-transform:uppercase;margin-bottom:4px;">YOUR GROWTH PATH</div>';
-      archetypeHTML += '<div style="font-size:15px;font-weight:700;color:var(--dark);">' + archetype.name + ' → ' + nextArch.name + '</div>';
-      archetypeHTML += '<p style="font-size:12px;color:var(--steel);margin:6px 0 0;">' + nextArch.desc + '</p>';
-      archetypeHTML += '</div>';
-    }
-
-    archetypeHTML += '</div>';
-
-    briefEl.insertAdjacentHTML('afterend', archetypeHTML);
-
-    var resultsHeader = document.querySelector('.prem-results-header');
-    if (resultsHeader) {
-      var rhH3 = resultsHeader.querySelector('h3');
-      var rhP = resultsHeader.querySelector('p');
-      if (rhH3) rhH3.textContent = 'Your Market Authority Diamond';
-      if (rhP) rhP.textContent = 'Here\'s a high-level view of where you stand as a professional across the five facets of Market Authority.';
-    }
-  }
+  renderArchetypeCard(catPcts);
 
   // Full report
   const reportEl = document.getElementById('premFullReport');
@@ -7951,6 +7957,10 @@ function _processRetrievedDiagnosis(record, code, successEl, errorEl) {
 
     // Render recommended services above gate (like RVF™)
     if (typeof renderPreGateServices === 'function') renderPreGateServices(catPcts);
+    // The card was only ever rendered on the fresh path; retrieval rebuilt the
+    // results itself and dropped it. This is why a retrieved individual report
+    // showed no archetype on screen.
+    if (typeof renderArchetypeCard === 'function') renderArchetypeCard(catPcts);
 
     // Insert "Make Corrections" button between brief summary and contact gate
     var corrBtnId = 'correctionsBtnBlock';
@@ -10107,8 +10117,8 @@ var _overlayStack = [];
           goToUnifiedRetrieval();
           var _pre = params.get('code');
           if (_pre) {
-            var f = document.getElementById('retrieveCode');
-            if (f) f.value = _pre.toUpperCase();
+            var f = document.getElementById('unifiedRetrieveCode') || document.getElementById('retrieveCode');
+            if (f) { f.value = _pre.toUpperCase(); f.dispatchEvent(new Event('input',{bubbles:true})); }
           }
         }, 120);
       });

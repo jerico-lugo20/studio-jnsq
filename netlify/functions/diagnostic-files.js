@@ -57,7 +57,11 @@ exports.handler = async function (event) {
   // ---------- upload (public, from intake) ----------
   if (action === "upload") {
     var code = String(body.code || "").trim().toUpperCase();
-    if (!/^JNSQ-[A-Z0-9-]{4,20}$/.test(code)) return resp(400, { error: "Invalid code" });
+    // Codes were minted as MAD-*, MAD-I*, RVF-* and legacy JNSQ-*. The old
+    // pattern accepted only JNSQ-*, so every MAD/RVF intake upload was rejected
+    // with "Invalid code" and silently swallowed by the client. This is why
+    // captured files never reached storage.
+    if (!/^(JNSQ|MAD|RVF)-[A-Z0-9-]{4,20}$/.test(code)) return resp(400, { error: "Invalid code" });
     if (FILE_KEYS.indexOf(body.fileKey) === -1) return resp(400, { error: "Invalid file key" });
     if (!body.data || typeof body.data !== "string") return resp(400, { error: "No file data" });
 
