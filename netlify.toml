@@ -331,6 +331,24 @@
   to = "/about.html"
   status = 200
 
+# ---- Founder profile ----
+[[redirects]]
+  from = "/founder"
+  to = "/founder.html"
+  status = 200
+
+[[redirects]]
+  from = "/jerico-lugo"
+  to = "/founder"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/the-founder"
+  to = "/founder"
+  status = 301
+  force = true
+
 # ---- Career Equity Archetype(tm) ----
 [[redirects]]
   from = "/archetypes"

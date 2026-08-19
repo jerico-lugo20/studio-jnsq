@@ -21,6 +21,7 @@ exports.handler = async (event, context) => {
       { loc: "https://studiojnsq.com/about", changefreq: "monthly", priority: "0.7", lastmod: today },
       { loc: "https://studiojnsq.com/journal", changefreq: "weekly", priority: "0.9", lastmod: today },
       { loc: "https://studiojnsq.com/diagnostic", changefreq: "weekly", priority: "0.9", lastmod: today },
+      { loc: "https://studiojnsq.com/founder", changefreq: "monthly", priority: "0.8", lastmod: "2026-08-19" },
       { loc: "https://studiojnsq.com/archetypes", changefreq: "monthly", priority: "0.9", lastmod: "2026-08-10" },
       { loc: "https://studiojnsq.com/diagnostic/MAD", changefreq: "monthly", priority: "0.9", lastmod: "2026-04-02" },
       { loc: "https://studiojnsq.com/diagnostic/RVF", changefreq: "monthly", priority: "0.9", lastmod: "2026-04-02" },
