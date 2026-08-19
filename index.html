@@ -9886,6 +9886,21 @@ function generateFreeSnapshotPDF(clientName, clientEmail) {
 
 // Download designed PDF for any tier
 function downloadDesignedPDF(tier) {
+  // The tier being downloaded IS the entitlement. Persist it at the moment of
+  // download so no flow (payment, 100% gate code, promo) can leave a paid
+  // client's record marked "free" and lock them out on retrieval. Idempotent
+  // merge; store-diagnosis keeps everything else.
+  try {
+    if (window._diagCode && tier) {
+      fetch('/.netlify/functions/store-diagnosis', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: window._diagCode, tier: tier,
+          diagnosticMode: (typeof _diagnosticMode !== 'undefined' ? _diagnosticMode : null),
+          archetype: window._archetypeKey || null })
+      }).catch(function(){});
+    }
+  } catch(e) {}
+
   generateDiagnosticPDF(tier);
 }
 
