@@ -4289,6 +4289,25 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     </div>
   </div>
 
+  <div style="margin-top:24px;text-align:left;">
+    <label style="display:block;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--dark);margin-bottom:6px;text-transform:uppercase;">Supporting Materials <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--steel)">(optional — file up to 4MB, or a link)</span></label>
+    <div style="display:grid;gap:10px;">
+      <div style="border:1.5px solid rgba(57,69,80,0.12);border-radius:8px;padding:10px 12px;">
+        <div style="font-size:12px;font-weight:600;color:var(--dark);margin-bottom:6px;">Portfolio or CV</div>
+        <input type="file" id="intakeIndivCV" accept=".pdf,.zip,.png,.jpg,.doc,.docx" style="font-size:12px;width:100%;">
+        <input type="url" id="intakeIndivCVURL" placeholder="or paste a link (LinkedIn, personal site, Drive...)" style="width:100%;margin-top:6px;padding:8px 10px;border:1px solid rgba(57,69,80,0.12);border-radius:6px;font-size:12px;box-sizing:border-box;">
+      </div>
+      <div style="border:1.5px solid rgba(57,69,80,0.12);border-radius:8px;padding:10px 12px;">
+        <div style="font-size:12px;font-weight:600;color:var(--dark);margin-bottom:6px;">Media kit or speaker one-sheet</div>
+        <input type="file" id="intakeIndivMediaKit" accept=".pdf,.zip,.png,.jpg" style="font-size:12px;width:100%;">
+        <input type="url" id="intakeIndivMediaKitURL" placeholder="or paste a link" style="width:100%;margin-top:6px;padding:8px 10px;border:1px solid rgba(57,69,80,0.12);border-radius:6px;font-size:12px;box-sizing:border-box;">
+      </div>
+      <div style="border:1.5px solid rgba(57,69,80,0.12);border-radius:8px;padding:10px 12px;">
+        <div style="font-size:12px;font-weight:600;color:var(--dark);margin-bottom:6px;">Press or features about you</div>
+        <textarea id="intakeIndivPress" placeholder="Paste links to articles, interviews, podcasts, or features (one per line)" style="width:100%;padding:8px 10px;border:1px solid rgba(57,69,80,0.12);border-radius:6px;font-size:12px;min-height:60px;resize:vertical;font-family:inherit;box-sizing:border-box;"></textarea>
+      </div>
+    </div>
+  </div>
   <button class="intake-submit" onclick="submitIndividualIntake()">Proceed to Your Diamond Assessment →</button>
 </div>
 
@@ -4884,6 +4903,26 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
         <option value="5-10">5-10 years</option>
         <option value="10-plus">10+ years</option>
       </select>
+    </div>
+    <div>
+      <label style="display:block;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--dark);margin-bottom:6px;text-transform:uppercase;">Supporting Materials <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--steel)">(optional — file up to 4MB, or a link)</span></label>
+      <div style="display:grid;gap:10px;text-align:left;">
+        <div style="border:1px solid rgba(57,69,80,0.12);border-radius:8px;padding:10px 12px;">
+          <div style="font-size:12px;font-weight:600;color:var(--dark);margin-bottom:6px;">Brand kit</div>
+          <input type="file" id="rvfIntakeBrandKit" accept=".pdf,.zip,.rar,.png,.jpg" style="font-size:12px;width:100%;">
+          <input type="url" id="rvfIntakeBrandKitURL" placeholder="or paste a link (Drive, Dropbox...)" style="width:100%;margin-top:6px;padding:8px 10px;border:1px solid rgba(57,69,80,0.12);border-radius:6px;font-size:12px;box-sizing:border-box;">
+        </div>
+        <div style="border:1px solid rgba(57,69,80,0.12);border-radius:8px;padding:10px 12px;">
+          <div style="font-size:12px;font-weight:600;color:var(--dark);margin-bottom:6px;">Media kit or company profile</div>
+          <input type="file" id="rvfIntakeMediaKit" accept=".pdf,.zip,.rar,.png,.jpg" style="font-size:12px;width:100%;">
+          <input type="url" id="rvfIntakeMediaKitURL" placeholder="or paste a link" style="width:100%;margin-top:6px;padding:8px 10px;border:1px solid rgba(57,69,80,0.12);border-radius:6px;font-size:12px;box-sizing:border-box;">
+        </div>
+        <div style="border:1px solid rgba(57,69,80,0.12);border-radius:8px;padding:10px 12px;">
+          <div style="font-size:12px;font-weight:600;color:var(--dark);margin-bottom:6px;">Strategy or capability deck</div>
+          <input type="file" id="rvfIntakeStrategyDeck" accept=".pdf,.pptx,.ppt,.zip,.key" style="font-size:12px;width:100%;">
+          <input type="url" id="rvfIntakeStrategyDeckURL" placeholder="or paste a link" style="width:100%;margin-top:6px;padding:8px 10px;border:1px solid rgba(57,69,80,0.12);border-radius:6px;font-size:12px;box-sizing:border-box;">
+        </div>
+      </div>
     </div>
     <div>
       <label style="display:block;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--dark);margin-bottom:6px;text-transform:uppercase;">Additional Context</label>
@@ -5862,7 +5901,13 @@ function submitIndividualIntake() {
     industry: industry,
     yearsInField: document.getElementById('intakeIndivYears').value,
     region: region,
-    country: country
+    country: country,
+    // Supporting materials: names/links here, file bytes uploaded at store time
+    brandKit: (function(el){return el && el.files[0] ? el.files[0].name : '';})(document.getElementById('intakeIndivCV')),
+    brandKitURL: (document.getElementById('intakeIndivCVURL')||{value:''}).value.trim(),
+    mediaKit: (function(el){return el && el.files[0] ? el.files[0].name : '';})(document.getElementById('intakeIndivMediaKit')),
+    mediaKitURL: (document.getElementById('intakeIndivMediaKitURL')||{value:''}).value.trim(),
+    press: (document.getElementById('intakeIndivPress')||{value:''}).value.trim()
   };
 
   // Seed the contact record now so a lost tab cannot cost us the client's name.
@@ -9937,6 +9982,43 @@ function generateDiagnosisCode() {
   return code;
 }
 
+// Shared by MAD (company + individual) and RVF: read intake file inputs and
+// upload each to cloud storage (diagnostic-files). Call only after the diagnosis
+// record exists in the cloud, uploads for unknown codes are rejected with 404.
+// Retries twice on failure so one flaky request does not lose a client file.
+function _uploadIntakeFilesToCloud(code, inputs) {
+  (inputs || []).forEach(function(fi) {
+    var el = document.getElementById(fi.id);
+    if (!el || !el.files || !el.files[0]) return;
+    var f = el.files[0];
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var base64 = String(e.target.result).split(',')[1] || '';
+      if (base64.length * 3 / 4 > 4 * 1024 * 1024) {
+        console.warn('File ' + fi.key + ' over 4MB, skipped cloud upload; use the link field instead');
+        return;
+      }
+      var send = function(attempt) {
+        fetch('/.netlify/functions/diagnostic-files', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'upload', code: code, fileKey: fi.key, name: f.name, type: f.type || 'application/octet-stream', data: base64 })
+        }).then(function(r) {
+          if (r.ok) { console.log('File ' + fi.key + ' uploaded to cloud for ' + code); return; }
+          if (attempt < 3) setTimeout(function() { send(attempt + 1); }, 1500 * attempt);
+          else console.warn('File upload ' + fi.key + ' failed with ' + r.status);
+        }).catch(function() {
+          if (attempt < 3) setTimeout(function() { send(attempt + 1); }, 1500 * attempt);
+          else console.warn('File upload ' + fi.key + ' failed (network)');
+        });
+      };
+      send(1);
+    };
+    reader.onerror = function() { console.warn('Could not read file for ' + fi.key); };
+    reader.readAsDataURL(f);
+  });
+}
+
 function storeDiagnosisData(code, catPcts, catScores) {
   const record = {
     code: code,
@@ -9974,7 +10056,10 @@ function storeDiagnosisData(code, catPcts, catScores) {
   });
   // Store file data (base64) for portal file viewer
   record.fileData = {};
-  const fileInputs = [
+  const fileInputs = (_diagnosticMode === 'individual') ? [
+    {id:'intakeIndivCV', key:'brandKit'},
+    {id:'intakeIndivMediaKit', key:'mediaKit'}
+  ] : [
     {id:'intakeBrandKit', key:'brandKit'},
     {id:'intakeMediaKit', key:'mediaKit'},
     {id:'intakeStrategyDeck', key:'strategyDeck'}
@@ -9996,7 +10081,13 @@ function storeDiagnosisData(code, catPcts, catScores) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(cloudRecordImmediate)
     }).then(function(res) {
-      if (res.ok) console.log('Diagnosis ' + code + ' stored to cloud (immediate)');
+      if (res.ok) {
+        console.log('Diagnosis ' + code + ' stored to cloud (immediate)');
+        // Upload intake files NOW: the record exists, so uploads are accepted.
+        // Previously uploads were gated behind a second store call deep in a
+        // promise chain; a closed tab or one failed fetch lost the files.
+        _uploadIntakeFilesToCloud(code, fileInputs);
+      }
       else console.warn('Cloud storage (immediate) returned ' + res.status);
     }).catch(function(err) {
       console.warn('Cloud storage (immediate) failed: ' + err.message);
@@ -10050,22 +10141,8 @@ function storeDiagnosisData(code, catPcts, catScores) {
       }).then(function(res) {
         if (res.ok) {
           console.log('Diagnosis ' + code + ' stored to cloud successfully');
-          // === CLOUD FILES: upload intake attachments so strategists can retrieve them ===
-          try {
-            Object.keys(record.fileData || {}).forEach(function(fk) {
-              var fd = record.fileData[fk];
-              if (!fd || !fd.data) return;
-              if (fd.data.length * 3 / 4 > 4 * 1024 * 1024) { console.warn('File ' + fk + ' over 4MB, skipped cloud upload'); return; }
-              fetch('/.netlify/functions/diagnostic-files', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'upload', code: code, fileKey: fk, name: fd.name, type: fd.type, data: fd.data })
-              }).then(function(fr) {
-                if (fr.ok) console.log('File ' + fk + ' uploaded to cloud for ' + code);
-                else console.warn('File upload ' + fk + ' returned ' + fr.status);
-              }).catch(function(fe) { console.warn('File upload ' + fk + ' failed: ' + fe.message); });
-            });
-          } catch(fileErr) { console.warn('File upload error: ' + fileErr.message); }
+          // (Intake file uploads now fire right after the immediate store above,
+          // via _uploadIntakeFilesToCloud, so they no longer depend on this call.)
           // === AGENT HUB: Submit as lead ===
           try {
             var leadData = {
@@ -10917,6 +10994,13 @@ function submitRVFIntake() {
     industry: industry, revenue: revenue, role: role,
     years: document.getElementById('rvfIntakeYears').value,
     notes: document.getElementById('rvfIntakeNotes').value.trim(),
+    // Supporting materials: file names captured here, bytes uploaded at store time
+    brandKit: (function(el){return el && el.files[0] ? el.files[0].name : '';})(document.getElementById('rvfIntakeBrandKit')),
+    brandKitURL: (document.getElementById('rvfIntakeBrandKitURL')||{value:''}).value.trim(),
+    mediaKit: (function(el){return el && el.files[0] ? el.files[0].name : '';})(document.getElementById('rvfIntakeMediaKit')),
+    mediaKitURL: (document.getElementById('rvfIntakeMediaKitURL')||{value:''}).value.trim(),
+    strategyDeck: (function(el){return el && el.files[0] ? el.files[0].name : '';})(document.getElementById('rvfIntakeStrategyDeck')),
+    strategyDeckURL: (document.getElementById('rvfIntakeStrategyDeckURL')||{value:''}).value.trim(),
     timestamp: new Date().toISOString()
   };
 
@@ -13241,6 +13325,14 @@ function rvfStoreDiagnosisData(code, aspectPcts, aspectScores, overallScore, tra
       body:JSON.stringify(record)
     }).then(function(res){
       if(res.ok){
+        // === CLOUD FILES: RVF intake attachments, retrievable in the portal ===
+        try {
+          _uploadIntakeFilesToCloud(code, [
+            {id:'rvfIntakeBrandKit', key:'brandKit'},
+            {id:'rvfIntakeMediaKit', key:'mediaKit'},
+            {id:'rvfIntakeStrategyDeck', key:'strategyDeck'}
+          ]);
+        } catch(fe) { console.warn('RVF file upload error: ' + fe.message); }
         // === AGENT HUB: Submit RVF™ as lead ===
         try{
           var rvfLeadData={
@@ -13842,8 +13934,8 @@ function viewReport(code) {
     typeEl.style.color = isRVF ? 'var(--dark)' : 'var(--yellow)';
   }
 
-  // Pull cloud-stored intake files (MAD™ only) so attachments open on any device
-  if (!currentReportIsRVF) loadCloudFiles(code);
+  // Pull cloud-stored intake files (MAD™ and RVF™) so attachments open on any device
+  loadCloudFiles(code);
 
   renderPhase(0);
   renderSidebar();
@@ -14246,8 +14338,8 @@ function renderClientIntel(el) {
   if (intake.country) h += '<div class="info-chip"><label>Country</label><span>'+intake.country+'</span></div>';
   if (intake.bizSize) h += '<div class="info-chip"><label>Business Size</label><span>'+formatBizSizeLabel(intake.bizSize)+'</span></div>';
   if (intake.industry) h += '<div class="info-chip"><label>Industry</label><span>'+intake.industry+'</span></div>';
-  if (intake.website) h += '<div class="info-chip"><label>Website</label><span><a href="'+intake.website+'" target="_blank">'+intake.website+'</a></span></div>';
-  if (intake.linkedin) h += '<div class="info-chip"><label>LinkedIn</label><span><a href="'+intake.linkedin+'" target="_blank">'+intake.linkedin+'</a></span></div>';
+  if (intake.website) { var _webN = _normalizeClientUrl(intake.website); h += '<div class="info-chip"><label>Website</label><span><a href="'+_webN.replace(/"/g,'&quot;')+'" target="_blank" rel="noopener">'+_displayUrl(_webN)+'</a></span></div>'; }
+  if (intake.linkedin) { var _liN = _normalizeClientUrl(intake.linkedin); h += '<div class="info-chip"><label>LinkedIn</label><span><a href="'+_liN.replace(/"/g,'&quot;')+'" target="_blank" rel="noopener">'+_displayUrl(_liN)+'</a></span></div>'; }
   if (intake.instagram) h += '<div class="info-chip"><label>Instagram</label><span>'+intake.instagram+'</span></div>';
   if (intake.twitter) h += '<div class="info-chip"><label>X / Twitter</label><span>'+intake.twitter+'</span></div>';
   if (intake.otherSocial) h += '<div class="info-chip"><label>Other Social</label><span>'+intake.otherSocial+'</span></div>';
@@ -14272,14 +14364,14 @@ function renderClientIntel(el) {
   h += '<button onclick="portalDownloadReport()" style="background:var(--yellow);color:var(--dark);border:none;padding:12px 24px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap">⬇ Download PDF</button>';
   h += '</div>';
 
-  // File attachments (MAD™ only, RVF™ doesn't have file uploads)
-  if (!currentReportIsRVF) {
+  // File attachments (all diagnostics: MAD™ company, MAD™ individual, RVF™)
   h += '<div class="card"><h3>Client Files & Attachments</h3><p class="card-sub">Uploaded assets and documents from intake. Click to open.</p>';
   h += '<div class="file-grid">';
 
+  const _isIndivRecord = (r.diagnosticMode === 'individual') || /^MAD-I/i.test(currentCode || '');
   const fileFields = [
-    {key:'brandKit',urlKey:'brandKitURL',naKey:'naBrandKit',label:'Brand Kit',upsell:'Brand Foundations'},
-    {key:'mediaKit',urlKey:'mediaKitURL',naKey:'naMediaKit',label:'Media Kit',upsell:'Media & PR Foundations'},
+    {key:'brandKit',urlKey:'brandKitURL',naKey:'naBrandKit',label:_isIndivRecord?'Portfolio / CV':'Brand Kit',upsell:'Brand Foundations'},
+    {key:'mediaKit',urlKey:'mediaKitURL',naKey:'naMediaKit',label:_isIndivRecord?'Media Kit / One-sheet':'Media Kit',upsell:'Media & PR Foundations'},
     {key:'strategyDeck',urlKey:'strategyDeckURL',naKey:'naStrategyDeck',label:'Strategy Deck',upsell:'Brand Foundations'},
     {key:'press',urlKey:null,naKey:'naPress',label:'Press Coverage',upsell:'Media Relations'},
     {key:'awards',urlKey:null,naKey:'naAwards',label:'Awards',upsell:'Award Submissions'}
@@ -14304,17 +14396,34 @@ function renderClientIntel(el) {
 
     if (ff.urlKey && intake[ff.urlKey]) {
       hasContent = true;
-      const safeUrl = intake[ff.urlKey].replace(/'/g, "\\'").replace(/"/g, '&quot;');
+      // Clients paste links without a scheme ("drive.google.com/...") which the
+      // browser treats as a relative path and 404s on our own domain, or paste
+      // Outlook SafeLinks-wrapped URLs. Normalize both.
+      const extUrl = _normalizeClientUrl(intake[ff.urlKey]);
+      const safeUrl = extUrl.replace(/'/g, "\\'").replace(/"/g, '&quot;');
       h += '<div class="file-item" style="cursor:pointer"><span class="file-icon">🔗</span><div style="flex:1"><div class="file-name">'+ff.label+'</div><div style="display:flex;gap:8px;margin-top:4px">';
-      h += '<a href="'+intake[ff.urlKey]+'" target="_blank" rel="noopener" class="file-type" style="color:var(--green);text-decoration:underline;cursor:pointer" onclick="event.stopPropagation()">Open link</a>';
+      h += '<a href="'+extUrl.replace(/"/g,'&quot;')+'" target="_blank" rel="noopener" class="file-type" style="color:var(--green);text-decoration:underline;cursor:pointer" onclick="event.stopPropagation()">Open link</a>';
       h += '<span class="file-type" style="color:var(--steel);cursor:pointer;text-decoration:underline" onclick="event.stopPropagation();copyToClip(\''+safeUrl+'\')">Copy URL</span>';
       h += '</div></div></div>';
     }
 
     if (!ff.urlKey && !ff.naKey.match(/Brand|Media|Strategy/) && intake[ff.key] && typeof intake[ff.key] === 'string' && intake[ff.key].length > 0 && !fileData) {
       hasContent = true;
-      const textPreview = intake[ff.key].length > 120 ? intake[ff.key].substring(0,120)+'...' : intake[ff.key];
-      h += '<div class="file-item" onclick="alert(\''+intake[ff.key].replace(/'/g, "\\'").replace(/\n/g,"\\n")+'\')"><span class="file-icon">📝</span><div><div class="file-name">'+ff.label+'</div><div class="file-type" style="color:var(--steel)">'+textPreview.replace(/\n/g,' · ')+'</div></div></div>';
+      // Render any URLs inside the text (press links etc.) as real, clickable links
+      const rawText = intake[ff.key];
+      const foundUrls = rawText.match(/(https?:\/\/[^\s,]+|www\.[^\s,]+\.[a-z]{2,}[^\s,]*)/gi) || [];
+      if (foundUrls.length) {
+        h += '<div class="file-item" style="align-items:flex-start"><span class="file-icon">🔗</span><div style="flex:1"><div class="file-name">'+ff.label+'</div><div style="display:flex;flex-direction:column;gap:3px;margin-top:4px">';
+        foundUrls.slice(0, 10).forEach(function(u) {
+          const openU = /^https?:\/\//i.test(u) ? u : 'https://' + u;
+          const showU = u.length > 70 ? u.substring(0, 70) + '...' : u;
+          h += '<a href="'+openU.replace(/"/g,'&quot;')+'" target="_blank" rel="noopener" class="file-type" style="color:var(--green);text-decoration:underline;cursor:pointer" onclick="event.stopPropagation()">'+showU+'</a>';
+        });
+        h += '</div></div></div>';
+      } else {
+        const textPreview = rawText.length > 120 ? rawText.substring(0,120)+'...' : rawText;
+        h += '<div class="file-item" onclick="alert(\''+rawText.replace(/'/g, "\\'").replace(/\n/g,"\\n")+'\')"><span class="file-icon">📝</span><div><div class="file-name">'+ff.label+'</div><div class="file-type" style="color:var(--steel)">'+textPreview.replace(/\n/g,' · ')+'</div></div></div>';
+      }
     }
 
     if (intake[ff.naKey]) {
@@ -14339,7 +14448,6 @@ function renderClientIntel(el) {
   }
   if (intake.notes) h += '<div style="margin-top:12px;padding:12px;background:var(--light);border-radius:8px;font-size:12px"><strong>Client Notes:</strong> '+intake.notes+'</div>';
   h += '</div>';
-  } // end if (!currentReportIsRVF), file attachments
 
   // RVF™-specific summary card
   if (currentReportIsRVF && r.trade) {
@@ -15941,6 +16049,20 @@ function showDoneConfirmation(method) {
 }
 
 // ===== FILE VIEWER =====
+// Clean client-entered URLs for display and use: unwrap Outlook SafeLinks
+// (clients paste them from forwarded emails) and add a missing scheme.
+function _normalizeClientUrl(u) {
+  var url = String(u || '').trim();
+  var m = url.match(/safelinks\.protection\.outlook\.com\/\?url=([^&]+)/i);
+  if (m) { try { url = decodeURIComponent(m[1]); } catch(e) {} }
+  if (url && !/^https?:\/\//i.test(url)) url = 'https://' + url;
+  return url;
+}
+function _displayUrl(u) {
+  var s = String(u || '').replace(/^https?:\/\//i, '');
+  return s.length > 60 ? s.substring(0, 60) + '...' : s;
+}
+
 function _blobFrom(fd) {
   const byteChars = atob(fd.data);
   const byteNums = new Array(byteChars.length);
