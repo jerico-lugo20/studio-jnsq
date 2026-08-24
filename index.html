@@ -14389,7 +14389,10 @@ function renderClientIntel(el) {
       h += '<span class="file-type" style="color:var(--green);cursor:pointer;text-decoration:underline" onclick="openFileData(\''+ff.key+'\')">Open</span>';
       h += '<span class="file-type" style="color:var(--steel);cursor:pointer;text-decoration:underline" onclick="downloadFileData(\''+ff.key+'\')">Download</span>';
       h += '</div></div></div>';
-    } else if (intake[ff.key] && typeof intake[ff.key] === 'string' && intake[ff.key].length > 0) {
+    } else if (ff.urlKey && intake[ff.key] && typeof intake[ff.key] === 'string' && intake[ff.key].length > 0) {
+      // Only real file fields (the ones with an upload input, marked by urlKey)
+      // can be "uploaded but not stored". Text fields like press/awards were
+      // wrongly falling into this branch and showing a false warning.
       hasContent = true;
       h += '<div class="file-item" style="opacity:0.7"><span class="file-icon">📎</span><div><div class="file-name">'+intake[ff.key]+'</div><div class="file-type">Uploaded but data not stored, ask client to re-send</div></div></div>';
     }
