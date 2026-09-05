@@ -410,13 +410,45 @@
   to = "/diagnostic-rvf.html"
   status = 200
 
+# ============================================================
+# REBUILD 6 Sep 2026: / now serves the signed-off design (mock artifact v20).
+# The full application (diagnostics, retrieval, strategist portal) lives at
+# /app (app.html, a byte-identical copy of the pre-rebuild index.html).
+# Query-scoped rules catch the app entry points that used to live on /.
+# ============================================================
+[[redirects]]
+  from = "/app"
+  to = "/app.html"
+  status = 200
+
+[[redirects]]
+  from = "/"
+  to = "/app"
+  status = 302
+  force = true
+  [redirects.query]
+  openDiagnostic = ":d"
+
+[[redirects]]
+  from = "/"
+  to = "/app"
+  status = 302
+  force = true
+  [redirects.query]
+  retrieve = ":r"
+
+[[redirects]]
+  from = "/portal"
+  to = "/app#/strategist"
+  status = 302
+
 # Strategist Portal — restore /strategist URL access (JS overlay opens on load)
 [[redirects]]
   from = "/strategist"
-  to = "/index.html"
+  to = "/app.html"
   status = 200
 
 [[redirects]]
   from = "/strategist/*"
-  to = "/index.html"
+  to = "/app.html"
   status = 200
