@@ -260,22 +260,127 @@
     .ce-result-card { padding:32px 20px; }
   }
 </style>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style id="insights-skin">
+:root{
+  --njq-yellow:#FDD500; --njq-yellow-deep:#A8850A; --njq-ink:#2D3748; --njq-ink-deep:#26231A;
+  --njq-body:#514C40; --njq-grey:#948D7C; --njq-hair:#EAE3D0; --njq-cream:#FFFAE8; --njq-page:#FDFBF3;
+  --njq-serif:'Newsreader',Georgia,serif; --njq-sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  --njq-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+body{background:var(--njq-page)!important;color:var(--njq-body)!important;font-family:var(--njq-sans)!important;}
+
+/* ---- type ---- */
+h1,h2,h3,h4,.article-title,.ph-title,.r-title,.faq-inner h2,.go-deeper-inner h2,.related-inner h2,.tags-inner h2{
+  font-family:var(--njq-serif)!important;font-weight:500!important;color:var(--njq-ink-deep)!important;letter-spacing:0!important;}
+.article-title{line-height:1.12!important;}
+.article-excerpt,.lead-italic{font-family:var(--njq-serif)!important;font-style:italic;color:var(--njq-yellow-deep)!important;}
+.breadcrumb,.breadcrumb a,.label,.aside-label,.article-meta,.article-kicker,.series-chip,.series-tag,.tag-pill,.attribution,.direction,.num,.go-deeper-intro,.promo-callout-eyebrow{
+  font-family:var(--njq-mono)!important;letter-spacing:.14em!important;text-transform:uppercase;color:var(--njq-grey)!important;}
+.breadcrumb a:hover{color:var(--njq-ink-deep)!important;}
+.series-chip,.series-tag{color:var(--njq-yellow-deep)!important;background:transparent!important;border:1px solid var(--njq-hair)!important;border-radius:2px!important;}
+.article-meta strong{color:var(--njq-ink)!important;}
+
+/* ---- article body ---- */
+.canon-body p,.canon-body li{font-size:16.5px;line-height:1.78;color:var(--njq-body)!important;font-family:var(--njq-sans)!important;}
+.canon-body h2{font-size:1.7rem;margin-top:2.2em;}
+.canon-body h3{font-size:1.25rem;}
+.canon-body a,.inline-link{color:var(--njq-ink-deep)!important;text-decoration:underline!important;text-decoration-color:var(--njq-yellow)!important;text-decoration-thickness:2px!important;text-underline-offset:3px!important;}
+.canon-body blockquote,.pull-quote{font-family:var(--njq-serif)!important;font-style:italic;color:var(--njq-ink-deep)!important;background:var(--njq-cream)!important;border-left:3px solid var(--njq-yellow)!important;border-radius:0!important;box-shadow:none!important;}
+.hero-img-frame,.hero-img-frame img,.hero-stack-img img{border-radius:0!important;border:1px solid var(--njq-hair)!important;box-shadow:none!important;}
+
+/* ---- cards, rails, sections ---- */
+.aside-card,.deeper-card,.related-card,.series-nav-card,.what-this-means,.try-this,.next-edition,.faq-grid>*,.engage-card,.media-card{
+  background:#FFFDF4!important;border:1px solid var(--njq-hair)!important;border-radius:0!important;box-shadow:none!important;}
+.aside-card{border-top:3px solid var(--njq-yellow)!important;}
+.what-this-means,.try-this,.next-edition{background:var(--njq-cream)!important;}
+.faq-section,.go-deeper,.tags-section,.series-nav-wrap,.related-section{background:var(--njq-page)!important;border-top:1px solid var(--njq-hair);}
+.toc-list a,.insights-list li{color:var(--njq-body)!important;font-family:var(--njq-sans)!important;}
+.toc-list a:hover{color:var(--njq-ink-deep)!important;}
+.insights-list li::marker{color:var(--njq-yellow-deep);}
+.mark{background:linear-gradient(transparent 62%,var(--njq-yellow) 62%)!important;}
+
+/* ---- buttons ---- */
+.engage-btn,.media-btn,.promo-callout-btn,.related-empty-link{
+  font-family:var(--njq-sans)!important;font-weight:600!important;letter-spacing:.02em!important;text-transform:none!important;
+  background:var(--njq-yellow)!important;color:var(--njq-ink-deep)!important;border:1px solid transparent!important;border-radius:2px!important;box-shadow:none!important;}
+.engage-btn:hover,.media-btn:hover{background:#EFC400!important;transform:translateY(-1px);}
+.jnsq-scroll-progress{background:var(--njq-yellow)!important;}
+
+/* ---- the promo gate does not carry into the rebrand (pending decision) ---- */
+#jnsq-promo-modal,.jnsq-promo-modal,.jnsq-promo-trigger,.promo-callout{display:none!important;}
+
+/* ---- new header ---- */
+.njq-head{position:sticky;top:0;z-index:90;background:rgba(253,251,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--njq-hair);}
+.njq-head-in{max-width:1480px;margin:0 auto;padding:0 clamp(20px,3.6vw,56px);height:62px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.njq-lock{text-decoration:none;line-height:1;}
+.njq-lock .name{display:block;font-family:var(--njq-mono);font-weight:600;font-size:13px;letter-spacing:.34em;color:var(--njq-ink-deep);}
+.njq-lock .disc{display:block;font-family:var(--njq-mono);font-size:7.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--njq-grey);margin-top:3px;}
+.njq-nav{display:flex;align-items:center;flex-wrap:wrap;gap:2px 22px;}
+.njq-nav a{font-family:var(--njq-sans);font-size:13.5px;color:var(--njq-ink);text-decoration:none;padding-bottom:3px;border-bottom:2px solid transparent;}
+.njq-nav a:hover{color:var(--njq-ink-deep);}
+.njq-nav a.on{color:var(--njq-ink-deep);border-bottom-color:var(--njq-yellow);}
+@media(max-width:940px){.njq-nav{display:none;}}
+
+/* ---- new footer ---- */
+.njq-foot{background:var(--njq-page);border-top:1px solid var(--njq-hair);margin-top:64px;}
+.njq-foot-in{max-width:1480px;margin:0 auto;padding:56px clamp(20px,3.6vw,56px) 40px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,2fr);gap:48px;}
+@media(max-width:860px){.njq-foot-in{grid-template-columns:1fr;}}
+.njq-foot-brand .name{font-family:var(--njq-mono);font-weight:600;font-size:13px;letter-spacing:.34em;color:var(--njq-ink-deep);display:block;}
+.njq-foot-brand .disc{font-family:var(--njq-mono);font-size:7.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--njq-grey);display:block;margin-top:3px;}
+.njq-foot-brand .pos{font-family:var(--njq-serif);font-style:italic;color:var(--njq-ink);margin:16px 0 8px;font-size:15.5px;}
+.njq-foot-brand .geo{font-size:12.5px;color:var(--njq-grey);line-height:1.7;margin:0;}
+.njq-foot-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
+@media(max-width:600px){.njq-foot-cols{grid-template-columns:1fr;}}
+.njq-foot-cols .lbl{font-family:var(--njq-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--njq-yellow-deep);margin:0 0 10px;}
+.njq-foot-cols a{display:block;font-size:13.5px;color:var(--njq-body);text-decoration:none;padding:4px 0;}
+.njq-foot-cols a:hover{color:var(--njq-ink-deep);text-decoration:underline;text-decoration-color:var(--njq-yellow);}
+.njq-foot-base{max-width:1480px;margin:0 auto;padding:18px clamp(20px,3.6vw,56px) 28px;border-top:1px solid var(--njq-hair);font-family:var(--njq-mono);font-size:10.5px;letter-spacing:.08em;color:var(--njq-grey);}
+
+/* ---- listing page (server-rendered index) ---- */
+.blog-card{background:#FFFDF4!important;border:1px solid var(--njq-hair)!important;border-radius:0!important;box-shadow:none!important;}
+.blog-card:hover{transform:translateY(-3px);border-color:var(--njq-yellow)!important;}
+.blog-card-title{font-family:var(--njq-serif)!important;font-weight:500!important;color:var(--njq-ink-deep)!important;}
+.blog-card-excerpt{color:var(--njq-body)!important;font-family:var(--njq-sans)!important;}
+.blog-card-meta,.blog-card-tags,.blog-card-tags *{font-family:var(--njq-mono)!important;letter-spacing:.1em!important;color:var(--njq-grey)!important;}
+.blog-card-tags .tag,.blog-card-tags span,.blog-card-tags a{background:transparent!important;border:1px solid var(--njq-hair)!important;border-radius:2px!important;color:var(--njq-yellow-deep)!important;}
+.blog-card-image{border-bottom:1px solid var(--njq-hair);}
+.blog-search-bar,.blog-search{border-radius:2px!important;}
+.blog-search input{font-family:var(--njq-sans)!important;}
+</style>
+<style id="static-migration">
+:root{
+  --jnsq-bg:#FDFBF3; --jnsq-ink:#26231A; --jnsq-ink-soft:#2D3748; --jnsq-body:#514C40;
+  --jnsq-mute:#948D7C; --jnsq-line:#EAE3D0; --jnsq-line-soft:#F1EAD8; --jnsq-paper:#FFFDF4;
+}
+[style*="Lora"]{font-family:'Newsreader',Georgia,serif!important;}
+[style*="Inter"]{font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif!important;}
+body{font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif!important;background:#FDFBF3!important;}
+h1,h2,h3,h4,.jnsq-display-1,.jnsq-display-2,.jnsq-h1,.jnsq-h2,.cs-client,.cs-headline{font-family:'Newsreader',Georgia,serif!important;font-weight:500!important;color:#26231A!important;letter-spacing:0!important;}
+.jnsq-eyebrow,.jnsq-small,.cs-eyebrow,.cs-industry,.cs-meta-item,.cs-tag-row,.section-label{font-family:'IBM Plex Mono',ui-monospace,monospace!important;letter-spacing:.14em!important;}
+.jnsq-lead{color:#514C40!important;}
+.cs-card,.jnsq-card,.fw-card,.facet-tile,.stall-card,.stall-trio{border-radius:0!important;box-shadow:none!important;border-color:#EAE3D0!important;}
+.cs-card{background:#FFFDF4!important;}
+.jnsq-btn,.jnsq-btn-primary,.jnsq-btn-ghost,.jnsq-nav-cta,.cs-btn{border-radius:2px!important;font-family:'IBM Plex Sans',sans-serif!important;font-weight:600!important;letter-spacing:.02em!important;text-transform:none!important;box-shadow:none!important;}
+</style>
 </head>
 <body>
 
-<nav class="jnsq-nav">
-  <div class="jnsq-nav-inner">
-    <a href="/" class="jnsq-nav-logo">STUDIO <span class="accent">JNSQ</span></a>
-    <div class="jnsq-nav-links">
+<header class="njq-head">
+  <div class="njq-head-in">
+    <a class="njq-lock" href="/"><span class="name">STUDIO JNSQ</span><span class="disc">Brand Equity Architecture</span></a>
+    <nav class="njq-nav">
       <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/journal">Journal</a>
-      <a href="/case-studies">Portfolio</a>
-      <a href="/diagnostic">Diagnostic</a>
-    </div>
-    <a href="javascript:void(0)" onclick="openFinder()" class="jnsq-nav-cta">Find Yours</a>
+      <a href="/#/services">Services</a>
+      <a href="/#/investment-readiness">Investment readiness</a>
+      <a href="/#/portfolio">Portfolio</a>
+      <a href="/#/frameworks">Frameworks</a>
+      <a href="/insights">Insights</a>
+      <a class="on" href="/#/diagnostic">Diagnostic</a>
+      <a href="/#/our-story">Our story</a>
+    </nav>
   </div>
-</nav>
+</header>
 
 <!-- ============ HERO ============ -->
 <header class="jnsq-hero">
@@ -374,7 +479,7 @@
         <p class="ce-body">Career equity is the same asset class read at the scale of one person. Not a fourth thing, and not personal branding. The Market Authority Diamond&#8482; measures the reputational half of it, which is the half that moves first.</p>
         <p class="ce-body">Studio JNSQ practises brand equity architecture. Smaller companies use it to reach profitability. Larger ones use it to build the case for a higher valuation at exit. This finder is the smallest free piece of that work, and it is yours permanently.</p>
         <div style="margin-top:28px;">
-          <a href="/journal/branding-vs-brand-equity-vs-brand-architecture" class="jnsq-btn jnsq-btn-ghost">Read the full distinction</a>
+          <a href="/insights/branding-vs-brand-equity-vs-brand-architecture" class="jnsq-btn jnsq-btn-ghost">Read the full distinction</a>
         </div>
       </div>
       <div style="display:grid;gap:14px;">
@@ -530,45 +635,20 @@
   </div>
 </div>
 
-<footer class="jnsq-footer">
-  <div class="jnsq-container">
-    <div class="jnsq-footer-grid">
-      <div style="text-align:center;">
-        <div class="jnsq-footer-brand">STUDIO <span class="accent">JNSQ</span></div>
-        <p class="jnsq-footer-tagline">Others make you profitable.<br>Brand equity makes you valuable.</p>
-      </div>
-      <div class="jnsq-footer-col">
-        <h4>Discipline</h4>
-        <ul>
-          <li><a href="/about">About</a></li>
-          <li><a href="/founder">The Founder</a></li>
-          <li><a href="/diagnostic">Diagnostic</a></li>
-          <li><a href="/journal">Journal</a></li>
-          <li><a href="/case-studies">Portfolio</a></li>
-        </ul>
-      </div>
-      <div class="jnsq-footer-col">
-        <h4>Frameworks</h4>
-        <ul>
-          <li><a href="/archetypes">Career Equity Archetype&#8482;</a></li>
-          <li><a href="/diagnostic/MAD">MAD&#8482;</a></li>
-          <li><a href="/diagnostic/RVF">RVF&#8482;</a></li>
-          <li><a href="/journal/branding-vs-brand-equity-vs-brand-architecture">The doctrine</a></li>
-        </ul>
-      </div>
-      <div class="jnsq-footer-col">
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" rel="noopener">Book a call</a></li>
-          <li><a href="/diagnostic">Start a diagnosis</a></li>
-        </ul>
-      </div>
+<footer class="njq-foot">
+  <div class="njq-foot-in">
+    <div class="njq-foot-brand">
+      <span class="name">STUDIO JNSQ</span><span class="disc">Brand Equity Architecture</span>
+      <p class="pos">The brand equity architecture firm for valuable brands.</p>
+      <p class="geo">Manila, working across APAC. Engagements also taken in the Gulf and the United Kingdom; pricing varies there.</p>
     </div>
-    <div class="jnsq-footer-bottom">
-      <div>&copy; 2026 Studio JNSQ. The brand equity architecture firm for valuable brands.</div>
-      <div class="legal"><a href="/">studiojnsq.com</a></div>
+    <div class="njq-foot-cols">
+      <div><p class="lbl">Discipline</p><a href="/#/our-story">Our story</a><a href="/#/frameworks">Frameworks</a><a href="/insights">Insights</a></div>
+      <div><p class="lbl">Work</p><a href="/#/portfolio">Portfolio</a><a href="/#/services">Services</a><a href="/#/investment-readiness">Investment readiness</a></div>
+      <div><p class="lbl">Start</p><a href="/#/diagnostic">Take a diagnostic</a><a href="mailto:strategy@studiojnsq.com?subject=Book%20a%20call%20with%20a%20strategist">Book a call</a><a href="/portal">Strategist portal</a></div>
     </div>
   </div>
+  <div class="njq-foot-base">&copy; 2026 Studio JNSQ. Expertise that moves markets, made visible.</div>
 </footer>
 
 <script src="/assets/js/mad-archetypes.js?v=2"></script>
