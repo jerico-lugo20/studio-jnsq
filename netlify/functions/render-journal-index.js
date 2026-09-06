@@ -1,4 +1,6 @@
 
+var Skin = require('./insights-skin.js');
+
 // INSIGHTS RENAME (6 Sep 2026): the Journal now lives at /insights. Rewrite
 // every path reference and the visible label in the outgoing HTML so links,
 // canonicals and breadcrumbs all point at the new namespace.
@@ -136,15 +138,15 @@ exports.handler = async function (event, context) {
         );
       }
       // Posts injected: safe to let the CDN cache this good render.
-      return { statusCode: 200, headers: cachedHeaders, body: toInsights(template) };
+      return { statusCode: 200, headers: cachedHeaders, body: Skin.reskin(toInsights(template)) };
     }
     // No published posts came back (empty or degraded Blobs read): serve the
     // page but forbid caching so the next request re-reads Blobs immediately.
-    return { statusCode: 200, headers: noStoreHeaders, body: toInsights(template) };
+    return { statusCode: 200, headers: noStoreHeaders, body: Skin.reskin(toInsights(template)) };
   } catch (err) {
     console.error("render-journal-index error:", err && err.message);
     // Fallback: serve the untouched template, uncached, so a transient failure
     // cannot get frozen at the CDN edge.
-    return { statusCode: 200, headers: noStoreHeaders, body: toInsights(template) };
+    return { statusCode: 200, headers: noStoreHeaders, body: Skin.reskin(toInsights(template)) };
   }
 };

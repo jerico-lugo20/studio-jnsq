@@ -1,4 +1,6 @@
 
+var Skin = require('./insights-skin.js');
+
 // INSIGHTS RENAME (6 Sep 2026): the Journal now lives at /insights. Rewrite
 // every path reference and the visible label in the outgoing HTML so links,
 // canonicals and breadcrumbs all point at the new namespace.
@@ -258,7 +260,7 @@ exports.handler = async function (event, context) {
           'Cache-Control': 'public, max-age=30, s-maxage=60',
           'X-Robots-Tag': 'noindex, nofollow'
         },
-        body: toInsights(renderComingSoon(post))
+        body: Skin.reskin(toInsights(renderComingSoon(post)))
       };
     }
 
@@ -358,7 +360,7 @@ exports.handler = async function (event, context) {
         // Short cache so recent publishes reflect within ~60s across the CDN
         'Cache-Control': 'public, max-age=30, s-maxage=60'
       },
-      body: toInsights(html)
+      body: Skin.reskin(toInsights(html))
     };
   } catch (err) {
     console.error('render-blog-post error:', err);
