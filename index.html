@@ -484,6 +484,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
 .post.feature .post-hero{aspect-ratio:16/9;}
 .post h3{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:1.05rem;line-height:1.32;}
 .post p:not(.meta):not(.series-line){display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:13px;line-height:1.55;}
+.inst-actions{display:flex;gap:10px;flex-wrap:nowrap;align-items:center;}
+.inst-actions .btn-primary,.inst-actions .btn-ghost{white-space:nowrap;padding:11px 16px;font-size:12.5px;}
+@media(max-width:560px){.inst-actions{flex-wrap:wrap;}}
 .retrieve-line{margin:16px 0 0;font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;}
 .retrieve-line a{color:var(--grey);text-decoration:none;border-bottom:1px solid var(--hairline);padding-bottom:2px;}
 .retrieve-line a:hover{color:var(--ink-deep);border-bottom-color:var(--yellow);}
@@ -1831,8 +1834,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
     <div class="two" style="align-items:start;">
       <div data-in="left"><p class="label bare" style="margin-bottom:14px;">For a person</p>
         <ul class="plist"><li><span>MAD&trade; Snapshot</span><span class="p free">Free</span></li><li><span>Full MAD&trade; diagnostic</span><span class="p">&#8369;3,000</span></li><li><span>Full report and strategist consultation</span><span class="p">&#8369;7,000</span></li></ul>
-      <div class="actions" style="margin-top:14px;gap:10px;flex-wrap:wrap;"><a class="btn-primary" href="/app?openDiagnostic=MAD">Start the MAD&trade; Diagnostic</a><a class="btn-ghost" href="#/frameworks-mad">How MAD&trade; works</a>
-      <div class="actions" style="margin-top:14px;gap:10px;flex-wrap:wrap;"><a class="btn-primary" href="/app?openDiagnostic=RVF">Start the RVF&trade; Diagnostic</a><a class="btn-ghost" href="#/frameworks-rvf">How RVF&trade; works</a></div></div></div>
+      <div class="actions inst-actions" style="margin-top:16px;"><a class="btn-primary" href="/app?openDiagnostic=MAD">Start the MAD&trade; Diagnostic</a><a class="btn-ghost" href="#/frameworks-mad">How MAD&trade; works</a></div>
+      <div class="actions inst-actions" style="margin-top:16px;"><a class="btn-primary" href="/app?openDiagnostic=RVF">Start the RVF&trade; Diagnostic</a><a class="btn-ghost" href="#/frameworks-rvf">How RVF&trade; works</a></div></div></div>
       <div data-in="right" data-d="1"><p class="label bare" style="margin-bottom:14px;">For a company</p>
         <ul class="plist"><li><span>MAD&trade; or RVF&trade; Snapshot</span><span class="p free">Free</span></li><li><span>Full diagnostic</span><span class="p">&#8369;7,000</span></li><li><span>Full report and strategist consultation</span><span class="p">&#8369;15,000</span></li></ul></div>
     </div>
@@ -2136,7 +2139,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
 <section class="panel on-cream" data-label="Two ways">
   <div class="wrap">
     <div class="tiles two-up">
-      <div class="tile" data-in="left"><p class="label bare" style="color:var(--yellow-deep);">Start here</p><h3>Take the free MAD&trade; Snapshot</h3><p>Five minutes, no email needed to see your result, and you keep the score whether or not anything follows. It is also the only way into a retainer, so it is not a lead magnet. It is step one of the work.</p><div class="actions" style="margin-top:auto;padding-top:10px;"><a class="btn-primary" href="#/diagnostic">Take the free snapshot</a></div></div>
+      <div class="tile" data-in="left"><p class="label bare" style="color:var(--yellow-deep);">Start here</p><h3>Take the free MAD&trade; Snapshot</h3><p>Five minutes, no email needed to see your result, and you keep the score whether or not anything follows. It is also the only way into a retainer, so it is not a lead magnet. It is step one of the work.</p><div class="actions" style="margin-top:auto;padding-top:10px;"><a class="btn-primary" href="/app?openDiagnostic=MAD">Take the free snapshot</a></div></div>
       <div class="tile" data-in="right" data-d="1"><p class="label bare" style="color:var(--yellow-deep);">Or</p><h3>Thirty minutes with a strategist</h3><p>Bring the score, or bring the problem. If what you need is not something we do, we will say so on the call and point you at who does it, which happens more often than you would expect.</p><div class="actions" style="margin-top:auto;padding-top:10px;"><a class="btn-primary" href="#/contact">Book a call with a strategist</a></div></div>
     </div>
   </div>
@@ -2614,9 +2617,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
   function variantFor(el){
     var txt = (el.textContent || '').replace(/\s+/g,' ').trim().toLowerCase();
     var href = el.getAttribute('href') || '';
-    if (href.indexOf('#/') !== 0) return null;
+    if (href.indexOf('#/') !== 0 && href.indexOf('/app') !== 0) return null;
     if (/subscribe to the newsletter/.test(txt)) return 'newsletter';
     if (/book a (call|30 minute)/.test(txt)) return /jec/.test(txt) ? 'jec' : 'strategist';
+    if (/snapshot|start the (mad|rvf)|^start (mad|rvf)|retrieve your results/.test(txt)) return 'diagnostic';
     return null;
   }
   document.addEventListener('click', function(e){
