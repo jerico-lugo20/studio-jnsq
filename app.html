@@ -1555,6 +1555,14 @@ footer p { color: var(--mid); font-size: 13px; }
 .prem-question:hover { border-color:var(--mid); }
 .prem-question p { font-size:15px; color:var(--dark); line-height:1.5; margin-bottom:14px; font-weight:500; }
 .prem-question .prem-rating { display:flex; gap:8px; }
+
+/* Scale anchors: the 1 to 5 meaning, stated, so 3 is not used as "not sure" */
+.prem-rating-anchor,.rvf-rating-anchor{display:flex;justify-content:space-between;gap:12px;margin-top:7px;
+  font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:#948D7C;}
+.scale-note{font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:#948D7C;margin:10px 0 0;line-height:1.6;}
+.scale-note strong{color:#514C40;font-weight:600;}
+
 .prem-question .prem-rating label { flex:1; text-align:center; padding:10px 0; background:var(--white); border:1px solid var(--mid); border-radius:8px; cursor:pointer; font-size:13px; font-weight:600; color:var(--steel); transition:all 0.25s ease; }
 .prem-question .prem-rating label:hover { border-color:var(--dark); color:var(--dark); }
 .prem-question .prem-rating input { display:none; }
@@ -3620,6 +3628,26 @@ h1,h2,h3,h4,.prem-q-title,.section-heading,.tier-name,.jhh-title,.statement,.pre
 .gate-tier.selected{border-color:#FDD500!important;}
 </style>
 </head>
+<script>
+/* Direct-launch guard: when the URL carries ?openDiagnostic or ?retrieve, the
+   visitor asked for the tool, not the site. Hide the marketing shell before
+   first paint so they never see it flash past. */
+(function(){
+  try {
+    var q = window.location.search;
+    if (/[?&](openDiagnostic|retrieve)=/.test(q)) {
+      document.documentElement.classList.add('jnsq-direct');
+      var st = document.createElement('style');
+      st.textContent = '.jnsq-direct #website-app{visibility:hidden!important}' +
+        '.jnsq-direct .njq-head,.jnsq-direct .njq-foot{display:none!important}' +
+        '.jnsq-direct body{background:#FDFBF3}';
+      document.head.appendChild(st);
+      /* Safety net: if nothing took over in 4s, show the page rather than a blank. */
+      setTimeout(function(){ document.documentElement.classList.remove('jnsq-direct'); }, 4000);
+    }
+  } catch(e){}
+})();
+</script>
 <body>
 
 <div class="jnsq-scroll-progress"></div>
@@ -4426,6 +4454,11 @@ h1,h2,h3,h4,.prem-q-title,.section-heading,.tier-name,.jhh-title,.statement,.pre
 
 <div id="premDiagnosticBody" style="display:none;">
 <div class="prem-progress" id="premProgress"></div>
+<p class="scale-note" style="max-width:680px;margin:0 auto 22px;text-align:center;">
+  Answer on a scale of <strong>1 to 5</strong>: 1 means not true of you at all, 5 means completely true.
+  <strong>3 is a real middle, not a way to say you are unsure</strong>. If you do not know the answer, that
+  is usually a low score, because what you cannot evidence, the market cannot see either.
+</p>
 
 <!-- INTROSPECTION NOTE -->
 <div style="background:var(--light);border-left:4px solid var(--yellow);border-radius:8px;padding:18px 22px;margin-bottom:24px;">
@@ -4649,9 +4682,16 @@ h1,h2,h3,h4,.prem-q-title,.section-heading,.tier-name,.jhh-title,.statement,.pre
     <div id="gateContactFields" style="display:none">
       <div style="font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:1px;font-weight:700;text-transform:uppercase;margin-bottom:14px">Your Details</div>
       <div class="gate-field">
-        <label>Full Name</label>
+        <label id="gateNameLabel">Full Name</label>
         <input type="text" id="gateName" placeholder="Your full name">
+        <div style="font-size:10.5px;color:rgba(255,255,255,0.45);margin-top:5px;line-height:1.5;" id="gateNameHint">Your own name. We use it to address you.</div>
         <div class="gate-error" id="gateNameError">Please enter your name</div>
+      </div>
+      <div class="gate-field" id="gateSubjectField" style="display:none">
+        <label id="gateSubjectLabel">Company Being Assessed</label>
+        <input type="text" id="gateSubject" placeholder="Registered or trading name">
+        <div style="font-size:10.5px;color:rgba(255,255,255,0.45);margin-top:5px;line-height:1.5;">This is the name on the report. Enter the company, not your own name.</div>
+        <div class="gate-error" id="gateSubjectError">Please enter the name for the report</div>
       </div>
       <div class="gate-field">
         <label>Email Address</label>
@@ -6045,7 +6085,33 @@ function launchDiagnosticDirect() {
 }
 
 // ===== DIAGNOSTIC GATE =====
+function _syncGateSubject() {
+  // The report is named after the subject of the assessment. On the company path
+  // that is the company, never the representative filling the form in.
+  try {
+    var isCompany = (typeof _diagnosticMode === 'undefined') || _diagnosticMode !== 'individual';
+    var isRVF = (typeof _diagnosticType !== 'undefined' && _diagnosticType === 'rvf');
+    var field = document.getElementById('gateSubjectField');
+    var hint  = document.getElementById('gateNameHint');
+    if (!field) return;
+    if (isCompany || isRVF) {
+      field.style.display = '';
+      if (hint) hint.textContent = 'Your own name, as the person we reply to. The report is named after the company below.';
+      var pre = document.getElementById('gateSubject');
+      if (pre && !pre.value) {
+        var intake = (typeof clientIntakeData !== 'undefined' && clientIntakeData) ? clientIntakeData : {};
+        var rvfIn = (typeof rvfIntakeData !== 'undefined' && rvfIntakeData) ? rvfIntakeData : {};
+        pre.value = intake.brandName || intake.company || rvfIn.brandName || rvfIn.company || '';
+      }
+    } else {
+      field.style.display = 'none';
+      if (hint) hint.textContent = 'Your own name. The report is named after you.';
+    }
+  } catch (e) {}
+}
+
 function openDiagnosticGate() {
+  _syncGateSubject();
   const gate = document.getElementById('diagnosticGate');
   if (gate) {
     // Update description based on diagnostic type
@@ -6291,6 +6357,13 @@ document.querySelectorAll('.prem-question').forEach(q => {
     inp.addEventListener('change', _setScore);
     ratingDiv.appendChild(inp);
     ratingDiv.appendChild(lab);
+  }
+  // Anchor the scale so 1 and 5 are unambiguous and 3 is not read as "not sure"
+  if (!ratingDiv.parentNode.querySelector('.prem-rating-anchor')) {
+    var anch = document.createElement('div');
+    anch.className = 'prem-rating-anchor';
+    anch.innerHTML = '<span>1 &middot; Not true of us</span><span>5 &middot; Completely true</span>';
+    ratingDiv.parentNode.insertBefore(anch, ratingDiv.nextSibling);
   }
 });
 
@@ -7218,6 +7291,15 @@ function submitContactGate() {
   }
 
   const name = document.getElementById('gateName').value.trim();
+  const _subjectField = document.getElementById('gateSubject');
+  const _subjectShown = _subjectField && _subjectField.offsetParent !== null;
+  if (_subjectShown && !_subjectField.value.trim()) {
+    var se = document.getElementById('gateSubjectError');
+    if (se) se.style.display = 'block';
+    _subjectField.style.borderColor = '#e74c3c';
+    _subjectField.focus();
+    return;
+  }
   const email = document.getElementById('gateEmail').value.trim();
   const phone = document.getElementById('gatePhone').value.trim();
 
@@ -7249,7 +7331,16 @@ function submitContactGate() {
   if (!valid) return;
 
   // Store contact data with tier
-  contactData = { name: name, email: email, phone: phone, tier: selectedTierValue };
+  // The report is titled with the subject of the assessment. On the company path
+  // that is the company; the person stays on the record as the contact.
+  var _subjEl = document.getElementById('gateSubject');
+  var _subject = (_subjEl && _subjEl.offsetParent !== null) ? _subjEl.value.trim() : '';
+  contactData = {
+    name: _subject || name,
+    contactPerson: name,
+    subjectName: _subject || name,
+    email: email, phone: phone, tier: selectedTierValue
+  };
   window._contactData = contactData;
 
   // === FREE TIER: Download snapshot PDF and show code ===
@@ -10329,12 +10420,13 @@ var _overlayStack = [];
       _rReady.then(function(){
         setTimeout(function(){
           goToUnifiedRetrieval();
+          document.documentElement.classList.remove('jnsq-direct');
           var _pre = params.get('code');
           if (_pre) {
             var f = document.getElementById('unifiedRetrieveCode') || document.getElementById('retrieveCode');
             if (f) { f.value = _pre.toUpperCase(); f.dispatchEvent(new Event('input',{bubbles:true})); }
           }
-        }, 120);
+        }, 0);
       });
       return;
     }
@@ -10348,18 +10440,19 @@ var _overlayStack = [];
       ready.then(function() {
         _directURLLaunch = true;
         var diagParamUpper = (diagParam || '').toUpperCase().replace(/™/g, '');
+        var _reveal = function(){ document.documentElement.classList.remove('jnsq-direct'); };
         if (diagParamUpper === 'MAD') {
           window.history.replaceState({}, '', '/diagnostic/MAD');
           _diagnosticType = 'mad';
-          setTimeout(function() { startDiagnostic(); _directURLLaunch = false; }, 100);
+          setTimeout(function() { startDiagnostic(); _reveal(); _directURLLaunch = false; }, 0);
         } else if (diagParamUpper === 'RVF') {
           window.history.replaceState({}, '', '/diagnostic/RVF');
           _diagnosticType = 'rvf';
-          setTimeout(function() { startRVFDiagnostic(); _directURLLaunch = false; }, 100);
+          setTimeout(function() { startRVFDiagnostic(); _reveal(); _directURLLaunch = false; }, 0);
         } else {
           _directURLLaunch = false;
           window.history.replaceState({}, '', '/diagnostic');
-          setTimeout(function() { showDiagnosticSelector(); }, 100);
+          setTimeout(function() { showDiagnosticSelector(); _reveal(); }, 0);
         }
       });
     };
