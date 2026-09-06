@@ -1,3 +1,18 @@
+
+// INSIGHTS RENAME (6 Sep 2026): the Journal now lives at /insights. Rewrite
+// every path reference and the visible label in the outgoing HTML so links,
+// canonicals and breadcrumbs all point at the new namespace.
+function toInsights(html) {
+  return String(html)
+    .replace(/([\"'(])\/journal(\/|[\"')?#])/g, '$1/insights$2')
+    .replace(/([\"'(])\/journal([\"'])/g, '$1/insights$2')
+    .replace(/studiojnsq\.com\/journal/g, 'studiojnsq.com/insights')
+    .replace(/Back to the Journal/g, 'Back to Insights')
+    .replace(/More from the Journal/g, 'More from Insights')
+    .replace(/Browse the Journal/g, 'Browse Insights')
+    .replace(/Subscribe to the Journal/g, 'Subscribe to Insights')
+    .replace(/>Journal</g, '>Insights<');
+}
 // Server-side renderer for every /blog/<slug> URL.
 // Uses the shared canonical renderer (canonical-post-renderer.js) which is the
 // single source of truth for the layout. Same file also loads in admin.html for
@@ -170,7 +185,7 @@ exports.handler = async function (event, context) {
       slug = event.queryStringParameters.slug;
     } else if (event.path) {
       // Accept both /journal/:slug (canonical) and legacy /blog/:slug just in case
-      var m = event.path.match(/\/(?:journal|blog)\/([^\/?#]+)/);
+      var m = event.path.match(/\/(?:insights|journal|blog)\/([^\/?#]+)/);
       if (m) slug = decodeURIComponent(m[1]);
     }
     if (!slug) {
@@ -243,7 +258,7 @@ exports.handler = async function (event, context) {
           'Cache-Control': 'public, max-age=30, s-maxage=60',
           'X-Robots-Tag': 'noindex, nofollow'
         },
-        body: renderComingSoon(post)
+        body: toInsights(renderComingSoon(post))
       };
     }
 
@@ -343,7 +358,7 @@ exports.handler = async function (event, context) {
         // Short cache so recent publishes reflect within ~60s across the CDN
         'Cache-Control': 'public, max-age=30, s-maxage=60'
       },
-      body: html
+      body: toInsights(html)
     };
   } catch (err) {
     console.error('render-blog-post error:', err);

@@ -71,9 +71,9 @@
   force = true
   query = {post = ":post"}
 
-# Tag filter URLs preserve the journal index (server-rendered)
+# Tag filter URLs preserve the insights index (server-rendered)
 [[redirects]]
-  from = "/journal"
+  from = "/insights"
   to = "/.netlify/functions/render-journal-index"
   status = 200
   query = {tag = ":tag"}
@@ -305,21 +305,34 @@
   status = 301
   force = true
 
-# Journal post clean URLs: static .html wins when present; otherwise the server-side
-# renderer function builds the canonical BIP template with the post's data from the
-# blog-crud blob store. This guarantees every dynamically-published post renders
-# the EXACT approved canonical layout — no SPA, no CSS leak, no hydration race.
+# ============================================================
+# INSIGHTS (renamed from Journal, 6 Sep 2026). The pieces are served live
+# under /insights/* by the same renderer; every /journal URL 301s across.
+# Legacy old-slug 301s above still fire first and chain through cleanly.
+# ============================================================
 [[redirects]]
-  from = "/journal/:slug"
+  from = "/insights/:slug"
   to = "/.netlify/functions/render-blog-post?slug=:slug"
   status = 200
 
-# Journal index is server-rendered so crawlers see real article links.
+# Insights index is server-rendered so crawlers see real article links.
 # The function falls back to serving blog.html verbatim on any error.
 [[redirects]]
-  from = "/journal"
+  from = "/insights"
   to = "/.netlify/functions/render-journal-index"
   status = 200
+
+[[redirects]]
+  from = "/journal/:slug"
+  to = "/insights/:slug"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal"
+  to = "/insights"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/admin"

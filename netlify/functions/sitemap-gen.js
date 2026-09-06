@@ -19,7 +19,7 @@ exports.handler = async (event, context) => {
     const staticPages = [
       { loc: "https://studiojnsq.com/", changefreq: "weekly", priority: "1.0", lastmod: today },
       { loc: "https://studiojnsq.com/about", changefreq: "monthly", priority: "0.7", lastmod: today },
-      { loc: "https://studiojnsq.com/journal", changefreq: "weekly", priority: "0.9", lastmod: today },
+      { loc: "https://studiojnsq.com/insights", changefreq: "weekly", priority: "0.9", lastmod: today },
       { loc: "https://studiojnsq.com/diagnostic", changefreq: "weekly", priority: "0.9", lastmod: today },
       { loc: "https://studiojnsq.com/founder", changefreq: "monthly", priority: "0.8", lastmod: "2026-08-19" },
       { loc: "https://studiojnsq.com/archetypes", changefreq: "monthly", priority: "0.9", lastmod: "2026-08-10" },
@@ -41,7 +41,7 @@ exports.handler = async (event, context) => {
         if (data && data.status === "published" && data.slug) {
           const lastmod = (data.updatedAt || data.publishDate || today).split('T')[0];
           blogPages.push({
-            loc: `https://studiojnsq.com/journal/${data.slug}`,
+            loc: `https://studiojnsq.com/insights/${data.slug}`,
             changefreq: "monthly",
             priority: "0.7",
             lastmod: lastmod

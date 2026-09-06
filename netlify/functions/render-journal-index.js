@@ -1,3 +1,18 @@
+
+// INSIGHTS RENAME (6 Sep 2026): the Journal now lives at /insights. Rewrite
+// every path reference and the visible label in the outgoing HTML so links,
+// canonicals and breadcrumbs all point at the new namespace.
+function toInsights(html) {
+  return String(html)
+    .replace(/([\"'(])\/journal(\/|[\"')?#])/g, '$1/insights$2')
+    .replace(/([\"'(])\/journal([\"'])/g, '$1/insights$2')
+    .replace(/studiojnsq\.com\/journal/g, 'studiojnsq.com/insights')
+    .replace(/Back to the Journal/g, 'Back to Insights')
+    .replace(/More from the Journal/g, 'More from Insights')
+    .replace(/Browse the Journal/g, 'Browse Insights')
+    .replace(/Subscribe to the Journal/g, 'Subscribe to Insights')
+    .replace(/>Journal</g, '>Insights<');
+}
 // Server-rendered Journal index.
 // Serves blog.html with the published post cards ALREADY present in the HTML,
 // so search engines and AI crawlers (which don't run JS, and whose JS rendering
@@ -121,15 +136,15 @@ exports.handler = async function (event, context) {
         );
       }
       // Posts injected: safe to let the CDN cache this good render.
-      return { statusCode: 200, headers: cachedHeaders, body: template };
+      return { statusCode: 200, headers: cachedHeaders, body: toInsights(template) };
     }
     // No published posts came back (empty or degraded Blobs read): serve the
     // page but forbid caching so the next request re-reads Blobs immediately.
-    return { statusCode: 200, headers: noStoreHeaders, body: template };
+    return { statusCode: 200, headers: noStoreHeaders, body: toInsights(template) };
   } catch (err) {
     console.error("render-journal-index error:", err && err.message);
     // Fallback: serve the untouched template, uncached, so a transient failure
     // cannot get frozen at the CDN edge.
-    return { statusCode: 200, headers: noStoreHeaders, body: template };
+    return { statusCode: 200, headers: noStoreHeaders, body: toInsights(template) };
   }
 };
