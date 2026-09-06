@@ -484,9 +484,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
 .post.feature .post-hero{aspect-ratio:16/9;}
 .post h3{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:1.05rem;line-height:1.32;}
 .post p:not(.meta):not(.series-line){display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:13px;line-height:1.55;}
-.inst-actions{display:flex;gap:10px;flex-wrap:nowrap;align-items:center;}
-.inst-actions .btn-primary,.inst-actions .btn-ghost{white-space:nowrap;padding:11px 16px;font-size:12.5px;}
-@media(max-width:560px){.inst-actions{flex-wrap:wrap;}}
+.inst-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:30px;}
+.inst-row .btn-primary,.inst-row .btn-ghost{white-space:nowrap;padding:12px 20px;font-size:13px;}
+@media(max-width:900px){.inst-row{gap:10px;}.inst-row .btn-primary,.inst-row .btn-ghost{padding:11px 15px;font-size:12.5px;}}
 .retrieve-line{margin:16px 0 0;font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;}
 .retrieve-line a{color:var(--grey);text-decoration:none;border-bottom:1px solid var(--hairline);padding-bottom:2px;}
 .retrieve-line a:hover{color:var(--ink-deep);border-bottom-color:var(--yellow);}
@@ -1822,7 +1822,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
       <div class="tile" data-in="left" data-d="0"><p class="label bare" style="color:var(--yellow-deep);">Outward</p><h3>MAD&trade; &middot; Market Authority Diamond</h3><p>Forty four items across five facets, including branding at the centre. Scores what a market can establish about you without your help, and shows you which arm of the diamond is short.</p><ul><li>For a person, or for a firm</li><li>Individual version includes your Career Equity Archetype&trade;</li><li>Same instrument used at every rescore</li></ul><p class="price"><b>Snapshot free</b></p></div>
       <div class="tile" data-in="right" data-d="1"><p class="label bare" style="color:var(--yellow-deep);">Inward</p><h3>RVF&trade; &middot; Resource Value Formula</h3><p>Twenty questions across money, people and time. Names the trade your business is actually making, and whether it is the right one for the stage you are in.</p><ul><li>For a firm, read against your P&amp;L</li><li>Places you in one of three trades</li><li>Usually the one to run first if growth has stalled</li></ul><p class="price"><b>Snapshot free</b></p></div>
     </div>
-  </div>
+  
+    <div class="inst-row">
+      <a class="btn-primary" href="/app?openDiagnostic=MAD">Start the MAD&trade; Diagnostic</a>
+      <a class="btn-ghost" href="#/frameworks-mad">How MAD&trade; works</a>
+      <a class="btn-primary" href="/app?openDiagnostic=RVF">Start the RVF&trade; Diagnostic</a>
+      <a class="btn-ghost" href="#/frameworks-rvf">How RVF&trade; works</a>
+    </div>
+</div>
 </section>
 
 <section class="panel" data-label="What it costs">
@@ -1833,9 +1840,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
     </div>
     <div class="two" style="align-items:start;">
       <div data-in="left"><p class="label bare" style="margin-bottom:14px;">For a person</p>
-        <ul class="plist"><li><span>MAD&trade; Snapshot</span><span class="p free">Free</span></li><li><span>Full MAD&trade; diagnostic</span><span class="p">&#8369;3,000</span></li><li><span>Full report and strategist consultation</span><span class="p">&#8369;7,000</span></li></ul>
-      <div class="actions inst-actions" style="margin-top:16px;"><a class="btn-primary" href="/app?openDiagnostic=MAD">Start the MAD&trade; Diagnostic</a><a class="btn-ghost" href="#/frameworks-mad">How MAD&trade; works</a></div>
-      <div class="actions inst-actions" style="margin-top:16px;"><a class="btn-primary" href="/app?openDiagnostic=RVF">Start the RVF&trade; Diagnostic</a><a class="btn-ghost" href="#/frameworks-rvf">How RVF&trade; works</a></div></div></div>
+        <ul class="plist"><li><span>MAD&trade; Snapshot</span><span class="p free">Free</span></li><li><span>Full MAD&trade; diagnostic</span><span class="p">&#8369;3,000</span></li><li><span>Full report and strategist consultation</span><span class="p">&#8369;7,000</span></li></ul></div></div>
       <div data-in="right" data-d="1"><p class="label bare" style="margin-bottom:14px;">For a company</p>
         <ul class="plist"><li><span>MAD&trade; or RVF&trade; Snapshot</span><span class="p free">Free</span></li><li><span>Full diagnostic</span><span class="p">&#8369;7,000</span></li><li><span>Full report and strategist consultation</span><span class="p">&#8369;15,000</span></li></ul></div>
     </div>
