@@ -3502,6 +3502,123 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
   }
 }
 </script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style id="insights-skin">
+:root{
+  --njq-yellow:#FDD500; --njq-yellow-deep:#A8850A; --njq-ink:#2D3748; --njq-ink-deep:#26231A;
+  --njq-body:#514C40; --njq-grey:#948D7C; --njq-hair:#EAE3D0; --njq-cream:#FFFAE8; --njq-page:#FDFBF3;
+  --njq-serif:'Newsreader',Georgia,serif; --njq-sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  --njq-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+body{background:var(--njq-page)!important;color:var(--njq-body)!important;font-family:var(--njq-sans)!important;}
+
+/* ---- type ---- */
+h1,h2,h3,h4,.article-title,.ph-title,.r-title,.faq-inner h2,.go-deeper-inner h2,.related-inner h2,.tags-inner h2{
+  font-family:var(--njq-serif)!important;font-weight:500!important;color:var(--njq-ink-deep)!important;letter-spacing:0!important;}
+.article-title{line-height:1.12!important;}
+.article-excerpt,.lead-italic{font-family:var(--njq-serif)!important;font-style:italic;color:var(--njq-yellow-deep)!important;}
+.breadcrumb,.breadcrumb a,.label,.aside-label,.article-meta,.article-kicker,.series-chip,.series-tag,.tag-pill,.attribution,.direction,.num,.go-deeper-intro,.promo-callout-eyebrow{
+  font-family:var(--njq-mono)!important;letter-spacing:.14em!important;text-transform:uppercase;color:var(--njq-grey)!important;}
+.breadcrumb a:hover{color:var(--njq-ink-deep)!important;}
+.series-chip,.series-tag{color:var(--njq-yellow-deep)!important;background:transparent!important;border:1px solid var(--njq-hair)!important;border-radius:2px!important;}
+.article-meta strong{color:var(--njq-ink)!important;}
+
+/* ---- article body ---- */
+.canon-body p,.canon-body li{font-size:16.5px;line-height:1.78;color:var(--njq-body)!important;font-family:var(--njq-sans)!important;}
+.canon-body h2{font-size:1.7rem;margin-top:2.2em;}
+.canon-body h3{font-size:1.25rem;}
+.canon-body a,.inline-link{color:var(--njq-ink-deep)!important;text-decoration:underline!important;text-decoration-color:var(--njq-yellow)!important;text-decoration-thickness:2px!important;text-underline-offset:3px!important;}
+.canon-body blockquote,.pull-quote{font-family:var(--njq-serif)!important;font-style:italic;color:var(--njq-ink-deep)!important;background:var(--njq-cream)!important;border-left:3px solid var(--njq-yellow)!important;border-radius:0!important;box-shadow:none!important;}
+.hero-img-frame,.hero-img-frame img,.hero-stack-img img{border-radius:0!important;border:1px solid var(--njq-hair)!important;box-shadow:none!important;}
+
+/* ---- cards, rails, sections ---- */
+.aside-card,.deeper-card,.related-card,.series-nav-card,.what-this-means,.try-this,.next-edition,.faq-grid>*,.engage-card,.media-card{
+  background:#FFFDF4!important;border:1px solid var(--njq-hair)!important;border-radius:0!important;box-shadow:none!important;}
+.aside-card{border-top:3px solid var(--njq-yellow)!important;}
+.what-this-means,.try-this,.next-edition{background:var(--njq-cream)!important;}
+.faq-section,.go-deeper,.tags-section,.series-nav-wrap,.related-section{background:var(--njq-page)!important;border-top:1px solid var(--njq-hair);}
+.toc-list a,.insights-list li{color:var(--njq-body)!important;font-family:var(--njq-sans)!important;}
+.toc-list a:hover{color:var(--njq-ink-deep)!important;}
+.insights-list li::marker{color:var(--njq-yellow-deep);}
+.mark{background:linear-gradient(transparent 62%,var(--njq-yellow) 62%)!important;}
+
+/* ---- buttons ---- */
+.engage-btn,.media-btn,.promo-callout-btn,.related-empty-link{
+  font-family:var(--njq-sans)!important;font-weight:600!important;letter-spacing:.02em!important;text-transform:none!important;
+  background:var(--njq-yellow)!important;color:var(--njq-ink-deep)!important;border:1px solid transparent!important;border-radius:2px!important;box-shadow:none!important;}
+.engage-btn:hover,.media-btn:hover{background:#EFC400!important;transform:translateY(-1px);}
+.jnsq-scroll-progress{background:var(--njq-yellow)!important;}
+
+/* ---- the promo gate does not carry into the rebrand (pending decision) ---- */
+#jnsq-promo-modal,.jnsq-promo-modal,.jnsq-promo-trigger,.promo-callout{display:none!important;}
+
+/* ---- new header ---- */
+.njq-head{position:sticky;top:0;z-index:90;background:rgba(253,251,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--njq-hair);}
+.njq-head-in{max-width:1480px;margin:0 auto;padding:0 clamp(20px,3.6vw,56px);height:62px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.njq-lock{text-decoration:none;line-height:1;}
+.njq-lock .name{display:block;font-family:var(--njq-mono);font-weight:600;font-size:13px;letter-spacing:.34em;color:var(--njq-ink-deep);}
+.njq-lock .disc{display:block;font-family:var(--njq-mono);font-size:7.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--njq-grey);margin-top:3px;}
+.njq-nav{display:flex;align-items:center;flex-wrap:wrap;gap:2px 22px;}
+.njq-nav a{font-family:var(--njq-sans);font-size:13.5px;color:var(--njq-ink);text-decoration:none;padding-bottom:3px;border-bottom:2px solid transparent;}
+.njq-nav a:hover{color:var(--njq-ink-deep);}
+.njq-nav a.on{color:var(--njq-ink-deep);border-bottom-color:var(--njq-yellow);}
+@media(max-width:940px){.njq-nav{display:none;}}
+
+/* ---- new footer ---- */
+.njq-foot{background:var(--njq-page);border-top:1px solid var(--njq-hair);margin-top:64px;}
+.njq-foot-in{max-width:1480px;margin:0 auto;padding:56px clamp(20px,3.6vw,56px) 40px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,2fr);gap:48px;}
+@media(max-width:860px){.njq-foot-in{grid-template-columns:1fr;}}
+.njq-foot-brand .name{font-family:var(--njq-mono);font-weight:600;font-size:13px;letter-spacing:.34em;color:var(--njq-ink-deep);display:block;}
+.njq-foot-brand .disc{font-family:var(--njq-mono);font-size:7.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--njq-grey);display:block;margin-top:3px;}
+.njq-foot-brand .pos{font-family:var(--njq-serif);font-style:italic;color:var(--njq-ink);margin:16px 0 8px;font-size:15.5px;}
+.njq-foot-brand .geo{font-size:12.5px;color:var(--njq-grey);line-height:1.7;margin:0;}
+.njq-foot-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
+@media(max-width:600px){.njq-foot-cols{grid-template-columns:1fr;}}
+.njq-foot-cols .lbl{font-family:var(--njq-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--njq-yellow-deep);margin:0 0 10px;}
+.njq-foot-cols a{display:block;font-size:13.5px;color:var(--njq-body);text-decoration:none;padding:4px 0;}
+.njq-foot-cols a:hover{color:var(--njq-ink-deep);text-decoration:underline;text-decoration-color:var(--njq-yellow);}
+.njq-foot-base{max-width:1480px;margin:0 auto;padding:18px clamp(20px,3.6vw,56px) 28px;border-top:1px solid var(--njq-hair);font-family:var(--njq-mono);font-size:10.5px;letter-spacing:.08em;color:var(--njq-grey);}
+
+/* ---- listing page (server-rendered index) ---- */
+.blog-card{background:#FFFDF4!important;border:1px solid var(--njq-hair)!important;border-radius:0!important;box-shadow:none!important;}
+.blog-card:hover{transform:translateY(-3px);border-color:var(--njq-yellow)!important;}
+.blog-card-title{font-family:var(--njq-serif)!important;font-weight:500!important;color:var(--njq-ink-deep)!important;}
+.blog-card-excerpt{color:var(--njq-body)!important;font-family:var(--njq-sans)!important;}
+.blog-card-meta,.blog-card-tags,.blog-card-tags *{font-family:var(--njq-mono)!important;letter-spacing:.1em!important;color:var(--njq-grey)!important;}
+.blog-card-tags .tag,.blog-card-tags span,.blog-card-tags a{background:transparent!important;border:1px solid var(--njq-hair)!important;border-radius:2px!important;color:var(--njq-yellow-deep)!important;}
+.blog-card-image{border-bottom:1px solid var(--njq-hair);}
+.blog-search-bar,.blog-search{border-radius:2px!important;}
+.blog-search input{font-family:var(--njq-sans)!important;}
+</style>
+<style id="app-migration">
+:root{
+  --jnsq-bg:#FDFBF3; --jnsq-ink:#26231A; --jnsq-ink-soft:#2D3748; --jnsq-body:#514C40;
+  --jnsq-mute:#948D7C; --jnsq-line:#EAE3D0; --jnsq-line-soft:#F1EAD8; --jnsq-paper:#FFFDF4;
+  --yellow:#FDD500; --dark:#26231A; --steel:#514C40; --mid:#948D7C; --light:#FFFAE8;
+  --cream:#FFFAE8; --paper:#FFFDF4;
+}
+body{background:#FDFBF3!important;font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif!important;color:#514C40;}
+[style*="Lora"]{font-family:'Newsreader',Georgia,serif!important;}
+[style*="Inter"]{font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif!important;}
+h1,h2,h3,h4,.prem-q-title,.section-heading,.tier-name,.jhh-title,.statement,.prem-result-title{
+  font-family:'Newsreader',Georgia,serif!important;font-weight:500!important;color:#26231A!important;letter-spacing:0!important;}
+.section-label,.prem-progress-label,.gate-tier div:first-child,.tier-label,.label,.jnsq-eyebrow{
+  font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace!important;letter-spacing:.16em!important;}
+
+/* flatten the chrome: square corners, hairline borders, no heavy shadows */
+.prem-question,.gate-tier,.intake-field input,.intake-field select,.intake-field textarea,
+.card,.service-tier,.fw-card,.prem-card,.contact-gate,.pm-card,.dash-card{
+  border-radius:2px!important;box-shadow:none!important;}
+.prem-rating label{border-radius:2px!important;}
+.btn-primary,.btn-secondary,.gate-btn,.prem-btn,.intake-submit,.pm-btn,.jnsq-btn{
+  border-radius:2px!important;font-family:'IBM Plex Sans',sans-serif!important;font-weight:600!important;
+  letter-spacing:.02em!important;text-transform:none!important;box-shadow:none!important;}
+
+/* the gate sits on ink; keep it legible against the new palette */
+.contact-gate{background:#26231A!important;border:1px solid #26231A!important;}
+.gate-tier{border-radius:2px!important;}
+.gate-tier.selected{border-color:#FDD500!important;}
+</style>
 </head>
 <body>
 
@@ -3545,25 +3662,21 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 <!-- Custom cursor -->
 
 <!-- NAV -->
-<nav id="mainNav">
-<div class="nav-inner">
-<a href="javascript:void(0)" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="logo" style="display:inline-flex;align-items:center;gap:12px;text-decoration:none;">
-  <img src="/images/jnsq-logo-mark.png" alt="Studio JNSQ" style="height:44px;width:auto;display:block;">
-  <span style="font-family:'Inter',sans-serif;font-weight:800;font-size:14px;letter-spacing:0.24em;color:var(--jnsq-ink);">STUDIO <span style="color:var(--jnsq-yellow);">JNSQ</span></span>
-</a>
-  <div class="nav-links">
-    <a href="javascript:void(0)" onclick="document.getElementById('philosophy').scrollIntoView({behavior:'smooth'})">Philosophy</a>
-    <a href="javascript:void(0)" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Services</a>
-    <a href="javascript:void(0)" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">Work</a>
-    <a href="javascript:void(0)" onclick="document.getElementById('thinking').scrollIntoView({behavior:'smooth'})">Thinking</a>
-    <a href="javascript:void(0)" onclick="document.getElementById('frameworks').scrollIntoView({behavior:'smooth'})">Frameworks</a>
-    <a href="/journal">Journal</a>
-    <a href="/case-studies">Portfolio</a>
-    <a href="/diagnostic">Diagnostic</a>
-    <a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" class="cta-nav">LET'S TALK</a>
+<header class="njq-head">
+  <div class="njq-head-in">
+    <a class="njq-lock" href="/"><span class="name">STUDIO JNSQ</span><span class="disc">Brand Equity Architecture</span></a>
+    <nav class="njq-nav">
+      <a href="/">Home</a>
+      <a href="/#/services">Services</a>
+      <a href="/#/investment-readiness">Investment readiness</a>
+      <a href="/#/portfolio">Portfolio</a>
+      <a href="/#/frameworks">Frameworks</a>
+      <a href="/insights">Insights</a>
+      <a class="on" href="/#/diagnostic">Diagnostic</a>
+      <a href="/#/our-story">Our story</a>
+    </nav>
   </div>
-</div>
-</nav>
+</header>
 
 <!-- HERO -->
 <!-- ============================================================
@@ -3915,7 +4028,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
           <span class="jhf-quote-attribution">— Jec, on the practice</span>
         </p>
 
-        <a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" rel="noopener" class="jhf-cta">
+        <a href="mailto:strategy@studiojnsq.com?subject=Book%20a%20call%20with%20a%20strategist" target="_blank" rel="noopener" class="jhf-cta">
           Book a 30-min conversation with Jec &rarr;
         </a>
         <div style="margin-top:16px;">
@@ -4472,7 +4585,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <!-- Tier 0: FREE Snapshot -->
       <div id="tierFree" class="gate-tier" onclick="selectTier('free')" style="flex:1;min-width:180px;background:rgba(255,255,255,0.03);border:2px solid rgba(255,255,255,0.08);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.3s;position:relative">
         <div style="font-size:10px;letter-spacing:1.5px;color:rgba(255,255,255,0.5);font-weight:700;text-transform:uppercase;margin-bottom:8px">Free</div>
-        <div style="font-size:22px;font-weight:800;color:rgba(255,255,255,0.6);margin-bottom:4px">$0</div>
+        <div style="font-size:22px;font-weight:800;color:rgba(255,255,255,0.6);margin-bottom:4px">₱0</div>
         <div style="font-size:14px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:10px">Diamond Snapshot</div>
         <ul style="list-style:none;padding:0;margin:0;font-size:11px;color:rgba(255,255,255,0.5);line-height:2">
           <li>&check; Overall score &amp; stage</li>
@@ -4488,7 +4601,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 
       <!-- Tier 1: Report Only -->
       <div id="tierReport" class="gate-tier" onclick="selectTier('report')" style="flex:1;min-width:180px;background:rgba(255,255,255,0.06);border:2px solid rgba(255,255,255,0.12);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.3s;position:relative">
-        <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:4px">$70</div>
+        <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:4px">₱7,000</div>
         <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:10px">Full Diamond Report</div>
         <ul style="list-style:none;padding:0;margin:0;font-size:11px;color:rgba(255,255,255,0.7);line-height:2">
           <li>&check; Complete facet breakdown &amp; scores</li>
@@ -4506,7 +4619,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <!-- Tier 2: Full Diagnostic + Reading -->
       <div id="tierFull" class="gate-tier" onclick="selectTier('full')" style="flex:1;min-width:220px;background:rgba(253,213,0,0.08);border:2px solid rgba(253,213,0,0.3);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.3s;position:relative">
         <div style="position:absolute;top:-10px;right:16px;background:var(--yellow);color:var(--dark);padding:3px 10px;border-radius:4px;font-size:9px;font-weight:800;letter-spacing:1px">RECOMMENDED</div>
-        <div style="font-size:22px;font-weight:800;color:#FDD500;margin-bottom:4px">$100</div>
+        <div style="font-size:22px;font-weight:800;color:#FDD500;margin-bottom:4px">₱15,000</div>
         <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:10px">Full Diagnostic + Reading</div>
         <ul style="list-style:none;padding:0;margin:0;font-size:11px;color:rgba(255,255,255,0.7);line-height:2">
           <li>&check; Everything in the Full Report</li>
@@ -4550,7 +4663,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
         <input type="tel" id="gatePhone" placeholder="+1 (555) 123-4567">
         <div class="gate-error" id="gatePhoneError">Please enter your phone number</div>
       </div>
-      <button class="gate-btn" id="gateSubmitBtn" onclick="submitContactGate()">Get My Full Report , $70 &rarr;</button>
+      <button class="gate-btn" id="gateSubmitBtn" onclick="submitContactGate()">Get My Full Report , ₱7,000 &rarr;</button>
     </div>
 
     <p class="gate-privacy">Your information is private. Payment details will be collected securely after submission.</p>
@@ -4583,7 +4696,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     <!-- POST-REPORT: CTA + RECOMMENDED SERVICES -->
     <div class="post-report" id="postReport">
 
-      <!-- CTA 1: Diagnosis Reading (gated behind $100 tier) -->
+      <!-- CTA 1: Diagnosis Reading (gated behind ₱15,000 tier) -->
       <div class="post-cta" id="ctaDiagnosisReading" style="display:none">
         <div class="cta-badge">Recommended Next Step</div>
         <h4>Book a Consultation Call &amp; Full Diagnosis Reading</h4>
@@ -4601,12 +4714,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
         <div class="svc-grid" id="svcGrid"></div>
       </div>
 
-      <!-- CTA 2: Full Engagement (gated behind $100 tier) -->
+      <!-- CTA 2: Full Engagement (gated behind ₱15,000 tier) -->
       <div class="post-cta" id="ctaStrategyCall" style="display:none;margin-top:48px;">
         <div class="cta-badge">Ready to Rebalance</div>
         <h4>Let's build the visibility infrastructure your company deserves.</h4>
         <p>Every flagship engagement starts with a conversation. No pitch. No pressure. Just a clear look at where you are and whether we're the right people to get you where you need to be.</p>
-        <a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" class="cta-btn">Book a Strategy Call &rarr;</a>
+        <a href="mailto:strategy@studiojnsq.com?subject=Book%20a%20call%20with%20a%20strategist" target="_blank" class="cta-btn">Book a Strategy Call &rarr;</a>
       </div>
 
     </div>
@@ -4647,7 +4760,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     <div id="paymentFormView">
       <h3>Complete Your Purchase</h3>
       <p class="pm-tier" id="pmTierLabel">Full Diamond Report</p>
-      <div class="pm-amount" id="pmAmount">$70 <span>USD</span></div>
+      <div class="pm-amount" id="pmAmount">₱7,000 <span>PHP</span></div>
       <div class="pm-field">
         <label>Cardholder Name</label>
         <input type="text" id="pmCardName" placeholder="Name on card">
@@ -4789,7 +4902,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     <div class="form-success">
       <h3>We've received your details.</h3>
       <p>You'll be redirected to schedule your 30-minute discovery call. We'll review your information beforehand so we can make the conversation count.</p>
-      <a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" style="display:inline-block; margin-top:24px; padding:14px 48px; background:var(--yellow); color:var(--dark); font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; border-radius:6px; text-decoration:none;">SCHEDULE NOW →</a>
+      <a href="mailto:strategy@studiojnsq.com?subject=Book%20a%20call%20with%20a%20strategist" target="_blank" style="display:inline-block; margin-top:24px; padding:14px 48px; background:var(--yellow); color:var(--dark); font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; border-radius:6px; text-decoration:none;">SCHEDULE NOW →</a>
     </div>
   </div>
   <div style="text-align:center; margin-top:32px;">
@@ -4999,7 +5112,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 
       <div id="rvfTierReport" class="gate-tier" onclick="rvfSelectTier('report')" style="flex:1;min-width:180px;background:rgba(255,255,255,0.06);border:2px solid rgba(255,255,255,0.12);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.3s;position:relative">
         <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--mid);text-transform:uppercase;margin-bottom:8px">Full Report</div>
-        <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:8px">$70</div>
+        <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:8px">₱7,000</div>
         <ul style="list-style:none;font-size:11px;color:var(--mid);line-height:1.8;text-align:left">
           <li>✓ Complete aspect breakdown &amp; scores</li>
           <li>✓ Trade equation analysis</li>
@@ -5014,7 +5127,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
           <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--yellow);text-transform:uppercase">Full Diagnostic + Reading</div>
           <div style="font-size:8px;background:var(--yellow);color:var(--dark);padding:2px 8px;border-radius:4px;font-weight:800;letter-spacing:1px">RECOMMENDED</div>
         </div>
-        <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:8px">$100</div>
+        <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:8px">₱15,000</div>
         <ul style="list-style:none;font-size:11px;color:var(--mid);line-height:1.8;text-align:left">
           <li>✓ Everything in Full Report</li>
           <li>✓ Trade transition roadmap</li>
@@ -5169,47 +5282,20 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 <!-- END DIAGNOSTIC GATE -->
 
 <!-- FOOTER -->
-<footer class="jnsq-footer">
-  <div class="jnsq-container">
-    <div class="jnsq-footer-grid">
-      <div>
-        <div class="jnsq-footer-brand" style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
-          <img src="/images/jnsq-logo-mark.png" alt="Studio JNSQ" style="height:56px;width:auto;display:block;">
-          <span style="display:inline-block;font-family:'Inter',sans-serif;font-weight:800;font-size:20px;letter-spacing:0.16em;">STUDIO <span class="accent">JNSQ</span></span>
-        </div>
-        <p class="jnsq-footer-tagline">Others make you profitable.<br>Brand equity makes you valuable.</p>
-      </div>
-      <div class="jnsq-footer-col">
-        <h4>Discipline</h4>
-        <ul>
-          <li><a href="/about">About</a></li>
-          <li><a href="/founder">The Founder</a></li>
-          <li><a href="/diagnostic">Diagnostic</a></li>
-          <li><a href="/journal">Journal</a></li>
-        </ul>
-      </div>
-      <div class="jnsq-footer-col">
-        <h4>Frameworks</h4>
-        <ul>
-          <li><a href="/diagnostic/MAD">MAD™</a></li>
-          <li><a href="/diagnostic/RVF">RVF™</a></li>
-          <li><a href="/journal/branding-vs-brand-equity-vs-brand-architecture">The doctrine</a></li>
-        </ul>
-      </div>
-      <div class="jnsq-footer-col">
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" rel="noopener">Book a call</a></li>
-          <li><a href="/diagnostic">Start a diagnosis</a></li>
-          <li><a href="javascript:void(0)" onclick="openStrategistPortal();">Strategist Portal</a></li>
-        </ul>
-      </div>
+<footer class="njq-foot">
+  <div class="njq-foot-in">
+    <div class="njq-foot-brand">
+      <span class="name">STUDIO JNSQ</span><span class="disc">Brand Equity Architecture</span>
+      <p class="pos">The brand equity architecture firm for valuable brands.</p>
+      <p class="geo">Manila, working across APAC. Engagements also taken in the Gulf and the United Kingdom; pricing varies there.</p>
     </div>
-    <div class="jnsq-footer-bottom">
-      <div>&copy; 2026 Studio JNSQ. The brand equity architecture firm for valuable brands.</div>
-      <div class="legal"><a href="/">studiojnsq.com</a></div>
+    <div class="njq-foot-cols">
+      <div><p class="lbl">Discipline</p><a href="/#/our-story">Our story</a><a href="/#/frameworks">Frameworks</a><a href="/insights">Insights</a></div>
+      <div><p class="lbl">Work</p><a href="/#/portfolio">Portfolio</a><a href="/#/services">Services</a><a href="/#/investment-readiness">Investment readiness</a></div>
+      <div><p class="lbl">Start</p><a href="/#/diagnostic">Take a diagnostic</a><a href="mailto:strategy@studiojnsq.com?subject=Book%20a%20call%20with%20a%20strategist">Book a call</a><a href="/portal">Strategist portal</a></div>
     </div>
   </div>
+  <div class="njq-foot-base">&copy; 2026 Studio JNSQ. Expertise that moves markets, made visible.</div>
 </footer>
 
 <footer style="display:none;">
@@ -5762,14 +5848,14 @@ function selectDiagnosticPath(path) {
     if (typeof swapQuestionsForCompany === 'function') swapQuestionsForCompany();
     // Reset tier card prices and original prices to company defaults
     _originalPrices = { report: 70, full: 100 };
-    _updateTierPrices('$70', '$100');
+    _updateTierPrices('₱7,000', '₱15,000');
   } else {
     document.getElementById('intakeForm').style.display = 'none';
     document.getElementById('intakeFormIndividual').style.display = 'block';
     swapQuestionsForIndividual();
     // Update tier card prices and original prices for individual path
     _originalPrices = { report: 50, full: 80 };
-    _updateTierPrices('$50', '$80');
+    _updateTierPrices('₱3,000', '₱7,000');
   }
 
   var targetForm = path === 'company' ? 'intakeForm' : 'intakeFormIndividual';
@@ -6697,7 +6783,7 @@ window.premReset = function(){
   if (tierFree) { tierFree.style.borderColor = 'rgba(255,255,255,0.08)'; tierFree.style.background = 'rgba(255,255,255,0.03)'; tierFree.querySelector('.tier-check').style.display = 'none'; }
   if (tierReport) { tierReport.style.borderColor = 'rgba(255,255,255,0.12)'; tierReport.style.background = 'rgba(255,255,255,0.06)'; tierReport.querySelector('.tier-check').style.display = 'none'; }
   if (tierFull) { tierFull.style.borderColor = 'rgba(253,213,0,0.3)'; tierFull.style.background = 'rgba(253,213,0,0.08)'; tierFull.querySelector('.tier-check').style.display = 'none'; }
-  document.getElementById('gateSubmitBtn').innerHTML = 'Get My Full Report , ' + (_diagnosticMode === 'individual' ? '$50' : '$70') + ' &rarr;';
+  document.getElementById('gateSubmitBtn').innerHTML = 'Get My Full Report , ' + (_diagnosticMode === 'individual' ? '₱3,000' : '₱7,000') + ' &rarr;';
   // Remove dynamic CTA block
   var ctaBlock = document.getElementById('tierCTABlock');
   if (ctaBlock) ctaBlock.remove();
@@ -6884,7 +6970,7 @@ var _activePromo = null; // { code, discountPct, tiers }
 
 // Promo tiers must be canonical keys ('report' | 'full') to match the tier the
 // diagnostic actually uses. The admin previously saved display labels such as
-// "$70 Report" and "$100 Full Diagnostic", which never matched, so any code
+// "₱7,000 Report" and "₱15,000 Full Diagnostic", which never matched, so any code
 // restricted to a tier silently applied no discount. Normalise on read so
 // existing codes keep working alongside newly created ones.
 function _promoTiers(promo) {
@@ -6999,29 +7085,29 @@ function updateTierPrices() {
             priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">' + _strikeFull + '</span> FREE';
           } else if (disc === 100) {
             // Strategist codes: report free, consultation fee still applies
-            priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">' + _strikeFull + '</span> $30';
+            priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">' + _strikeFull + '</span> ₱8,000';
           } else {
             var newFull = Math.round(_originalPrices.full * (1 - disc/100));
             priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">' + _strikeFull + '</span> $' + newFull;
           }
         }
       }
-      // Show $30 consultation note for 100% discount (only if not fullFree)
+      // Show ₱8,000 consultation note for 100% discount (only if not fullFree)
       var noteEl = document.getElementById('promoConsultNote');
       if (disc === 100 && !_activePromo.fullFree) {
         if (!noteEl) {
           var noteDiv = document.createElement('div');
           noteDiv.id = 'promoConsultNote';
           noteDiv.style.cssText = 'font-size:10px;color:#FDD500;margin-top:6px;font-weight:600;text-align:center';
-          noteDiv.textContent = 'Full discount covers the report only. $30 consultation fee still applies.';
+          noteDiv.textContent = 'Full discount covers the report only. ₱8,000 consultation fee still applies.';
           el100.appendChild(noteDiv);
         }
       } else if (noteEl) { noteEl.remove(); }
     }
   } else {
     // Reset prices to original (respecting diagnostic mode)
-    var _origReport = (_diagnosticMode === 'individual') ? '$50' : '$70';
-    var _origFull = (_diagnosticMode === 'individual') ? '$80' : '$100';
+    var _origReport = (_diagnosticMode === 'individual') ? '₱3,000' : '₱7,000';
+    var _origFull = (_diagnosticMode === 'individual') ? '₱7,000' : '₱15,000';
     var el70r = document.getElementById('tierReport');
     if (el70r) { var pd = el70r.querySelector('div[style*="font-size:22px"]'); if (pd) pd.textContent = _origReport; }
     var el100r = document.getElementById('tierFull');
@@ -7119,8 +7205,8 @@ function selectTier(tier) {
   if (_diagnosticMode === 'individual') {
     var reportPriceEl = tierReport ? tierReport.querySelector('div[style*="font-size:22px"]') : null;
     var fullPriceEl = tierFull ? tierFull.querySelector('div[style*="font-size:22px"]') : null;
-    if (reportPriceEl) reportPriceEl.textContent = '$50';
-    if (fullPriceEl) fullPriceEl.textContent = '$80';
+    if (reportPriceEl) reportPriceEl.textContent = '₱3,000';
+    if (fullPriceEl) fullPriceEl.textContent = '₱7,000';
   }
 }
 
@@ -7189,16 +7275,16 @@ function submitContactGate() {
         '<div style="background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:10px;padding:20px;max-width:440px;margin:0 auto 16px">' +
           '<p style="color:#fff;font-weight:700;font-size:13px;margin:0 0 6px">Talk to a strategist</p>' +
           '<p style="color:var(--mid);font-size:11px;margin:0 0 14px;line-height:1.5">A 30-minute conversation about your Diamond shape, where your brand equity stands, and what to do next.</p>' +
-          '<a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" style="display:inline-block;padding:11px 28px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:12px;font-weight:700;letter-spacing:0.5px;text-decoration:none;cursor:pointer">Book a Consultation &rarr;</a>' +
+          '<a href="mailto:strategy@studiojnsq.com?subject=Book%20a%20call%20with%20a%20strategist" target="_blank" style="display:inline-block;padding:11px 28px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:12px;font-weight:700;letter-spacing:0.5px;text-decoration:none;cursor:pointer">Book a Consultation &rarr;</a>' +
         '</div>' +
         '<div style="background:rgba(253,213,0,0.08);border:1px solid rgba(253,213,0,0.2);border-radius:10px;padding:20px;max-width:440px;margin:0 auto">' +
           '<p style="color:var(--yellow);font-weight:700;font-size:13px;margin:0 0 8px">Want the full picture?</p>' +
           '<p style="color:var(--mid);font-size:11px;margin:0 0 16px">Your diagnosis is already done. Upgrade now to instantly unlock the full report with no retake needed.</p>' +
           '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">' +
-            '<button onclick="upgradeFromFree(\'report\')" style="background:var(--yellow);color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:none;cursor:pointer;letter-spacing:0.3px">Full Report - ' + (_diagnosticMode === 'individual' ? '$50' : '$70') + '</button>' +
-            '<button onclick="upgradeFromFree(\'full\')" style="background:#fff;color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:2px solid var(--yellow);cursor:pointer;letter-spacing:0.3px">Full Diagnostic - ' + (_diagnosticMode === 'individual' ? '$80' : '$100') + '</button>' +
+            '<button onclick="upgradeFromFree(\'report\')" style="background:var(--yellow);color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:none;cursor:pointer;letter-spacing:0.3px">Full Report - ' + (_diagnosticMode === 'individual' ? '₱3,000' : '₱7,000') + '</button>' +
+            '<button onclick="upgradeFromFree(\'full\')" style="background:#fff;color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:2px solid var(--yellow);cursor:pointer;letter-spacing:0.3px">Full Diagnostic - ' + (_diagnosticMode === 'individual' ? '₱7,000' : '₱15,000') + '</button>' +
           '</div>' +
-          '<p style="color:var(--mid);font-size:10px;margin:12px 0 0;line-height:1.5;text-align:center"><strong style="color:var(--yellow)">' + (_diagnosticMode === 'individual' ? '$50' : '$70') + '</strong> - Detailed actions + platform strategies for all 5 facets<br><strong style="color:var(--yellow)">' + (_diagnosticMode === 'individual' ? '$80' : '$100') + '</strong> - Everything above + cadence, sequencing &amp; 1-on-1 strategist reading</p>' +
+          '<p style="color:var(--mid);font-size:10px;margin:12px 0 0;line-height:1.5;text-align:center"><strong style="color:var(--yellow)">' + (_diagnosticMode === 'individual' ? '₱3,000' : '₱7,000') + '</strong> - Detailed actions + platform strategies for all 5 facets<br><strong style="color:var(--yellow)">' + (_diagnosticMode === 'individual' ? '₱7,000' : '₱15,000') + '</strong> - Everything above + cadence, sequencing &amp; 1-on-1 strategist reading</p>' +
         '</div>' +
         '<button onclick="madBackToResults()" style="margin-top:18px;background:none;border:none;color:var(--mid);font-size:12px;font-weight:600;cursor:pointer;letter-spacing:0.3px;padding:8px 16px;transition:color 0.2s" onmouseover="this.style.color=\'var(--yellow)\'" onmouseout="this.style.color=\'var(--mid)\'">&larr; Back to Results</button>' +
       '</div>';
@@ -7444,7 +7530,7 @@ function showPaymentModal(tier) {
   var adjPrice = getPromoAdjustedPrice(tier);
   var amount = '$' + adjPrice;
   document.getElementById('pmTierLabel').textContent = tierLabel + (_activePromo ? ' (Promo: ' + _activePromo.code + ')' : '');
-  document.getElementById('pmAmount').innerHTML = amount + ' <span>USD</span>';
+  document.getElementById('pmAmount').innerHTML = amount + ' <span>PHP</span>';
   document.getElementById('pmPayBtn').textContent = 'Pay ' + amount + ' Now';
   document.getElementById('paymentFormView').style.display = 'block';
   document.getElementById('paymentProcessing').style.display = 'none';
@@ -7926,13 +8012,13 @@ function _processRetrievedDiagnosis(record, code, successEl, errorEl) {
     || ((record.code && /^MAD-I/i.test(record.code)) ? 'individual' : 'company');
   _diagnosticMode = _restoredMode;
   // selectDiagnosticPath() normally sets these; retrieval never calls it, so the
-  // individual path was showing the company band ($70/$100 instead of $50/$80).
+  // individual path was showing the company band (₱7,000/₱15,000 instead of ₱3,000/₱7,000).
   if (_restoredMode === 'individual') {
     _originalPrices = { report: 50, full: 80 };
-    if (typeof _updateTierPrices === 'function') _updateTierPrices('$50', '$80');
+    if (typeof _updateTierPrices === 'function') _updateTierPrices('₱3,000', '₱7,000');
   } else {
     _originalPrices = { report: 70, full: 100 };
-    if (typeof _updateTierPrices === 'function') _updateTierPrices('$70', '$100');
+    if (typeof _updateTierPrices === 'function') _updateTierPrices('₱7,000', '₱15,000');
   }
 
   // Re-resolve the archetype from the restored percentages so it can never
@@ -8113,7 +8199,7 @@ function _processRetrievedDiagnosis(record, code, successEl, errorEl) {
       document.getElementById('fullReportGated').classList.add('revealed');
       if (selectedTierValue === 'full') {
         document.getElementById('fullReportGated').classList.add('tier-full');
-        // Reveal calendly CTAs for retrieved $100 tier
+        // Reveal calendly CTAs for retrieved ₱15,000 tier
         var ctaR = document.getElementById('ctaDiagnosisReading'); if (ctaR) ctaR.style.display = '';
         var ctaS = document.getElementById('ctaStrategyCall'); if (ctaS) ctaS.style.display = '';
         document.querySelectorAll('.fr-gated-teaser').forEach(function(el) { el.style.display = 'none'; });
@@ -8212,7 +8298,7 @@ function onPaymentSuccess() {
   h += '<span style="margin-right:8px">&#8615;</span> Download Report</button>';
   h += '</div>';
 
-  // $100 tier: Book a session card
+  // ₱15,000 tier: Book a session card
   if (tier === 'full') {
     h += '<div style="background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:16px;padding:24px;margin-bottom:20px">';
     h += '<div style="font-size:11px;letter-spacing:2px;color:var(--yellow);font-weight:700;text-transform:uppercase;margin-bottom:8px">Included With Your Purchase</div>';
@@ -8229,17 +8315,17 @@ function onPaymentSuccess() {
   h += '<div style="font-size:10px;color:var(--mid);line-height:1.5"><strong style="color:var(--yellow)">Keep this code.</strong> Use it anytime to retrieve your diagnosis or share it with your strategist.</div>';
   h += '</div>';
 
-  // Consultation + Upgrade CTA for $70 report tier
+  // Consultation + Upgrade CTA for ₱7,000 report tier
   if (tier === 'report') {
     h += '<div style="background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:12px;padding:20px;margin-bottom:16px">';
     h += '<p style="color:#fff;font-weight:700;font-size:13px;margin:0 0 6px">Talk to a strategist</p>';
     h += '<p style="color:var(--mid);font-size:11px;margin:0 0 14px;line-height:1.5">A 30-minute conversation about your Diamond shape, where your brand equity stands, and what to prioritise next.</p>';
-    h += '<a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" style="display:inline-block;padding:11px 28px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:12px;font-weight:700;letter-spacing:0.5px;text-decoration:none;cursor:pointer">Book a Consultation &rarr;</a>';
+    h += '<a href="mailto:strategy@studiojnsq.com?subject=Book%20a%20call%20with%20a%20strategist" target="_blank" style="display:inline-block;padding:11px 28px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:12px;font-weight:700;letter-spacing:0.5px;text-decoration:none;cursor:pointer">Book a Consultation &rarr;</a>';
     h += '</div>';
     h += '<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:18px 20px">';
     h += '<p style="color:var(--yellow);font-weight:700;font-size:12px;margin:0 0 6px">Want the complete experience?</p>';
     h += '<p style="color:var(--mid);font-size:11px;margin:0 0 12px;line-height:1.5">Upgrade to the Full Diagnostic for cadence schedules, activation playbooks, strategy connectedness mapping, and a 1-hour strategist reading.</p>';
-    h += '<button onclick="upgradeFromPaid()" style="padding:10px 22px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:0.5px">Upgrade to Full Diagnostic - $30 more &rarr;</button>';
+    h += '<button onclick="upgradeFromPaid()" style="padding:10px 22px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:0.5px">Upgrade to Full Diagnostic - ₱8,000 more &rarr;</button>';
     h += '</div>';
   }
 
@@ -8252,17 +8338,17 @@ function onPaymentSuccess() {
   document.getElementById('contactGate').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-// Upgrade from $70 to $100 (pay the $30 difference)
+// Upgrade from ₱7,000 to ₱15,000 (pay the ₱8,000 difference)
 function upgradeFromPaid() {
   selectedTierValue = 'full';
   if (contactData) contactData.tier = 'full';
   if (document.getElementById('selectedTier')) document.getElementById('selectedTier').value = 'full';
   showPaymentModal('full');
-  // Override the amount display to show the $30 difference
+  // Override the amount display to show the ₱8,000 difference
   var amountEl = document.getElementById('pmAmount');
-  if (amountEl) amountEl.innerHTML = '$30 <span>USD</span>';
+  if (amountEl) amountEl.innerHTML = '₱8,000 <span>PHP</span>';
   var payBtn = document.getElementById('pmPayBtn');
-  if (payBtn) payBtn.textContent = 'Pay $30 Upgrade Now';
+  if (payBtn) payBtn.textContent = 'Pay ₱8,000 Upgrade Now';
   var tierEl = document.getElementById('pmTierLabel');
   if (tierEl) tierEl.textContent = 'Upgrade to Full Diagnostic + Reading';
 }
@@ -8347,7 +8433,7 @@ function revealPlatformsOnly() {
       platformHTML += '</ul></div>';
       platformHTML += '<div class="fr-gated-teaser" style="background:rgba(57,69,80,0.04);border-radius:8px;padding:14px 18px;margin-top:12px;border-left:3px solid var(--yellow)">' +
         '<p style="margin:0;font-size:12px;color:var(--steel);line-height:1.6">' +
-        '🔒 <strong>Cadence schedules, activation sequences, and strategy connectedness</strong> are included in the Full Diagnostic + Reading (' + (_diagnosticMode === 'individual' ? '$80' : '$100') + '), which also includes a 1-hour strategist session.</p></div>';
+        '🔒 <strong>Cadence schedules, activation sequences, and strategy connectedness</strong> are included in the Full Diagnostic + Reading (' + (_diagnosticMode === 'individual' ? '₱7,000' : '₱15,000') + '), which also includes a 1-hour strategist session.</p></div>';
       teaser.outerHTML = platformHTML;
     }
   });
@@ -8369,8 +8455,8 @@ function injectTierCTA(tier) {
     ctaDiv.innerHTML =
       '<div style="font-size:10px;letter-spacing:2px;color:var(--yellow);font-weight:700;margin-bottom:8px">UNLOCK THE FULL STRATEGY</div>' +
       '<h4 style="font-size:20px;color:var(--dark);font-weight:800;margin:0 0 12px">Ready to see the deployment plan?</h4>' +
-      '<p style="font-size:13px;color:var(--steel);line-height:1.7;margin:0 0 20px">Upgrade to the Full Diagnostic + Reading for ' + (_diagnosticMode === 'individual' ? '$80' : '$100') + ' and get cadence schedules, activation sequences, strategy connectedness, <strong>plus a 1-hour strategist session</strong> (30-min reading + 30-min FREE consultation).</p>' +
-      '<a href="javascript:void(0)" onclick="document.getElementById(\'premiumDiagnostic\').scrollIntoView({behavior:\'smooth\'})" style="display:inline-block;background:var(--yellow);color:var(--dark);padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:0.5px">Upgrade to Full Diagnostic , ' + (_diagnosticMode === 'individual' ? '$80' : '$100') + '</a>' +
+      '<p style="font-size:13px;color:var(--steel);line-height:1.7;margin:0 0 20px">Upgrade to the Full Diagnostic + Reading for ' + (_diagnosticMode === 'individual' ? '₱7,000' : '₱15,000') + ' and get cadence schedules, activation sequences, strategy connectedness, <strong>plus a 1-hour strategist session</strong> (30-min reading + 30-min FREE consultation).</p>' +
+      '<a href="javascript:void(0)" onclick="document.getElementById(\'premiumDiagnostic\').scrollIntoView({behavior:\'smooth\'})" style="display:inline-block;background:var(--yellow);color:var(--dark);padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:0.5px">Upgrade to Full Diagnostic , ' + (_diagnosticMode === 'individual' ? '₱7,000' : '₱15,000') + '</a>' +
       '<p style="font-size:11px;color:var(--steel);margin-top:16px">Upgrade to the Full Diagnostic to unlock your strategist session.</p>';
   } else {
     // Tier 2 CTA: Book consultation session
@@ -8656,16 +8742,16 @@ function generateDiagnosticPDF(tier) {
   function setF(rgb) { doc.setFillColor(rgb[0],rgb[1],rgb[2]); }
   function setD(rgb) { doc.setDrawColor(rgb[0],rgb[1],rgb[2]); }
 
-  // ── Tier labels (individual: $0/$50/$80, company: $0/$70/$100) ──
+  // ── Tier labels (individual: ₱0/₱3,000/₱7,000, company: ₱0/₱7,000/₱15,000) ──
   var tierLabels, tierNames, tierPrices;
   if (isIndividual) {
-    tierLabels = {free:'FREE SNAPSHOT', report:'$50 REPORT', full:'$80 FULL DIAGNOSTIC'};
+    tierLabels = {free:'FREE SNAPSHOT', report:'₱3,000 REPORT', full:'₱7,000 FULL DIAGNOSTIC'};
     tierNames = {free:'MAD\u2122 Snapshot', report:'Full MAD™ Report', full:'Full Diagnostic + Reading'};
-    tierPrices = {free:'FREE', report:'$50', full:'$80'};
+    tierPrices = {free:'FREE', report:'₱3,000', full:'₱7,000'};
   } else {
-    tierLabels = {free:'FREE SNAPSHOT', report:'$70 REPORT', full:'$100 FULL DIAGNOSTIC'};
+    tierLabels = {free:'FREE SNAPSHOT', report:'₱7,000 REPORT', full:'₱15,000 FULL DIAGNOSTIC'};
     tierNames = {free:'MAD\u2122 Snapshot', report:'Full MAD™ Report', full:'Full Diagnostic + Reading'};
-    tierPrices = {free:'FREE', report:'$70', full:'$100'};
+    tierPrices = {free:'FREE', report:'₱7,000', full:'₱15,000'};
   }
   var TIER = tierLabels[tier] || 'REPORT';
 
@@ -9062,7 +9148,7 @@ function generateDiagnosticPDF(tier) {
   doc.text('A strategist reading can validate, refine, and deepen these findings. ', M+12, y+28);
   var nX = M+12 + doc.getTextWidth('A strategist reading can validate, refine, and deepen these findings. ');
   doc.setFont('helvetica','bold'); setC(DARK);
-  doc.textWithLink('We recommend booking a session.', nX, y+28, {url:'https://calendly.com/jerico-studio-jnsq/30min'});
+  doc.textWithLink('We recommend booking a session.', nX, y+28, {url:'mailto:strategy@studiojnsq.com?subject=Book%20a%20call%20with%20a%20strategist'});
   y += 52;
 
   // ════════════════════════════════════════
@@ -9706,7 +9792,7 @@ function generateDiagnosticPDF(tier) {
       var btnX = M + (CW - btnW) / 2;
       setF(YELLOW); doc.rect(btnX, y, btnW, btnH, 'F');
       doc.setFont('helvetica','bold'); doc.setFontSize(10); setC(DARK);
-      doc.text('Upgrade to Full Diagnostic | $30', btnX + btnW/2, y + 17, {align:'center'});
+      doc.text('Upgrade to Full Diagnostic | ₱8,000', btnX + btnW/2, y + 17, {align:'center'});
       doc.link(btnX, y, btnW, btnH, {url: 'https://studiojnsq.com'});
       y += btnH + 4;
       doc.setFont('helvetica','normal'); doc.setFontSize(7.5); setC(MID);
@@ -9805,7 +9891,7 @@ function generateDiagnosticPDF(tier) {
     doc.text('Book a session ', M+12, y+25);
     var bkX = M+12 + doc.getTextWidth('Book a session ');
     doc.setFont('helvetica','bold'); setC(YELLOW);
-    doc.textWithLink('here', bkX, y+25, {url:'https://calendly.com/jerico-studio-jnsq/30min'});
+    doc.textWithLink('here', bkX, y+25, {url:'mailto:strategy@studiojnsq.com?subject=Book%20a%20call%20with%20a%20strategist'});
     doc.setFont('helvetica','normal'); setC(STEEL);
     doc.text(' to get started.', bkX + doc.getTextWidth('here'), y+25);
     y += 44;
@@ -9872,7 +9958,7 @@ function generateDiagnosticPDF(tier) {
   y += 10;
   if (y + 40 > H - 50) y = newPage();
   var ctaTxt = (tier === 'full') ? 'Book Your Reading Session Now' : 'Upgrade Your Diagnostic';
-  var ctaUrl = (tier === 'full') ? 'https://calendly.com/jerico-studio-jnsq/30min' : 'https://studiojnsq.com';
+  var ctaUrl = (tier === 'full') ? 'mailto:strategy@studiojnsq.com?subject=Book%20a%20call%20with%20a%20strategist' : 'https://studiojnsq.com';
   doc.setFont('helvetica','bold'); doc.setFontSize(12);
   var ctaW = doc.getTextWidth(ctaTxt) + 40;
   setF(YELLOW); doc.rect(W/2-ctaW/2, y, ctaW, 30, 'F');
@@ -9916,7 +10002,7 @@ function generateDiagnosticPDF(tier) {
 
   doc.setFont('helvetica','normal'); doc.setFontSize(10.5); setC(WHITE);
   doc.textWithLink('studiojnsq.com', W/2 - doc.getTextWidth('studiojnsq.com')/2, 510, {url:'https://studiojnsq.com'});
-  doc.textWithLink('Book a Strategy Session', W/2 - doc.getTextWidth('Book a Strategy Session')/2, 528, {url:'https://calendly.com/jerico-studio-jnsq/30min'});
+  doc.textWithLink('Book a Strategy Session', W/2 - doc.getTextWidth('Book a Strategy Session')/2, 528, {url:'mailto:strategy@studiojnsq.com?subject=Book%20a%20call%20with%20a%20strategist'});
 
   doc.setFont('helvetica','normal'); doc.setFontSize(7.5); setC(MID);
   doc.text('\u00A9 Studio JNSQ. All rights reserved.', W/2, H-30, {align:'center'});
@@ -11444,8 +11530,8 @@ function rvfUpdateTierPrices() {
         var priceDiv = el70.querySelector('div[style*="font-size:22px"]');
         if (priceDiv) {
           var newReport = Math.round(_rvfOriginalPrices.report * (1 - disc/100));
-          if (newReport === 0) priceDiv.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">$70</span> FREE';
-          else priceDiv.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">$70</span> $' + newReport;
+          if (newReport === 0) priceDiv.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">₱7,000</span> FREE';
+          else priceDiv.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">₱7,000</span> $' + newReport;
         }
       }
     }
@@ -11454,17 +11540,17 @@ function rvfUpdateTierPrices() {
       if (el100) {
         var priceDiv100 = el100.querySelector('div[style*="font-size:22px"]');
         if (priceDiv100) {
-          if (disc === 100 && _rvfActivePromo.fullFree) priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">$100</span> FREE';
-          else if (disc === 100) priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">$100</span> $30';
-          else { var nf = Math.round(_rvfOriginalPrices.full * (1 - disc/100)); priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">$100</span> $' + nf; }
+          if (disc === 100 && _rvfActivePromo.fullFree) priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">₱15,000</span> FREE';
+          else if (disc === 100) priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">₱15,000</span> ₱8,000';
+          else { var nf = Math.round(_rvfOriginalPrices.full * (1 - disc/100)); priceDiv100.innerHTML = '<span style="text-decoration:line-through;opacity:0.5">₱15,000</span> $' + nf; }
         }
       }
     }
   } else {
     var el70r = document.getElementById('rvfTierReport');
-    if (el70r) { var pd = el70r.querySelector('div[style*="font-size:22px"]'); if (pd) pd.textContent = '$70'; }
+    if (el70r) { var pd = el70r.querySelector('div[style*="font-size:22px"]'); if (pd) pd.textContent = '₱7,000'; }
     var el100r = document.getElementById('rvfTierFull');
-    if (el100r) { var pd2 = el100r.querySelector('div[style*="font-size:22px"]'); if (pd2) pd2.textContent = '$100'; }
+    if (el100r) { var pd2 = el100r.querySelector('div[style*="font-size:22px"]'); if (pd2) pd2.textContent = '₱15,000'; }
   }
 }
 
@@ -11570,23 +11656,23 @@ function rvfShowSuccessPage() {
       '<div style="display:flex;gap:12px;max-width:440px;margin:0 auto 16px;flex-wrap:wrap;justify-content:center">' +
         '<div style="flex:1;min-width:200px;background:rgba(253,213,0,0.08);border:1.5px solid rgba(253,213,0,0.25);border-radius:10px;padding:20px;text-align:center">' +
           '<p style="color:#fff;font-weight:700;font-size:13px;margin:0 0 6px">Commission an Audit</p>' +
-          '<p style="color:var(--mid);font-size:11px;margin:0 0 14px;line-height:1.5">A strategist-led audit of your Trade position from the outside looking in. Starting at $2,000.</p>' +
-          '<a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" style="display:inline-block;padding:11px 28px;background:var(--yellow);color:var(--dark);border:none;border-radius:8px;font-size:12px;font-weight:700;letter-spacing:0.5px;text-decoration:none;cursor:pointer">Commission &rarr;</a>' +
+          '<p style="color:var(--mid);font-size:11px;margin:0 0 14px;line-height:1.5">A strategist-led audit of your Trade position from the outside looking in. Starting at ₱250,000.</p>' +
+          '<a href="mailto:strategy@studiojnsq.com?subject=Book%20a%20call%20with%20a%20strategist" target="_blank" style="display:inline-block;padding:11px 28px;background:var(--yellow);color:var(--dark);border:none;border-radius:8px;font-size:12px;font-weight:700;letter-spacing:0.5px;text-decoration:none;cursor:pointer">Commission &rarr;</a>' +
         '</div>' +
         '<div style="flex:1;min-width:200px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:10px;padding:20px;text-align:center">' +
           '<p style="color:#fff;font-weight:700;font-size:13px;margin:0 0 6px">Talk to a Strategist</p>' +
           '<p style="color:var(--mid);font-size:11px;margin:0 0 14px;line-height:1.5">Get a 30-minute conversation about your Trade position and what to prioritise next.</p>' +
-          '<a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" style="display:inline-block;padding:11px 28px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:12px;font-weight:700;letter-spacing:0.5px;text-decoration:none;cursor:pointer">Book a Consultation &rarr;</a>' +
+          '<a href="mailto:strategy@studiojnsq.com?subject=Book%20a%20call%20with%20a%20strategist" target="_blank" style="display:inline-block;padding:11px 28px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:12px;font-weight:700;letter-spacing:0.5px;text-decoration:none;cursor:pointer">Book a Consultation &rarr;</a>' +
         '</div>' +
       '</div>' +
       '<div style="background:rgba(253,213,0,0.08);border:1px solid rgba(253,213,0,0.2);border-radius:10px;padding:20px;max-width:440px;margin:0 auto">' +
         '<p style="color:var(--yellow);font-weight:700;font-size:13px;margin:0 0 8px">Want the full picture?</p>' +
         '<p style="color:var(--mid);font-size:11px;margin:0 0 16px">Your diagnosis is already done. Upgrade now to instantly unlock the full report with no retake needed.</p>' +
         '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">' +
-          '<button onclick="rvfUpgradeFromFree(\'report\')" style="background:var(--yellow);color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:none;cursor:pointer;letter-spacing:0.3px">Full Report - $70</button>' +
-          '<button onclick="rvfUpgradeFromFree(\'full\')" style="background:#fff;color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:2px solid var(--yellow);cursor:pointer;letter-spacing:0.3px">Full Diagnostic - $100</button>' +
+          '<button onclick="rvfUpgradeFromFree(\'report\')" style="background:var(--yellow);color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:none;cursor:pointer;letter-spacing:0.3px">Full Report - ₱7,000</button>' +
+          '<button onclick="rvfUpgradeFromFree(\'full\')" style="background:#fff;color:var(--dark);padding:11px 22px;border-radius:8px;font-weight:700;font-size:12px;border:2px solid var(--yellow);cursor:pointer;letter-spacing:0.3px">Full Diagnostic - ₱15,000</button>' +
         '</div>' +
-        '<p style="color:var(--mid);font-size:10px;margin:12px 0 0;line-height:1.5;text-align:center"><strong style="color:var(--yellow)">$70</strong> - Detailed actions + platform strategies for all 4 aspects<br><strong style="color:var(--yellow)">$100</strong> - Everything above + cadence, sequencing &amp; 1-on-1 strategist reading</p>' +
+        '<p style="color:var(--mid);font-size:10px;margin:12px 0 0;line-height:1.5;text-align:center"><strong style="color:var(--yellow)">₱7,000</strong> - Detailed actions + platform strategies for all 4 aspects<br><strong style="color:var(--yellow)">₱15,000</strong> - Everything above + cadence, sequencing &amp; 1-on-1 strategist reading</p>' +
       '</div>' +
       '<button onclick="rvfBackToResults()" style="margin-top:18px;background:none;border:none;color:var(--mid);font-size:12px;font-weight:600;cursor:pointer;letter-spacing:0.3px;padding:8px 16px;transition:color 0.2s" onmouseover="this.style.color=\'var(--yellow)\'" onmouseout="this.style.color=\'var(--mid)\'">&larr; Back to Results</button>' +
     '</div>';
@@ -11647,13 +11733,13 @@ function rvfOnPaymentSuccess() {
   h += '<div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:16px">';
   h += '<div style="flex:1;min-width:200px;background:rgba(253,213,0,0.08);border:1.5px solid rgba(253,213,0,0.25);border-radius:12px;padding:20px;text-align:center">';
   h += '<p style="color:#fff;font-weight:700;font-size:13px;margin:0 0 6px">Commission an Audit</p>';
-  h += '<p style="color:var(--mid);font-size:11px;margin:0 0 14px;line-height:1.5">A strategist-led audit of your Trade position from the outside looking in. Starting at $2,000.</p>';
-  h += '<a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" style="display:inline-block;padding:11px 28px;background:var(--yellow);color:var(--dark);border:none;border-radius:8px;font-size:12px;font-weight:700;letter-spacing:0.5px;text-decoration:none;cursor:pointer">Commission &rarr;</a>';
+  h += '<p style="color:var(--mid);font-size:11px;margin:0 0 14px;line-height:1.5">A strategist-led audit of your Trade position from the outside looking in. Starting at ₱250,000.</p>';
+  h += '<a href="mailto:strategy@studiojnsq.com?subject=Book%20a%20call%20with%20a%20strategist" target="_blank" style="display:inline-block;padding:11px 28px;background:var(--yellow);color:var(--dark);border:none;border-radius:8px;font-size:12px;font-weight:700;letter-spacing:0.5px;text-decoration:none;cursor:pointer">Commission &rarr;</a>';
   h += '</div>';
   h += '<div style="flex:1;min-width:200px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:12px;padding:20px;text-align:center">';
   h += '<p style="color:#fff;font-weight:700;font-size:13px;margin:0 0 6px">Talk to a Strategist</p>';
   h += '<p style="color:var(--mid);font-size:11px;margin:0 0 14px;line-height:1.5">Get a 30-minute conversation about your Trade position and what to prioritise next.</p>';
-  h += '<a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" style="display:inline-block;padding:11px 28px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:12px;font-weight:700;letter-spacing:0.5px;text-decoration:none;cursor:pointer">Book a Consultation &rarr;</a>';
+  h += '<a href="mailto:strategy@studiojnsq.com?subject=Book%20a%20call%20with%20a%20strategist" target="_blank" style="display:inline-block;padding:11px 28px;background:transparent;border:1.5px solid var(--yellow);color:var(--yellow);border-radius:8px;font-size:12px;font-weight:700;letter-spacing:0.5px;text-decoration:none;cursor:pointer">Book a Consultation &rarr;</a>';
   h += '</div>';
   h += '</div>';
   h += '<button onclick="rvfBackToResults()" style="margin-top:18px;background:none;border:none;color:var(--mid);font-size:12px;font-weight:600;cursor:pointer;letter-spacing:0.3px;padding:8px 16px;transition:color 0.2s" onmouseover="this.style.color=\'var(--yellow)\'" onmouseout="this.style.color=\'var(--mid)\'">&larr; Back to Results</button>';
@@ -11996,9 +12082,9 @@ function rvfDownloadPDF(tier) {
   var pg = 0;
 
   // ── Tier config ──
-  var tierLabels = {free:'FREE SNAPSHOT', report:'$70 REPORT', full:'$100 FULL DIAGNOSTIC'};
+  var tierLabels = {free:'FREE SNAPSHOT', report:'₱7,000 REPORT', full:'₱15,000 FULL DIAGNOSTIC'};
   var tierNames = {free:'RVF\u2122 Snapshot', report:'Full RVF™ Report', full:'Full Diagnostic + Reading'};
-  var tierPrices = {free:'FREE', report:'$70', full:'$100'};
+  var tierPrices = {free:'FREE', report:'₱7,000', full:'₱15,000'};
   var TIER = tierLabels[tier] || 'REPORT';
 
   // ── Build aspects array ──
@@ -13083,8 +13169,8 @@ function rvfDownloadPDF(tier) {
     var boxX2 = M + boxW + boxGap;
 
     if (tier === 'free') {
-      // FREE: Left = $70 Report, Right = $100 Full Diagnostic
-      var leftTitle = '$70 Report';
+      // FREE: Left = ₱7,000 Report, Right = ₱15,000 Full Diagnostic
+      var leftTitle = '₱7,000 Report';
       var leftItems = [
         'Complete answer reading per aspect',
         'All traps and strategies with context',
@@ -13092,9 +13178,9 @@ function rvfDownloadPDF(tier) {
         '30/60/90 roadmap with rationale',
         'Recommended services'
       ];
-      var rightTitle = '$100 Full Diagnostic';
+      var rightTitle = '₱15,000 Full Diagnostic';
       var rightItems = [
-        'Everything in the $70 Report',
+        'Everything in the ₱7,000 Report',
         'Success metrics and KPIs',
         'Transition signals per aspect',
         '1hr strategist reading + session',
@@ -13129,7 +13215,7 @@ function rvfDownloadPDF(tier) {
       y += boxH + 8;
 
     } else {
-      // REPORT ($70): Left = What You Have, Right = What the $100 Full Diagnostic Shows
+      // REPORT (₱7,000): Left = What You Have, Right = What the ₱15,000 Full Diagnostic Shows
       var leftTitle70 = 'What You Have';
       var leftItems70 = [
         'Complete answer reading per aspect',
@@ -13138,7 +13224,7 @@ function rvfDownloadPDF(tier) {
         '30/60/90 roadmap with rationale',
         'Recommended services'
       ];
-      var rightTitle70 = 'What the $100 Full Diagnostic Shows';
+      var rightTitle70 = 'What the ₱15,000 Full Diagnostic Shows';
       var rightItems70 = [
         'Success metrics and KPIs',
         'Transition signals per aspect',
@@ -13178,7 +13264,7 @@ function rvfDownloadPDF(tier) {
       var btnX = M + (CW - btnW) / 2;
       setF(YELLOW); doc.rect(btnX, y, btnW, btnH, 'F');
       doc.setFont('helvetica','bold'); doc.setFontSize(10); setC(DARK);
-      doc.text('Upgrade to Full Diagnostic | $30', btnX + btnW/2, y + 17, {align:'center'});
+      doc.text('Upgrade to Full Diagnostic | ₱8,000', btnX + btnW/2, y + 17, {align:'center'});
       doc.link(btnX, y, btnW, btnH, {url: 'https://studiojnsq.com'});
       y += btnH + 4;
       doc.setFont('helvetica','normal'); doc.setFontSize(7.5); setC(MID);
@@ -13202,7 +13288,7 @@ function rvfDownloadPDF(tier) {
     ['1', 'Study your answers', 'Read through the answer analysis. Let the interpretations sit with you. Notice what resonates.'],
     ['2', 'Name your traps', 'Which trap hits closest to home? That awareness alone is worth the time you spent on this.'],
     ['3', 'Start the 30-day moves', 'Pick one item from the Transition Roadmap and commit to it this week. Not next week. This week.'],
-    ['4', 'Consider the full picture', 'Upgrade to the Full Diagnostic for $30 more. Adds transition signals and a 1hr strategist session.']
+    ['4', 'Consider the full picture', 'Upgrade to the Full Diagnostic for ₱8,000 more. Adds transition signals and a 1hr strategist session.']
   ] : [
     ['1', 'Sit with your Trade', 'Do not rush past this. Understand what it means to operate from ' + trade + '. Notice the patterns.'],
     ['2', 'Identify your biggest trap', 'Which one resonated most? That is where your attention should go first.'],
@@ -13233,7 +13319,7 @@ function rvfDownloadPDF(tier) {
   doc.setFont('helvetica','bold'); doc.setFontSize(11); setC(YELLOW);
   doc.text('COMMISSION AN AUDIT', M+16, y+20);
   doc.setFont('helvetica','normal'); doc.setFontSize(8.5); setC(WHITE);
-  var auditDesc = 'A strategist-led audit of your Trade position, conducted from the outside looking in. Highly personal. Includes a full assessment, tailored recommendations, and a co-created transition plan. Starting at $2,000.';
+  var auditDesc = 'A strategist-led audit of your Trade position, conducted from the outside looking in. Highly personal. Includes a full assessment, tailored recommendations, and a co-created transition plan. Starting at ₱250,000.';
   var auditLines = doc.splitTextToSize(auditDesc, CW-32);
   doc.text(auditLines, M+16, y+34);
   doc.setFont('helvetica','bold'); doc.setFontSize(8); setC(YELLOW);
@@ -14352,7 +14438,7 @@ function renderClientIntel(el) {
   h += '<div class="info-chip"><label>Diagnosed</label><span>'+date+'</span></div>';
   // Tier purchased
   if (c.tier) {
-    const tierLabel = c.tier === 'full' ? 'Full Diagnostic + Reading ($100)' : 'Full Report Only ($70)';
+    const tierLabel = c.tier === 'full' ? 'Full Diagnostic + Reading (₱15,000)' : 'Full Report Only (₱7,000)';
     h += '<div class="info-chip" style="border-left:3px solid '+(c.tier==='full'?'var(--yellow)':'var(--mid)')+'"><label>Plan Purchased</label><span style="font-weight:700">'+tierLabel+'</span></div>';
   }
   h += '</div></div>';
@@ -14360,7 +14446,7 @@ function renderClientIntel(el) {
   // Download Report button
   h += '<div class="card" style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-left:4px solid var(--yellow)">';
   h += '<div><h3 style="margin:0 0 4px;font-size:16px">Download Full Report</h3>';
-  h += '<p style="margin:0;font-size:12px;color:var(--steel)">Generate the '+(currentReportIsRVF?'RVF\u2122':'MAD\u2122')+' $100 diagnostic PDF for this client.</p></div>';
+  h += '<p style="margin:0;font-size:12px;color:var(--steel)">Generate the '+(currentReportIsRVF?'RVF\u2122':'MAD\u2122')+' ₱15,000 diagnostic PDF for this client.</p></div>';
   h += '<button onclick="portalDownloadReport()" style="background:var(--yellow);color:var(--dark);border:none;padding:12px 24px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap">⬇ Download PDF</button>';
   h += '</div>';
 
@@ -14937,7 +15023,7 @@ function renderInvestment(el) {
   h += '<div class="card" style="background:linear-gradient(135deg,rgba(253,213,0,0.08) 0%,rgba(57,69,80,0.02) 100%);border:1px solid rgba(253,213,0,0.2)">';
   h += '<div style="display:flex;align-items:center;gap:12px">';
   h += '<span style="font-size:28px">🔬</span>';
-  h += '<div><h3 style="margin-bottom:2px">MAD™ Diagnostic Reading, $100</h3>';
+  h += '<div><h3 style="margin-bottom:2px">MAD™ Diagnostic Reading, ₱15,000</h3>';
   h += '<p class="card-sub" style="margin:0">Pre-paid before consultation. Client must complete payment before scheduling their strategist session.</p>';
   h += '</div></div></div>';
 
@@ -15671,8 +15757,8 @@ function showAddPromoForm() {
   h += '</div>';
   h += '<div style="margin-top:10px"><label style="font-size:10px;color:var(--steel);font-weight:700;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:4px">Applicable Tiers</label>';
   h += '<div style="display:flex;gap:12px">';
-  h += '<label style="font-size:12px;color:var(--dark);display:flex;align-items:center;gap:4px"><input type="checkbox" id="promoTierReport" checked> $70 Report</label>';
-  h += '<label style="font-size:12px;color:var(--dark);display:flex;align-items:center;gap:4px"><input type="checkbox" id="promoTierFull" checked> $100 Full Diagnostic</label>';
+  h += '<label style="font-size:12px;color:var(--dark);display:flex;align-items:center;gap:4px"><input type="checkbox" id="promoTierReport" checked> ₱7,000 Report</label>';
+  h += '<label style="font-size:12px;color:var(--dark);display:flex;align-items:center;gap:4px"><input type="checkbox" id="promoTierFull" checked> ₱15,000 Full Diagnostic</label>';
   h += '</div></div>';
   h += '<div style="margin-top:10px">';
   h += '<label style="font-size:12px;color:var(--dark);display:flex;align-items:center;gap:6px"><input type="checkbox" id="promoForEveryone"> Available to everyone, including returning customers</label>';

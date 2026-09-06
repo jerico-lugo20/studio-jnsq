@@ -2587,6 +2587,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
       l: 'Email strategy@studiojnsq.com'
     }
   };
+  // Maintenance notices are OFF for preview (6 Sep 2026). Flip to true to
+  // re-enable the booking and newsletter notices.
+  var MAINTENANCE_ON = false;
   var wrap = document.getElementById('mxWrap');
   function openM(k){
     var v = V[k]; if(!v) return;
@@ -2613,6 +2616,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
   document.addEventListener('click', function(e){
     var el = e.target.closest ? e.target.closest('a') : null;
     if (!el) return;
+    if (!MAINTENANCE_ON) return;
     var k = variantFor(el);
     if (!k) return;
     e.preventDefault();
