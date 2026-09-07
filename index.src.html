@@ -229,10 +229,18 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
    stop at the right border of Builder, and the action sits under Architecture. Keeps
    the block two lines deep instead of stacking, so the panel still fits one screen. */
 .svc-foot.on-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,26px);align-items:end;}
-.svc-foot.on-grid .notes{grid-column:1 / span 2;display:grid;grid-template-columns:1fr 1fr;gap:6px clamp(16px,1.8vw,26px);}
-.svc-foot.on-grid{margin-top:clamp(14px,1.6vw,20px);}
+.svc-foot.on-grid .notes{grid-column:1 / span 2;display:flex;flex-direction:column;gap:4px;}
+.svc-foot.on-grid{margin-top:clamp(10px,1.2vw,14px);}
+.svc-foot.on-grid .notes{gap:3px;}
+/* The retainers panel carries three tiers plus a four line note, so it runs a
+   tighter rhythm than the rest to stay inside one screen at 1440x900. Padding
+   only; the copy is untouched. */
+.panel:has(.svc-foot.on-grid){padding-block:clamp(40px,4vw,60px);}
+.panel:has(.svc-foot.on-grid) .sec-head{margin-bottom:clamp(16px,1.8vw,26px);}
+.panel:has(.svc-foot.on-grid) .tile{padding:clamp(16px,1.6vw,22px);gap:9px;}
+.panel:has(.svc-foot.on-grid) .tile ul{gap:6px;}
 .svc-foot.on-grid .floor-from{max-width:none;line-height:1.55;}
-.svc-foot.on-grid .actions{grid-column:3;justify-content:flex-start;}
+.svc-foot.on-grid .actions{grid-column:3;justify-content:flex-end;}
 @media(max-width:940px){.svc-foot.on-grid{grid-template-columns:1fr;}.svc-foot.on-grid .notes{grid-column:1;grid-template-columns:1fr;}.svc-foot.on-grid .actions{grid-column:1;}}
 
 /* ---------- the ask, under the qualifier ---------- */
@@ -1103,14 +1111,16 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
       <h2 class="statement">Retainers. Three tiers, and the score decides which one.</h2>
     </div>
     <div class="tiles">
-      <div class="tile" data-in="up" data-d="0"><h3>Brand Equity Foundations</h3><p>For the leader or firm whose record is strong and whose public signal is thin. Gets the basics standing and keeps them standing.</p><ul><li>Monthly story banking</li><li>One to two LinkedIn posts a week</li><li>Media kit built and maintained</li><li>Media monitoring</li><li>Earned media lite<sup>*</sup></li><li>External market read, free from six months</li><li>Rescore at six months</li></ul><p class="price"><b>From &#8369;75,000 a month</b></p></div>
-      <div class="tile" data-in="up" data-d="1"><h3>Brand Equity Builder</h3><p>For the firm ready to be written about rather than just present. Adds earned media, which takes the longest to build and is worth the most.</p><ul><li>Everything in Foundations</li><li>Media relations and podcast guesting</li><li>Thought leadership pitching</li><li>Two to three posts a week</li><li>Twelve month editorial plan available</li><li>More strategist time than Foundations</li><li>Up to 5% off support services</li></ul><p class="price"><b>From &#8369;100,000 a month</b></p></div>
-      <div class="tile" data-in="up" data-d="2"><h3>Brand Equity Architecture</h3><p>The steering tier, on a twelve month term. The strategy does not get handed over and filed. It stays live and is revised every quarter against the score.</p><ul><li>Everything in Builder</li><li>Full MAD&trade; strategy, live and revised quarterly</li><li>Three to five posts a week</li><li>Twelve month editorial plan</li><li>Standing strategist time</li><li>Quarterly rescore, not just at six months</li><li>Up to 10% off support services</li></ul><p class="price"><b>From &#8369;150,000 a month</b></p></div>
+      <div class="tile" data-in="up" data-d="0"><h3>Brand Equity Foundations</h3><p>For the leader or firm whose record is strong and whose public signal is thin. Gets the basics standing and keeps them standing.</p><ul><li>Monthly story banking</li><li>One to two LinkedIn posts a week</li><li>Media kit built and maintained</li><li>Media monitoring</li><li>Earned media lite<sup>*</sup></li><li>Press release writing, one release credit a month</li><li>Media and PR systems included on a twelve month term</li><li>External market read, free from six months</li><li>Rescore at six months</li></ul><p class="price"><b>From &#8369;75,000 a month</b></p></div>
+      <div class="tile" data-in="up" data-d="1"><h3>Brand Equity Builder</h3><p>For the firm ready to be written about rather than just present. Adds earned media, which takes the longest to build and is worth the most.</p><ul><li>Everything in Foundations</li><li>Media relations and podcast guesting</li><li>Thought leadership pitching</li><li>Press release writing, up to two release credits a month</li><li>Two to three posts a week</li><li>Twelve month editorial plan available</li><li>More strategist time than Foundations</li><li>Up to 5% off support services</li></ul><p class="price"><b>From &#8369;100,000 a month</b></p></div>
+      <div class="tile" data-in="up" data-d="2"><h3>Brand Equity Architecture</h3><p>The steering tier, on a twelve month term. The strategy does not get handed over and filed. It stays live and is revised every quarter against the score.</p><ul><li>Everything in Builder</li><li>Full MAD&trade; strategy, live and revised quarterly</li><li>Three to five posts a week</li><li>Press release writing, up to four release credits a month</li><li>Twelve month editorial plan</li><li>Standing strategist time</li><li>Quarterly rescore, not just at six months</li><li>Up to 10% off support services</li></ul><p class="price"><b>From &#8369;150,000 a month</b></p></div>
     </div>
     <div class="svc-foot on-grid" data-in="up" data-d="3">
       <div class="notes">
-        <p class="floor-from"><sup>*</sup>Earned media lite covers inbound media enquiries and light pitching. Full media relations, thought leadership pitching and podcast guesting sit on Builder.</p>
-        <p class="floor-from">Foundations runs three months minimum, six for a full rollout. Builder is six months minimum, Architecture twelve. Every tier has a designated strategist, and strategist time is not sold by the hour. Larger mandates are scoped individually.</p>
+        <p class="floor-from"><sup>*</sup>Earned media lite: we handle the media inquiries that come to you, and pitch lightly where a story is already there. Full media relations starts at Builder.</p>
+        <p class="floor-from">A release credit is one press release written and published through a wire service. Credits expire monthly.</p>
+        <p class="floor-from">On a twelve month term, any tier, media and PR systems is included at no charge. On three and six month terms you get working sheets and trackers and light messaging work, not the full build.</p>
+        <p class="floor-from">Retainers start at &#8369;75,000 a month, three months minimum. Strategist time is not sold by the hour.</p>
       </div>
       <div class="actions"><a class="btn-primary" href="mailto:strategy@studiojnsq.com?subject=Retainer%20inquiry">Inquire now</a></div>
     </div>
@@ -1156,7 +1166,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
       </div>
     </div>
     <div class="svc-grid cols-3">
-      <div class="svc" data-in="left" data-d="0"><div class="svc-h"><h3>Media and PR systems</h3><span class="tag">30 days, with a retainer</span></div><p>Thirty days of setup. Your key messages, the journalists and editors who cover your field, a six month calendar of awards and events, three articles, and press release templates ready to fill in when the moment comes.</p><p class="does">You stop starting from nothing. When someone calls or an entry opens, the material already exists and the moment is not wasted.</p></div><div class="svc" data-in="up" data-d="1"><div class="svc-h"><h3>MAD&trade; strategy</h3><span class="tag">12 months</span></div><p>Your score read, then a twelve month plan: which facet first, what evidence closes it, a budget, projected ROI and OKRs to hold it to.</p><p class="does">It also names the specific ways to grow: which conversations to have at which events and how to move them forward, which partnerships are worth pursuing, and where adding value opens doors. Inside Architecture it stays live and is revised every quarter. On its own, it is a document.</p></div><div class="svc" data-in="right" data-d="2"><div class="svc-h"><h3>External market read</h3><span class="tag">Free from six months</span></div><p>What the market can establish about you today, using nothing you give us. Includes a check on how software reads you, because the first pass on your company is now done by a machine.</p><p class="does">You find out what an investor, a journalist or a model already believes about you before you spend a peso trying to change it.</p></div>
+      <div class="svc" data-in="left" data-d="0"><div class="svc-h"><h3>Media and PR systems</h3><span class="tag">30 days, with a retainer</span></div><p>Thirty days of setup. Your key messages, the journalists and editors who cover your field, a six month calendar of awards and events, three articles, and press release templates ready to fill in when the moment comes.</p><p class="does">You stop starting from nothing. When someone calls or an entry opens, the material already exists and the moment is not wasted. Included free on any twelve month retainer. On the menu for firms that already run media and PR and need the systems designed.</p></div><div class="svc" data-in="up" data-d="1"><div class="svc-h"><h3>MAD&trade; strategy</h3><span class="tag">12 months</span></div><p>Your score read, then a twelve month plan: which facet first, what evidence closes it, a budget, projected ROI and OKRs to hold it to.</p><p class="does">It also names the specific ways to grow: which conversations to have at which events and how to move them forward, which partnerships are worth pursuing, and where adding value opens doors. Inside Architecture it stays live and is revised every quarter. On its own, it is a document.</p></div><div class="svc" data-in="right" data-d="2"><div class="svc-h"><h3>External market read</h3><span class="tag">Free from six months</span></div><p>What the market can establish about you today, using nothing you give us. Includes a check on how software reads you, because the first pass on your company is now done by a machine.</p><p class="does">You find out what an investor, a journalist or a model already believes about you before you spend a peso trying to change it.</p></div>
     </div>
     
     <div class="svc-foot" data-in="up" data-d="3">

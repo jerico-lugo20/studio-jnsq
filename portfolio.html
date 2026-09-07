@@ -240,10 +240,18 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
    stop at the right border of Builder, and the action sits under Architecture. Keeps
    the block two lines deep instead of stacking, so the panel still fits one screen. */
 .svc-foot.on-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,26px);align-items:end;}
-.svc-foot.on-grid .notes{grid-column:1 / span 2;display:grid;grid-template-columns:1fr 1fr;gap:6px clamp(16px,1.8vw,26px);}
-.svc-foot.on-grid{margin-top:clamp(14px,1.6vw,20px);}
+.svc-foot.on-grid .notes{grid-column:1 / span 2;display:flex;flex-direction:column;gap:4px;}
+.svc-foot.on-grid{margin-top:clamp(10px,1.2vw,14px);}
+.svc-foot.on-grid .notes{gap:3px;}
+/* The retainers panel carries three tiers plus a four line note, so it runs a
+   tighter rhythm than the rest to stay inside one screen at 1440x900. Padding
+   only; the copy is untouched. */
+.panel:has(.svc-foot.on-grid){padding-block:clamp(40px,4vw,60px);}
+.panel:has(.svc-foot.on-grid) .sec-head{margin-bottom:clamp(16px,1.8vw,26px);}
+.panel:has(.svc-foot.on-grid) .tile{padding:clamp(16px,1.6vw,22px);gap:9px;}
+.panel:has(.svc-foot.on-grid) .tile ul{gap:6px;}
 .svc-foot.on-grid .floor-from{max-width:none;line-height:1.55;}
-.svc-foot.on-grid .actions{grid-column:3;justify-content:flex-start;}
+.svc-foot.on-grid .actions{grid-column:3;justify-content:flex-end;}
 @media(max-width:940px){.svc-foot.on-grid{grid-template-columns:1fr;}.svc-foot.on-grid .notes{grid-column:1;grid-template-columns:1fr;}.svc-foot.on-grid .actions{grid-column:1;}}
 
 /* ---------- the ask, under the qualifier ---------- */
