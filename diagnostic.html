@@ -236,6 +236,15 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
 .svc .arrow{margin-top:auto;font-size:13.5px;}
 .svc-foot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:clamp(18px,2.2vw,28px);}
 .svc-foot .floor-from{margin:0;max-width:60ch;}
+/* Retainer section footer: notes run the full width of the first two tiles, so they
+   stop at the right border of Builder, and the action sits under Architecture. Keeps
+   the block two lines deep instead of stacking, so the panel still fits one screen. */
+.svc-foot.on-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,26px);align-items:end;}
+.svc-foot.on-grid .notes{grid-column:1 / span 2;display:grid;grid-template-columns:1fr 1fr;gap:6px clamp(16px,1.8vw,26px);}
+.svc-foot.on-grid{margin-top:clamp(14px,1.6vw,20px);}
+.svc-foot.on-grid .floor-from{max-width:none;line-height:1.55;}
+.svc-foot.on-grid .actions{grid-column:3;justify-content:flex-start;}
+@media(max-width:940px){.svc-foot.on-grid{grid-template-columns:1fr;}.svc-foot.on-grid .notes{grid-column:1;grid-template-columns:1fr;}.svc-foot.on-grid .actions{grid-column:1;}}
 
 /* ---------- the ask, under the qualifier ---------- */
 .who{margin-top:clamp(36px,4.5vw,64px);padding-top:clamp(26px,3vw,40px);border-top:1px solid var(--hairline);display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;}

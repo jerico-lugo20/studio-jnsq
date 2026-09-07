@@ -237,6 +237,15 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
 .svc .arrow{margin-top:auto;font-size:13.5px;}
 .svc-foot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:clamp(18px,2.2vw,28px);}
 .svc-foot .floor-from{margin:0;max-width:60ch;}
+/* Retainer section footer: notes run the full width of the first two tiles, so they
+   stop at the right border of Builder, and the action sits under Architecture. Keeps
+   the block two lines deep instead of stacking, so the panel still fits one screen. */
+.svc-foot.on-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,26px);align-items:end;}
+.svc-foot.on-grid .notes{grid-column:1 / span 2;display:grid;grid-template-columns:1fr 1fr;gap:6px clamp(16px,1.8vw,26px);}
+.svc-foot.on-grid{margin-top:clamp(14px,1.6vw,20px);}
+.svc-foot.on-grid .floor-from{max-width:none;line-height:1.55;}
+.svc-foot.on-grid .actions{grid-column:3;justify-content:flex-start;}
+@media(max-width:940px){.svc-foot.on-grid{grid-template-columns:1fr;}.svc-foot.on-grid .notes{grid-column:1;grid-template-columns:1fr;}.svc-foot.on-grid .actions{grid-column:1;}}
 
 /* ---------- the ask, under the qualifier ---------- */
 .who{margin-top:clamp(36px,4.5vw,64px);padding-top:clamp(26px,3vw,40px);border-top:1px solid var(--hairline);display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;}
@@ -664,8 +673,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
       <div class="tile" data-in="up" data-d="1"><h3>Brand Equity Builder</h3><p>For the firm ready to be written about rather than just present. Adds earned media, which takes the longest to build and is worth the most.</p><ul><li>Everything in Foundations</li><li>Media relations and podcast guesting</li><li>Thought leadership pitching</li><li>Two to three posts a week</li><li>Twelve month editorial plan available</li><li>More strategist time than Foundations</li><li>Up to 5% off support services</li></ul><p class="price"><b>From &#8369;100,000 a month</b></p></div>
       <div class="tile" data-in="up" data-d="2"><h3>Brand Equity Architecture</h3><p>The steering tier, on a twelve month term. The strategy does not get handed over and filed. It stays live and is revised every quarter against the score.</p><ul><li>Everything in Builder</li><li>Full MAD&trade; strategy, live and revised quarterly</li><li>Three to five posts a week</li><li>Twelve month editorial plan</li><li>Standing strategist time</li><li>Quarterly rescore, not just at six months</li><li>Up to 10% off support services</li></ul><p class="price"><b>From &#8369;150,000 a month</b></p></div>
     </div>
-    <div class="svc-foot" data-in="up" data-d="3">
-      <p class="floor-from"><sup>*</sup>Earned media lite on Foundations covers inbound media enquiries and light pitching. Full media relations, thought leadership pitching and podcast guesting sit on Builder.<br>Retainers start at &#8369;75,000 a month on Foundations, &#8369;100,000 on Builder and &#8369;150,000 on Architecture. Three months minimum, twelve on Architecture. Larger mandates are scoped individually. Strategist time is not sold by the hour.</p>
+    <div class="svc-foot on-grid" data-in="up" data-d="3">
+      <div class="notes">
+        <p class="floor-from"><sup>*</sup>Earned media lite covers inbound media enquiries and light pitching. Full media relations, thought leadership pitching and podcast guesting sit on Builder.</p>
+        <p class="floor-from">Foundations runs three months minimum, six for a full rollout. Builder is six months minimum, Architecture twelve. Every tier has a designated strategist, and strategist time is not sold by the hour. Larger mandates are scoped individually.</p>
+      </div>
       <div class="actions"><a class="btn-primary" href="mailto:strategy@studiojnsq.com?subject=Retainer%20inquiry">Inquire now</a></div>
     </div>
   </div>
