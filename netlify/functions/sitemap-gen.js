@@ -18,18 +18,24 @@ exports.handler = async (event, context) => {
     // Static pages
     const staticPages = [
       { loc: "https://studiojnsq.com/", changefreq: "weekly", priority: "1.0", lastmod: today },
-      { loc: "https://studiojnsq.com/about", changefreq: "monthly", priority: "0.7", lastmod: today },
+      // Commercial pages. Real URLs since 7 Sep 2026; these are the ones that sell.
+      { loc: "https://studiojnsq.com/services", changefreq: "weekly", priority: "1.0", lastmod: today },
+      { loc: "https://studiojnsq.com/investment-readiness", changefreq: "weekly", priority: "1.0", lastmod: today },
+      { loc: "https://studiojnsq.com/portfolio", changefreq: "weekly", priority: "0.9", lastmod: today },
+      { loc: "https://studiojnsq.com/frameworks", changefreq: "monthly", priority: "0.8", lastmod: today },
+      { loc: "https://studiojnsq.com/frameworks/mad", changefreq: "monthly", priority: "0.8", lastmod: today },
+      { loc: "https://studiojnsq.com/frameworks/rvf", changefreq: "monthly", priority: "0.8", lastmod: today },
+      { loc: "https://studiojnsq.com/our-story", changefreq: "monthly", priority: "0.8", lastmod: today },
+      { loc: "https://studiojnsq.com/contact", changefreq: "monthly", priority: "0.7", lastmod: today },
       { loc: "https://studiojnsq.com/insights", changefreq: "weekly", priority: "0.9", lastmod: today },
       { loc: "https://studiojnsq.com/diagnostic", changefreq: "weekly", priority: "0.9", lastmod: today },
-      { loc: "https://studiojnsq.com/founder", changefreq: "monthly", priority: "0.8", lastmod: "2026-08-19" },
       { loc: "https://studiojnsq.com/archetypes", changefreq: "monthly", priority: "0.9", lastmod: "2026-08-10" },
       { loc: "https://studiojnsq.com/diagnostic/MAD", changefreq: "monthly", priority: "0.9", lastmod: "2026-04-02" },
       { loc: "https://studiojnsq.com/diagnostic/RVF", changefreq: "monthly", priority: "0.9", lastmod: "2026-04-02" },
-      { loc: "https://studiojnsq.com/case-studies/", changefreq: "monthly", priority: "0.8", lastmod: "2026-07-31" },
       { loc: "https://studiojnsq.com/case-studies/idiyanale", changefreq: "monthly", priority: "0.7", lastmod: "2026-05-18" },
       { loc: "https://studiojnsq.com/case-studies/international-bank", changefreq: "monthly", priority: "0.7", lastmod: "2026-05-20" },
-      { loc: "https://studiojnsq.com/case-studies/rovic-agriventures-egg-production", changefreq: "monthly", priority: "0.7", lastmod: "2026-07-31" },
-      { loc: "https://studiojnsq.com/case-studies/rovic-chicken-dealer-poultry-distribution", changefreq: "monthly", priority: "0.7", lastmod: "2026-07-31" },
+      { loc: "https://studiojnsq.com/case-studies/rai-egg-production", changefreq: "monthly", priority: "0.7", lastmod: "2026-07-31" },
+      { loc: "https://studiojnsq.com/case-studies/rcd-poultry-distribution", changefreq: "monthly", priority: "0.7", lastmod: "2026-07-31" },
       { loc: "https://studiojnsq.com/case-studies/advisory-jaycee-ynares", changefreq: "monthly", priority: "0.7", lastmod: "2026-07-14" }
     ];
 

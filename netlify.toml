@@ -283,25 +283,25 @@
 # ------------------------------------------------------------
 [[redirects]]
   from = "/case-studies/rovic-agriventures"
-  to = "/case-studies/rovic-agriventures-egg-production"
+  to = "/case-studies/rai-egg-production"
   status = 301
   force = true
 
 [[redirects]]
   from = "/case-studies/poultry-distribution"
-  to = "/case-studies/rovic-chicken-dealer-poultry-distribution"
+  to = "/case-studies/rcd-poultry-distribution"
   status = 301
   force = true
 
 [[redirects]]
-  from = "/case-studies/rai-egg-production"
-  to = "/case-studies/rovic-agriventures-egg-production"
+  from = "/case-studies/rovic-agriventures-egg-production"
+  to = "/case-studies/rai-egg-production"
   status = 301
   force = true
 
 [[redirects]]
-  from = "/case-studies/rcd-poultry-distribution"
-  to = "/case-studies/rovic-chicken-dealer-poultry-distribution"
+  from = "/case-studies/rovic-chicken-dealer-poultry-distribution"
+  to = "/case-studies/rcd-poultry-distribution"
   status = 301
   force = true
 
@@ -337,17 +337,6 @@
 [[redirects]]
   from = "/admin"
   to = "/admin.html"
-  status = 200
-
-[[redirects]]
-  from = "/about"
-  to = "/about.html"
-  status = 200
-
-# ---- Founder profile ----
-[[redirects]]
-  from = "/founder"
-  to = "/founder.html"
   status = 200
 
 [[redirects]]
@@ -422,6 +411,89 @@
   from = "/diagnostic/rvf"
   to = "/diagnostic-rvf.html"
   status = 200
+
+# ============================================================
+# REAL URLS (7 Sep 2026). The rebuild shipped hash-routed, so every
+# commercial section answered 404 when requested directly. Each one
+# is now a server-rendered page with its own title, description and
+# canonical. The hash forms still resolve via a client-side alias.
+# ============================================================
+[[redirects]]
+  from = "/services"
+  to = "/services.html"
+  status = 200
+
+[[redirects]]
+  from = "/investment-readiness"
+  to = "/investment-readiness.html"
+  status = 200
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/portfolio.html"
+  status = 200
+
+[[redirects]]
+  from = "/frameworks"
+  to = "/frameworks.html"
+  status = 200
+
+[[redirects]]
+  from = "/frameworks/mad"
+  to = "/frameworks-mad.html"
+  status = 200
+
+[[redirects]]
+  from = "/frameworks/MAD"
+  to = "/frameworks-mad.html"
+  status = 200
+
+[[redirects]]
+  from = "/frameworks/rvf"
+  to = "/frameworks-rvf.html"
+  status = 200
+
+[[redirects]]
+  from = "/frameworks/RVF"
+  to = "/frameworks-rvf.html"
+  status = 200
+
+[[redirects]]
+  from = "/our-story"
+  to = "/our-story.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200
+
+# The founder page and the old about page are folded into Our story.
+[[redirects]]
+  from = "/about"
+  to = "/our-story"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/founder"
+  to = "/our-story"
+  status = 301
+  force = true
+
+# The case-studies index is superseded by the portfolio page. The
+# individual case studies keep their own URLs.
+[[redirects]]
+  from = "/case-studies"
+  to = "/portfolio"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-studies/"
+  to = "/portfolio"
+  status = 301
+  force = true
 
 # ============================================================
 # REBUILD 6 Sep 2026: / now serves the signed-off design (mock artifact v20).

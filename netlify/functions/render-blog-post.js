@@ -257,7 +257,8 @@ exports.handler = async function (event, context) {
         statusCode: 200, // 200 with no-index so search engines skip; users get a friendly page
         headers: {
           'Content-Type': 'text/html; charset=utf-8',
-          'Cache-Control': 'public, max-age=30, s-maxage=60',
+          // Placeholder state: never cache, or the edge outlives the publish.
+          'Cache-Control': 'no-store',
           'X-Robots-Tag': 'noindex, nofollow'
         },
         body: Skin.reskin(toInsights(renderComingSoon(post)))
@@ -366,6 +367,7 @@ exports.handler = async function (event, context) {
     console.error('render-blog-post error:', err);
     return {
       statusCode: 500,
+      headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' },
       headers: { 'Content-Type': 'text/html; charset=utf-8' },
       body: '<!DOCTYPE html><html><body><h1>Error rendering post</h1><pre>' + String(err && err.message || err) + '</pre></body></html>'
     };
