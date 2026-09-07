@@ -85,7 +85,7 @@ function render404(slug) {
     '<nav class="cs-nav"><div class="cs-nav-inner">' +
       '<a href="/" class="cs-logo">STUDIO <span class="accent">JNSQ</span></a>' +
       '<div class="cs-nav-links">' +
-        '<a href="/">Home</a><a href="/about">About</a><a href="/journal">Journal</a><a href="/case-studies/">Case Studies</a><a href="/diagnostic">Diagnostic</a>' +
+        '<a href="/">Home</a><a href="/about">About</a><a href="/journal">Journal</a><a href="/portfolio/">Case Studies</a><a href="/diagnostic">Diagnostic</a>' +
       '</div>' +
       '<a href="/diagnostic" class="cs-nav-cta">Take the Diagnostic</a>' +
     '</div></nav>' +
@@ -169,7 +169,7 @@ function renderComingSoon(post) {
     '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet">' +
     '<link rel="stylesheet" href="/css/jnsq-system.css?v=2">' +
     '</head><body style="font-family:Inter,sans-serif;background:var(--jnsq-bg,#FAFAF6);color:var(--jnsq-body,#3d3d3d);min-height:100vh;">' +
-    '<nav class="jnsq-nav"><div class="jnsq-nav-inner"><a href="/" class="jnsq-nav-logo">STUDIO <span class="accent">JNSQ</span></a><div class="jnsq-nav-links"><a href="/">Home</a><a href="/about">About</a><a href="/journal">Journal</a><a href="/case-studies/">Case Studies</a><a href="/diagnostic">Diagnostic</a></div><a href="/diagnostic" class="jnsq-nav-cta">Take the Diagnostic</a></div></nav>' +
+    '<nav class="jnsq-nav"><div class="jnsq-nav-inner"><a href="/" class="jnsq-nav-logo">STUDIO <span class="accent">JNSQ</span></a><div class="jnsq-nav-links"><a href="/">Home</a><a href="/about">About</a><a href="/journal">Journal</a><a href="/portfolio/">Case Studies</a><a href="/diagnostic">Diagnostic</a></div><a href="/diagnostic" class="jnsq-nav-cta">Take the Diagnostic</a></div></nav>' +
     '<div style="display:flex;align-items:center;justify-content:center;padding:96px 24px;min-height:calc(100vh - 200px);">' +
     '<div style="max-width:640px;text-align:center;">' +
     '<div style="font-family:\'Inter\',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--jnsq-yellow);margin-bottom:12px;">Coming to ' + esc(seriesLabel) + '</div>' +

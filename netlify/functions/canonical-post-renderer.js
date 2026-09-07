@@ -607,7 +607,7 @@
       '      <div class="jnsq-footer-col"><h4>Discipline</h4><ul>\n' +
       '        <li><a href="/about">About Studio JNSQ</a></li>\n' +
       '        <li><a href="/journal">The Journal</a></li>\n' +
-      '        <li><a href="/case-studies/">Case Studies</a></li>\n' +
+      '        <li><a href="/portfolio/">Case Studies</a></li>\n' +
       '        <li><a href="/diagnostic">Diagnostic</a></li>\n' +
       '      </ul></div>\n' +
       '      <div class="jnsq-footer-col"><h4>Frameworks</h4><ul>\n' +
@@ -625,7 +625,7 @@
       '      <div class="jnsq-footer-col"><h4>Connect</h4><ul>\n' +
       '        <li><a href="https://calendly.com/jerico-studio-jnsq/30min" target="_blank" rel="noopener">Book a call</a></li>\n' +
       '        <li><a href="/diagnostic">Start a diagnosis</a></li>\n' +
-      '        <li><a href="/case-studies/">See client work</a></li>\n' +
+      '        <li><a href="/portfolio/">See client work</a></li>\n' +
       '      </ul></div>\n' +
       '    </div>\n' +
       '    <div class="jnsq-footer-bottom">\n' +
@@ -890,7 +890,7 @@ renderJsonLd(post) + '\n' +
 '      <a href="/">Home</a>\n' +
 '      <a href="/about">About</a>\n' +
 '      <a href="/journal">Journal</a>\n' +
-'      <a href="/case-studies/">Case Studies</a>\n' +
+'      <a href="/portfolio/">Case Studies</a>\n' +
 '      <a href="/diagnostic">Diagnostic</a>\n' +
 '    </div>\n' +
 '    <a href="/diagnostic" class="jnsq-nav-cta">Take the Diagnostic</a>\n' +

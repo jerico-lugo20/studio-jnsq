@@ -32,11 +32,11 @@ exports.handler = async (event, context) => {
       { loc: "https://studiojnsq.com/archetypes", changefreq: "monthly", priority: "0.9", lastmod: "2026-08-10" },
       { loc: "https://studiojnsq.com/diagnostic/MAD", changefreq: "monthly", priority: "0.9", lastmod: "2026-04-02" },
       { loc: "https://studiojnsq.com/diagnostic/RVF", changefreq: "monthly", priority: "0.9", lastmod: "2026-04-02" },
-      { loc: "https://studiojnsq.com/case-studies/idiyanale", changefreq: "monthly", priority: "0.7", lastmod: "2026-05-18" },
-      { loc: "https://studiojnsq.com/case-studies/international-bank", changefreq: "monthly", priority: "0.7", lastmod: "2026-05-20" },
-      { loc: "https://studiojnsq.com/case-studies/rai-egg-production", changefreq: "monthly", priority: "0.7", lastmod: "2026-07-31" },
-      { loc: "https://studiojnsq.com/case-studies/rcd-poultry-distribution", changefreq: "monthly", priority: "0.7", lastmod: "2026-07-31" },
-      { loc: "https://studiojnsq.com/case-studies/advisory-jaycee-ynares", changefreq: "monthly", priority: "0.7", lastmod: "2026-07-14" }
+      { loc: "https://studiojnsq.com/portfolio/idiyanale", changefreq: "monthly", priority: "0.7", lastmod: "2026-05-18" },
+      { loc: "https://studiojnsq.com/portfolio/international-bank", changefreq: "monthly", priority: "0.7", lastmod: "2026-05-20" },
+      { loc: "https://studiojnsq.com/portfolio/rai-egg-production", changefreq: "monthly", priority: "0.7", lastmod: "2026-07-31" },
+      { loc: "https://studiojnsq.com/portfolio/rcd-poultry-distribution", changefreq: "monthly", priority: "0.7", lastmod: "2026-07-31" },
+      { loc: "https://studiojnsq.com/portfolio/advisory-jaycee-ynares", changefreq: "monthly", priority: "0.7", lastmod: "2026-07-14" }
     ];
 
     // Blog posts

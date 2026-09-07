@@ -283,25 +283,25 @@
 # ------------------------------------------------------------
 [[redirects]]
   from = "/case-studies/rovic-agriventures"
-  to = "/case-studies/rai-egg-production"
+  to = "/portfolio/rai-egg-production"
   status = 301
   force = true
 
 [[redirects]]
   from = "/case-studies/poultry-distribution"
-  to = "/case-studies/rcd-poultry-distribution"
+  to = "/portfolio/rcd-poultry-distribution"
   status = 301
   force = true
 
 [[redirects]]
   from = "/case-studies/rovic-agriventures-egg-production"
-  to = "/case-studies/rai-egg-production"
+  to = "/portfolio/rai-egg-production"
   status = 301
   force = true
 
 [[redirects]]
   from = "/case-studies/rovic-chicken-dealer-poultry-distribution"
-  to = "/case-studies/rcd-poultry-distribution"
+  to = "/portfolio/rcd-poultry-distribution"
   status = 301
   force = true
 
@@ -492,6 +492,16 @@
 [[redirects]]
   from = "/case-studies/"
   to = "/portfolio"
+  status = 301
+  force = true
+
+# 7 Sep 2026: the case studies moved under /portfolio to match the nav and the
+# rebrand. "Case studies" is retired vocabulary. The four legacy long slugs above
+# are already repointed straight at their final /portfolio URL so nothing chains;
+# this catch-all carries every remaining slug in a single hop.
+[[redirects]]
+  from = "/case-studies/*"
+  to = "/portfolio/:splat"
   status = 301
   force = true
 
