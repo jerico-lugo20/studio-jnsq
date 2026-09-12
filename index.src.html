@@ -173,6 +173,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
 .phead-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,1.8vw,26px);margin-top:clamp(40px,4.6vw,64px);padding-top:clamp(24px,3vw,36px);border-top:1px solid var(--hairline);}
 .phead-links.three{grid-template-columns:repeat(3,minmax(0,1fr));}
 .pf-glance{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;}
+/* The case-study panels run a tighter rhythm than the rest: each carries a list of
+   cards that grows as work is published, and every panel must still fit one screen
+   at 1440x900. Padding only, never copy. */
+.panel:has(.pf-list){padding-block:clamp(44px,5vw,74px);}
+.panel:has(.pf-list) .sec-head{margin-bottom:clamp(18px,2.2vw,32px);}
 .pf-glance div{border-top:2px solid var(--yellow);padding-top:10px;display:flex;flex-direction:column;gap:4px;}
 .pf-glance b{font-family:var(--mono);font-weight:500;font-size:1.25rem;color:var(--ink);font-variant-numeric:tabular-nums;}
 .pf-glance span{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--grey);}
@@ -1405,6 +1410,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
         <div><b>45 days</b><span>Idiyanale &middot; positioning and proof</span></div>
         <div><b>65% early</b><span>Rovic Agriventures &middot; RVF&trade;</span></div>
         <div><b>2 weeks</b><span>Rovic Chicken Dealer &middot; RVF&trade;</span></div>
+        <div><b>&asymp; 2x fee</b><span>Aireeza Tandih &middot; inbound</span></div>
       </div>
     </div>
   </div>
@@ -1428,6 +1434,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
         <div><p class="who">Idiyanale Business Consultancy &middot; Philippines</p><h3>A boutique consultancy given a market-facing case in forty five days.</h3><span class="arrow" style="margin-top:8px;font-size:13px;">Read the case study<span class="tip">&rarr;</span></span></div>
         <p>Real delivery credentials and almost no public evidence of them. In forty five days the firm went from unfindable to defensible: positioning settled, a proof set built, and its first outward-facing material ever.</p>
         <span class="stat"><b>45 days</b><br><span style="color:var(--grey);font-size:10px;letter-spacing:.1em;text-transform:uppercase;">Positioning &amp; proof</span></span>
+      </a>
+      <a class="pf" href="https://studiojnsq.com/portfolio/alt-business-aireeza-tandih" target="_blank" rel="noopener" data-in="up">
+        <svg viewBox="-28 -28 56 56" width="46" height="46" aria-hidden="true" style="flex:none;"><polygon class="dia-ring outer" points="0,-24 24,0 0,24 -24,0"></polygon><polygon class="dia-shape" points="0,-18 14,0 0,16 -11,0"></polygon></svg>
+        <div><p class="who">Alt Business Corp. &middot; Management consulting</p><h3>A decade of proof, finally reachable by strangers.</h3><span class="arrow" style="margin-top:8px;font-size:13px;">Read the case study<span class="tip">&rarr;</span></span></div>
+        <p>She had built a practice without a public presence, on purpose. Eleven months of intermittent work made her findable, and the first client who arrived that way signed in the first meeting.</p>
+        <span class="stat"><b>&asymp; 2x</b><br><span style="color:var(--grey);font-size:10px;letter-spacing:.1em;text-transform:uppercase;">Inbound</span></span>
       </a>
       <a class="pf" href="https://studiojnsq.com/portfolio/international-bank" target="_blank" rel="noopener" data-in="up">
         <svg viewBox="-28 -28 56 56" width="46" height="46" aria-hidden="true" style="flex:none;"><polygon class="dia-ring outer" points="0,-24 24,0 0,24 -24,0"></polygon><polygon class="dia-shape" points="0,-11 14,0 0,21 -20,0"></polygon></svg>

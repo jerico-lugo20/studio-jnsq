@@ -184,6 +184,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
 .phead-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,1.8vw,26px);margin-top:clamp(40px,4.6vw,64px);padding-top:clamp(24px,3vw,36px);border-top:1px solid var(--hairline);}
 .phead-links.three{grid-template-columns:repeat(3,minmax(0,1fr));}
 .pf-glance{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;}
+/* The case-study panels run a tighter rhythm than the rest: each carries a list of
+   cards that grows as work is published, and every panel must still fit one screen
+   at 1440x900. Padding only, never copy. */
+.panel:has(.pf-list){padding-block:clamp(44px,5vw,74px);}
+.panel:has(.pf-list) .sec-head{margin-bottom:clamp(18px,2.2vw,32px);}
 .pf-glance div{border-top:2px solid var(--yellow);padding-top:10px;display:flex;flex-direction:column;gap:4px;}
 .pf-glance b{font-family:var(--mono);font-weight:500;font-size:1.25rem;color:var(--ink);font-variant-numeric:tabular-nums;}
 .pf-glance span{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--grey);}

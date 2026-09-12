@@ -36,7 +36,8 @@ exports.handler = async (event, context) => {
       { loc: "https://studiojnsq.com/portfolio/international-bank", changefreq: "monthly", priority: "0.7", lastmod: "2026-05-20" },
       { loc: "https://studiojnsq.com/portfolio/rai-egg-production", changefreq: "monthly", priority: "0.7", lastmod: "2026-07-31" },
       { loc: "https://studiojnsq.com/portfolio/rcd-poultry-distribution", changefreq: "monthly", priority: "0.7", lastmod: "2026-07-31" },
-      { loc: "https://studiojnsq.com/portfolio/advisory-jaycee-ynares", changefreq: "monthly", priority: "0.7", lastmod: "2026-07-14" }
+      { loc: "https://studiojnsq.com/portfolio/advisory-jaycee-ynares", changefreq: "monthly", priority: "0.7", lastmod: "2026-07-14" },
+      { loc: "https://studiojnsq.com/portfolio/alt-business-aireeza-tandih", changefreq: "monthly", priority: "0.7", lastmod: "2026-09-12" }
     ];
 
     // Blog posts
