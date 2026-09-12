@@ -495,6 +495,18 @@
   status = 301
   force = true
 
+# HELD 12 Sep 2026. The Aireeza Tandih advisory reflection, which entered the repo
+# with the 3 Aug "restore to live production state" commit and predates it on the live
+# site, is withheld at Jec's instruction. Its biographical claims contradict the client's
+# own submission of 12 Sep on six counts, and the quotations attributed to her are
+# unverified. The file stays in the repo; only the URL is closed. Do not reopen this
+# without Jec, and not before Aireeza has confirmed the quotations are hers.
+[[redirects]]
+  from = "/portfolio/advisory-aireeza-tandih"
+  to = "/portfolio"
+  status = 302
+  force = true
+
 # 7 Sep 2026: the case studies moved under /portfolio to match the nav and the
 # rebrand. "Case studies" is retired vocabulary. The four legacy long slugs above
 # are already repointed straight at their final /portfolio URL so nothing chains;
