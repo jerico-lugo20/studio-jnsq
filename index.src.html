@@ -2361,9 +2361,17 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
     var b = e.target.closest('.hbtn'); if(!b || b.disabled) return;
     var max = grid.scrollWidth - grid.clientWidth;
     var to = Math.max(0, Math.min(max, grid.scrollLeft + Number(b.getAttribute('data-dir')) * Math.round(grid.clientWidth * 0.9)));
-    /* scrollBy with smooth behaviour is cancelled by the panel observer, so tween it */
-    if(window.gsap) gsap.to(grid, { scrollLeft: to, duration:.5, ease:'power2.out', onUpdate: progress, onComplete: progress });
-    else { grid.scrollLeft = to; progress(); }
+    /* native smooth scrollBy is cancelled by the panel observer, and gsap cannot
+       tween scrollLeft as a css property, so run the tween by hand */
+    var from = grid.scrollLeft, t0 = 0;
+    function step(now){
+      if(!t0) t0 = now;
+      var k = Math.min(1, (now - t0) / 420);
+      grid.scrollLeft = from + (to - from) * (1 - Math.pow(1 - k, 3));
+      progress();
+      if(k < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   });
   grid.addEventListener('scroll', progress, { passive:true });
   window.addEventListener('resize', progress);
