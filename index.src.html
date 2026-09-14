@@ -177,6 +177,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
    cards that grows as work is published, and every panel must still fit one screen
    at 1440x900. Padding only, never copy. */
 .panel:has(.pf-list){padding-block:clamp(44px,5vw,74px);}
+/* The insights grid panel carries 31 cards plus filters and a progress bar;
+   same one-screen rule, padding only. */
+.panel:has(#insightGrid){padding-block:clamp(40px,4.6vw,68px);}
 .panel:has(.pf-list) .sec-head{margin-bottom:clamp(18px,2.2vw,32px);}
 .pf-glance div{border-top:2px solid var(--yellow);padding-top:10px;display:flex;flex-direction:column;gap:4px;}
 .pf-glance b{font-family:var(--mono);font-weight:500;font-size:1.25rem;color:var(--ink);font-variant-numeric:tabular-nums;}

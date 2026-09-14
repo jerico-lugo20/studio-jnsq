@@ -46,10 +46,37 @@ var ROUTES = {
   'frameworks-mad': '/frameworks/mad',
   'frameworks-rvf': '/frameworks/rvf',
   'diagnostic': '/diagnostic',
-  'insights': '/insights',       // server-rendered elsewhere, linked only
+  'insights': '/insights',
   'our-story': '/our-story',
   'contact': '/contact'
 };
+
+// ------------------------------------------------------------
+// Insights cards, rendered at build time. The runtime script still drives the
+// category chips, but a crawler must not depend on JS to see 31 article links,
+// so the "All" view is baked into the HTML. Markup matches render() exactly so
+// the first paint does not shift when the script re-renders.
+// ------------------------------------------------------------
+function insightCardsHTML(src) {
+  var m = src.match(/window\.__ARTICLES\s*=\s*(\[[\s\S]*?\]);/);
+  if (!m) { console.log('  ! __ARTICLES not found; insights grid left to JS'); return null; }
+  var data = JSON.parse(m[1]);
+  var SL = { foundation: 'Foundation', mad: 'MAD\u2122 Series', numbers: 'The Numbers',
+             practice: 'The Practice', diagnostics: 'The Diagnostics', bip: 'BIP', standalone: 'Standalone' };
+  function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  return data.map(function (a, i) {
+    var feat = i === 0 ? ' feature' : '';
+    var href = a.s ? '/insights/' + a.s : '#/insights';
+    var sname = SL[a.series] || 'Standalone';
+    var partWord = a.series === 'bip' ? 'Ed.' : 'Part';
+    var sline = sname + (a.part && a.series !== 'standalone' ? ' \u00b7 ' + partWord + ' ' + esc(a.part) : '');
+    return '<a class="post' + feat + '" href="' + href + '"><div><p class="series-line">' + sline +
+           '</p><h3>' + esc(a.t) + '</h3><p>' + esc(a.x) + '</p>' +
+           '<p class="meta"><span>' + esc(a.d) + '</span><span>' + esc(a.a) + '</span></p></div></a>';
+  }).join('');
+}
+
+var INSIGHT_CARDS = insightCardsHTML(SRC);
 
 var PAGES = [
   { key: 'home', file: 'index.html', title: 'Studio JNSQ | Brand Equity Architecture for Valuable Brands',
@@ -79,6 +106,8 @@ var PAGES = [
   { key: 'our-story', file: 'our-story.html', title: 'Our Story and the Founder | Studio JNSQ',
     desc: 'Studio JNSQ exists because of a pattern: brilliant inside the building, invisible outside it. The story of the firm, the frameworks, and Jerico Lugo, MCIPR.' },
 
+  { key: 'insights', file: 'insights.html', title: 'Insights | Studio JNSQ | Brand Equity Architecture, Written Out',
+    desc: 'Thirty one published pieces on brand equity architecture, grouped by series with part numbers. Practical more than theoretical: if a piece does not change something you do on Monday, it should not have been published.' },
   { key: 'contact', file: 'contact.html', title: 'Start Here | Studio JNSQ',
     desc: 'Two ways in, and one of them is free. Take the MAD™ Snapshot, or bring the score to thirty minutes with a strategist. Email strategy@studiojnsq.com.' }
 ];
@@ -220,6 +249,13 @@ PAGES.forEach(function (p) {
 
   var pageVar = '<script>window.__PAGE=' + JSON.stringify(p.key) + ';<\/script>\n';
 
+  // Bake the article links into the insights grid so crawlers see them without JS.
+  if (p.key === 'insights' && INSIGHT_CARDS) {
+    var before = view;
+    view = view.replace('id="insightGrid" data-hscroll data-in="up" data-d="1"></div>',
+                        'id="insightGrid" data-hscroll data-in="up" data-d="1">' + INSIGHT_CARDS + '</div>');
+    if (view === before) console.log('  ! insights grid placeholder not matched');
+  }
   var out = h + navFor(p.key) + '\n<main id="app">\n' + view + '\n</main>\n' + pageVar + realLinks(TAIL);
   fs.writeFileSync(p.file, out);
   console.log(p.file.padEnd(28), ROUTES[p.key].padEnd(24), Math.round(out.length / 1024) + ' KB');
