@@ -527,6 +527,19 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
 .hbar{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:18px;}
 .hprog{flex:1 1 auto;height:2px;background:var(--hairline);position:relative;max-width:520px;}
 .hprog span{position:absolute;left:0;top:0;bottom:0;width:10%;background:var(--yellow);transition:width .35s ease;}
+/* insights rail: series filter is CSS, so every article link stays in the DOM */
+.posts[data-cat="bip"] .post:not([data-series="bip"]),
+.posts[data-cat="diagnostics"] .post:not([data-series="diagnostics"]),
+.posts[data-cat="mad"] .post:not([data-series="mad"]),
+.posts[data-cat="foundation"] .post:not([data-series="foundation"]),
+.posts[data-cat="numbers"] .post:not([data-series="numbers"]),
+.posts[data-cat="practice"] .post:not([data-series="practice"]),
+.posts[data-cat="standalone"] .post:not([data-series="standalone"]){display:none;}
+.chipbtn.chip-all{margin-left:auto;}
+.hnav{display:flex;gap:6px;flex:0 0 auto;}
+.hbtn{font-family:var(--mono);font-size:12px;line-height:1;color:var(--ink-body);border:1px solid var(--hairline);background:transparent;border-radius:2px;padding:7px 11px;cursor:pointer;transition:border-color .18s ease,color .18s ease,opacity .18s ease;}
+.hbtn:hover:not([disabled]){border-color:var(--yellow-deep);color:var(--ink);}
+.hbtn[disabled]{opacity:.3;cursor:default;}
 .post{background:var(--page);color:var(--ink-body);padding:26px 26px 24px;display:flex;flex-direction:column;gap:10px;text-decoration:none;border:1px solid var(--hairline);border-radius:3px;transition:border-color .22s ease,transform .22s ease,box-shadow .22s ease;cursor:pointer;min-height:250px;}
 .post:hover{border-color:var(--yellow-deep);transform:translateY(-3px);box-shadow:0 10px 30px rgba(38,35,26,0.06);}
 .on-cream .post{background:#FFFDF4;padding:16px 18px 14px;gap:8px;}
@@ -1966,17 +1979,17 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
       <h2 class="statement">Thirty one published pieces, sorted by what they argue.</h2>
     </div>
     <div class="filters" data-in="up" id="insightFilters">
-      <button class="chipbtn" type="button" aria-pressed="true" data-cat="All">All</button>
-      <button class="chipbtn" type="button" aria-pressed="false" data-cat="bip">BIP</button>
+      <button class="chipbtn" type="button" aria-pressed="true" data-cat="bip">BIP</button>
       <button class="chipbtn" type="button" aria-pressed="false" data-cat="diagnostics">The Diagnostics</button>
       <button class="chipbtn" type="button" aria-pressed="false" data-cat="mad">MAD&trade; Series</button>
       <button class="chipbtn" type="button" aria-pressed="false" data-cat="foundation">Foundation</button>
       <button class="chipbtn" type="button" aria-pressed="false" data-cat="numbers">The Numbers</button>
       <button class="chipbtn" type="button" aria-pressed="false" data-cat="practice">The Practice</button>
       <button class="chipbtn" type="button" aria-pressed="false" data-cat="standalone">Standalone</button>
+      <button class="chipbtn chip-all" type="button" aria-pressed="false" data-cat="All">All</button>
     </div>
-    <div class="posts" id="insightGrid" data-hscroll data-in="up" data-d="1"></div>
-    <div class="hbar" data-in="up" data-d="2"><div class="hprog"><span id="insightProg"></span></div><p class="floor-from" id="insightCount" style="margin:0;"></p></div>
+    <div class="posts" id="insightGrid" data-cat="bip" data-hscroll data-in="up" data-d="1"></div>
+    <div class="hbar" data-in="up" data-d="2"><div class="hprog"><span id="insightProg"></span></div><p class="floor-from" id="insightCount" style="margin:0;"></p><div class="hnav" id="insightNav"><button class="hbtn" type="button" data-dir="-1" aria-label="Previous pieces">&#8592;</button><button class="hbtn" type="button" data-dir="1" aria-label="Next pieces">&#8594;</button></div></div>
   </div>
 </section>
 
@@ -2279,49 +2292,78 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--yellow-deep);outlin
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 <script>
-/* ---------- insights: render the real pieces, filter, scroll sideways ---------- */
+/* ---------- insights: one rail, CSS series filter, arrow controls ---------- */
 (function(){
   var grid = document.getElementById('insightGrid'), filters = document.getElementById('insightFilters');
   var prog = document.getElementById('insightProg'), count = document.getElementById('insightCount');
+  var nav = document.getElementById('insightNav');
   if(!grid || !window.__ARTICLES) return;
-  var data = window.__ARTICLES, cat = 'All';
+  var data = window.__ARTICLES, cat = grid.getAttribute('data-cat') || 'bip';
+  var SL = {foundation:'Foundation', mad:'MAD™ Series', numbers:'The Numbers', practice:'The Practice', diagnostics:'The Diagnostics', bip:'BIP', standalone:'Standalone'};
   function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+  /* build_pages.js bakes these same cards at build time; this only fires if it did not */
+  if(!grid.children.length){
+    grid.innerHTML = data.map(function(a){
+      var href = a.s ? '/insights/' + a.s : '#/insights';
+      var sname = SL[a.series] || 'Standalone';
+      var partWord = a.series === 'bip' ? 'Ed.' : 'Part';
+      var sline = sname + (a.part && a.series !== 'standalone' ? ' · ' + partWord + ' ' + esc(a.part) : '');
+      return '<a class="post" data-series="' + (a.series || 'standalone') + '" href="' + href + '"><div><p class="series-line">' + sline +
+             '</p><h3>' + esc(a.t) + '</h3><p>' + esc(a.x) + '</p>' +
+             '<p class="meta"><span>' + esc(a.d) + '</span><span>' + esc(a.a) + '</span></p></div></a>';
+    }).join('');
+  }
+
+  function shownCards(){
+    var out = [], c = grid.children;
+    for(var i=0;i<c.length;i++){ if(c[i].offsetParent !== null || c[i].offsetWidth) out.push(c[i]); }
+    return out;
+  }
   function progress(){
     var max = grid.scrollWidth - grid.clientWidth, x = max > 0 ? grid.scrollLeft / max : 1;
     if(prog) prog.style.width = Math.max(6, Math.round(x * 100)) + '%';
-    var cards = grid.children, seen = 0;
+    var cards = shownCards(), seen = 0;
     for(var i=0;i<cards.length;i++){ if(cards[i].offsetLeft + cards[i].offsetWidth <= grid.scrollLeft + grid.clientWidth + 2) seen = i + 1; }
-    if(count) count.textContent = seen + ' of ' + cards.length + ' pieces \u00b7 scroll to move sideways';
+    if(count){
+      if(max > 2) count.textContent = seen + ' of ' + cards.length + ' pieces · use the arrows to move sideways';
+      else count.textContent = cards.length + (cards.length === 1 ? ' piece in ' : ' pieces in ') + (SL[cat] || 'the archive');
+    }
+    if(nav){
+      nav.style.display = max > 2 ? 'flex' : 'none';
+      var b = nav.querySelectorAll('.hbtn');
+      b[0].disabled = grid.scrollLeft <= 2;
+      b[1].disabled = grid.scrollLeft >= max - 2;
+    }
   }
   grid.__progress = progress;
-  function render(animate){
-    var list = data.filter(function(a){ return cat === 'All' || a.series === cat; });
-    var html = '';
-    list.forEach(function(a, i){
-      var feat = (i === 0 && cat === 'All') ? ' feature' : '';
-      var href = a.s ? '/insights/' + a.s : '#/insights';
-      var SL = {foundation:'Foundation', mad:'MAD\u2122 Series', numbers:'The Numbers', practice:'The Practice', diagnostics:'The Diagnostics', bip:'BIP', standalone:'Standalone'};
-      var sname = SL[a.series] || 'Standalone';
-      var partWord = a.series === 'bip' ? 'Ed.' : 'Part';
-      var sline = sname + (a.part && a.series !== 'standalone' ? ' \u00b7 ' + partWord + ' ' + esc(a.part) : '');
-      html += '<a class="post'+feat+'" href="'+href+'"><div><p class="series-line">'+sline+'</p><h3>'+esc(a.t)+'</h3><p>'+esc(a.x)+'</p>'+
-              '<p class="meta"><span>'+esc(a.d)+'</span><span>'+esc(a.a)+'</span></p></div></a>';
-    });
-    grid.classList.toggle('onerow', list.length <= 4);
-    grid.innerHTML = html; grid.scrollLeft = 0; progress();
-    if(animate && window.gsap) gsap.fromTo(grid.children, { autoAlpha:0, x:24 }, { autoAlpha:1, x:0, duration:.45, stagger:.04, ease:'power2.out', clearProps:'all' });
+
+  function apply(animate){
+    grid.setAttribute('data-cat', cat);
+    var c = grid.children;
+    for(var i=0;i<c.length;i++) c[i].classList.remove('feature');
+    if(cat === 'All' && c.length) c[0].classList.add('feature');
+    var cards = shownCards();
+    grid.classList.toggle('onerow', cards.length <= 4);
+    grid.scrollLeft = 0; progress();
+    if(animate && window.gsap) gsap.fromTo(cards, { autoAlpha:0, x:24 }, { autoAlpha:1, x:0, duration:.45, stagger:.04, ease:'power2.out', clearProps:'all' });
   }
+
   filters.addEventListener('click', function(e){
     var b = e.target.closest('.chipbtn'); if(!b) return;
     cat = b.getAttribute('data-cat');
     var all = filters.querySelectorAll('.chipbtn');
     for(var k=0;k<all.length;k++) all[k].setAttribute('aria-pressed', all[k] === b ? 'true' : 'false');
-    render(true);
+    apply(true);
+  });
+  if(nav) nav.addEventListener('click', function(e){
+    var b = e.target.closest('.hbtn'); if(!b || b.disabled) return;
+    grid.scrollBy({ left: Number(b.getAttribute('data-dir')) * Math.round(grid.clientWidth * 0.9), behavior:'smooth' });
   });
   grid.addEventListener('scroll', progress, { passive:true });
   window.addEventListener('resize', progress);
   window.addEventListener('hashchange', function(){ setTimeout(progress, 60); });
-  render(false);
+  apply(false);
 })();
 </script>
 
