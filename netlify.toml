@@ -57,6 +57,191 @@
   status = 301
   force = true
 
+
+# ------------------------------------------------------------
+# /blog/<legacy-slug> twins. Before 14 Sep these resolved by chaining through
+# /journal/<slug>; flattening the journal rules removed that hop, so each legacy
+# blog path now needs its own one-hop rule or it 404s on the short slug.
+# ------------------------------------------------------------
+[[redirects]]
+  from = "/blog/bip-15-why-your-marketing-is-working"
+  to = "/insights/why-is-your-marketing-working-but-your-brand-equity-isnt"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/what-is-brand-equity"
+  to = "/insights/what-is-brand-equity-and-why-should-you-care-about-it"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/brand-identity-not-brand-equity"
+  to = "/insights/your-brand-identity-is-not-your-brand-equity"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/branding-vs-brand-equity-vs-brand-architecture"
+  to = "/insights/what-is-the-difference-between-branding-and-brand-equity-architecture"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/5-facets-market-authority"
+  to = "/insights/what-are-the-4-facets-that-build-brand-equity-and-market-authority"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/what-demand-means-for-brand"
+  to = "/insights/what-demand-really-means-for-your-brand"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/credibility-most-underrated-brand-asset"
+  to = "/insights/why-is-credibility-the-most-underrated-brand-equity-asset"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/market-trust-premium-pricing"
+  to = "/insights/why-is-market-trust-the-silent-force-behind-brand-equity"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/revenue-plateau-brand-bottleneck"
+  to = "/insights/revenue-plateau-your-brand-might-be-the-bottleneck"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/visibility-without-value"
+  to = "/insights/visibility-without-value-the-trap-most-brands-fall-into"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/competing-on-price-race-to-bottom"
+  to = "/insights/why-is-competing-on-price-a-race-to-the-bottom-for-your-brand-equity"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/brand-equity-lowers-cac"
+  to = "/insights/how-brand-equity-lowers-your-customer-acquisition-cost"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/rebranding-trap-new-look"
+  to = "/insights/why-does-rebranding-fail-to-fix-your-brand-equity-problems"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/brand-equity-mrr-compounding"
+  to = "/insights/how-does-brand-equity-compound-mrr-growth-most-founders-miss"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/brand-equity-ltv-multiplier"
+  to = "/insights/why-is-brand-equity-the-best-long-term-investment-for-ltv"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/competitors-charge-more-brand-equity"
+  to = "/insights/how-do-competitors-charge-more-for-the-same-thing-using-brand-equity"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/why-clients-leave-brand-equity"
+  to = "/insights/why-do-clients-leave-and-what-does-brand-equity-have-to-do-with-it"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/building-brand-equity-small-budget"
+  to = "/insights/how-do-you-build-brand-equity-on-a-small-budget"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/scaling-founder-led-brand"
+  to = "/insights/how-do-you-scale-a-founder-led-brand-without-losing-equity"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/brand-equity-makes-you-valuable"
+  to = "/insights/what-makes-brand-equity-the-difference-between-profit-and-value"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/brand-audit-checklist"
+  to = "/insights/what-is-the-brand-equity-audit-checklist-you-need"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/market-authority-diamond-complete-guide"
+  to = "/insights/what-is-the-market-authority-diamond-for-brand-equity"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/resource-value-formula-complete-guide"
+  to = "/insights/what-is-the-resource-value-formula-for-brand-equity"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/introducing-rvf-diagnostic"
+  to = "/insights/what-is-the-rvf-diagnostic-for-brand-equity-assessment"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/how-to-read-mad-report"
+  to = "/insights/how-do-you-read-your-mad-brand-equity-report"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/what-happens-after-mad-diagnostic"
+  to = "/insights/what-happens-after-your-mad-brand-equity-diagnostic"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/rvf-actionability-diagnostic-to-action"
+  to = "/insights/how-does-the-rvf-turn-brand-equity-diagnostics-into-action"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/rvf-clarity-decision-paralysis"
+  to = "/insights/how-does-the-rvf-cut-through-brand-equity-decision-paralysis"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/mad-meets-rvf-inflection-points"
+  to = "/insights/where-do-mad-and-rvf-meet-for-brand-equity-architecture"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/mad-rvf-full-picture-metrics"
+  to = "/insights/how-do-mad-and-rvf-together-drive-brand-equity-and-revenue"
+  status = 301
+  force = true
 [[redirects]]
   from = "/blog/*"
   to = "/insights/:splat"
