@@ -53,20 +53,20 @@
 # ------------------------------------------------------------
 [[redirects]]
   from = "/blog"
-  to = "/journal"
+  to = "/insights"
   status = 301
   force = true
 
 [[redirects]]
   from = "/blog/*"
-  to = "/journal/:splat"
+  to = "/insights/:splat"
   status = 301
   force = true
 
 # Legacy query-param blog URLs -> journal clean paths (301 permanent)
 [[redirects]]
   from = "/journal"
-  to = "/journal/:post"
+  to = "/insights/:post"
   status = 301
   force = true
   query = {post = ":post"}
@@ -81,20 +81,20 @@
 # Retire the /journal-mock preview — redirect to the live Journal (301 permanent)
 [[redirects]]
   from = "/journal-mock"
-  to = "/journal"
+  to = "/insights"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal-mock/*"
-  to = "/journal/:splat"
+  to = "/insights/:splat"
   status = 301
   force = true
 
 # Legacy per-post redirects — old slugs to new canonical slugs (301 permanent)
 [[redirects]]
   from = "/journal/bip-15-why-your-marketing-is-working"
-  to = "/journal/why-is-your-marketing-working-but-your-brand-equity-isnt"
+  to = "/insights/why-is-your-marketing-working-but-your-brand-equity-isnt"
   status = 301
   force = true
 
@@ -104,175 +104,175 @@
 # ------------------------------------------------------------
 [[redirects]]
   from = "/journal/what-is-brand-equity"
-  to = "/journal/what-is-brand-equity-and-why-should-you-care-about-it"
+  to = "/insights/what-is-brand-equity-and-why-should-you-care-about-it"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/brand-identity-not-brand-equity"
-  to = "/journal/your-brand-identity-is-not-your-brand-equity"
+  to = "/insights/your-brand-identity-is-not-your-brand-equity"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/branding-vs-brand-equity-vs-brand-architecture"
-  to = "/journal/what-is-the-difference-between-branding-and-brand-equity-architecture"
+  to = "/insights/what-is-the-difference-between-branding-and-brand-equity-architecture"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/5-facets-market-authority"
-  to = "/journal/what-are-the-4-facets-that-build-brand-equity-and-market-authority"
+  to = "/insights/what-are-the-4-facets-that-build-brand-equity-and-market-authority"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/what-demand-means-for-brand"
-  to = "/journal/what-demand-really-means-for-your-brand"
+  to = "/insights/what-demand-really-means-for-your-brand"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/credibility-most-underrated-brand-asset"
-  to = "/journal/why-is-credibility-the-most-underrated-brand-equity-asset"
+  to = "/insights/why-is-credibility-the-most-underrated-brand-equity-asset"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/market-trust-premium-pricing"
-  to = "/journal/why-is-market-trust-the-silent-force-behind-brand-equity"
+  to = "/insights/why-is-market-trust-the-silent-force-behind-brand-equity"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/revenue-plateau-brand-bottleneck"
-  to = "/journal/revenue-plateau-your-brand-might-be-the-bottleneck"
+  to = "/insights/revenue-plateau-your-brand-might-be-the-bottleneck"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/visibility-without-value"
-  to = "/journal/visibility-without-value-the-trap-most-brands-fall-into"
+  to = "/insights/visibility-without-value-the-trap-most-brands-fall-into"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/competing-on-price-race-to-bottom"
-  to = "/journal/why-is-competing-on-price-a-race-to-the-bottom-for-your-brand-equity"
+  to = "/insights/why-is-competing-on-price-a-race-to-the-bottom-for-your-brand-equity"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/brand-equity-lowers-cac"
-  to = "/journal/how-brand-equity-lowers-your-customer-acquisition-cost"
+  to = "/insights/how-brand-equity-lowers-your-customer-acquisition-cost"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/rebranding-trap-new-look"
-  to = "/journal/why-does-rebranding-fail-to-fix-your-brand-equity-problems"
+  to = "/insights/why-does-rebranding-fail-to-fix-your-brand-equity-problems"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/brand-equity-mrr-compounding"
-  to = "/journal/how-does-brand-equity-compound-mrr-growth-most-founders-miss"
+  to = "/insights/how-does-brand-equity-compound-mrr-growth-most-founders-miss"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/brand-equity-ltv-multiplier"
-  to = "/journal/why-is-brand-equity-the-best-long-term-investment-for-ltv"
+  to = "/insights/why-is-brand-equity-the-best-long-term-investment-for-ltv"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/competitors-charge-more-brand-equity"
-  to = "/journal/how-do-competitors-charge-more-for-the-same-thing-using-brand-equity"
+  to = "/insights/how-do-competitors-charge-more-for-the-same-thing-using-brand-equity"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/why-clients-leave-brand-equity"
-  to = "/journal/why-do-clients-leave-and-what-does-brand-equity-have-to-do-with-it"
+  to = "/insights/why-do-clients-leave-and-what-does-brand-equity-have-to-do-with-it"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/building-brand-equity-small-budget"
-  to = "/journal/how-do-you-build-brand-equity-on-a-small-budget"
+  to = "/insights/how-do-you-build-brand-equity-on-a-small-budget"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/scaling-founder-led-brand"
-  to = "/journal/how-do-you-scale-a-founder-led-brand-without-losing-equity"
+  to = "/insights/how-do-you-scale-a-founder-led-brand-without-losing-equity"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/brand-equity-makes-you-valuable"
-  to = "/journal/what-makes-brand-equity-the-difference-between-profit-and-value"
+  to = "/insights/what-makes-brand-equity-the-difference-between-profit-and-value"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/brand-audit-checklist"
-  to = "/journal/what-is-the-brand-equity-audit-checklist-you-need"
+  to = "/insights/what-is-the-brand-equity-audit-checklist-you-need"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/market-authority-diamond-complete-guide"
-  to = "/journal/what-is-the-market-authority-diamond-for-brand-equity"
+  to = "/insights/what-is-the-market-authority-diamond-for-brand-equity"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/resource-value-formula-complete-guide"
-  to = "/journal/what-is-the-resource-value-formula-for-brand-equity"
+  to = "/insights/what-is-the-resource-value-formula-for-brand-equity"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/introducing-rvf-diagnostic"
-  to = "/journal/what-is-the-rvf-diagnostic-for-brand-equity-assessment"
+  to = "/insights/what-is-the-rvf-diagnostic-for-brand-equity-assessment"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/how-to-read-mad-report"
-  to = "/journal/how-do-you-read-your-mad-brand-equity-report"
+  to = "/insights/how-do-you-read-your-mad-brand-equity-report"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/what-happens-after-mad-diagnostic"
-  to = "/journal/what-happens-after-your-mad-brand-equity-diagnostic"
+  to = "/insights/what-happens-after-your-mad-brand-equity-diagnostic"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/rvf-actionability-diagnostic-to-action"
-  to = "/journal/how-does-the-rvf-turn-brand-equity-diagnostics-into-action"
+  to = "/insights/how-does-the-rvf-turn-brand-equity-diagnostics-into-action"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/rvf-clarity-decision-paralysis"
-  to = "/journal/how-does-the-rvf-cut-through-brand-equity-decision-paralysis"
+  to = "/insights/how-does-the-rvf-cut-through-brand-equity-decision-paralysis"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/mad-meets-rvf-inflection-points"
-  to = "/journal/where-do-mad-and-rvf-meet-for-brand-equity-architecture"
+  to = "/insights/where-do-mad-and-rvf-meet-for-brand-equity-architecture"
   status = 301
   force = true
 
 [[redirects]]
   from = "/journal/mad-rvf-full-picture-metrics"
-  to = "/journal/how-do-mad-and-rvf-together-drive-brand-equity-and-revenue"
+  to = "/insights/how-do-mad-and-rvf-together-drive-brand-equity-and-revenue"
   status = 301
   force = true
 
@@ -281,6 +281,14 @@
 # Canonical URLs now carry the client names. Both the anonymized
 # initials-based slugs and the original legacy slugs 301 here.
 # ------------------------------------------------------------
+# Aireeza: the old case-studies path must reach the current page in one hop, not via
+# the deleted /portfolio/advisory-aireeza-tandih slug.
+[[redirects]]
+  from = "/case-studies/advisory-aireeza-tandih"
+  to = "/portfolio/alt-business-aireeza-tandih"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/case-studies/rovic-agriventures"
   to = "/portfolio/rai-egg-production"
@@ -495,16 +503,15 @@
   status = 301
   force = true
 
-# HELD 12 Sep 2026. The Aireeza Tandih advisory reflection, which entered the repo
-# with the 3 Aug "restore to live production state" commit and predates it on the live
-# site, is withheld at Jec's instruction. Its biographical claims contradict the client's
-# own submission of 12 Sep on six counts, and the quotations attributed to her are
-# unverified. The file stays in the repo; only the URL is closed. Do not reopen this
-# without Jec, and not before Aireeza has confirmed the quotations are hers.
+# DELETED 14 Sep 2026. The July Aireeza Tandih advisory reflection is removed from the
+# repo entirely, not archived on any public path. Its biography contradicted the client's
+# own submission on six counts and it carried first-person quotations Jec could not source.
+# A private evidence copy is at outputs/backups/aireeza-july-page-WITHDRAWN-20260914 and in
+# git history. This 301 sends anyone holding the old link to the current case study.
 [[redirects]]
   from = "/portfolio/advisory-aireeza-tandih"
-  to = "/portfolio"
-  status = 302
+  to = "/portfolio/alt-business-aireeza-tandih"
+  status = 301
   force = true
 
 # 7 Sep 2026: the case studies moved under /portfolio to match the nav and the
